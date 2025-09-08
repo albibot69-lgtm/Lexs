@@ -1,9 +1,9 @@
 local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 
 local Window = WindUI:CreateWindow({
-    Title = "Lexs Hub | Dev",
+    Title = "Lexs Hub | Break Your Bone",
     Icon = "monitor",
-    Author = "by Lexs",
+    Author = "Discord: discord.gg/cQmgFXgcWz",
     Folder = "MyLexsHub",
     
     -- ↓ This all is Optional. You can remove it.
@@ -37,9 +37,9 @@ local Window = WindUI:CreateWindow({
     -- !  ↓  if you DON'T need the key system
     KeySystem = { 
         -- ↓ Optional. You can remove it.
-        Key = { "Lexs | Dev"},
+        Key = { "Support Me"},
         
-        Note = "Lexs Hub | Dev Key System",
+        Note = "Lexs Hub | Break Your Bone Key System",
         
         -- ↓ Optional. You can remove it.
         Thumbnail = {
