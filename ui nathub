@@ -1,4 +1,4 @@
-local than = game:HttpGet("Github Link UI")
+local than = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua")
         local Fluent = loadstring(than)()
 
         local Window = Fluent:CreateWindow({
