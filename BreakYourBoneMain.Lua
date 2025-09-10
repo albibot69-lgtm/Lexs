@@ -172,6 +172,6 @@ local Button = MainTab:Button({
     Desc = "Auto Roll (Need Money)",
     Locked = false,
     Callback = function()
-        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("SetAFK"):FireServer()
+        game:GetService("Players").LocalPlayer:WaitForChild("LocalScript")
     end
 })
