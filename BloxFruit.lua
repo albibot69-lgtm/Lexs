@@ -127,7 +127,7 @@ Tab8:Button({
     Title = "Anti Afk",
     Description = "Anti Afk 20 Minute",
     Callback = function()
-              local VirtualUser = game:GetService('VirtualUser')
+      local VirtualUser = game:GetService('VirtualUser')
  
 game:GetService('Players').LocalPlayer.Idled:Connect(function()
     VirtualUser:CaptureController()
