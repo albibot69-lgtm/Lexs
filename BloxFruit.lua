@@ -123,10 +123,9 @@ local Tab8 = Window:Tab({
     Icon = "settings",
 })
 
-local Button = Tab8:Button({
+Tab8:Button({
     Title = "Anti Afk",
-    Desc = "anti afk 20 minute",
-    Locked = false,
+    Description = "Anti Afk 20 Minute",
     Callback = function()
         loadstring(game:HttpGet("https://github.com/albibot69-lgtm/Lexs/blob/main/Anti%20Afk"))()
     end
