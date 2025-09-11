@@ -137,7 +137,7 @@ end)
 game:GetService("StarterGui"):SetCore("SendNotification", {
     Title = "AntiAFK loaded!",
     Text = "Coded By Lexs",
-    Button1 = "Im Pro Coded Lexs😎",
+    Button1 = "Loaded",
     Duration = 5
 })
     end
