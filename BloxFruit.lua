@@ -127,7 +127,19 @@ Tab8:Button({
     Title = "Anti Afk",
     Description = "Anti Afk 20 Minute",
     Callback = function()
-        loadstring(game:HttpGet("https://github.com/albibot69-lgtm/Lexs/blob/main/Anti%20Afk"))()
+              local VirtualUser = game:GetService('VirtualUser')
+ 
+game:GetService('Players').LocalPlayer.Idled:Connect(function()
+    VirtualUser:CaptureController()
+    VirtualUser:ClickButton2(Vector2.new())
+end)
+ 
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "AntiAFK loaded!",
+    Text = "Coded By Lexs",
+    Button1 = "Im Pro Coded Lexs😎",
+    Duration = 5
+})
     end
 })
 
