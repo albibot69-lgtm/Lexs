@@ -123,6 +123,15 @@ local Tab8 = Window:Tab({
     Icon = "settings",
 })
 
+local Button = Tab8:Button({
+    Title = "Button",
+    Desc = "Test Button",
+    Locked = false,
+    Callback = function()
+        print("clicked")
+    end
+})
+
 local Tab9 = Window:Tab({
     Title = "Misc",
     Icon = "list",
