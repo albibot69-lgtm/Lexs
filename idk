@@ -1,1 +1,1176 @@
-
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
+local args = {
+	"Tap"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("RemoteEvents"):WaitForChild("TapEvent"):FireServer(unpack(args))
