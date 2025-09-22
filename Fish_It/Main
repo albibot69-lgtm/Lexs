@@ -11,7 +11,7 @@ end
 
 local Window = WindUI:CreateWindow({
     Title = "Lexs Hub",
-    Icon = "rbxassetid://123032091977400",
+    Icon = "monitor",
     Author = "Lexs Hub | Fish It",
     Folder = "HUB",
     Size = UDim2.fromOffset(270, 300),
@@ -74,7 +74,7 @@ local Input = Tab2:Input({
     Title = "WalkSpeed",
     Desc = "Minimum 16 speed",
     Value = "16",
-    InputIcon = "bird",
+    InputIcon = "database-zap",
     Type = "Input",
     Placeholder = "Enter number...",
     Callback = function(input) 
@@ -93,7 +93,7 @@ local Input = Tab2:Input({
     Title = "Jump Power",
     Desc = "Minimum 50 jump",
     Value = "50",
-    InputIcon = "bird",
+    InputIcon = "database-zap",
     Type = "Input",
     Placeholder = "Enter number...",
     Callback = function(input) 
@@ -148,7 +148,7 @@ local Player = game.Players.LocalPlayer
 local Toggle = Tab2:Toggle({
     Title = "Infinite Jump",
     Desc = "activate to use infinite jump",
-    Icon = "bird",
+    Icon = "check",
     Type = "Checkbox",
     Default = false,
     Callback = function(state) 
@@ -173,7 +173,7 @@ end)
 
 local Tab3 = Window:Tab({
     Title = "Main",
-    Icon = "landmark",
+    Icon = "gamepad-2",
 })
 
 local Section = Tab3:Section({ 
