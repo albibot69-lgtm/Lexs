@@ -4,12 +4,12 @@ local gameName, success = nil, false
 
 if placeId == 2753915549 then
     gameName = "Blox Fruit"
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/username/game-a-script/main.lua"))()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BloxFruitHub.lua"))()
     success = true
 elseif placeId == 79546208627805 then
     gameName = "99 Night In The Forest"
     loadstring(game:HttpGet("https://raw.githubusercontent.com/create-stree/STREE-HUB/refs/heads/main/Loader/GrowAGarden.lua"))()
-    success = true
+    success = false
 elseif placeId == 18687417158 then
     gameName = "Forsaken"
     loadstring(game:HttpGet("https://raw.githubusercontent.com/create-stree/STREE-HUB/refs/heads/main/Forsaken/Main.lua"))()
