@@ -12,7 +12,7 @@ elseif placeId == 79546208627805 then
     success = false
 elseif placeId == 18687417158 then
     gameName = "Forsaken"
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/create-stree/STREE-HUB/refs/heads/main/Forsaken/Main.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Forsaken/Main.lua"))()
     success = true
 elseif placeId == 121864768012064 then
     gameName = "Fish It"
