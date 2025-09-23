@@ -10,9 +10,9 @@ else
 end
 
 local Window = WindUI:CreateWindow({
-    Title = "Lexs Hub | Blox Fruit",
+    Title = "Lexs Hub",
     Icon = "monitor",
-    Author = "Discord: discord.gg/cQmgFXgcWz",
+    Author = "Lexs Hub | Blox Fruit",
     Folder = "Lexs_hub",
     Size = UDim2.fromOffset(560, 400),
     Transparent = true,
