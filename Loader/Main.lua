@@ -24,7 +24,7 @@ elseif placeId == 123921593837160 then
     success = true
 elseif placeId == 137925884276740 then
     gameName = "Build A Plane"
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/username/game-6/main.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BuildAPlane/Main.lua"))()
     success = true
 elseif placeId == 3456789012 then
     gameName = "Game 7"
