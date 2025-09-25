@@ -29,7 +29,7 @@ local Window = WindUI:CreateWindow({
     -- ↓ Optional. You can remove it.
     User = {
         Enabled = true,
-        Anonymous = false,
+        Anonymous = true,
         Callback = function()
             print("clicked")
         end,
@@ -85,8 +85,8 @@ end
 })
        
 local Toggle = Tab1:Toggle({
-    Title = "Auto Spin Aurora Event",
-    Desc = "Auto Spin",
+    Title = "Auto Purchase Spin Aurora Event",
+    Desc = "Auto Purchase Spin",
     Icon = false,
     Type = false,
     Default = false,
