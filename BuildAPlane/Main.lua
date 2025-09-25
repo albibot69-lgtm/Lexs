@@ -42,7 +42,7 @@ local Tab1 = Window:Tab({
 
 local Toggle = Tab1:Toggle({
     Title = "Inf Aurora",
-    Desc = "Aurora inf",
+    Desc = "Aurora inf can off",
     Icon = false,
     Type = false,
     Default = false,
@@ -60,7 +60,7 @@ end
        
 local Toggle = Tab1:Toggle({
     Title = "Auto Purchase Spin Aurora Event",
-    Desc = "Auto Purchase Spin",
+    Desc = "Auto Purchase Spin (BUG)",
     Icon = false,
     Type = false,
     Default = false,
