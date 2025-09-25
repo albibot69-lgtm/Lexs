@@ -2,7 +2,7 @@ local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/rel
 
 local Window = WindUI:CreateWindow({
     Title = "Lexs Hub",
-    Icon = "Monitor", -- lucide icon
+    Icon = "monitor", -- lucide icon
     Author = "Lexs Hub | Build A Plane",
     Folder = "Lexs Hub",
     
@@ -46,7 +46,7 @@ local Window = WindUI:CreateWindow({
         -- ↓ Optional. You can remove it.
         Thumbnail = {
             Image = "rbxassetid://",
-            Title = "Thumbnail",
+            Title = "Join Discord For Key",
         },
         
         -- ↓ Optional. You can remove it.
@@ -62,7 +62,7 @@ local Window = WindUI:CreateWindow({
 
 local Tab1 = Window:Tab({
     Title = "Main",
-    Icon = "gampad-2", -- optional
+    Icon = "gamepad-2", -- optional
     Locked = false,
 })
 
