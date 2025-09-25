@@ -84,3 +84,13 @@ end
     end
 })
        
+local Toggle = Tab1:Toggle({
+    Title = "Auto Spin Aurora Event",
+    Desc = "Auto Spin",
+    Icon = false,
+    Type = false,
+    Default = false,
+    Callback = function(state) 
+        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("SpinEvents"):WaitForChild("PurchaseSpin"):InvokeServer()
+    end
+})
