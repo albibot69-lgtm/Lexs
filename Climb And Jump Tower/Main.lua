@@ -10,7 +10,7 @@ else
 end
 
 local Window = WindUI:CreateWindow({
-    Title = "STREE HUB",
+    Title = "Lexs HUB",
     Icon = "monitor",
     Author = "Lexs Hub | Climb and Jump Tower",
     Folder = "Lexs HUB",
@@ -27,7 +27,7 @@ Window:Tag({
 })
 
 WindUI:Notify({
-    Title = "STREE HUB Loaded",
+    Title = "Lexs HUB Loaded",
     Content = "UI loaded successfully!",
     Duration = 3,
     Icon = "bell",
@@ -49,37 +49,7 @@ Tab1:Button({
     Desc = "Click to copy link",
     Callback = function()
         if setclipboard then
-            setclipboard("https://discord.gg/jdmX43t5mY")
-        end
-    end
-})
-
-Tab1:Button({
-    Title = "WhatsApp",
-    Desc = "Click to copy link",
-    Callback = function()
-        if setclipboard then
-            setclipboard("https://whatsapp.com/channel/0029VbAwRihKAwEtwyowt62N")
-        end
-    end
-})
-
-Tab1:Button({
-    Title = "Telegram",
-    Desc = "Click to copy link",
-    Callback = function()
-        if setclipboard then
-            setclipboard("https://t.me/StreeCoumminty")
-        end
-    end
-})
-
-Tab1:Button({
-    Title = "Website",
-    Desc = "Click to copy link",
-    Callback = function()
-        if setclipboard then
-            setclipboard("https://stree-hub-nexus.lovable.app")
+            setclipboard("https://discord.gg/cQmgFXgcWz")
         end
     end
 })
