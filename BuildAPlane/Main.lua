@@ -59,3 +59,28 @@ local Window = WindUI:CreateWindow({
         -- API = {} ← Services. Read about it below ↓
     },
 })
+
+local Tab1 = Window:Tab({
+    Title = "Main",
+    Icon = "gampad-2", -- optional
+    Locked = false,
+})
+
+local Toggle = Tab1:Toggle({
+    Title = "Inf Aurora",
+    Desc = "Aurora inf",
+    Icon = false,
+    Type = false,
+    Default = false,
+    Callback = function(state) 
+        while true do
+local args = {
+	Instance.new("Part", nil)
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("UIEvents"):WaitForChild("AuroraCollect"):FireServer(unpack(args))
+
+task.wait(0.00000001)
+end
+    end
+})
+       
