@@ -173,7 +173,7 @@ end)
 
 local Tab3 = Window:Tab({
     Title = "Main",
-    Icon = "landmark",
+    Icon = "gamepad-2",
 })
 
 local Section = Tab3:Section({ 
