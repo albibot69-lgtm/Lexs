@@ -13,7 +13,7 @@ local Window = WindUI:CreateWindow({
     Title = "Lexs HUB",
     Icon = "monitor",
     Author = "Lexs Hub | Climb and Jump Tower",
-    Folder = "Lexs HUB",
+    Folder = "Lexs_HUB",
     Size = UDim2.fromOffset(560, 400),
     Transparent = true,
     Theme = "Dark",
@@ -56,7 +56,7 @@ Tab1:Button({
 
 local Tab2 = Window:Tab({
     Title = "Main",
-    Icon = "landmark"
+    Icon = "gamepad-2"
 })
 
 local Section = Tab2:Section({
