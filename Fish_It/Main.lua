@@ -438,7 +438,7 @@ local Toggle = Tab5:Toggle({
 
             game:GetService("StarterGui"):SetCore("SendNotification", {
                 Title = "AntiAFK loaded!",
-                Text = "Coded By Kirsiasc",
+                Text = "Coded By Lexs",
                 Button1 = "Okey",
                 Duration = 5
             })
