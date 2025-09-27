@@ -22,12 +22,34 @@ Window:EditOpenButton({
 })
 
 local Tab1 = Window:Tab({
+    Title = "Info",
+    Icon = "info", -- optional
+    Locked = false,
+})
+
+local Section = Tab1:Section({
+    Title = "Community Support",
+    TextXAlignment = "Left",
+    TextSize = 17
+})
+
+Tab1:Button({
+    Title = "Discord",
+    Desc = "Click to copy link",
+    Callback = function()
+        if setclipboard then
+            setclipboard("https://discord.gg/Tsa7nGXPUw")
+        end
+    end
+})
+
+local Tab2 = Window:Tab({
     Title = "Main",
     Icon = "gamepad-2", -- optional
     Locked = false,
 })
 
-local Toggle = Tab1:Toggle({
+local Toggle = Tab2:Toggle({
     Title = "Inf Aurora",
     Desc = "Aurora inf can off",
     Icon = false,
@@ -45,7 +67,7 @@ end
     end
 })
        
-local Toggle = Tab1:Toggle({
+local Toggle = Tab2:Toggle({
     Title = "Auto Purchase Spin Aurora Event",
     Desc = "Auto Purchase Spin (BUG)",
     Icon = false,
