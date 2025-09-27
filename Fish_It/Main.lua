@@ -11,7 +11,7 @@ end
 
 local Window = WindUI:CreateWindow({
     Title = "Lexs Hub",
-    Icon = "monitor",
+    Icon = "rbxassetid://125549917221679",
     Author = "Lexs Hub | Fish It",
     Folder = "Lexs_Hub",
     Size = UDim2.fromOffset(560, 400),
