@@ -10,10 +10,10 @@ else
 end
 
 local Window = WindUI:CreateWindow({
-    Title = Lexs Hub",
+    Title = "Lexs Hub",
     Icon = "monitor",
     Author = "Lexs Hub | Fish It",
-    Folder = "Lexs_HUB",
+    Folder = "Lexs_Hub",
     Size = UDim2.fromOffset(560, 400),
     Transparent = true,
     Theme = "Dark",
@@ -54,6 +54,12 @@ Tab1:Button({
     end
 })
 
+local Section = Tab1:Section({ 
+    Title = "Still Update",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
 local Tab2 = Window:Tab({
     Title = "Players",
     Icon = "user",
@@ -70,7 +76,7 @@ local Input = Tab2:Input({
     Title = "WalkSpeed",
     Desc = "Minimum 16 speed",
     Value = "16",
-    InputIcon = "bird",
+    InputIcon = "chevrons-up",
     Type = "Input",
     Placeholder = "Enter number...",
     Callback = function(input) 
@@ -89,7 +95,7 @@ local Input = Tab2:Input({
     Title = "Jump Power",
     Desc = "Minimum 50 jump",
     Value = "50",
-    InputIcon = "bird",
+    InputIcon = "square-chevron-up",
     Type = "Input",
     Placeholder = "Enter number...",
     Callback = function(input) 
@@ -142,8 +148,8 @@ local UserInputService = game:GetService("UserInputService")
 local Toggle = Tab2:Toggle({
     Title = "Infinite Jump",
     Desc = "activate to use infinite jump",
-    Icon = false,
-    Type = false,
+    Icon = "check",
+    Type = "Checkbox",
     Default = false,
     Callback = function(state) 
         _G.InfiniteJump = state
@@ -210,7 +216,7 @@ end)
 
 Tab3:Toggle({
     Title = "Auto Fishing V1",
-    Desc = "Instant Catch",
+    Desc = "Auto Catch Fish (Instant)",
     Icon = false,
     Type = false,
     Default = false,
@@ -260,7 +266,7 @@ end)
 
 local Toggle = Tab3:Toggle({
     Title = "Auto Sell",
-    Desc = "Automatic fish sales",
+    Desc = "Auto Sell Fish",
     Icon = false,
     Type = false,
     Default = false,
@@ -470,7 +476,7 @@ local Toggle = Tab5:Toggle({
 
             game:GetService("StarterGui"):SetCore("SendNotification", {
                 Title = "AntiAFK loaded!",
-                Text = "Coded By Lexs",
+                Text = "Coded By Kirsiasc",
                 Button1 = "Okey",
                 Duration = 5
             })
