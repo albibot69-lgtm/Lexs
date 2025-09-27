@@ -67,7 +67,7 @@ Tab1:Section({
 })
 
 Tab1:Section({
-    Title = "If you encounter any issues, please report them on our Discord server.",
+    Title = "Join discord for update logs",
     TextXAlignment = "Left",
     TextSize = 12,
 })
