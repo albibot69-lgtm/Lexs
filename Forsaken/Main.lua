@@ -10,10 +10,10 @@ else
 end
 
 local Window = WindUI:CreateWindow({
-    Title = "STREE HUB",
-    Icon = "rbxassetid://123032091977400",
-    Author = "KirsiaSC | Forsaken",
-    Folder = "STREE_HUB",
+    Title = "Lexs Hub",
+    Icon = "rbxassetid://71947103252559",
+    Author = "Lexs Hub | Forsaken",
+    Folder = "LEXS_HUB",
     Size = UDim2.fromOffset(560, 380),
     Transparent = true,
     Theme = "Dark",
@@ -27,7 +27,7 @@ Window:Tag({
 })
 
 WindUI:Notify({
-    Title = "STREE HUB Loaded",
+    Title = "Lexs Hub Loaded",
     Content = "UI loaded successfully!",
     Duration = 3,
     Icon = "bell",
