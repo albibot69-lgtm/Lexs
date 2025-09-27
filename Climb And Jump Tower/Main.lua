@@ -11,7 +11,7 @@ end
 
 local Window = WindUI:CreateWindow({
     Title = "Lexs HUB",
-    Icon = "monitor",
+    Icon = "rbxassetid://71947103252559",
     Author = "Lexs Hub | Climb and Jump Tower",
     Folder = "Lexs_HUB",
     Size = UDim2.fromOffset(560, 400),
