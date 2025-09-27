@@ -49,15 +49,9 @@ Tab1:Button({
     Desc = "Click to copy link",
     Callback = function()
         if setclipboard then
-            setclipboard("https://discord.gg/cQmgFXgcWz")
+            setclipboard("https://discord.gg/xZpAzybXaV")
         end
     end
-})
-
-local Section = Tab1:Section({
-    Title = "Every time there is a game update or someone reports something, I will fix it as soon as possible.",
-    TextXAlignment = "Left",
-    TextSize = 17
 })
 
 local Tab2 = Window:Tab({
