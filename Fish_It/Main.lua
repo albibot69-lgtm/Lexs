@@ -10,10 +10,10 @@ else
 end
 
 local Window = WindUI:CreateWindow({
-    Title = "Lexs Hub",
+    Title = Lexs Hub",
     Icon = "monitor",
     Author = "Lexs Hub | Fish It",
-    Folder = "Lexs Hub",
+    Folder = "Lexs_HUB",
     Size = UDim2.fromOffset(560, 400),
     Transparent = true,
     Theme = "Dark",
@@ -22,7 +22,7 @@ local Window = WindUI:CreateWindow({
 })
 
 Window:Tag({
-    Title = "v0.0.0.5",
+    Title = "v0.0.0.6",
     Color = Color3.fromRGB(0, 255, 0),
 })
 
@@ -39,7 +39,7 @@ local Tab1 = Window:Tab({
 })
 
 local Section = Tab1:Section({ 
-    Title = "Community Support",
+    Title = "Community",
     TextXAlignment = "Left",
     TextSize = 17,
 })
@@ -49,15 +49,9 @@ Tab1:Button({
     Desc = "click to copy link",
     Callback = function()
         if setclipboard then
-            setclipboard("https://discord.gg/cQmgFXgcWz")
+            setclipboard("https://discord.gg/xZpAzybXaV")
         end
     end
-})
-
-local Section = Tab1:Section({ 
-    Title = "Every time there is a game update or someone reports something, I will fix it as soon as possible.",
-    TextXAlignment = "Left",
-    TextSize = 17,
 })
 
 local Tab2 = Window:Tab({
@@ -148,8 +142,8 @@ local UserInputService = game:GetService("UserInputService")
 local Toggle = Tab2:Toggle({
     Title = "Infinite Jump",
     Desc = "activate to use infinite jump",
-    Icon = "bird",
-    Type = "Checkbox",
+    Icon = false,
+    Type = false,
     Default = false,
     Callback = function(state) 
         _G.InfiniteJump = state
@@ -182,9 +176,41 @@ local Section = Tab3:Section({
     TextSize = 17,
 })
 
-local Toggle = Tab3:Toggle({
-    Title = "Auto Fishing",
-    Desc = "Automatic fishing v1",
+Tab3:Toggle({
+    Title = "Auto Equip Rod",
+    Desc = "Auto Equip Your Rod",
+    Icon = false,
+    Type = false,
+    Default = false,
+    Callback = function(value)
+        _G.AutoEquipRod = value
+    end
+})
+
+local player = game.Players.LocalPlayer
+
+spawn(function()
+    while task.wait(1) do
+        if _G.AutoEquipRod then
+            pcall(function()
+                local backpack = player:FindFirstChild("Backpack")
+                if backpack then
+                    local rod = backpack:FindFirstChild("Rod") 
+                        or backpack:FindFirstChild("FishingRod") 
+                        or backpack:FindFirstChild("OldRod") 
+                        or backpack:FindFirstChild("BasicRod")
+                    if rod and not player.Character:FindFirstChild(rod.Name) then
+                        player.Character.Humanoid:EquipTool(rod)
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+Tab3:Toggle({
+    Title = "Auto Fishing V1",
+    Desc = "Instant Catch",
     Icon = false,
     Type = false,
     Default = false,
@@ -193,36 +219,42 @@ local Toggle = Tab3:Toggle({
     end
 })
 
+local Players = game:GetService("Players")
 local RepStorage = game:GetService("ReplicatedStorage")
+local player = game.Players.LocalPlayer
 
 spawn(function()
     while wait() do
         if _G.AutoFishing then
-            pcall(function()
-                local char = Player.Character or Player.CharacterAdded:Wait()
-                if char:FindFirstChild("!!!FISHING_VIEW_MODEL!!!") then
-                    RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/EquipToolFromHotbar"]:FireServer(1)
-                end                    
-                local cosmeticFolder = workspace:FindFirstChild("CosmeticFolder")
-                if cosmeticFolder and not cosmeticFolder:FindFirstChild(tostring(Player.UserId)) then
-                    RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/ChargeFishingRod"]:InvokeServer(2)
-                    wait(0.5)
-                    RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/RequestFishingMinigameStarted"]:InvokeServer(1, 1)
-                end
-            end)
+            repeat
+                  pcall(function()
+                       local char = player.Character or player.CharacterAdded:Wait()
+                       if char:FindFirstChild("!!!FISHING_VIEW_MODEL!!!") then
+                          RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/EquipToolFromHotbar"]:FireServer(1)
+                       end                    
+                       local cosmeticFolder = workspace:FindFirstChild("CosmeticFolder")
+                       if cosmeticFolder and not cosmeticFolder:FindFirstChild(tostring(player.UserId)) then
+                          RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/ChargeFishingRod"]:InvokeServer(2)
+                          wait(0.5)
+                          RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/RequestFishingMinigameStarted"]:InvokeServer(1, 1)
+                       end
+                  end)
+            wait(0.2)
+            until not _G.AutoFishing
         end
-        wait(0.2)
     end
 end)
 
 spawn(function()
     while wait() do
         if _G.AutoFishing then
-            pcall(function()
-                RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/FishingCompleted"]:FireServer()
-            end)
+            repeat
+                  pcall(function()
+                       RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/FishingCompleted"]:FireServer()
+                  end)
+            wait(0.2)
+            until not _G.AutoFishing
         end
-        wait(0.2)
     end
 end)
 
@@ -253,7 +285,7 @@ local Toggle = Tab3:Toggle({
 })
 
 local Section = Tab3:Section({ 
-    Title = "Opsional",
+    Title = "Other",
     TextXAlignment = "Left",
     TextSize = 17,
 })
