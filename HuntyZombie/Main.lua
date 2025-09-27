@@ -10,7 +10,7 @@ else
 end
 
 local Window = WindUI:CreateWindow({
-    Title = Lexs Hub",
+    Title = "Lexs Hub",
     Icon = "monitor",
     Author = "Lexs Hub | Hunty Zombie",
     Folder = "Lexs-Hub",
