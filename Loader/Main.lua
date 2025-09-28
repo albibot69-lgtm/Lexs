@@ -32,7 +32,7 @@ elseif placeId == 103754275310547 then
     success = true
 elseif placeId == 127742093697776 then
     gameName = "Plant Vs Brainrot"
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/PlantvsZombie/Main.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/PlantvsBrainrot/Main.lua"))()
     success = true
 elseif placeId == 5678901234 then
     gameName = "Game 9"
