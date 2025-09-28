@@ -22,7 +22,7 @@ local Window = WindUI:CreateWindow({
 })
 
 Window:Tag({
-    Title = "v0.0.0.6",
+    Title = "v0.0.0.7",
     Color = Color3.fromRGB(0, 255, 0),
 })
 
@@ -54,8 +54,18 @@ Tab1:Button({
     end
 })
 
+Tab1:Button({
+    Title = "Whatsapp",
+    Desc = "click to copy link",
+    Callback = function()
+        if setclipboard then
+            setclipboard("https://whatsapp.com/channel/0029VbBolzY2UPBDqyZhOM1x")
+        end
+    end
+})
+
 local Section = Tab1:Section({ 
-    Title = "Still Update",
+    Title = "Join the discord to find out about script updates",
     TextXAlignment = "Left",
     TextSize = 17,
 })
