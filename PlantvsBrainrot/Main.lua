@@ -193,15 +193,15 @@ local Tab2 = Window:Tab({
 })
 
 Tab2:Toggle({
-    Title = "Auto Equip Bat",
+    Title = "Auto Equip Basic Bat",
     Default = false,
     Callback = function(state)
-        AutoEquipBatToggle = state
+        AutoEquipBasicBatToggle = state
         if state then
-            EquipBat()
+            EquipBasicBat()
             task.spawn(function()
-                while AutoEquipBatToggle do
-                    AutoEquipBat()
+                while AutoEquipBasicBatToggle do
+                    AutoEquipBasicBat()
                     task.wait(1)
                 end
             end)
