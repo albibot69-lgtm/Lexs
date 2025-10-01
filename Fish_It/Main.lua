@@ -13,17 +13,30 @@ local Window = WindUI:CreateWindow({
     Title = "Lexs Hub",
     Icon = "rbxassetid://71947103252559",
     Author = "Lexs Hub | Fish It",
-    Folder = "Lexs_Hub",
+    Folder = "Lexs_HUB",
     Size = UDim2.fromOffset(560, 400),
     Transparent = true,
     Theme = "Dark",
     SideBarWidth = 170,
-    HasOutline = true
+    HasOutline = true,
+    User = {
+        Enabled = true,
+        Anonymous = false,
+        Callback = function()
+            currentThemeIndex = currentThemeIndex + 1
+            if currentThemeIndex > #themes then
+                currentThemeIndex = 1
+            end
+            
+            local newTheme = themes[currentThemeIndex]
+            WindUI:SetTheme(newTheme)
+        end,
+    },
 })
 
 Window:Tag({
-    Title = "v0.0.0.7",
-    Color = Color3.fromRGB(0, 187, 255),
+    Title = "v0.0.1.0",
+    Color = Color3.fromRGB(0, 255, 0),
 })
 
 WindUI:Notify({
@@ -39,7 +52,7 @@ local Tab1 = Window:Tab({
 })
 
 local Section = Tab1:Section({ 
-    Title = "Community",
+    Title = "Community Support",
     TextXAlignment = "Left",
     TextSize = 17,
 })
@@ -55,17 +68,17 @@ Tab1:Button({
 })
 
 Tab1:Button({
-    Title = "Whatsapp",
+    Title = "WhatsApp",
     Desc = "click to copy link",
     Callback = function()
         if setclipboard then
-            setclipboard("https://whatsapp.com/channel/0029VbBolzY2UPBDqyZhOM1x")
+            setclipboard("https:")
         end
     end
 })
 
 local Section = Tab1:Section({ 
-    Title = "Join the discord to find out about script updates",
+    Title = "Join discord for update",
     TextXAlignment = "Left",
     TextSize = 17,
 })
@@ -105,7 +118,7 @@ local Input = Tab2:Input({
     Title = "Jump Power",
     Desc = "Minimum 50 jump",
     Value = "50",
-    InputIcon = "square-chevron-up",
+    InputIcon = "battery-medium",
     Type = "Input",
     Placeholder = "Enter number...",
     Callback = function(input) 
@@ -194,7 +207,7 @@ local Section = Tab3:Section({
 
 Tab3:Toggle({
     Title = "Auto Equip Rod",
-    Desc = "Auto Equip Your Rod",
+    Desc = "use this for fishing v1",
     Icon = false,
     Type = false,
     Default = false,
@@ -226,7 +239,7 @@ end)
 
 Tab3:Toggle({
     Title = "Auto Fishing V1",
-    Desc = "Auto Catch Fish (Instant)",
+    Desc = "Instant catch",
     Icon = false,
     Type = false,
     Default = false,
@@ -276,7 +289,7 @@ end)
 
 local Toggle = Tab3:Toggle({
     Title = "Auto Sell",
-    Desc = "Auto Sell Fish",
+    Desc = "Automatic sell all fish",
     Icon = false,
     Type = false,
     Default = false,
@@ -402,17 +415,70 @@ local ScanButton = Tab3:Button({
 })
 
 local Tab4 = Window:Tab({
+    Title = "Shop",
+    Icon = "badge-dollar-sign",
+})
+
+local Section = Tab4:Section({
+    Title = "Buy Rod",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local selectedRod = "Rod"
+local rodDropdown = Tab4:Dropdown({
+    Title = "Select Rod",
+    Values = {"BasicRod", "ProRod", "GoldenRod", "OldRod", "FishingRod"},
+    Callback = function(Value)
+        selectedRod = Value
+    end
+})
+
+Tab4:Button({
+    Title = "Buy Selected Rod",
+    Desc = "Purchase the selected fishing rod",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Packages._Index["sleitnick_net@0.2.0"].net["RE/PurchaseItem"]:FireServer(selectedRod)
+        print("Purchased: " .. selectedRod)
+    end
+})
+
+local Section = Tab4:Section({
+    Title = "Buy Baits",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local selectedBait = "Bait"
+local baitDropdown = Tab4:Dropdown({
+    Title = "Select Bait",
+    Values = {"Bait", "Worm", "Shrimp", "Squid", "SpecialBait"},
+    Callback = function(Value)
+        selectedBait = Value
+    end
+})
+
+Tab4:Button({
+    Title = "Buy Selected Bait",
+    Desc = "Purchase the selected bait",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Packages._Index["sleitnick_net@0.2.0"].net["RE/PurchaseItem"]:FireServer(selectedBait, 10)
+        print("Purchased: " .. selectedBait .. " x10")
+    end
+})
+
+local Tab5 = Window:Tab({
     Title = "Teleport",
     Icon = "map-pin",
 })
 
-local Section = Tab4:Section({ 
+local Section = Tab5:Section({ 
     Title = "Island",
     TextXAlignment = "Left",
     TextSize = 17,
 })
 
-local Dropdown = Tab4:Dropdown({
+local Dropdown = Tab5:Dropdown({
     Title = "Select Location",
     Values = {"Esoteric Island", "Konoha", "Coral Refs", "Enchant Room", "Tropical Grove", "Weather Machine", "Treasure Room"},
     Callback = function(Value)
@@ -433,13 +499,13 @@ local Dropdown = Tab4:Dropdown({
     end
 })
 
-local Section = Tab4:Section({ 
+local Section = Tab5:Section({ 
     Title = "fishing spot",
     TextXAlignment = "Left",
     TextSize = 17,
 })
 
-local Dropdown = Tab4:Dropdown({
+local Dropdown = Tab5:Dropdown({
     Title = "Select Location",
     Values = {"Spawn", "Konoha", "Coral Refs", "Volcano", "Sysyphus Statue"},
     Callback = function(Value)
@@ -458,12 +524,12 @@ local Dropdown = Tab4:Dropdown({
     end
 })
 
-local Tab5 = Window:Tab({
+local Tab6 = Window:Tab({
     Title = "Settings",
     Icon = "settings",
 })
 
-local Toggle = Tab5:Toggle({
+local Toggle = Tab6:Toggle({
     Title = "AntiAFK",
     Desc = "Prevent Roblox from kicking you when idle",
     Icon = false,
@@ -500,7 +566,7 @@ local Toggle = Tab5:Toggle({
     end
 })
 
-local Toggle = Tab5:Toggle({
+local Toggle = Tab6:Toggle({
     Title = "Auto Reconnect",
     Desc = "Automatic reconnect if disconnected",
     Icon = false,
@@ -528,8 +594,8 @@ local Toggle = Tab5:Toggle({
     end
 })
 
-local ConfigFolder = "STREE_HUB/Configs"
-if not isfolder("STREE_HUB") then makefolder("STREE_HUB") end
+local ConfigFolder = "LEXS_HUB/Configs"
+if not isfolder("LEXS_HUB") then makefolder("LEXS_HUB") end
 if not isfolder(ConfigFolder) then makefolder(ConfigFolder) end
 
 local ConfigName = "default.json"
@@ -575,7 +641,7 @@ local function ApplyConfig(data)
     end
 end
 
-Tab5:Button({
+Tab6:Button({
     Title = "Save Config",
     Desc = "Save all settings",
     Callback = function()
@@ -585,7 +651,7 @@ Tab5:Button({
     end
 })
 
-Tab5:Button({
+Tab6:Button({
     Title = "Load Config",
     Desc = "Use saved config",
     Callback = function()
@@ -600,7 +666,7 @@ Tab5:Button({
     end
 })
 
-Tab5:Button({
+Tab6:Button({
     Title = "Delete Config",
     Desc = "Delete saved config",
     Callback = function()
