@@ -820,6 +820,20 @@ Tab7:Toggle({
 })
 
 Tab7:Section({ 
+    Title = "Server",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+Tab7:Button({
+    Title = "Rejoin Server",
+    Desc = "Reconnect to current server",
+    Callback = function()
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+    end
+})
+
+Tab7:Section({ 
     Title = "Config",
     TextXAlignment = "Left",
     TextSize = 17,
