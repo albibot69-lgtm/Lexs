@@ -13,7 +13,7 @@ local Window = WindUI:CreateWindow({
     Title = "Lexs Hub",
     Icon = "rbxassetid://71947103252559",
     Author = "Lexs Hub | Fish It",
-    Folder = "LEXS-HUB",
+    Folder = "LEXS_HUB",
     Size = UDim2.fromOffset(260, 290),
     Transparent = true,
     Theme = "Dark",
@@ -29,7 +29,7 @@ local Window = WindUI:CreateWindow({
 })
 
 Window:Tag({
-    Title = "v0.0.0.2",
+    Title = "v0.0.0.3",
     Color = Color3.fromRGB(0, 255, 0),
     Radius = 17,
 })
@@ -41,40 +41,18 @@ Window:Tag({
 })
 
 WindUI:Notify({
-    Title = "Lexs Hub Loaded",
+    Title = "Lexs Hub Premium Loaded",
     Content = "UI loaded successfully!",
     Duration = 3,
     Icon = "bell",
 })
-
-local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
-local Character = Player.Character or Player.CharacterAdded:Wait()
-local Humanoid = Character:WaitForChild("Humanoid")
-local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local VirtualInputManager = game:GetService("VirtualInputManager")
-
-_G.CustomJumpPower = 50
-_G.InfiniteJump = false
-_G.Noclip = false
-_G.AutoEquipRod = false
-_G.AutoFishing = false
-_G.AutoSell = false
-_G.InstantCatch = false
-_G.AntiAFK = false
-_G.AutoReconnect = false
-_G.KaitunEnabled = false
-_G.KaitunDelay = 1
-_G.AutoSellFish = true
 
 local Tab1 = Window:Tab({
     Title = "Info",
     Icon = "info",
 })
 
-Tab1:Section({
+local Section = Tab1:Section({
     Title = "Community Support",
     TextXAlignment = "Left",
     TextSize = 17,
@@ -90,8 +68,8 @@ Tab1:Button({
     end
 })
 
-Tab1:Section({
-    Title = "join discord for update.",
+local Section = Tab1:Section({
+    Title = "join discord for update",
     TextXAlignment = "Left",
     TextSize = 17,
 })
@@ -101,7 +79,14 @@ local Tab2 = Window:Tab({
     Icon = "user",
 })
 
-Tab2:Input({
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local Character = Player.Character or Player.CharacterAdded:Wait()
+local Humanoid = Character:WaitForChild("Humanoid")
+
+_G.CustomJumpPower = 50
+
+local Input = Tab2:Input({
     Title = "WalkSpeed",
     Desc = "Minimum 16 speed",
     Value = "16",
@@ -120,7 +105,7 @@ Tab2:Input({
     end
 })
 
-Tab2:Input({
+local Input = Tab2:Input({
     Title = "Jump Power",
     Desc = "Minimum 50 jump",
     Value = "50",
@@ -131,7 +116,7 @@ Tab2:Input({
         local value = tonumber(input)
         if value and value >= 50 then
             _G.CustomJumpPower = value
-            local humanoid = Player.Character and Player.Character:FindFirstChildOfClass("Humanoid")
+            local humanoid = game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
             if humanoid then
                 humanoid.UseJumpPower = true
                 humanoid.JumpPower = value
@@ -143,12 +128,12 @@ Tab2:Input({
     end
 })
 
-Tab2:Button({
+local Button = Tab2:Button({
     Title = "Reset Jump Power",
     Desc = "Return Jump Power to normal (50)",
     Callback = function()
         _G.CustomJumpPower = 50
-        local humanoid = Player.Character and Player.Character:FindFirstChildOfClass("Humanoid")
+        local humanoid = game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
         if humanoid then
             humanoid.UseJumpPower = true
             humanoid.JumpPower = 50
@@ -172,7 +157,9 @@ Tab2:Button({
     end
 })
 
-Tab2:Toggle({
+local UserInputService = game:GetService("UserInputService")
+
+local Toggle = Tab2:Toggle({
     Title = "Infinite Jump",
     Desc = "activate to use infinite jump",
     Icon = false,
@@ -198,7 +185,7 @@ UserInputService.JumpRequest:Connect(function()
     end
 end)
 
-Tab2:Toggle({
+local Toggle = Tab2:Toggle({
     Title = "Noclip",
     Desc = "Walk through walls",
     Icon = false,
@@ -207,6 +194,7 @@ Tab2:Toggle({
     Callback = function(state)
         _G.Noclip = state
         task.spawn(function()
+            local Player = game:GetService("Players").LocalPlayer
             while _G.Noclip do
                 task.wait(0.1)
                 if Player.Character then
@@ -226,7 +214,7 @@ local Tab3 = Window:Tab({
     Icon = "gamepad-2",
 })
 
-Tab3:Section({
+local Section = Tab3:Section({
     Title = "Main",
     TextXAlignment = "Left",
     TextSize = 17,
@@ -234,7 +222,7 @@ Tab3:Section({
 
 Tab3:Toggle({
     Title = "Auto Equip Rod",
-    Desc = "Selalu equip pancing otomatis",
+    Desc = "always equip your rod",
     Icon = false,
     Type = false,
     Default = false,
@@ -243,18 +231,20 @@ Tab3:Toggle({
     end
 })
 
+local player = game.Players.LocalPlayer
+
 spawn(function()
     while task.wait(1) do
         if _G.AutoEquipRod then
             pcall(function()
-                local backpack = Player:FindFirstChild("Backpack")
+                local backpack = player:FindFirstChild("Backpack")
                 if backpack then
                     local rod = backpack:FindFirstChild("Rod")
                         or backpack:FindFirstChild("FishingRod")
                         or backpack:FindFirstChild("OldRod")
                         or backpack:FindFirstChild("BasicRod")
-                    if rod and not Player.Character:FindFirstChild(rod.Name) then
-                        Player.Character.Humanoid:EquipTool(rod)
+                    if rod and not player.Character:FindFirstChild(rod.Name) then
+                        player.Character.Humanoid:EquipTool(rod)
                     end
                 end
             end)
@@ -262,17 +252,8 @@ spawn(function()
     end
 end)
 
-local autoHoldEnabled = false
-local autoInstantFishEnabled = true
-local delayTime = 0.1
-
-local REEquipToolFromHotbar = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/EquipToolFromHotbar"]
-local REFishingCompleted = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/FishingCompleted"]
-local RFChargeFishingRod = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/ChargeFishingRod"]
-local RFRequestFishingMinigameStarted = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/RequestFishingMinigameStarted"]
-
 Tab3:Toggle({
-    Title = "Auto Fishing v1",
+    Title = "Auto Fishing V1",
     Desc = "use auto equip rod",
     Icon = false,
     Type = false,
@@ -282,20 +263,22 @@ Tab3:Toggle({
     end
 })
 
+local RepStorage = game:GetService("ReplicatedStorage")
+
 spawn(function()
     while wait() do
         if _G.AutoFishing then
             repeat
                 pcall(function()
-                    local char = Player.Character or Player.CharacterAdded:Wait()
+                    local char = player.Character or player.CharacterAdded:Wait()
                     if char:FindFirstChild("!!!FISHING_VIEW_MODEL!!!") then
-                        REEquipToolFromHotbar:FireServer(1)
+                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/EquipToolFromHotbar"]:FireServer(1)
                     end
                     local cosmeticFolder = workspace:FindFirstChild("CosmeticFolder")
-                    if cosmeticFolder and not cosmeticFolder:FindFirstChild(tostring(Player.UserId)) then
-                        RFChargeFishingRod:InvokeServer(2)
+                    if cosmeticFolder and not cosmeticFolder:FindFirstChild(tostring(player.UserId)) then
+                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/ChargeFishingRod"]:InvokeServer(2)
                         wait(0.5)
-                        RFRequestFishingMinigameStarted:InvokeServer(1,1)
+                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/RequestFishingMinigameStarted"]:InvokeServer(1,1)
                     end
                 end)
                 wait(0.2)
@@ -309,7 +292,7 @@ spawn(function()
         if _G.AutoFishing then
             repeat
                 pcall(function()
-                    REFishingCompleted:FireServer()
+                    RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/FishingCompleted"]:FireServer()
                 end)
                 wait(0.2)
             until not _G.AutoFishing
@@ -317,15 +300,25 @@ spawn(function()
     end
 end)
 
-Tab3:Toggle({
-    Title = "Auto Fishing v2",
+local RunService = game:GetService("RunService")    
+local Workspace = game:GetService("Workspace")    
+local VirtualInputManager = game:GetService("VirtualInputManager")    
+local ReplicatedStorage = game:GetService("ReplicatedStorage")    
+local camera = Workspace.CurrentCamera    
+    
+local REEquipToolFromHotbar = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/EquipToolFromHotbar"]    
+local REFishingCompleted = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/FishingCompleted"]
+
+local autoHoldEnabled = false
+Toggle = Tab3:Toggle({
+    Title = "Auto Fishing V2",
     Desc = "Auto Fishing",
     Value = false,
     Callback = function(state)
         autoHoldEnabled = state
         if state then
             WindUI:Notify({
-                Title = "Auto Fishing ",
+                Title = "Auto Fishing V2",
                 Content = "Enabled",
                 Duration = 3
             })
@@ -336,7 +329,7 @@ Tab3:Toggle({
                     pcall(function()
                         REEquipToolFromHotbar:FireServer(1)
                         local clickX = 5
-                        local clickY = workspace.CurrentCamera.ViewportSize.Y - 5
+                        local clickY = camera.ViewportSize.Y - 5
                         VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, true, game, 0)
                         task.wait(holdDuration)
                         VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, false, game, 0)
@@ -347,7 +340,7 @@ Tab3:Toggle({
             end)
         else
             WindUI:Notify({
-                Title = "Auto Fishing",
+                Title = "Auto Fishing V2",
                 Content = "Disabled",
                 Duration = 3
             })
@@ -355,7 +348,7 @@ Tab3:Toggle({
     end
 })
 
-Tab3:Toggle({    
+local Toggle = Tab3:Toggle({    
     Title = "Auto Sell",    
     Desc = "Automatic fish sales",    
     Icon = false,    
@@ -366,7 +359,8 @@ Tab3:Toggle({
         task.spawn(function()    
             while _G.AutoSell do    
                 task.wait(0.5)    
-                for _, v in pairs(ReplicatedStorage:GetDescendants()) do    
+                local rs = game:GetService("ReplicatedStorage")    
+                for _, v in pairs(rs:GetDescendants()) do    
                     if v:IsA("RemoteEvent") and v.Name:lower():find("sell") then    
                         v:FireServer()    
                     elseif v:IsA("RemoteFunction") and v.Name:lower():find("sell") then    
@@ -379,12 +373,15 @@ Tab3:Toggle({
         end)    
     end    
 })    
-
-Tab3:Section({     
+    
+local Section = Tab3:Section({     
     Title = "Other",    
     TextXAlignment = "Left",    
     TextSize = 17,    
 })
+
+local autoInstantFishEnabled = true
+local delayTime = 0.1
 
 local function startAutoFish()
     task.spawn(function()
@@ -397,7 +394,7 @@ local function startAutoFish()
     end)
 end
 
-Tab3:Toggle({
+Toggle = Tab3:Toggle({
     Title = "Auto Instant complete Fishing",
     Desc = "Instant Fishing For v2 (It is mandatory to turn it on if you want to use Auto Fishing V2)",
     Value = autoInstantFishEnabled,
@@ -419,61 +416,352 @@ Tab3:Toggle({
         end
     end
 })
+    
+local Toggle = Tab3:Toggle({    
+    Title = "Instant Catch",    
+    Desc = "Get fish straight away",    
+    Icon = false,    
+    Type = false,    
+    Default = false,    
+    Callback = function(state)    
+        _G.InstantCatch = state    
+        if state then    
+            print("✅ Instant Catch ON")    
+        else    
+            print("❌ Instant Catch OFF")    
+        end    
+    end    
+})    
+    
+local Toggle = Tab3:Toggle({    
+    Title = "Radar",    
+    Desc = "Toggle fishing radar",    
+    Icon = false,    
+    Type = false,    
+    Default = false,    
+    Callback = function(state)    
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")    
+        local Lighting = game:GetService("Lighting")    
+    
+        local Replion = require(ReplicatedStorage.Packages.Replion)    
+        local Net = require(ReplicatedStorage.Packages.Net)    
+        local spr = require(ReplicatedStorage.Packages.spr)    
+        local Soundbook = require(ReplicatedStorage.Shared.Soundbook)    
+        local ClientTimeController = require(ReplicatedStorage.Controllers.ClientTimeController)    
+        local TextNotificationController = require(ReplicatedStorage.Controllers.TextNotificationController)    
+    
+        local RemoteRadar = Net:RemoteFunction("UpdateFishingRadar")    
+    
+        local Data = Replion.Client:GetReplion("Data")    
+        if Data then    
+            if RemoteRadar:InvokeServer(state) then    
+                Soundbook.Sounds.RadarToggle:Play().PlaybackSpeed = 1 + math.random() * 0.3    
+                local effect = Lighting:FindFirstChildWhichIsA("ColorCorrectionEffect")    
+                if effect then    
+                    spr.stop(effect)    
+                    local profile = ClientTimeController:_getLightingProfile()    
+                    local cc = (profile and profile.ColorCorrection) and profile.ColorCorrection or {}    
+                    if not cc.Brightness then cc.Brightness = 0.04 end    
+                    if not cc.TintColor then cc.TintColor = Color3.fromRGB(255, 255, 255) end    
+                    effect.TintColor = Color3.fromRGB(42, 226, 118)    
+                    effect.Brightness = 0.4    
+                    spr.target(effect, 1, 1, cc)    
+                end    
+                spr.stop(Lighting)    
+                Lighting.ExposureCompensation = 1    
+                spr.target(Lighting, 1, 2, {    
+                    ["ExposureCompensation"] = 0    
+                })    
+                TextNotificationController:DeliverNotification({    
+                    ["Type"] = "Text",    
+                    ["Text"] = ("Radar: %*"):format(state and "Enabled" or "Disabled"),    
+                    ["TextColor"] = state and {["R"] = 9,["G"] = 255,["B"] = 0} or {["R"] = 255,["G"] = 0,["B"] = 0}    
+                })    
+            end    
+        end    
+    end    
+})
+
+local TweenService = game:GetService("TweenService")
+local CoreGui = game:GetService("CoreGui")
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+local VirtualUser = game:GetService("VirtualUser")
+local SoundService = game:GetService("SoundService")
+local Player = Players.LocalPlayer
+
+_G.KaitunEnabled = false
+_G.KaitunDelay = 1
+_G.AutoSellFish = true
+
+local ScreenGui, Background, Saturn, SpaceSound
+
+local function CreateBackground()
+    if ScreenGui then ScreenGui:Destroy() end
+    ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.IgnoreGuiInset = true
+    ScreenGui.ResetOnSpawn = false
+    ScreenGui.Name = "KAITUN"
+    ScreenGui.Parent = CoreGui
+
+    Background = Instance.new("Frame")
+    Background.BackgroundColor3 = Color3.new(0, 0, 0)
+    Background.BackgroundTransparency = 0.5
+    Background.Size = UDim2.new(1, 0, 1, 0)
+    Background.ZIndex = 0
+    Background.Parent = ScreenGui
+
+    for i = 1, 80 do
+        local star = Instance.new("Frame")
+        star.Size = UDim2.new(0, math.random(3, 5), 0, math.random(3, 5))
+        star.Position = UDim2.new(math.random(), 0, math.random(), 0)
+        star.BackgroundTransparency = 1
+        star.ZIndex = 0
+        star.Parent = Background
+
+        local circle = Instance.new("UICorner", star)
+        circle.CornerRadius = UDim.new(1, 0)
+
+        local glow = Instance.new("UIStroke", star)
+        glow.Thickness = 1
+        glow.Color = Color3.fromRGB(0, 255, 0)
+        glow.Transparency = math.random(40, 80) / 100
+
+        task.spawn(function()
+            local tweenInfo = TweenInfo.new(math.random(2, 4), Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true)
+            TweenService:Create(glow, tweenInfo, {Transparency = math.random(0, 60) / 100}):Play()
+        end)
+    end
+
+    Saturn = Instance.new("ImageLabel")
+    Saturn.Image = "rbxassetid://71947103252559"
+    Saturn.BackgroundTransparency = 1
+    Saturn.Size = UDim2.new(0, 320, 0, 320)
+    Saturn.Position = UDim2.new(0.7, 0, 0.15, 0)
+    Saturn.ImageTransparency = 0.05
+    Saturn.ZIndex = 0
+    Saturn.Parent = Background
+
+    local rotationY = 0
+    task.spawn(function()
+        while ScreenGui and _G.KaitunEnabled do
+            for i = 0, 180, 2 do
+                rotationY = i
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                Saturn.Rotation = 0
+                task.wait(0.02)
+            end
+            for i = 180, 0, -2 do
+                rotationY = i
+                task.wait(0.02)
+            end
+        end
+    end)
+
+    SpaceSound = Instance.new("Sound")
+    SpaceSound.SoundId = "rbxassetid://1846351427"
+    SpaceSound.Volume = 0.2
+    SpaceSound.Looped = true
+    SpaceSound.Parent = SoundService
+    SpaceSound:Play()
+end
+
+local function RemoveBackground()
+    if SpaceSound then
+        SpaceSound:Stop()
+        SpaceSound:Destroy()
+        SpaceSound = nil
+    end
+    if ScreenGui then
+        TweenService:Create(Background, TweenInfo.new(1), {BackgroundTransparency = 1}):Play()
+        task.wait(1)
+        ScreenGui:Destroy()
+        ScreenGui = nil
+    end
+end
+
+task.spawn(function()
+    while task.wait(10) do
+        if not game:IsLoaded() then continue end
+        if not Player or not Player.Character then
+            pcall(function()
+                TeleportService:Teleport(game.PlaceId, Player)
+            end)
+        end
+    end
+end)
+
+for _, v in pairs(getconnections(Player.Idled)) do
+    v:Disable()
+end
+
+task.spawn(function()
+    while task.wait(60) do
+        VirtualUser:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+        task.wait(1)
+        VirtualUser:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
+    end
+end)
 
 local Tab4 = Window:Tab({
     Title = "Exclusive",
     Icon = "star",
 })
 
-Tab4:Section({ 
-    Title = "Auto Kaitun System",
-    Box = false,
-    FontWeight = "SemiBold",
-    TextTransparency = 0.05,
-    TextXAlignment = "Left",
-    TextSize = 17,
-    Opened = true,
+local Section = Tab4:Section({     
+    Title = "Auto Kaitun System",    
+    TextXAlignment = "Left",    
+    TextSize = 17,    
 })
 
 local function StartKaitun()
     task.spawn(function()
         while _G.KaitunEnabled do
             local success, err = pcall(function()
-                local character = Player.Character or Player.CharacterAdded:Wait()
-                local backpack = Player:WaitForChild("Backpack", 5)
-
+                local player = game.Players.LocalPlayer
+                local character = player.Character or player.CharacterAdded:Wait()
+                local backpack = player:WaitForChild("Backpack", 5)
+                local RepStorage = game:GetService("ReplicatedStorage")
                 if backpack then
                     local rod = backpack:FindFirstChild("Rod") or backpack:FindFirstChild("FishingRod")
                     if rod and not character:FindFirstChild(rod.Name) then
                         character:WaitForChild("Humanoid"):EquipTool(rod)
                     end
                 end
-
-                local fishingPackage = ReplicatedStorage:FindFirstChild("Packages") and ReplicatedStorage.Packages._Index:FindFirstChild("sleitnick_net@0.2.0")
+                local fishingPackage = RepStorage:FindFirstChild("Packages") and RepStorage.Packages._Index:FindFirstChild("sleitnick_net@0.2.0")
                 if not fishingPackage then return end
                 local netFolder = fishingPackage:FindFirstChild("net")
                 if not netFolder then return end
                 local chargeRemote = netFolder:FindFirstChild("RF/ChargeFishingRod")
                 local completeRemote = netFolder:FindFirstChild("RE/FishingCompleted")
-
                 if chargeRemote and completeRemote then
                     if not character:FindFirstChild("!!!FISHING_VIEW_MODEL!!!") then
                         chargeRemote:InvokeServer(2)
                     end
                     completeRemote:FireServer()
                 end
-
                 if _G.AutoSellFish then
-                    for _, v in pairs(ReplicatedStorage:GetDescendants()) do
+                    for _, v in pairs(RepStorage:GetDescendants()) do
                         if v:IsA("RemoteEvent") and v.Name:lower():find("sell") then
                             pcall(function() v:FireServer() end)
                         end
                     end
                 end
             end)
-            if not success then
-                warn("[Kaitun Error]:", err)
-            end
+            if not success then warn("[Kaitun Error]:", err) end
             task.wait(_G.KaitunDelay)
         end
     end)
@@ -486,18 +774,12 @@ Tab4:Toggle({
     Callback = function(state)
         _G.KaitunEnabled = state
         if state then
-            WindUI:Notify({
-                Title = "Kaitun Started",
-                Content = "Auto farming activated!",
-                Duration = 3
-            })
+            CreateBackground()
+            WindUI:Notify({Title = "Kaitun Started", Content = "Auto farming activated!", Duration = 3})
             StartKaitun()
         else
-            WindUI:Notify({
-                Title = "Kaitun Stopped",
-                Content = "Auto farming disabled.",
-                Duration = 3
-            })
+            RemoveBackground()
+            WindUI:Notify({Title = "Kaitun Stopped", Content = "Auto farming disabled.", Duration = 3})
         end
     end
 })
@@ -543,6 +825,7 @@ Tab5:Section({
     TextSize = 17,
 })
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RFPurchaseFishingRod = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/PurchaseFishingRod"]
 
 local rods = {
@@ -610,18 +893,43 @@ Tab5:Button({
     end
 })
 
+local Section = Tab5:Section({
+    Title = "Buy Baits",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local selectedBait = "Bait"
+local baitDropdown = Tab5:Dropdown({
+    Title = "Select Bait",
+    Values = {"Bait", "Worm", "Shrimp", "Squid", "SpecialBait"},
+    Callback = function(Value)
+        selectedBait = Value
+    end
+})
+
+Tab5:Button({
+    Title = "Buy Selected Bait",
+    Desc = "Purchase the selected bait",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Packages._Index["sleitnick_net@0.2.0"].net["RE/PurchaseItem"]:FireServer(selectedBait, 10)
+        print("Purchased: " .. selectedBait .. " x10")
+    end
+})
+
 local Tab6 = Window:Tab({
     Title = "Teleport",
     Icon = "map-pin",
 })
 
-Tab6:Section({ 
+local Section = Tab6:Section({ 
     Title = "Island",
     TextXAlignment = "Left",
     TextSize = 17,
 })
 
 local IslandLocations = {
+    ["Ancient Junggle"] = Vector3.new(1252,7,-153),
     ["Coral Refs"] = Vector3.new(-2855, 47, 1996),
     ["Enchant Room"] = Vector3.new(3221, -1303, 1406),
     ["Esoteric Island"] = Vector3.new(1990, 5, 1398),
@@ -633,7 +941,7 @@ local IslandLocations = {
 
 local SelectedIsland = nil
 
-Tab6:Dropdown({
+local IslandDropdown = Tab6:Dropdown({
     Title = "Select Island",
     Values = (function()
         local keys = {}
@@ -657,7 +965,7 @@ Tab6:Button({
     end
 })
 
-Tab6:Section({ 
+local Section = Tab6:Section({ 
     Title = "Fishing Spot",
     TextXAlignment = "Left",
     TextSize = 17,
@@ -666,14 +974,20 @@ Tab6:Section({
 local FishingLocations = {
     ["Coral Refs"] = Vector3.new(-2855, 47, 1996),
     ["Konoha"] = Vector3.new(-603, 3, 719),
+    ["Levers 1"] = Vector3.new(1475,4,-847),
+    ["Levers 2"] = Vector3.new(882,5,-321),
+    ["levers 3"] = Vector3.new(1425,6,126),
+    ["levers 4"] = Vector3.new(1837,4,-309),
+    ["Sacred Temple"] = Vector3.new(1475,-22,-632),
     ["Spawn"] = Vector3.new(33, 9, 2810),
     ["Sysyphus Statue"] = Vector3.new(-3693,-136,-1045),
+    ["Underground Cellar"] = Vector3.new(2135,-92,-695),
     ["Volcano"] = Vector3.new(-632, 55, 197),
 }
 
 local SelectedFishing = nil
 
-Tab6:Dropdown({
+local FishingDropdown = Tab6:Dropdown({
     Title = "Select Spot",
     Values = (function()
         local keys = {}
@@ -697,7 +1011,7 @@ Tab6:Button({
     end
 })
 
-Tab6:Section({
+local Section = Tab6:Section({
     Title = "Location NPC",
     TextXAlignment = "Left",
     TextSize = 17,
@@ -725,7 +1039,7 @@ local NPC_Locations = {
 
 local SelectedNPC = nil
 
-Tab6:Dropdown({
+local NPCDropdown = Tab6:Dropdown({
     Title = "Select NPC",
     Values = (function()
         local keys = {}
@@ -749,12 +1063,58 @@ Tab6:Button({
     end
 })
 
+local Section = Tab6:Section({
+    Title = "Event Teleporter",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local Event_Locations = {
+    ["Black Hole"] = Vector3.new(883, -1.4, 2542),
+    ["Ghost Shark Hunt"] = Vector3.new(489.559, -1.35, 25.406),
+    ["Megalodon Hunt"] = Vector3.new(-1076.3, -1.4, 1676.2),
+    ["Meteor Rain"] = Vector3.new(383, -1.4, 2452),
+    ["Shark Hunt"] = Vector3.new(1.65, -1.35, 2095.725),
+    ["Storm Hunt"] = Vector3.new(1735.85, -1.4, -208.425),
+    ["Worm Hunt"] = Vector3.new(1591.55, -1.4, -105.925),
+}
+
+local ActiveEvent = nil
+
+local EventDropdown = Tab6:Dropdown({
+    Title = "Select Event",
+    Values = (function()
+        local keys = {}
+        for name in pairs(Event_Locations) do
+            table.insert(keys, name)
+        end
+        table.sort(keys)
+        return keys
+    end)(),
+    Callback = function(Value)
+        ActiveEvent = Value
+    end
+})
+
+Tab6:Button({
+    Title = "Teleport to Event",
+    Callback = function()
+        local Player = game.Players.LocalPlayer
+        local Char = Player.Character or Player.CharacterAdded:Wait()
+        local HRP = Char:FindFirstChild("HumanoidRootPart")
+        if not HRP then return end
+        if ActiveEvent and Event_Locations[ActiveEvent] then
+            HRP.CFrame = CFrame.new(Event_Locations[ActiveEvent])
+        end
+    end
+})
+
 local Tab7 = Window:Tab({
     Title = "Settings",
     Icon = "settings",
 })
 
-Tab7:Toggle({
+local Toggle = Tab7:Toggle({
     Title = "AntiAFK",
     Desc = "Prevent Roblox from kicking you when idle",
     Icon = false,
@@ -791,7 +1151,7 @@ Tab7:Toggle({
     end
 })
 
-Tab7:Toggle({
+local Toggle = Tab7:Toggle({
     Title = "Auto Reconnect",
     Desc = "Automatic reconnect if disconnected",
     Icon = false,
@@ -819,7 +1179,7 @@ Tab7:Toggle({
     end
 })
 
-Tab7:Section({ 
+local Section = Tab7:Section({ 
     Title = "Server",
     TextXAlignment = "Left",
     TextSize = 17,
@@ -833,7 +1193,40 @@ Tab7:Button({
     end
 })
 
-Tab7:Section({ 
+Tab7:Button({
+    Title = "Server Hop",
+    Desc = "Switch to another server",
+    Callback = function()
+        local HttpService = game:GetService("HttpService")
+        local TeleportService = game:GetService("TeleportService")
+        
+        local function GetServers()
+            local url = "https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Desc&limit=100"
+            local response = HttpService:JSONDecode(game:HttpGet(url))
+            return response.data
+        end
+
+        local function FindBestServer(servers)
+            for _, server in ipairs(servers) do
+                if server.playing < server.maxPlayers and server.id ~= game.JobId then
+                    return server.id
+                end
+            end
+            return nil
+        end
+
+        local servers = GetServers()
+        local serverId = FindBestServer(servers)
+
+        if serverId then
+            TeleportService:TeleportToPlaceInstance(game.PlaceId, serverId, game.Players.LocalPlayer)
+        else
+            warn("⚠️ No suitable server found!")
+        end
+    end
+})
+
+local Section = Tab7:Section({ 
     Title = "Config",
     TextXAlignment = "Left",
     TextSize = 17,
@@ -924,13 +1317,22 @@ Tab7:Button({
     end
 })
 
-Tab7:Section({ 
+local Section = Tab7:Section({ 
     Title = "Other Scripts",
     TextXAlignment = "Left",
     TextSize = 17,
 })
 
-Tab7:Button({
+local Button = Tab7:Button({
+    Title = "Simple Shader",
+    Desc = "Shader",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/p0e1/1/refs/heads/main/SimpleShader.lua"))()
+    end
+})
+
+local Button = Tab7:Button({
     Title = "Infinite Yield",
     Desc = "Other Scripts",
     Locked = false,
@@ -943,8 +1345,4 @@ Player.CharacterAdded:Connect(function(char)
     local humanoid = char:WaitForChild("Humanoid")
     humanoid.UseJumpPower = true
     humanoid.JumpPower = _G.CustomJumpPower or 50
-    
-    if _G.InfiniteJump then
-        humanoid.WalkSpeed = _G.CustomWalkSpeed or 16
-    end
 end)
