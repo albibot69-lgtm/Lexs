@@ -55,8 +55,14 @@ local Toggle = Tab2:Toggle({
     Icon = false,
     Type = false,
     Default = false,
-    Callback = function(state) 
-        while true do
+    Callback = function(state)
+			Callback = function(state)    
+        _G.GetAurora = state    
+        if state then    
+            print("✅ Instant Catch ON")    
+        else    
+            print("❌ Instant Catch OFF")    
+     while true do
 local args = {
 	Instance.new("Part", nil)
 }
