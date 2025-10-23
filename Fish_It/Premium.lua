@@ -1,4 +1,4 @@
-ublocal success, WindUI = pcall(function()
+local success, WindUI = pcall(function()
     return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 end)
 
@@ -29,14 +29,14 @@ local Window = WindUI:CreateWindow({
 })
 
 Window:Tag({
-    Title = "v0.0.0.3",
+    Title = "v0.0.0.7",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
 
 Window:Tag({
     Title = "Premium",
-    Color = Color3.fromRGB(3, 236, 252),
+    Color = Color3.fromRGB(3, 240, 252),
     Radius = 17,
 })
 
@@ -63,7 +63,7 @@ Tab1:Button({
     Desc = "click to copy link",
     Callback = function()
         if setclipboard then
-            setclipboard("https://discord.gg/Tsa7nGXPUw")
+            setclipboard("https://discord.gg/jdmX43t5mY")
         end
     end
 })
@@ -222,7 +222,7 @@ local Section = Tab3:Section({
 
 Tab3:Toggle({
     Title = "Auto Equip Rod",
-    Desc = "Equip your rod",
+    Desc = "equip your rod",
     Icon = false,
     Type = false,
     Default = false,
@@ -311,7 +311,7 @@ local REFishingCompleted = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.
 
 local autoHoldEnabled = false
 Toggle = Tab3:Toggle({
-    Title = "Auto Fishing V2",
+    Title = "Auto Fishing v2",
     Desc = " ",
     Value = false,
     Callback = function(state)
@@ -640,66 +640,6 @@ Tab3:Toggle({
     end
 })
 
-Tab3:Toggle({
-    Title = "Black Screen",
-    Desc = "Show Lexs Hub black screen",
-    Icon = false,
-    Type = false,
-    Default = false,
-    Callback = function(state)
-        if state then
-            local ScreenGui = Instance.new("ScreenGui")
-            local Frame = Instance.new("Frame")
-            local Image = Instance.new("ImageLabel")
-            local Text1 = Instance.new("TextLabel")
-            local Text2 = Instance.new("TextLabel")
-
-            ScreenGui.Name = "Lexs Hub"
-            ScreenGui.IgnoreGuiInset = true
-            ScreenGui.ResetOnSpawn = false
-            ScreenGui.Parent = game.CoreGui
-
-            Frame.Parent = ScreenGui
-            Frame.AnchorPoint = Vector2.new(0, 0)
-            Frame.Position = UDim2.new(0, 0, 0, 0)
-            Frame.Size = UDim2.new(1, 0, 1, 0)
-            Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-            Frame.BorderSizePixel = 0
-
-            Image.Parent = Frame
-            Image.AnchorPoint = Vector2.new(0.5, 0.5)
-            Image.Position = UDim2.new(0.5, 0, 0.45, 0)
-            Image.Size = UDim2.new(0, 180, 0, 180)
-            Image.BackgroundTransparency = 1
-            Image.Image = "rbxassetid://71947103252559"
-
-            Text1.Parent = Frame
-            Text1.AnchorPoint = Vector2.new(0.5, 0)
-            Text1.Position = UDim2.new(0.5, 0, 0.7, 0)
-            Text1.Size = UDim2.new(0, 400, 0, 50)
-            Text1.BackgroundTransparency = 1
-            Text1.Text = "Lexs Hub | Fish It"
-            Text1.TextColor3 = Color3.fromRGB(0, 255, 0)
-            Text1.Font = Enum.Font.GothamBold
-            Text1.TextSize = 28
-
-            Text2.Parent = Frame
-            Text2.AnchorPoint = Vector2.new(0.5, 0)
-            Text2.Position = UDim2.new(0.5, 0, 0.78, 0)
-            Text2.Size = UDim2.new(0, 400, 0, 30)
-            Text2.BackgroundTransparency = 1
-            Text2.Text = "https://discord.gg/Tsa7nGXPUw"
-            Text2.TextColor3 = Color3.fromRGB(255, 255, 255)
-            Text2.Font = Enum.Font.Gotham
-            Text2.TextSize = 20
-        else
-            if game.CoreGui:FindFirstChild("STREE_BlackScreen") then
-                game.CoreGui.STREE_BlackScreen:Destroy()
-            end
-        end
-    end
-})
-
 local TweenService = game:GetService("TweenService")
 local CoreGui = game:GetService("CoreGui")
 local Players = game:GetService("Players")
@@ -719,7 +659,7 @@ local function CreateBackground()
     ScreenGui = Instance.new("ScreenGui")
     ScreenGui.IgnoreGuiInset = true
     ScreenGui.ResetOnSpawn = false
-    ScreenGui.Name = "LEXSHUB_KAITUN_BACKGROUND"
+    ScreenGui.Name = "STREE_KAITUN_BACKGROUND"
     ScreenGui.Parent = CoreGui
 
     Background = Instance.new("Frame")
