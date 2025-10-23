@@ -28,6 +28,20 @@ local Window = WindUI:CreateWindow({
     },
 })
 
+Window:EditOpenButton({
+    Title = "Lexs Hub",
+    Icon = "rbxassetid://71947103252559",
+    CornerRadius = UDim.new(0,16),
+    StrokeThickness = 2,
+    Color = ColorSequence.new( -- gradient
+        Color3.fromHex("#34ebeb"), 
+        Color3.fromHex("#34ebeb")
+    ),
+    OnlyMobile = false,
+    Enabled = true,
+    Draggable = true,
+})
+
 Window:Tag({
     Title = "v0.0.0.7",
     Color = Color3.fromRGB(255, 255, 255),
