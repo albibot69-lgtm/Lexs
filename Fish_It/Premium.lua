@@ -1,4 +1,4 @@
-local success, WindUI = pcall(function()
+ublocal success, WindUI = pcall(function()
     return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 end)
 
@@ -642,7 +642,7 @@ Tab3:Toggle({
 
 Tab3:Toggle({
     Title = "Black Screen",
-    Desc = "Show STREE HUB black screen",
+    Desc = "Show Lexs Hub black screen",
     Icon = false,
     Type = false,
     Default = false,
@@ -654,7 +654,7 @@ Tab3:Toggle({
             local Text1 = Instance.new("TextLabel")
             local Text2 = Instance.new("TextLabel")
 
-            ScreenGui.Name = "STREE_BlackScreen"
+            ScreenGui.Name = "Lexs Hub"
             ScreenGui.IgnoreGuiInset = true
             ScreenGui.ResetOnSpawn = false
             ScreenGui.Parent = game.CoreGui
@@ -671,7 +671,7 @@ Tab3:Toggle({
             Image.Position = UDim2.new(0.5, 0, 0.45, 0)
             Image.Size = UDim2.new(0, 180, 0, 180)
             Image.BackgroundTransparency = 1
-            Image.Image = "rbxassetid://123032091977400"
+            Image.Image = "rbxassetid://71947103252559"
 
             Text1.Parent = Frame
             Text1.AnchorPoint = Vector2.new(0.5, 0)
@@ -688,7 +688,7 @@ Tab3:Toggle({
             Text2.Position = UDim2.new(0.5, 0, 0.78, 0)
             Text2.Size = UDim2.new(0, 400, 0, 30)
             Text2.BackgroundTransparency = 1
-            Text2.Text = "discord.gg/jdmX43t5mY"
+            Text2.Text = "https://discord.gg/Tsa7nGXPUw"
             Text2.TextColor3 = Color3.fromRGB(255, 255, 255)
             Text2.Font = Enum.Font.Gotham
             Text2.TextSize = 20
