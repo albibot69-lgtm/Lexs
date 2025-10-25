@@ -3,7 +3,7 @@ local success, WindUI = pcall(function()
 end)
 
 if not success or not WindUI then
-    warn("⚠️ UI failed to load!")
+    warn("⚠️ UI failed to loaded!")
     return
 else
     print("✓ UI loaded successfully!")
@@ -12,7 +12,7 @@ end
 local Window = WindUI:CreateWindow({
     Title = "Lexs Hub",
     Icon = "rbxassetid://71947103252559",
-    Author = "Lexs Hub | Fish It",
+    Author = "Lexs | Fish It",
     Folder = "LEXS_HUB",
     Size = UDim2.fromOffset(260, 290),
     Transparent = true,
@@ -28,29 +28,15 @@ local Window = WindUI:CreateWindow({
     },
 })
 
-Window:EditOpenButton({
-    Title = "Lexs Hub",
-    Icon = "rbxassetid://71947103252559",
-    CornerRadius = UDim.new(0,16),
-    StrokeThickness = 2,
-    Color = ColorSequence.new( -- gradient
-        Color3.fromHex("#34ebeb"), 
-        Color3.fromHex("#34ebeb")
-    ),
-    OnlyMobile = false,
-    Enabled = true,
-    Draggable = true,
-})
-
 Window:Tag({
-    Title = "v0.0.0.7",
+    Title = "v0.0.0.8",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
 
 Window:Tag({
     Title = "Premium",
-    Color = Color3.fromRGB(3, 240, 252),
+    Color = Color3.fromRGB(0, 242, 255),
     Radius = 17,
 })
 
@@ -77,13 +63,13 @@ Tab1:Button({
     Desc = "click to copy link",
     Callback = function()
         if setclipboard then
-            setclipboard("https://discord.gg/jdmX43t5mY")
+            setclipboard("https://discord.gg/Tsa7nGXPUw")
         end
     end
 })
 
 local Section = Tab1:Section({
-    Title = "join discord for update",
+    Title = "Join discord for update",
     TextXAlignment = "Left",
     TextSize = 17,
 })
@@ -236,7 +222,7 @@ local Section = Tab3:Section({
 
 Tab3:Toggle({
     Title = "Auto Equip Rod",
-    Desc = "equip your rod",
+    Desc = "Automatically equips fishing rod",
     Icon = false,
     Type = false,
     Default = false,
@@ -248,17 +234,19 @@ Tab3:Toggle({
 local player = game.Players.LocalPlayer
 
 spawn(function()
-    while task.wait(1) do
+    while task.wait(0.05) do
         if _G.AutoEquipRod then
             pcall(function()
+                local char = player.Character
+                local humanoid = char and char:FindFirstChild("Humanoid")
                 local backpack = player:FindFirstChild("Backpack")
-                if backpack then
+                if humanoid and backpack then
                     local rod = backpack:FindFirstChild("Rod")
                         or backpack:FindFirstChild("FishingRod")
                         or backpack:FindFirstChild("OldRod")
                         or backpack:FindFirstChild("BasicRod")
-                    if rod and not player.Character:FindFirstChild(rod.Name) then
-                        player.Character.Humanoid:EquipTool(rod)
+                    if rod and not char:FindFirstChild(rod.Name) then
+                        humanoid:EquipTool(rod)
                     end
                 end
             end)
@@ -266,9 +254,19 @@ spawn(function()
     end
 end)
 
+local player = game.Players.LocalPlayer
+local RepStorage = game:GetService("ReplicatedStorage")
+local success, net = pcall(function()
+    return RepStorage.Packages._Index["sleitnick_net@0.2.0"].net
+end)
+
+_G.AutoFishing = false
+_G.Delay = 0
+_G.MaxSpeed = true
+
 Tab3:Toggle({
-    Title = "Auto Fishing v1",
-    Desc = " ",
+    Title = "Auto Instant Fishing",
+    Desc = "Automic Instant Fishing",
     Icon = false,
     Type = false,
     Default = false,
@@ -277,40 +275,46 @@ Tab3:Toggle({
     end
 })
 
-local RepStorage = game:GetService("ReplicatedStorage")
+Tab3:Input({
+    Title = "Blast Delay",
+    Desc = "Enter delay in seconds",
+    Value = "",
+    InputIcon = false,
+    Type = "Input",
+    Placeholder = "Enter delay...",
+    Callback = function(input)
+        local num = tonumber(input)
+        if num and num >= 0 then
+            _G.Delay = num
+            _G.MaxSpeed = (num == 0)
+        end
+    end
+})
 
-spawn(function()
-    while wait() do
+local function InstantFish()
+    local char = player.Character
+    if not char then return end
+    if char:FindFirstChild("!!!FISHING_VIEW_MODEL!!!") then
+        pcall(function()
+            net["RE/EquipToolFromHotbar"]:FireServer(1)
+            net["RF/ChargeFishingRod"]:InvokeServer(2)
+            net["RF/RequestFishingMinigameStarted"]:InvokeServer(1, 1)
+            net["RE/FishingCompleted"]:FireServer()
+        end)
+    end
+end
+
+task.spawn(function()
+    while task.wait(_G.MaxSpeed and 0.001 or (_G.Delay > 0 and _G.Delay or 0.01)) do
         if _G.AutoFishing then
-            repeat
-                pcall(function()
-                    local char = player.Character or player.CharacterAdded:Wait()
-                    if char:FindFirstChild("!!!FISHING_VIEW_MODEL!!!") then
-                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/EquipToolFromHotbar"]:FireServer(1)
-                    end
-                    local cosmeticFolder = workspace:FindFirstChild("CosmeticFolder")
-                    if cosmeticFolder and not cosmeticFolder:FindFirstChild(tostring(player.UserId)) then
-                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/ChargeFishingRod"]:InvokeServer(2)
-                        wait(0.5)
-                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/RequestFishingMinigameStarted"]:InvokeServer(1,1)
-                    end
-                end)
-                wait(0.2)
-            until not _G.AutoFishing
+            InstantFish()
         end
     end
 end)
 
-spawn(function()
-    while wait() do
-        if _G.AutoFishing then
-            repeat
-                pcall(function()
-                    RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/FishingCompleted"]:FireServer()
-                end)
-                wait(0.2)
-            until not _G.AutoFishing
-        end
+player.CharacterAdded:Connect(function()
+    if _G.AutoFishing then
+        InstantFish()
     end
 end)
 
@@ -325,8 +329,8 @@ local REFishingCompleted = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.
 
 local autoHoldEnabled = false
 Toggle = Tab3:Toggle({
-    Title = "Auto Fishing v2",
-    Desc = " ",
+    Title = "Auto Fishing",
+    Desc = "Automatic Auto Fishing v2",
     Value = false,
     Callback = function(state)
         autoHoldEnabled = state
@@ -361,77 +365,6 @@ Toggle = Tab3:Toggle({
         end
     end
 })
-
-local player = game.Players.LocalPlayer
-local RepStorage = game:GetService("ReplicatedStorage")
-local net = RepStorage.Packages._Index["sleitnick_net@0.2.0"].net
-
-_G.AutoFishing = false
-_G.Delay = 0
-_G.MaxSpeed = true
-
-Tab3:Toggle({
-    Title = "Auto Instant Fishing",
-    Desc = "Automatic Instant Fishing",
-    Icon = false,
-    Type = false,
-    Default = false,
-    Callback = function(value)
-        _G.AutoFishing = value
-        print("Auto Fishing: " .. tostring(value))
-    end
-})
-
-local Input = Tab3:Input({
-    Title = "Blast Delay",
-    Desc = "Enter delay in seconds",
-    Value = "",
-    InputIcon = false,
-    Type = "Input",
-    Placeholder = "Enter delay...",
-    Callback = function(input)
-        local newDelay = tonumber(input)
-        if newDelay and newDelay >= 0 then
-            _G.Delay = newDelay
-            print("Delay diubah menjadi: " .. _G.Delay .. " detik")
-            _G.MaxSpeed = (newDelay == 0)
-        else
-            print("Input invalid, gunakan angka >= 0")
-        end
-    end
-})
-
-local function InstantFish()
-    local char = player.Character or player.CharacterAdded:Wait()
-    if char:FindFirstChild("!!!FISHING_VIEW_MODEL!!!") then
-        net["RE/EquipToolFromHotbar"]:FireServer(1)
-    end
-    net["RF/ChargeFishingRod"]:InvokeServer(2)
-    net["RF/RequestFishingMinigameStarted"]:InvokeServer(1, 1)
-    net["RE/FishingCompleted"]:FireServer()
-end
-
-spawn(function()
-    while wait() do
-        if _G.AutoFishing and _G.MaxSpeed then
-            while _G.AutoFishing do
-                InstantFish()
-                task.wait(0)
-            end
-        elseif _G.AutoFishing then
-            InstantFish()
-            if _G.Delay > 0 then
-                wait(_G.Delay)
-            end
-        end
-    end
-end)
-
-player.CharacterAdded:Connect(function(char)
-    if _G.AutoFishing then
-        InstantFish()
-    end
-end)
 
 local Toggle = Tab3:Toggle({    
     Title = "Auto Sell",    
@@ -568,6 +501,179 @@ local Toggle = Tab3:Toggle({
 })
 
 local Section = Tab3:Section({     
+    Title = "Enchant",    
+    TextXAlignment = "Left",    
+    TextSize = 17,    
+})
+
+local Toggle = Tab3:Toggle({
+    Title = "Auto Enchant",
+    Desc = "Gacha to get good enchants",
+    Icon = false,
+    Type = false,
+    Default = false,
+    Callback = function(state)
+        if state then
+            _G.AutoEnchant = true
+            print("Auto Enchant: ON")
+
+            local Enchants = {
+                {Name = "Stargazer I", Chance = 7},
+                {Name = "Shiny I", Chance = 5},
+                {Name = "Experienced I", Chance = 7},
+                {Name = "Storm Hunter I", Chance = 7},
+                {Name = "Perfection", Chance = 2},
+            }
+
+            local function RollEnchant()
+                local total = 0
+                for _, e in ipairs(Enchants) do
+                    total += e.Chance
+                end
+                local roll = math.random(1, total)
+                for _, e in ipairs(Enchants) do
+                    roll -= e.Chance
+                    if roll <= 0 then
+                        return e.Name
+                    end
+                end
+            end
+
+            task.spawn(function()
+                while _G.AutoEnchant do
+                    local result = RollEnchant()
+                    print("🎲 You got enchant:", result)
+                    task.wait(1.5)
+                end
+            end)
+        else
+            _G.AutoEnchant = false
+            print("Auto Enchant: OFF")
+        end
+    end
+})
+
+local Section = Tab3:Section({     
+    Title = "Quest [Beta]",    
+    TextXAlignment = "Left",    
+    TextSize = 17,    
+})
+
+_G.AutoGhostfin = false
+_G.TeleportEnabled = true
+
+local player = game.Players.LocalPlayer
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local humanoidRootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+
+local function getHumanoid()
+    return player.Character and player.Character:FindFirstChildOfClass("Humanoid")
+end
+
+local function teleportTo(target)
+    if humanoidRootPart and _G.TeleportEnabled then
+        local humanoid = getHumanoid()
+        if humanoid and humanoid:GetState() ~= Enum.HumanoidStateType.Dead and humanoid:GetState() ~= Enum.HumanoidStateType.Flying then
+            humanoidRootPart.CFrame = CFrame.new(target) + Vector3.new(0, 5, 0)
+            task.wait(0.5)
+        end
+    end
+end
+
+spawn(function()
+    while task.wait(0.5) do
+        local humanoid = getHumanoid()
+        if _G.AutoGhostfin then
+            local success, errorMsg = pcall(function()
+                if humanoid then
+                    humanoid.WalkSpeed = 0
+                    humanoid.JumpPower = 0
+                    replicatedStorage.Remotes.StartQuest:FireServer("Ghostfin")
+                    local quests = player:FindFirstChild("QuestProgress")
+                    if quests and quests:FindFirstChild("Ghostfin") then
+                        local progress = quests.Ghostfin.Value
+                        local goal = quests.Ghostfin.Goal.Value
+                        local remaining = math.max(goal - progress, 0)
+                        local target = remaining > (goal / 2) and Vector3.new(-3593, -280, -1590) or Vector3.new(-3738, -136, -890)
+                        teleportTo(target)
+                    end
+                end
+            end)
+            if not success then
+                warn("Error in Auto Ghostfin loop: " .. tostring(errorMsg))
+            end
+        else
+            if humanoid then
+                humanoid.WalkSpeed = 16
+                humanoid.JumpPower = 50
+            end
+        end
+    end
+end)
+
+local function NotifyQuestProgress()
+    local success, errorMsg = pcall(function()
+        local quests = player:FindFirstChild("QuestProgress")
+        if quests then
+            for _, quest in pairs(quests:GetChildren()) do
+                if quest:IsA("IntValue") and quest:FindFirstChild("Goal") then
+                    local progress = quest.Value
+                    local goal = quest.Goal.Value
+                    local remaining = math.max(goal - progress, 0)
+                    local target = remaining > (goal / 2) and Vector3.new(-3593, -280, -1590) or Vector3.new(-3738, -136, -890)
+                    local locationName = remaining > (goal / 2) and "Place 1" or "Place 2"
+                    local questName = quest.Name -- Gunakan nama asli quest dari data
+
+                    game.StarterGui:SetCore("SendNotification", {
+                        Title = questName .. " Quest",
+                        Text = string.format("Fish remaining: %d\nLocation: %s (%s)", remaining, locationName, tostring(target)),
+                        Duration = 4
+                    })
+                    return
+                end
+            end
+            game.StarterGui:SetCore("SendNotification", {
+                Title = "Quest Status",
+                Text = "No active quest with progress data found. Available quests: " .. table.concat((function() local names = {}; for _, v in pairs(quests:GetChildren()) do table.insert(names, v.Name) end return names end)(), ", "),
+                Duration = 5
+            })
+        else
+            game.StarterGui:SetCore("SendNotification", {
+                Title = "Quest Status",
+                Text = "Quest not started or data not found",
+                Duration = 3
+            })
+        end
+    end)
+    if not success then
+        warn("Error in NotifyQuestProgress: " .. tostring(errorMsg))
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Error",
+            Text = "Failed to check quest progress",
+            Duration = 3
+        })
+    end
+end
+
+Tab3:Toggle({
+    Title = "Auto Ghostfin Quest",
+    Desc = "Enable Ghostfin quest automation with teleport (avatar will stay still)",
+    Default = false,
+    Callback = function(value)
+        _G.AutoGhostfin = value
+        if value then
+            NotifyQuestProgress()
+        end
+    end
+})
+
+Tab3:Button({
+    Title = "Check Quest Progress",
+    Desc = "Show remaining fish and location for active quest",
+    Callback = NotifyQuestProgress
+})
+
+local Section = Tab3:Section({     
     Title = "Gameplay",    
     TextXAlignment = "Left",    
     TextSize = 17,    
@@ -654,304 +760,55 @@ Tab3:Toggle({
     end
 })
 
-local TweenService = game:GetService("TweenService")
-local CoreGui = game:GetService("CoreGui")
-local Players = game:GetService("Players")
-local TeleportService = game:GetService("TeleportService")
-local VirtualUser = game:GetService("VirtualUser")
-local SoundService = game:GetService("SoundService")
-local Player = Players.LocalPlayer
-
-_G.KaitunEnabled = false
-_G.KaitunDelay = 1
-_G.AutoSellFish = true
-
-local ScreenGui, Background, Saturn, SpaceSound
-
-local function CreateBackground()
-    if ScreenGui then ScreenGui:Destroy() end
-    ScreenGui = Instance.new("ScreenGui")
-    ScreenGui.IgnoreGuiInset = true
-    ScreenGui.ResetOnSpawn = false
-    ScreenGui.Name = "STREE_KAITUN_BACKGROUND"
-    ScreenGui.Parent = CoreGui
-
-    Background = Instance.new("Frame")
-    Background.BackgroundColor3 = Color3.new(0, 0, 0)
-    Background.BackgroundTransparency = 0.5
-    Background.Size = UDim2.new(1, 0, 1, 0)
-    Background.ZIndex = 0
-    Background.Parent = ScreenGui
-
-    for i = 1, 80 do
-        local star = Instance.new("Frame")
-        star.Size = UDim2.new(0, math.random(3, 5), 0, math.random(3, 5))
-        star.Position = UDim2.new(math.random(), 0, math.random(), 0)
-        star.BackgroundTransparency = 1
-        star.ZIndex = 0
-        star.Parent = Background
-
-        local circle = Instance.new("UICorner", star)
-        circle.CornerRadius = UDim.new(1, 0)
-
-        local glow = Instance.new("UIStroke", star)
-        glow.Thickness = 1
-        glow.Color = Color3.fromRGB(0, 255, 0)
-        glow.Transparency = math.random(40, 80) / 100
-
-        task.spawn(function()
-            local tweenInfo = TweenInfo.new(math.random(2, 4), Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true)
-            TweenService:Create(glow, tweenInfo, {Transparency = math.random(0, 60) / 100}):Play()
-        end)
-    end
-
-    Saturn = Instance.new("ImageLabel")
-    Saturn.Image = "rbxassetid://71947103252559"
-    Saturn.BackgroundTransparency = 1
-    Saturn.Size = UDim2.new(0, 320, 0, 320)
-    Saturn.Position = UDim2.new(0.7, 0, 0.15, 0)
-    Saturn.ImageTransparency = 0.05
-    Saturn.ZIndex = 0
-    Saturn.Parent = Background
-
-    local rotationY = 0
+local function StartAutoFishing()
     task.spawn(function()
-        while ScreenGui and _G.KaitunEnabled do
-            for i = 0, 180, 2 do
-                rotationY = i
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                Saturn.Rotation = 0
-                task.wait(0.02)
-            end
-            for i = 180, 0, -2 do
-                rotationY = i
-                task.wait(0.02)
-            end
-        end
-    end)
-
-    SpaceSound = Instance.new("Sound")
-    SpaceSound.SoundId = "rbxassetid://1846351427"
-    SpaceSound.Volume = 0.2
-    SpaceSound.Looped = true
-    SpaceSound.Parent = SoundService
-    SpaceSound:Play()
-end
-
-local function RemoveBackground()
-    if SpaceSound then
-        SpaceSound:Stop()
-        SpaceSound:Destroy()
-        SpaceSound = nil
-    end
-    if ScreenGui then
-        TweenService:Create(Background, TweenInfo.new(1), {BackgroundTransparency = 1}):Play()
-        task.wait(1)
-        ScreenGui:Destroy()
-        ScreenGui = nil
-    end
-end
-
-task.spawn(function()
-    while task.wait(10) do
-        if not game:IsLoaded() then continue end
-        if not Player or not Player.Character then
+        while _G.AutoFishingEnabled do
             pcall(function()
-                TeleportService:Teleport(game.PlaceId, Player)
-            end)
-        end
-    end
-end)
-
-for _, v in pairs(getconnections(Player.Idled)) do
-    v:Disable()
-end
-
-task.spawn(function()
-    while task.wait(60) do
-        VirtualUser:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
-        task.wait(1)
-        VirtualUser:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
-    end
-end)
-
-local Tab4 = Window:Tab({
-    Title = "Exclusive",
-    Icon = "star",
-})
-
-local Section = Tab4:Section({     
-    Title = "Auto Kaitun System",    
-    TextXAlignment = "Left",    
-    TextSize = 17,    
-})
-
-local function StartKaitun()
-    task.spawn(function()
-        while _G.KaitunEnabled do
-            local success, err = pcall(function()
-                local player = game.Players.LocalPlayer
-                local character = player.Character or player.CharacterAdded:Wait()
-                local backpack = player:WaitForChild("Backpack", 5)
-                local RepStorage = game:GetService("ReplicatedStorage")
-                if backpack then
-                    local rod = backpack:FindFirstChild("Rod") or backpack:FindFirstChild("FishingRod")
-                    if rod and not character:FindFirstChild(rod.Name) then
-                        character:WaitForChild("Humanoid"):EquipTool(rod)
-                    end
-                end
-                local fishingPackage = RepStorage:FindFirstChild("Packages") and RepStorage.Packages._Index:FindFirstChild("sleitnick_net@0.2.0")
-                if not fishingPackage then return end
-                local netFolder = fishingPackage:FindFirstChild("net")
-                if not netFolder then return end
-                local chargeRemote = netFolder:FindFirstChild("RF/ChargeFishingRod")
-                local completeRemote = netFolder:FindFirstChild("RE/FishingCompleted")
-                if chargeRemote and completeRemote then
-                    if not character:FindFirstChild("!!!FISHING_VIEW_MODEL!!!") then
-                        chargeRemote:InvokeServer(2)
-                    end
-                    completeRemote:FireServer()
-                end
+                REEquipToolFromHotbar:FireServer(1)
+                local clickX = 5
+                local clickY = camera.ViewportSize.Y - 5
+                VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, true, game, 0)
+                task.wait(_G.FishingDelay)
+                VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, false, game, 0)
+                REFishingCompleted:FireServer()
                 if _G.AutoSellFish then
-                    for _, v in pairs(RepStorage:GetDescendants()) do
+                    for _, v in pairs(ReplicatedStorage:GetDescendants()) do
                         if v:IsA("RemoteEvent") and v.Name:lower():find("sell") then
                             pcall(function() v:FireServer() end)
                         end
                     end
                 end
             end)
-            if not success then warn("[Kaitun Error]:", err) end
-            task.wait(_G.KaitunDelay)
+            task.wait(_G.FishingDelay)
+            RunService.Heartbeat:Wait()
         end
     end)
 end
 
+local Tab4 = Window:Tab({
+    Title = "Exclusive",
+    Icon = "star",
+})
+
+local Section = Tab4:Section({
+    Title = "Kaitun System",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
 Tab4:Toggle({
     Title = "Enable Kaitun",
-    Desc = "Activate auto farming system",
+    Desc = "Automatic fishing system",
     Default = false,
     Callback = function(state)
-        _G.KaitunEnabled = state
+        _G.AutoFishingEnabled = state
         if state then
             CreateBackground()
-            WindUI:Notify({Title = "Kaitun Started", Content = "Auto farming activated!", Duration = 3})
-            StartKaitun()
+            WindUI:Notify({Title = "Auto Fishing", Content = "Activated!", Duration = 3})
+            StartAutoFishing()
         else
             RemoveBackground()
-            WindUI:Notify({Title = "Kaitun Stopped", Content = "Auto farming disabled.", Duration = 3})
+            WindUI:Notify({Title = "Auto Fishing", Content = "Stopped.", Duration = 3})
         end
     end
 })
@@ -971,15 +828,15 @@ Tab4:Toggle({
 })
 
 Tab4:Slider({
-    Title = "Kaitun Delay",
-    Desc = "Farming speed (seconds)",
-    Min = 0.5,
-    Max = 5,
-    Default = 1,
+    Title = "Fishing Delay",
+    Desc = "Adjust cast/reel timing (seconds)",
+    Min = 0.2,
+    Max = 2,
+    Default = 0.5,
     Callback = function(value)
-        _G.KaitunDelay = value
+        _G.FishingDelay = value
         WindUI:Notify({
-            Title = "Kaitun Delay",
+            Title = "Fishing Delay",
             Content = "Delay set to " .. tostring(value) .. "s",
             Duration = 2
         })
@@ -991,78 +848,81 @@ local Tab5 = Window:Tab({
     Icon = "badge-dollar-sign",
 })
 
-Tab5:Section({ 
-    Title = "Buy Rod",
-    TextXAlignment = "Left",
-    TextSize = 17,
-})
+Tab5:Section({   
+    Title = "Buy Rod",  
+    TextXAlignment = "Left",  
+    TextSize = 17,  
+})  
 
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local RFPurchaseFishingRod = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/PurchaseFishingRod"]
+local ReplicatedStorage = game:GetService("ReplicatedStorage")  
+local RFPurchaseFishingRod = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/PurchaseFishingRod"]  
 
-local rods = {
-    ["Luck Rod"] = 79,
-    ["Carbon Rod"] = 76,
-    ["Grass Rod"] = 85,
-    ["Demascus Rod"] = 77,
-    ["Ice Rod"] = 78,
-    ["Lucky Rod"] = 4,
-    ["Midnight Rod"] = 80,
-    ["Steampunk Rod"] = 6,
-    ["Chrome Rod"] = 7,
-    ["Astral Rod"] = 5,
-    ["Ares Rod"] = 126,
-    ["Angler Rod"] = 168
-}
+local rods = {  
+    ["Luck Rod"] = 79,  
+    ["Carbon Rod"] = 76,  
+    ["Grass Rod"] = 85,  
+    ["Demascus Rod"] = 77,  
+    ["Ice Rod"] = 78,  
+    ["Lucky Rod"] = 4,  
+    ["Midnight Rod"] = 80,  
+    ["Steampunk Rod"] = 6,  
+    ["Chrome Rod"] = 7,  
+    ["Astral Rod"] = 5,  
+    ["Ares Rod"] = 126,  
+    ["Angler Rod"] = 168,
+    ["Bamboo Rod"] = 258
+}  
 
-local rodNames = {
-    "Luck Rod (350 Coins)", "Carbon Rod (900 Coins)", "Grass Rod (1.5k Coins)", "Demascus Rod (3k Coins)",
-    "Ice Rod (5k Coins)", "Lucky Rod (15k Coins)", "Midnight Rod (50k Coins)", "Steampunk Rod (215k Coins)",
-    "Chrome Rod (437k Coins)", "Astral Rod (1M Coins)", "Ares Rod (3M Coins)", "Angler Rod (8M Coins)"
-}
+local rodNames = {  
+    "Luck Rod (350 Coins)", "Carbon Rod (900 Coins)", "Grass Rod (1.5k Coins)", "Demascus Rod (3k Coins)",  
+    "Ice Rod (5k Coins)", "Lucky Rod (15k Coins)", "Midnight Rod (50k Coins)", "Steampunk Rod (215k Coins)",  
+    "Chrome Rod (437k Coins)", "Astral Rod (1M Coins)", "Ares Rod (3M Coins)", "Angler Rod (8M Coins)",
+    "Bamboo Rod (12M Coins)"
+}  
 
-local rodKeyMap = {
-    ["Luck Rod (350 Coins)"]="Luck Rod",
-    ["Carbon Rod (900 Coins)"]="Carbon Rod",
-    ["Grass Rod (1.5k Coins)"]="Grass Rod",
-    ["Demascus Rod (3k Coins)"]="Demascus Rod",
-    ["Ice Rod (5k Coins)"]="Ice Rod",
-    ["Lucky Rod (15k Coins)"]="Lucky Rod",
-    ["Midnight Rod (50k Coins)"]="Midnight Rod",
-    ["Steampunk Rod (215k Coins)"]="Steampunk Rod",
-    ["Chrome Rod (437k Coins)"]="Chrome Rod",
-    ["Astral Rod (1M Coins)"]="Astral Rod",
-    ["Ares Rod (3M Coins)"]="Ares Rod",
-    ["Angler Rod (8M Coins)"]="Angler Rod"
-}
+local rodKeyMap = {  
+    ["Luck Rod (350 Coins)"]="Luck Rod",  
+    ["Carbon Rod (900 Coins)"]="Carbon Rod",  
+    ["Grass Rod (1.5k Coins)"]="Grass Rod",  
+    ["Demascus Rod (3k Coins)"]="Demascus Rod",  
+    ["Ice Rod (5k Coins)"]="Ice Rod",  
+    ["Lucky Rod (15k Coins)"]="Lucky Rod",  
+    ["Midnight Rod (50k Coins)"]="Midnight Rod",  
+    ["Steampunk Rod (215k Coins)"]="Steampunk Rod",  
+    ["Chrome Rod (437k Coins)"]="Chrome Rod",  
+    ["Astral Rod (1M Coins)"]="Astral Rod",  
+    ["Ares Rod (3M Coins)"]="Ares Rod",  
+    ["Angler Rod (8M Coins)"]="Angler Rod",
+    ["Bamboo Rod (12M Coins)"]="Bamboo Rod"
+}  
 
-local selectedRod = rodNames[1]
+local selectedRod = rodNames[1]  
 
-Tab5:Dropdown({
-    Title = "Select Rod",
-    Values = rodNames,
-    Value = selectedRod,
-    Callback = function(value)
-        selectedRod = value
-        WindUI:Notify({Title="Rod Selected", Content=value, Duration=3})
-    end
-})
+Tab5:Dropdown({  
+    Title = "Select Rod",  
+    Values = rodNames,  
+    Value = selectedRod,  
+    Callback = function(value)  
+        selectedRod = value  
+        WindUI:Notify({Title="Rod Selected", Content=value, Duration=3})  
+    end  
+})  
 
-Tab5:Button({
-    Title="Buy Rod",
-    Callback=function()
-        local key = rodKeyMap[selectedRod]
-        if key and rods[key] then
-            local success, err = pcall(function()
-                RFPurchaseFishingRod:InvokeServer(rods[key])
-            end)
-            if success then
-                WindUI:Notify({Title="Rod Purchase", Content="Purchased "..selectedRod, Duration=3})
-            else
-                WindUI:Notify({Title="Rod Purchase Error", Content=tostring(err), Duration=5})
-            end
-        end
-    end
+Tab5:Button({  
+    Title="Buy Rod",  
+    Callback=function()  
+        local key = rodKeyMap[selectedRod]  
+        if key and rods[key] then  
+            local success, err = pcall(function()  
+                RFPurchaseFishingRod:InvokeServer(rods[key])  
+            end)  
+            if success then  
+                WindUI:Notify({Title="Rod Purchase", Content="Purchased "..selectedRod, Duration=3})  
+            else  
+                WindUI:Notify({Title="Rod Purchase Error", Content=tostring(err), Duration=5})  
+            end  
+        end  
+    end  
 })
 
 local Section = Tab5:Section({
@@ -1071,22 +931,125 @@ local Section = Tab5:Section({
     TextSize = 17,
 })
 
-local selectedBait = "Bait"
-local baitDropdown = Tab5:Dropdown({
-    Title = "Select Bait",
-    Values = {"Bait", "Worm", "Shrimp", "Squid", "SpecialBait"},
-    Callback = function(Value)
-        selectedBait = Value
-    end
+local ReplicatedStorage = game:GetService("ReplicatedStorage")  
+local RFPurchaseBait = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/PurchaseBait"]  
+
+local baits = {
+    ["TopWater Bait"] = 10,
+    ["Lucky Bait"] = 2,
+    ["Midnight Bait"] = 3,
+    ["Chroma Bait"] = 6,
+    ["Dark Mater Bait"] = 8,
+    ["Corrupt Bait"] = 15,
+    ["Aether Bait"] = 16
+}
+
+local baitNames = {
+    "TopWater Bait (100 Coins)",
+    "Lucky Bait (1k Coins)",
+    "Midnight Bait (3k Coins)",
+    "Chroma Bait (290k Coins)",
+    "Dark Mater Bait (630k Coins)",
+    "Corrupt Bait (1.15M Coins)",
+    "Aether Bait (3.7M Coins)"
+}
+
+local baitKeyMap = {
+    ["TopWater Bait (100 Coins)"] = "TopWater Bait",
+    ["Lucky Bait (1k Coins)"] = "Lucky Bait",
+    ["Midnight Bait (3k Coins)"] = "Midnight Bait",
+    ["Chroma Bait (290k Coins)"] = "Chroma Bait",
+    ["Dark Mater Bait (630k Coins)"] = "Dark Mater Bait",
+    ["Corrupt Bait (1.15M Coins)"] = "Corrupt Bait",
+    ["Aether Bait (3.7M Coins)"] = "Aether Bait"
+}
+
+local selectedBait = baitNames[1]  
+
+Tab5:Dropdown({  
+    Title = "Select Bait",  
+    Values = baitNames,  
+    Value = selectedBait,  
+    Callback = function(value)  
+        selectedBait = value  
+    end  
+})  
+
+Tab5:Button({  
+    Title = "Buy Bait",  
+    Callback = function()  
+        local key = baitKeyMap[selectedBait]  
+        if key and baits[key] then  
+            local success, err = pcall(function()  
+                RFPurchaseBait:InvokeServer(baits[key])  
+            end)  
+            if success then  
+                WindUI:Notify({Title = "Bait Purchase", Content = "Purchased " .. selectedBait, Duration = 3})  
+            else  
+                WindUI:Notify({Title = "Bait Purchase Error", Content = tostring(err), Duration = 5})  
+            end  
+        end  
+    end  
 })
 
-Tab5:Button({
-    Title = "Buy Selected Bait",
-    Desc = "Purchase the selected bait",
-    Callback = function()
-        game:GetService("ReplicatedStorage").Packages._Index["sleitnick_net@0.2.0"].net["RE/PurchaseItem"]:FireServer(selectedBait, 10)
-        print("Purchased: " .. selectedBait .. " x10")
-    end
+local Section = Tab5:Section({
+    Title = "Buy Weather Event",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")  
+local RFPurchaseWeatherEvent = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/PurchaseWeatherEvent"]  
+
+local weatherEvents = {  
+    ["Windy"] = 10000,  
+    ["Cloudy"] = 20000,  
+    ["Stormy"] = 35000,  
+    ["Shining"] = 50000,  
+    ["Shark Hunt"] = 300000,  
+    ["Snow"] = 15000  
+}  
+
+local weatherNames = {  
+    "Windy (10k Coins)", "Cloudy (20k Coins)", "Stormy (35k Coins)", 
+    "Shining (50k Coins)", "Shark Hunt (300k Coins)", "Snow (15k Coins)"  
+}  
+
+local weatherKeyMap = {  
+    ["Windy (10k Coins)"] = "Windy",  
+    ["Cloudy (20k Coins)"] = "Cloudy",  
+    ["Stormy (35k Coins)"] = "Stormy",  
+    ["Shining (50k Coins)"] = "Shining",  
+    ["Shark Hunt (300k Coins)"] = "Shark Hunt",  
+    ["Snow (15k Coins)"] = "Snow"  
+}  
+
+local selectedWeather = weatherNames[1]  
+
+Tab5:Dropdown({  
+    Title = "Select Weather Event",  
+    Values = weatherNames,  
+    Value = selectedWeather,  
+    Callback = function(value)  
+        selectedWeather = value  
+    end  
+})  
+
+Tab5:Button({  
+    Title = "Buy Weather Event",  
+    Callback = function()  
+        local key = weatherKeyMap[selectedWeather]  
+        if key and weatherEvents[key] then  
+            local success, err = pcall(function()  
+                RFPurchaseWeatherEvent:InvokeServer(weatherEvents[key])  
+            end)  
+            if success then  
+                WindUI:Notify({Title = "Weather Purchase", Content = "Purchased " .. selectedWeather, Duration = 3})  
+            else  
+                WindUI:Notify({Title = "Weather Purchase Error", Content = tostring(err), Duration = 5})  
+            end  
+        end  
+    end  
 })
 
 local Tab6 = Window:Tab({
@@ -1503,9 +1466,3 @@ local Button = Tab7:Button({
         loadstring(game:HttpGet('https://raw.githubusercontent.com/DarkNetworks/Infinite-Yield/main/latest.lua'))()
     end
 })
-
-Player.CharacterAdded:Connect(function(char)
-    local humanoid = char:WaitForChild("Humanoid")
-    humanoid.UseJumpPower = true
-    humanoid.JumpPower = _G.CustomJumpPower or 50
-end)
