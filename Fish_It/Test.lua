@@ -1353,7 +1353,7 @@ local function rejoin()
 	end
 end
 
-local Button = Tab:Button({
+local Button = Tab7:Button({
     Title = "Button",
     Desc = "Test Button",
     Locked = false,
