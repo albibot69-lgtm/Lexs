@@ -260,114 +260,8 @@ local success, net = pcall(function()
     return RepStorage.Packages._Index["sleitnick_net@0.2.0"].net
 end)
 
-_G.AutoFishing = false
-_G.Delay = 0
-_G.MaxSpeed = true
-
 Tab3:Toggle({
     Title = "Auto Instant Fishing v1",
-    Desc = "Automic Instant Fishing",
-    Icon = false,
-    Type = false,
-    Default = false,
-    Callback = function(value)
-        _G.AutoFishing = value
-    end
-})
-
-Tab3:Input({
-    Title = "Blast Delay",
-    Desc = "Enter delay in seconds (for instant fishing v1)",
-    Value = "",
-    InputIcon = false,
-    Type = "Input",
-    Placeholder = "Enter delay...",
-    Callback = function(input)
-        local num = tonumber(input)
-        if num and num >= 0 then
-            _G.Delay = num
-            _G.MaxSpeed = (num == 0)
-        end
-    end
-})
-
-local function InstantFish()
-    local char = player.Character
-    if not char then return end
-    if char:FindFirstChild("!!!FISHING_VIEW_MODEL!!!") then
-        pcall(function()
-            net["RE/EquipToolFromHotbar"]:FireServer(1)
-            net["RF/ChargeFishingRod"]:InvokeServer(2)
-            net["RF/RequestFishingMinigameStarted"]:InvokeServer(1, 1)
-            net["RE/FishingCompleted"]:FireServer()
-        end)
-    end
-end
-
-task.spawn(function()
-    while task.wait(_G.MaxSpeed and 0.001 or (_G.Delay > 0 and _G.Delay or 0.01)) do
-        if _G.AutoFishing then
-            InstantFish()
-        end
-    end
-end)
-
-player.CharacterAdded:Connect(function()
-    if _G.AutoFishing then
-        InstantFish()
-    end
-end)
-
-local RunService = game:GetService("RunService")    
-local Workspace = game:GetService("Workspace")    
-local VirtualInputManager = game:GetService("VirtualInputManager")    
-local ReplicatedStorage = game:GetService("ReplicatedStorage")    
-local camera = Workspace.CurrentCamera    
-    
-local REEquipToolFromHotbar = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/EquipToolFromHotbar"]    
-local REFishingCompleted = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/FishingCompleted"]
-
-local autoHoldEnabled = false
-Toggle = Tab3:Toggle({
-    Title = "Auto Fishing",
-    Desc = "Automatic Auto Fishing v2",
-    Value = false,
-    Callback = function(state)
-        autoHoldEnabled = state
-        if state then
-            WindUI:Notify({
-                Title = "Auto Fishing V2",
-                Content = "Enabled",
-                Duration = 3
-            })
-            task.spawn(function()
-                local holdDuration = 0.4
-                local loopDelay = 0.2
-                while autoHoldEnabled do
-                    pcall(function()
-                        REEquipToolFromHotbar:FireServer(1)
-                        local clickX = 5
-                        local clickY = camera.ViewportSize.Y - 5
-                        VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, true, game, 0)
-                        task.wait(holdDuration)
-                        VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, false, game, 0)
-                    end)
-                    task.wait(loopDelay)
-                    RunService.Heartbeat:Wait()
-                end
-            end)
-        else
-            WindUI:Notify({
-                Title = "Auto Fishing V2",
-                Content = "Disabled",
-                Duration = 3
-            })
-        end
-    end
-})
-
-Tab3:Toggle({
-    Title = "Auto Instant Fishing v3",
     Desc = "Recomended",
     Icon = false,
     Type = false,
@@ -413,6 +307,44 @@ spawn(function()
         end
     end
 end)
+
+Toggle = Tab3:Toggle({
+    Title = "Auto Fishing",
+    Desc = "Automatic Auto Fishing v2",
+    Value = false,
+    Callback = function(state)
+        autoHoldEnabled = state
+        if state then
+            WindUI:Notify({
+                Title = "Auto Fishing V2",
+                Content = "Enabled",
+                Duration = 3
+            })
+            task.spawn(function()
+                local holdDuration = 0.4
+                local loopDelay = 0.2
+                while autoHoldEnabled do
+                    pcall(function()
+                        REEquipToolFromHotbar:FireServer(1)
+                        local clickX = 5
+                        local clickY = camera.ViewportSize.Y - 5
+                        VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, true, game, 0)
+                        task.wait(holdDuration)
+                        VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, false, game, 0)
+                    end)
+                    task.wait(loopDelay)
+                    RunService.Heartbeat:Wait()
+                end
+            end)
+        else
+            WindUI:Notify({
+                Title = "Auto Fishing V2",
+                Content = "Disabled",
+                Duration = 3
+            })
+        end
+    end
+})
 
 local Toggle = Tab3:Toggle({    
     Title = "Auto Sell",    
@@ -462,7 +394,7 @@ end
 
 Toggle = Tab3:Toggle({
     Title = "Auto Instant complete Fishing",
-    Desc = "Instant Fishing For v2 (It is mandatory to turn it on if you want to use Auto Fishing V2)",
+    Desc = "(for instant fishing v2)",
     Value = autoInstantFishEnabled,
     Callback = function(state)
         autoInstantFishEnabled = state
@@ -482,23 +414,7 @@ Toggle = Tab3:Toggle({
         end
     end
 })
-    
-local Toggle = Tab3:Toggle({    
-    Title = "Instant Catch",    
-    Desc = "Get fish straight away",    
-    Icon = false,    
-    Type = false,    
-    Default = false,    
-    Callback = function(state)    
-        _G.InstantCatch = state    
-        if state then    
-            print("✅ Instant Catch ON")    
-        else    
-            print("❌ Instant Catch OFF")    
-        end    
-    end    
-})    
-    
+  
 local Toggle = Tab3:Toggle({    
     Title = "Radar",    
     Desc = "Toggle fishing radar",    
@@ -599,126 +515,6 @@ local Toggle = Tab3:Toggle({
             print("Auto Enchant: OFF")
         end
     end
-})
-
-local Section = Tab3:Section({     
-    Title = "Quest [Beta]",    
-    TextXAlignment = "Left",    
-    TextSize = 17,    
-})
-
-_G.AutoGhostfin = false
-_G.TeleportEnabled = true
-
-local player = game.Players.LocalPlayer
-local replicatedStorage = game:GetService("ReplicatedStorage")
-local humanoidRootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
-
-local function getHumanoid()
-    return player.Character and player.Character:FindFirstChildOfClass("Humanoid")
-end
-
-local function teleportTo(target)
-    if humanoidRootPart and _G.TeleportEnabled then
-        local humanoid = getHumanoid()
-        if humanoid and humanoid:GetState() ~= Enum.HumanoidStateType.Dead and humanoid:GetState() ~= Enum.HumanoidStateType.Flying then
-            humanoidRootPart.CFrame = CFrame.new(target) + Vector3.new(0, 5, 0)
-            task.wait(0.5)
-        end
-    end
-end
-
-spawn(function()
-    while task.wait(0.5) do
-        local humanoid = getHumanoid()
-        if _G.AutoGhostfin then
-            local success, errorMsg = pcall(function()
-                if humanoid then
-                    humanoid.WalkSpeed = 0
-                    humanoid.JumpPower = 0
-                    replicatedStorage.Remotes.StartQuest:FireServer("Ghostfin")
-                    local quests = player:FindFirstChild("QuestProgress")
-                    if quests and quests:FindFirstChild("Ghostfin") then
-                        local progress = quests.Ghostfin.Value
-                        local goal = quests.Ghostfin.Goal.Value
-                        local remaining = math.max(goal - progress, 0)
-                        local target = remaining > (goal / 2) and Vector3.new(-3593, -280, -1590) or Vector3.new(-3738, -136, -890)
-                        teleportTo(target)
-                    end
-                end
-            end)
-            if not success then
-                warn("Error in Auto Ghostfin loop: " .. tostring(errorMsg))
-            end
-        else
-            if humanoid then
-                humanoid.WalkSpeed = 16
-                humanoid.JumpPower = 50
-            end
-        end
-    end
-end)
-
-local function NotifyQuestProgress()
-    local success, errorMsg = pcall(function()
-        local quests = player:FindFirstChild("QuestProgress")
-        if quests then
-            for _, quest in pairs(quests:GetChildren()) do
-                if quest:IsA("IntValue") and quest:FindFirstChild("Goal") then
-                    local progress = quest.Value
-                    local goal = quest.Goal.Value
-                    local remaining = math.max(goal - progress, 0)
-                    local target = remaining > (goal / 2) and Vector3.new(-3593, -280, -1590) or Vector3.new(-3738, -136, -890)
-                    local locationName = remaining > (goal / 2) and "Place 1" or "Place 2"
-                    local questName = quest.Name -- Gunakan nama asli quest dari data
-
-                    game.StarterGui:SetCore("SendNotification", {
-                        Title = questName .. " Quest",
-                        Text = string.format("Fish remaining: %d\nLocation: %s (%s)", remaining, locationName, tostring(target)),
-                        Duration = 4
-                    })
-                    return
-                end
-            end
-            game.StarterGui:SetCore("SendNotification", {
-                Title = "Quest Status",
-                Text = "No active quest with progress data found. Available quests: " .. table.concat((function() local names = {}; for _, v in pairs(quests:GetChildren()) do table.insert(names, v.Name) end return names end)(), ", "),
-                Duration = 5
-            })
-        else
-            game.StarterGui:SetCore("SendNotification", {
-                Title = "Quest Status",
-                Text = "Quest not started or data not found",
-                Duration = 3
-            })
-        end
-    end)
-    if not success then
-        warn("Error in NotifyQuestProgress: " .. tostring(errorMsg))
-        game.StarterGui:SetCore("SendNotification", {
-            Title = "Error",
-            Text = "Failed to check quest progress",
-            Duration = 3
-        })
-    end
-end
-
-Tab3:Toggle({
-    Title = "Auto Ghostfin Quest",
-    Desc = "Enable Ghostfin quest automation with teleport (avatar will stay still)",
-    Default = false,
-    Callback = function(value)
-        _G.AutoGhostfin = value
-        if value then
-            NotifyQuestProgress()
-        end
-    end
-})
-
-Tab3:Button({
-    Title = "Check Quest Progress",
-    Desc = "Show remaining fish and location for active quest",
-    Callback = NotifyQuestProgress
 })
 
 local Section = Tab3:Section({     
@@ -838,62 +634,9 @@ local Tab4 = Window:Tab({
     Icon = "star",
 })
 
-local Section = Tab4:Section({
-    Title = "Kaitun System",
-    TextXAlignment = "Left",
-    TextSize = 17,
-})
-
-Tab4:Toggle({
-    Title = "Enable Kaitun",
-    Desc = "Automatic fishing system",
-    Default = false,
-    Callback = function(state)
-        _G.AutoFishingEnabled = state
-        if state then
-            CreateBackground()
-            WindUI:Notify({Title = "Auto Fishing", Content = "Activated!", Duration = 3})
-            StartAutoFishing()
-        else
-            RemoveBackground()
-            WindUI:Notify({Title = "Auto Fishing", Content = "Stopped.", Duration = 3})
-        end
-    end
-})
-
-Tab4:Toggle({
-    Title = "Auto Sell Fish",
-    Desc = "Automatically sell caught fish",
-    Default = true,
-    Callback = function(state)
-        _G.AutoSellFish = state
-        WindUI:Notify({
-            Title = "Auto Sell",
-            Content = state and "Enabled" or "Disabled",
-            Duration = 2
-        })
-    end
-})
-
-Tab4:Slider({
-    Title = "Fishing Delay",
-    Desc = "Adjust cast/reel timing (seconds)",
-    Min = 0.2,
-    Max = 2,
-    Default = 0.5,
-    Callback = function(value)
-        _G.FishingDelay = value
-        WindUI:Notify({
-            Title = "Fishing Delay",
-            Content = "Delay set to " .. tostring(value) .. "s",
-            Duration = 2
-        })
-    end
-})
-
 local Tab5 = Window:Tab({
     Title = "Shop",
-    Icon = "badge-dollar-sign",
+    Icon = "shopping-cart",
 })
 
 Tab5:Section({   
@@ -1358,53 +1101,6 @@ local Toggle = Tab7:Toggle({
                     end
                 end
             end)
-        end
-    end
-})
-
-local Section = Tab7:Section({ 
-    Title = "Server",
-    TextXAlignment = "Left",
-    TextSize = 17,
-})
-
-Tab7:Button({
-    Title = "Rejoin Server",
-    Desc = "Reconnect to current server",
-    Callback = function()
-        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
-    end
-})
-
-Tab7:Button({
-    Title = "Server Hop",
-    Desc = "Switch to another server",
-    Callback = function()
-        local HttpService = game:GetService("HttpService")
-        local TeleportService = game:GetService("TeleportService")
-        
-        local function GetServers()
-            local url = "https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Desc&limit=100"
-            local response = HttpService:JSONDecode(game:HttpGet(url))
-            return response.data
-        end
-
-        local function FindBestServer(servers)
-            for _, server in ipairs(servers) do
-                if server.playing < server.maxPlayers and server.id ~= game.JobId then
-                    return server.id
-                end
-            end
-            return nil
-        end
-
-        local servers = GetServers()
-        local serverId = FindBestServer(servers)
-
-        if serverId then
-            TeleportService:TeleportToPlaceInstance(game.PlaceId, serverId, game.Players.LocalPlayer)
-        else
-            warn("⚠️ No suitable server found!")
         end
     end
 })
