@@ -281,16 +281,16 @@ local Toggle = Tab2:Toggle({
 	end
 })
 
--- // FREEZE CHARACTER (dengan toggle + notif chat)
+-- // FREEZE CHARACTER (versi fix masuk tanah)
 -- by Ibnu 😎
 
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
 local player = Players.LocalPlayer
 local isFrozen = false
-local heartbeatConn
+local lastPos = nil
 
--- Fungsi kirim notifikasi ke chat
+-- Fungsi notifikasi
 local function notify(msg, color)
 	pcall(function()
 		StarterGui:SetCore("ChatMakeSystemMessage", {
@@ -302,18 +302,23 @@ local function notify(msg, color)
 	end)
 end
 
--- Fungsi untuk benar-benar freeze character
+-- Freeze karakter tanpa jatuh
 local function freezeCharacter(char)
 	if not char then return end
 	local humanoid = char:FindFirstChildOfClass("Humanoid")
-	if not humanoid then return end
+	local root = char:FindFirstChild("HumanoidRootPart")
+	if not humanoid or not root then return end
 
+	-- simpan posisi
+	lastPos = root.CFrame
+
+	-- matikan kendali
 	humanoid.WalkSpeed = 0
 	humanoid.JumpPower = 0
 	humanoid.AutoRotate = false
 	humanoid.PlatformStand = true
 
-	-- stop semua animasi aktif
+	-- hentikan animasi
 	for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
 		pcall(function() track:Stop(0) end)
 	end
@@ -322,23 +327,15 @@ local function freezeCharacter(char)
 		pcall(function() animator:Destroy() end)
 	end
 
-	-- jaga biar gak bisa bergerak sama sekali
-	local RunService = game:GetService("RunService")
-	if heartbeatConn then heartbeatConn:Disconnect() end
-	heartbeatConn = RunService.Heartbeat:Connect(function()
-		if not isFrozen then heartbeatConn:Disconnect() heartbeatConn = nil return end
-		local root = char:FindFirstChild("HumanoidRootPart")
-		if root then
-			root.AssemblyLinearVelocity = Vector3.new(0,0,0)
-			root.AssemblyAngularVelocity = Vector3.new(0,0,0)
-		end
-	end)
+	-- anchor root supaya gak jatuh
+	root.Anchored = true
 end
 
--- Fungsi untuk unfreeze karakter
+-- Unfreeze karakter
 local function unfreezeCharacter(char)
 	if not char then return end
 	local humanoid = char:FindFirstChildOfClass("Humanoid")
+	local root = char:FindFirstChild("HumanoidRootPart")
 	if humanoid then
 		humanoid.WalkSpeed = 16
 		humanoid.JumpPower = 50
@@ -350,10 +347,15 @@ local function unfreezeCharacter(char)
 		end
 	end
 
-	if heartbeatConn then heartbeatConn:Disconnect() heartbeatConn = nil end
+	if root then
+		root.Anchored = false
+		if lastPos then
+			root.CFrame = lastPos
+		end
+	end
 end
 
--- Fungsi toggle utama
+-- Toggle utama
 local function toggleFreeze(state)
 	isFrozen = state
 	local char = player.Character or player.CharacterAdded:Wait()
@@ -367,10 +369,10 @@ local function toggleFreeze(state)
 	end
 end
 
--- Toggle UI-mu
+-- Toggle UI
 local Toggle = Tab2:Toggle({
 	Title = "Freeze Character",
-	Desc = "Bekukan karakter (client-side)",
+	Desc = "Bekukan karakter (fix jatuh ke tanah)",
 	Icon = "bird",
 	Type = "Checkbox",
 	Value = false,
@@ -380,14 +382,13 @@ local Toggle = Tab2:Toggle({
 	end
 })
 
--- Kalau karakter respawn dan masih frozen, tetap freeze lagi
+-- Jika respawn, tetap freeze lagi
 player.CharacterAdded:Connect(function(char)
 	if isFrozen then
 		task.wait(0.5)
 		freezeCharacter(char)
 	end
 end)
-
 
 local Tab3 = Window:Tab({
     Title = "Main",
