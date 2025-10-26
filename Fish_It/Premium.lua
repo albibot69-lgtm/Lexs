@@ -28,6 +28,20 @@ local Window = WindUI:CreateWindow({
     },
 })
 
+Window:EditOpenButton({
+    Title = "Lexs Hub",
+    Icon = "rbxassetid://71947103252559",
+    CornerRadius = UDim.new(0,16),
+    StrokeThickness = 2,
+    Color = ColorSequence.new( -- gradient
+        Color3.fromHex("#00fbff"), 
+        Color3.fromHex("#ffffff")
+    ),
+    OnlyMobile = true,
+    Enabled = true,
+    Draggable = true,
+})
+
 Window:Tag({
     Title = "v0.0.1.8",
     Color = Color3.fromRGB(255, 255, 255),
@@ -1036,6 +1050,15 @@ Tab6:Button({
 local Tab7 = Window:Tab({
     Title = "Settings",
     Icon = "settings",
+})
+
+local Keybind = Tab7:Keybind({
+    Title = "Close/Open ui",
+    Desc = "Keybind to Close/Open ui",
+    Value = "L",
+    Callback = function(v)
+        Window:SetToggleKey(Enum.KeyCode[v])
+    end
 })
 
 local Toggle = Tab7:Toggle({
