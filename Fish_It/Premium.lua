@@ -265,7 +265,7 @@ _G.Delay = 0
 _G.MaxSpeed = true
 
 Tab3:Toggle({
-    Title = "Auto Instant Fishing",
+    Title = "Auto Instant Fishing v1",
     Desc = "Automic Instant Fishing",
     Icon = false,
     Type = false,
@@ -277,7 +277,7 @@ Tab3:Toggle({
 
 Tab3:Input({
     Title = "Blast Delay",
-    Desc = "Enter delay in seconds",
+    Desc = "Enter delay in seconds (for instant fishing v1)",
     Value = "",
     InputIcon = false,
     Type = "Input",
@@ -365,6 +365,54 @@ Toggle = Tab3:Toggle({
         end
     end
 })
+
+Tab3:Toggle({
+    Title = "Auto Instant Fishing",
+    Desc = "Automatic Instant Fishing",
+    Icon = false,
+    Type = false,
+    Default = false,
+    Callback = function(value)
+        _G.AutoFishing = value
+    end
+})
+
+local RepStorage = game:GetService("ReplicatedStorage")
+
+spawn(function()
+    while wait() do
+        if _G.AutoFishing then
+            repeat
+                pcall(function()
+                    local char = player.Character or player.CharacterAdded:Wait()
+                    if char:FindFirstChild("!!!FISHING_VIEW_MODEL!!!") then
+                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/EquipToolFromHotbar"]:FireServer(1)
+                    end
+                    local cosmeticFolder = workspace:FindFirstChild("CosmeticFolder")
+                    if cosmeticFolder and not cosmeticFolder:FindFirstChild(tostring(player.UserId)) then
+                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/ChargeFishingRod"]:InvokeServer(2)
+                        wait(0.5)
+                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/RequestFishingMinigameStarted"]:InvokeServer(1,1)
+                    end
+                end)
+                wait(0.2)
+            until not _G.AutoFishing
+        end
+    end
+end)
+
+spawn(function()
+    while wait() do
+        if _G.AutoFishing then
+            repeat
+                pcall(function()
+                    RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/FishingCompleted"]:FireServer()
+                end)
+                wait(0.2)
+            until not _G.AutoFishing
+        end
+    end
+end)
 
 local Toggle = Tab3:Toggle({    
     Title = "Auto Sell",    
