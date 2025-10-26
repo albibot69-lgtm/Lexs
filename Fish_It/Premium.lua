@@ -1229,6 +1229,7 @@ end
 -- UI Toggle (kamu tinggal ganti Tab:Toggle sesuai tab kamu)
 local Toggle = Tab7:Toggle({
 	Title = "FPS Boost Super",
+	Desc = "cannot be changed once it is turned on"
 	Icon = false,
 	Type = false,
 	Value = false, -- default OFF
