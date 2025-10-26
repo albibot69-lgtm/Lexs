@@ -45,7 +45,7 @@ local gameScripts = {
     },
     [121864768012064] = {
         name = "Fish It",
-        free = "https://raw.githubusercontent.com/create-stree/STREE-HUB/refs/heads/main/Fish_It/Main.lua",
+        free = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fish_It/Main.lua",
         premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fish_It/Premium.lua"
     },
     [18687417158] = {
