@@ -1100,7 +1100,7 @@ local Toggle = Tab7:Toggle({
 
 local Toggle = Tab7:Toggle({
     Title = "Auto Reconnect",
-    Desc = "Automatic reconnect if disconnected",
+    Desc = "Auto reconnect if disconnected",
     Icon = false,
     Default = false,
     Callback = function(state)
