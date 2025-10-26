@@ -372,9 +372,9 @@ end
 -- Toggle UI
 local Toggle = Tab2:Toggle({
 	Title = "Freeze Character",
-	Desc = "Bekukan karakter (fix jatuh ke tanah)",
-	Icon = "bird",
-	Type = "Checkbox",
+	Desc = "freeze your character",
+	Icon = false,
+	Type = false,
 	Value = false,
 	Callback = function(state)
 		print("[FREEZE] Activated: " .. tostring(state))
