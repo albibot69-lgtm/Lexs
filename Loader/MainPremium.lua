@@ -19,6 +19,8 @@ local premiumKeys = {
     "hZpRkQyUxWaJmTfVnSgCoLdEiBtNsM",
     "rYpXvQzNaHkBtMfLcWgJoSdEuPiVnT",
     "developer_access"
+    "friend_access"
+    "partner_access"
 }
 
 local function isPremiumKey(key)
