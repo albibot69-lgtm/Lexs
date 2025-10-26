@@ -1330,6 +1330,38 @@ Tab7:Button({
     end
 })
 
+-- // Rejoin Game Button (dengan fallback)
+-- Tempel di bawah Tab3:Button atau Tab kamu
+
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+-- Fungsi Rejoin
+local function rejoin()
+	print("[REJOIN] Mencoba masuk ulang ke server...")
+	local success, err = pcall(function()
+		-- Coba teleport ke server yang sama
+		TeleportService:Teleport(game.PlaceId, player)
+	end)
+
+	if not success then
+		warn("[REJOIN] Gagal teleport:", err)
+		-- Fallback: kick player agar Roblox otomatis reconnect
+		player:Kick("Rejoining... (Teleport gagal, fallback aktif)")
+		-- (client akan menutup dan kamu bisa klik “Join” lagi di Roblox)
+	end
+end
+
+local Button = Tab:Button({
+    Title = "Button",
+    Desc = "Test Button",
+    Locked = false,
+    Callback = function()
+        rejoin()
+    end
+})
+
 local Section = Tab7:Section({ 
     Title = "Config",
     TextXAlignment = "Left",
