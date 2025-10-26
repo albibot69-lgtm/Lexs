@@ -1227,7 +1227,7 @@ local function applyFPSBoost(state)
 end
 
 -- UI Toggle (kamu tinggal ganti Tab:Toggle sesuai tab kamu)
-local Toggle = Tab:Toggle({
+local Toggle = Tab7:Toggle({
 	Title = "FPS Boost Super",
 	Icon = false,
 	Type = false,
