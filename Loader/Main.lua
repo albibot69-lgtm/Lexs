@@ -4,7 +4,7 @@ local CoreGui = game:GetService("CoreGui")
 local placeId = game.PlaceId
 
 _G.scripts_key = _G.scripts_key or scripts_key or "FREE_USER"
-local streeLogo = "rbxassetid://122683047852451"
+local streeLogo = "rbxassetid://71947103252559"
 
 local premiumKeys = {
     "hRCWybDuIIxXeREImBbvjsEueohPzTfX",
@@ -74,7 +74,7 @@ UICorner.Parent = Frame
 
 local UIStroke = Instance.new("UIStroke")
 UIStroke.Thickness = 2
-UIStroke.Color = Color3.fromRGB(0, 255, 0)
+UIStroke.Color = Color3.fromRGB(0, 255, 255)
 UIStroke.Parent = Frame
 
 local Image = Instance.new("ImageLabel")
@@ -85,10 +85,10 @@ Image.Position = UDim2.new(0.5, -40, 0, 15)
 Image.Parent = Frame
 
 local Title = Instance.new("TextLabel")
-Title.Text = "STREE HUB"
+Title.Text = "Lexs Hub"
 Title.Font = Enum.Font.GothamBold
 Title.TextSize = 22
-Title.TextColor3 = Color3.fromRGB(0, 255, 0)
+Title.TextColor3 = Color3.fromRGB(0, 255, 255)
 Title.BackgroundTransparency = 1
 Title.Position = UDim2.new(0, 0, 0, 105)
 Title.Size = UDim2.new(1, 0, 0, 30)
@@ -103,7 +103,7 @@ Loading.Parent = Frame
 
 local Bar = Instance.new("Frame")
 Bar.Size = UDim2.new(0, 0, 1, 0)
-Bar.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+Bar.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
 Bar.BorderSizePixel = 0
 Bar.Parent = Loading
 
