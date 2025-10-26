@@ -1210,6 +1210,27 @@ local Toggle = Tab7:Toggle({
 })
 
 local Section = Tab7:Section({ 
+    Title = "Server",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local Button = Tab7:Button({
+    Title = "Rejoin",
+    Desc = "rejoin to the same server",
+    Locked = false,
+    Callback = function()
+        local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+
+TeleportService:Teleport(game.PlaceId, player)
+
+    end
+})
+
+local Section = Tab7:Section({ 
     Title = "Config",
     TextXAlignment = "Left",
     TextSize = 17,
