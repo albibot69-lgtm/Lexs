@@ -148,98 +148,104 @@ local Input = Tab2:Input({
     end
 })
 
---// Fly Script (kamera arah + anti turun) by Ibnu 😎
+--// Fly Script v6 by Ibnu 😎
+--// Anti turun total (lock posisi manual), arah kamera 3D
 
 local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
 local StarterGui = game:GetService("StarterGui")
+
 local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local root = character:WaitForChild("HumanoidRootPart")
+local humanoid = character:WaitForChild("Humanoid")
 
 local flying = false
-local flySpeed = 50 -- default speed
-local humanoidRootPart
+local flySpeed = 50
+local move = {Forward = 0, Backward = 0, Left = 0, Right = 0}
+local lastPosition = root.Position
 
--- fungsi notif
+-- 🔔 Notif helper
 local function notify(msg, color)
 	pcall(function()
 		StarterGui:SetCore("ChatMakeSystemMessage", {
 			Text = "[FLY] " .. msg,
-			Color = color or Color3.fromRGB(100,200,255),
+			Color = color or Color3.fromRGB(0,255,200),
 			Font = Enum.Font.SourceSansBold,
 			FontSize = Enum.FontSize.Size24
 		})
 	end)
 end
 
--- update character
-local function getCharacter()
-	local char = player.Character or player.CharacterAdded:Wait()
-	humanoidRootPart = char:WaitForChild("HumanoidRootPart")
-	return char
-end
-
-getCharacter()
-player.CharacterAdded:Connect(getCharacter)
-
--- arah gerakan
-local movement = { Forward = 0, Backward = 0, Left = 0, Right = 0 }
-
--- Fly logic utama
-RunService.RenderStepped:Connect(function(dt)
-	if flying and humanoidRootPart then
-		local camera = workspace.CurrentCamera
-		local moveDirection = Vector3.zero
-
-		-- gerakan mengikuti arah kamera
-		moveDirection += camera.CFrame.LookVector * (movement.Forward - movement.Backward)
-		moveDirection += camera.CFrame.RightVector * (movement.Right - movement.Left)
-
-		-- hilangkan efek gravitasi
-		humanoidRootPart.Velocity = Vector3.zero
-
-		-- hanya gerak kalau ada input
-		if moveDirection.Magnitude > 0 then
-			humanoidRootPart.CFrame += moveDirection.Unit * (flySpeed * dt)
-		end
-	end
+-- 🧍 Update jika respawn
+player.CharacterAdded:Connect(function(char)
+	character = char
+	root = char:WaitForChild("HumanoidRootPart")
+	humanoid = char:WaitForChild("Humanoid")
+	lastPosition = root.Position
 end)
 
--- input key
+-- 🎮 Input gerakan
 UserInputService.InputBegan:Connect(function(input, gpe)
 	if gpe then return end
-	if input.KeyCode == Enum.KeyCode.W then movement.Forward = 1 end
-	if input.KeyCode == Enum.KeyCode.S then movement.Backward = 1 end
-	if input.KeyCode == Enum.KeyCode.A then movement.Left = 1 end
-	if input.KeyCode == Enum.KeyCode.D then movement.Right = 1 end
+	if input.KeyCode == Enum.KeyCode.W then move.Forward = 1 end
+	if input.KeyCode == Enum.KeyCode.S then move.Backward = 1 end
+	if input.KeyCode == Enum.KeyCode.A then move.Left = 1 end
+	if input.KeyCode == Enum.KeyCode.D then move.Right = 1 end
 end)
 
 UserInputService.InputEnded:Connect(function(input)
-	if input.KeyCode == Enum.KeyCode.W then movement.Forward = 0 end
-	if input.KeyCode == Enum.KeyCode.S then movement.Backward = 0 end
-	if input.KeyCode == Enum.KeyCode.A then movement.Left = 0 end
-	if input.KeyCode == Enum.KeyCode.D then movement.Right = 0 end
+	if input.KeyCode == Enum.KeyCode.W then move.Forward = 0 end
+	if input.KeyCode == Enum.KeyCode.S then move.Backward = 0 end
+	if input.KeyCode == Enum.KeyCode.A then move.Left = 0 end
+	if input.KeyCode == Enum.KeyCode.D then move.Right = 0 end
 end)
 
--- fungsi aktifkan fly
+-- ✈️ Fly Loop
+RunService.RenderStepped:Connect(function(dt)
+	if flying and root and humanoid then
+		local cam = workspace.CurrentCamera
+		local cf = cam.CFrame
+		local direction = Vector3.zero
+
+		direction += cf.LookVector * (move.Forward - move.Backward)
+		direction += cf.RightVector * (move.Right - move.Left)
+
+		-- Nonaktifkan physics sepenuhnya
+		humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+		root.AssemblyLinearVelocity = Vector3.zero
+		root.AssemblyAngularVelocity = Vector3.zero
+
+		-- Hitung posisi baru
+		local newPos = lastPosition
+		if direction.Magnitude > 0 then
+			newPos = newPos + direction.Unit * (flySpeed * dt)
+		end
+
+		-- Atur orientasi dan posisi manual
+		root.CFrame = CFrame.new(newPos, newPos + cf.LookVector)
+		lastPosition = newPos -- simpan posisi biar tidak turun sama sekali
+	end
+end)
+
+-- 🔁 Toggle
 local function toggleFly(state)
 	flying = state
-	local char = player.Character or player.CharacterAdded:Wait()
-	local humanoid = char:FindFirstChildOfClass("Humanoid")
-
 	if state then
-		notify("Mode Fly diaktifkan ✈️", Color3.fromRGB(120,255,120))
-		if humanoid then humanoid.PlatformStand = true end
+		notify("Fly diaktifkan ✈️", Color3.fromRGB(0,255,120))
+		humanoid.PlatformStand = true
+		lastPosition = root.Position
 	else
-		notify("Mode Fly dimatikan 🛬", Color3.fromRGB(255,150,150))
-		if humanoid then humanoid.PlatformStand = false end
+		notify("Fly dimatikan 🛬", Color3.fromRGB(255,120,120))
+		humanoid.PlatformStand = false
 	end
 end
 
--- Toggle UI kamu
+-- 🧩 Toggle UI
 local Toggle = Tab2:Toggle({
 	Title = "Fly Mode",
-	Desc = "Terbang mengikuti arah kamera",
+	Desc = "Terbang penuh, tidak akan turun sama sekali",
 	Icon = "bird",
 	Type = "Checkbox",
 	Value = false,
@@ -249,7 +255,7 @@ local Toggle = Tab2:Toggle({
 	end
 })
 
--- Input UI kamu (atur speed)
+-- 💨 Input Speed
 local Input = Tab2:Input({
 	Title = "Fly Speed",
 	Desc = "Atur kecepatan terbang",
@@ -261,9 +267,9 @@ local Input = Tab2:Input({
 		local num = tonumber(input)
 		if num and num > 0 then
 			flySpeed = num
-			notify("Kecepatan fly diatur ke: " .. tostring(num), Color3.fromRGB(120,255,120))
+			notify("Kecepatan fly diatur ke " .. num)
 		else
-			notify("Input tidak valid. Gunakan angka.", Color3.fromRGB(255,120,120))
+			notify("Input tidak valid. Gunakan angka!", Color3.fromRGB(255,100,100))
 		end
 	end
 })
