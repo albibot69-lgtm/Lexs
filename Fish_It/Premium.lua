@@ -281,6 +281,114 @@ local Toggle = Tab2:Toggle({
 	end
 })
 
+-- // FREEZE CHARACTER (dengan toggle + notif chat)
+-- by Ibnu 😎
+
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local player = Players.LocalPlayer
+local isFrozen = false
+local heartbeatConn
+
+-- Fungsi kirim notifikasi ke chat
+local function notify(msg, color)
+	pcall(function()
+		StarterGui:SetCore("ChatMakeSystemMessage", {
+			Text = "[FREEZE] " .. msg,
+			Color = color or Color3.fromRGB(150,255,150),
+			Font = Enum.Font.SourceSansBold,
+			FontSize = Enum.FontSize.Size24
+		})
+	end)
+end
+
+-- Fungsi untuk benar-benar freeze character
+local function freezeCharacter(char)
+	if not char then return end
+	local humanoid = char:FindFirstChildOfClass("Humanoid")
+	if not humanoid then return end
+
+	humanoid.WalkSpeed = 0
+	humanoid.JumpPower = 0
+	humanoid.AutoRotate = false
+	humanoid.PlatformStand = true
+
+	-- stop semua animasi aktif
+	for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
+		pcall(function() track:Stop(0) end)
+	end
+	local animator = humanoid:FindFirstChildOfClass("Animator")
+	if animator then
+		pcall(function() animator:Destroy() end)
+	end
+
+	-- jaga biar gak bisa bergerak sama sekali
+	local RunService = game:GetService("RunService")
+	if heartbeatConn then heartbeatConn:Disconnect() end
+	heartbeatConn = RunService.Heartbeat:Connect(function()
+		if not isFrozen then heartbeatConn:Disconnect() heartbeatConn = nil return end
+		local root = char:FindFirstChild("HumanoidRootPart")
+		if root then
+			root.AssemblyLinearVelocity = Vector3.new(0,0,0)
+			root.AssemblyAngularVelocity = Vector3.new(0,0,0)
+		end
+	end)
+end
+
+-- Fungsi untuk unfreeze karakter
+local function unfreezeCharacter(char)
+	if not char then return end
+	local humanoid = char:FindFirstChildOfClass("Humanoid")
+	if humanoid then
+		humanoid.WalkSpeed = 16
+		humanoid.JumpPower = 50
+		humanoid.AutoRotate = true
+		humanoid.PlatformStand = false
+		if not humanoid:FindFirstChildOfClass("Animator") then
+			local newAnimator = Instance.new("Animator")
+			newAnimator.Parent = humanoid
+		end
+	end
+
+	if heartbeatConn then heartbeatConn:Disconnect() heartbeatConn = nil end
+end
+
+-- Fungsi toggle utama
+local function toggleFreeze(state)
+	isFrozen = state
+	local char = player.Character or player.CharacterAdded:Wait()
+
+	if state then
+		freezeCharacter(char)
+		notify("Karakter dibekukan ❄️", Color3.fromRGB(100,200,255))
+	else
+		unfreezeCharacter(char)
+		notify("Karakter dilepaskan 🔥", Color3.fromRGB(255,150,150))
+	end
+end
+
+-- Toggle UI-mu
+local Toggle = Tab2:Toggle({
+	Title = "Freeze Character",
+	Desc = "Bekukan karakter (client-side)",
+	Icon = "bird",
+	Type = "Checkbox",
+	Value = false,
+	Callback = function(state)
+		print("[FREEZE] Activated: " .. tostring(state))
+		toggleFreeze(state)
+	end
+})
+
+-- Kalau karakter respawn dan masih frozen, tetap freeze lagi
+player.CharacterAdded:Connect(function(char)
+	if isFrozen then
+		task.wait(0.5)
+		freezeCharacter(char)
+	end
+end)
+
+
 local Tab3 = Window:Tab({
     Title = "Main",
     Icon = "gamepad-2",
@@ -533,58 +641,6 @@ local Toggle = Tab3:Toggle({
             end    
         end    
     end    
-})
-
-local Section = Tab3:Section({     
-    Title = "Enchant",    
-    TextXAlignment = "Left",    
-    TextSize = 17,    
-})
-
-local Toggle = Tab3:Toggle({
-    Title = "Auto Enchant",
-    Icon = false,
-    Type = false,
-    Default = false,
-    Callback = function(state)
-        if state then
-            _G.AutoEnchant = true
-            print("Auto Enchant: ON")
-
-            local Enchants = {
-                {Name = "Stargazer I", Chance = 7},
-                {Name = "Shiny I", Chance = 5},
-                {Name = "Experienced I", Chance = 7},
-                {Name = "Storm Hunter I", Chance = 7},
-                {Name = "Perfection", Chance = 2},
-            }
-
-            local function RollEnchant()
-                local total = 0
-                for _, e in ipairs(Enchants) do
-                    total += e.Chance
-                end
-                local roll = math.random(1, total)
-                for _, e in ipairs(Enchants) do
-                    roll -= e.Chance
-                    if roll <= 0 then
-                        return e.Name
-                    end
-                end
-            end
-
-            task.spawn(function()
-                while _G.AutoEnchant do
-                    local result = RollEnchant()
-                    print("🎲 You got enchant:", result)
-                    task.wait(1.5)
-                end
-            end)
-        else
-            _G.AutoEnchant = false
-            print("Auto Enchant: OFF")
-        end
-    end
 })
 
 local Tab4 = Window:Tab({
