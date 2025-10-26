@@ -223,6 +223,68 @@ local Toggle = Tab2:Toggle({
     end
 })
 
+-- // FULL ANIMATION STOPPER
+-- by Ibnu 😎
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+-- Fungsi untuk stop semua animasi yang sedang berjalan
+local function stopAllAnimations()
+	local char = player.Character or player.CharacterAdded:Wait()
+	local humanoid = char:FindFirstChildOfClass("Humanoid")
+	if humanoid then
+		for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
+			track:Stop(0) -- stop langsung tanpa fade
+		end
+	end
+end
+
+-- Fungsi toggle animasi
+local function toggleAnimation(state)
+	local char = player.Character or player.CharacterAdded:Wait()
+	local humanoid = char:FindFirstChildOfClass("Humanoid")
+	local animate = char:FindFirstChild("Animate")
+
+	if state then
+		---------------------------------------------------
+		-- 🟢 MATIKAN SEMUA ANIMASI
+		---------------------------------------------------
+		print("[ANIM] Semua animasi dinonaktifkan")
+		if animate then animate.Disabled = true end
+		stopAllAnimations()
+
+		-- Nonaktifkan animator agar game tidak bisa memutar ulang animasi
+		local animator = humanoid:FindFirstChildOfClass("Animator")
+		if animator then
+			animator:Destroy()
+		end
+	else
+		---------------------------------------------------
+		-- 🔴 AKTIFKAN KEMBALI ANIMASI
+		---------------------------------------------------
+		print("[ANIM] Animasi diaktifkan kembali")
+		if animate then animate.Disabled = false end
+
+		-- Buat ulang Animator agar animasi bisa jalan lagi
+		if humanoid and not humanoid:FindFirstChildOfClass("Animator") then
+			local newAnimator = Instance.new("Animator")
+			newAnimator.Parent = humanoid
+		end
+	end
+end
+
+-- Toggle di UI kamu
+local AnimToggle = Tab2:Toggle({
+	Title = "Disable Animations",
+	Icon = false,
+	Type = false,
+	Value = false,
+	Callback = function(state)
+		toggleAnimation(state)
+	end
+})
+
 local Tab3 = Window:Tab({
     Title = "Main",
     Icon = "gamepad-2",
@@ -1178,8 +1240,6 @@ local Toggle = Tab7:Toggle({
 		applyFPSBoost(state)
 	end
 })
-
--- by Ibnu 😎
 
 local Lighting = game:GetService("Lighting")
 local Workspace = game:GetService("Workspace")
