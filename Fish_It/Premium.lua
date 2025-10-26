@@ -1179,6 +1179,152 @@ local Toggle = Tab7:Toggle({
 	end
 })
 
+-- by Ibnu 😎
+
+local Lighting = game:GetService("Lighting")
+local Workspace = game:GetService("Workspace")
+local Terrain = Workspace:FindFirstChildOfClass("Terrain")
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+
+-- fungsi notifikasi kecil di chat
+local function notify(text, color)
+	pcall(function()
+		StarterGui:SetCore("ChatMakeSystemMessage", {
+			Text = "[FPS BOOST] " .. text,
+			Color = color or Color3.fromRGB(150,255,150),
+			Font = Enum.Font.SourceSansBold,
+			FontSize = Enum.FontSize.Size24
+		})
+	end)
+end
+
+-- fungsi utama FPS Boost
+local function applyFPSBoost(state)
+	if state then
+		---------------------------------------------------
+		-- 🟢 AKTIFKAN MODE BOOST
+		---------------------------------------------------
+		notify("Mode Ultra Aktif ✅", Color3.fromRGB(100,255,100))
+		print("[FPS BOOST] Mode Ultra Aktif")
+
+		-- Hapus efek Lighting berat
+		for _, v in ipairs(Lighting:GetChildren()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect")
+				or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("Atmosphere")
+				or v:IsA("Sky") or v:IsA("Clouds") or v:IsA("PostEffect") then
+				v.Parent = nil
+			end
+		end
+
+		-- Nonaktifkan Lighting kompleks
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 1e6
+		Lighting.Brightness = 1
+		Lighting.EnvironmentDiffuseScale = 0
+		Lighting.EnvironmentSpecularScale = 0
+		Lighting.OutdoorAmbient = Color3.new(1,1,1)
+
+		-- Terrain lebih ringan
+		if Terrain then
+			Terrain.WaterWaveSize = 0
+			Terrain.WaterWaveSpeed = 0
+			Terrain.WaterReflectance = 0
+			Terrain.WaterTransparency = 1
+		end
+
+		-- Bersihkan workspace
+		for _, obj in ipairs(Workspace:GetDescendants()) do
+			-- Hilangkan texture dan decal
+			if obj:IsA("Decal") or obj:IsA("Texture") then
+				obj.Transparency = 1
+			end
+
+			-- Matikan efek visual
+			if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Fire")
+				or obj:IsA("Smoke") or obj:IsA("Sparkles") then
+				obj.Enabled = false
+			end
+
+			-- Hapus efek PBR (SurfaceAppearance)
+			if obj:IsA("SurfaceAppearance") then
+				obj.Parent = nil
+			end
+
+			-- Nonaktifkan shadow dan ubah material ke Plastic
+			if obj:IsA("BasePart") then
+				obj.CastShadow = false
+				pcall(function() obj.Material = Enum.Material.Plastic end)
+			end
+		end
+
+		-- Matikan accessories dari character (opsional)
+		local char = Players.LocalPlayer.Character
+		if char then
+			for _, acc in ipairs(char:GetChildren()) do
+				if acc:IsA("Accessory") then
+					acc:Destroy()
+				end
+			end
+			if char:FindFirstChild("Animate") then
+				char.Animate.Disabled = true
+			end
+		end
+
+		-- Aktifkan Streaming Mode
+		workspace.StreamingEnabled = true
+		workspace.StreamingMinRadius = 64
+		workspace.StreamingTargetRadius = 128
+
+		-- Kurangi kualitas rendering (paling rendah)
+		settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+
+		-- Bersihkan memory
+		collectgarbage("collect")
+
+	else
+		---------------------------------------------------
+		-- 🔴 MATIKAN MODE BOOST
+		---------------------------------------------------
+		notify("Mode Ultra Nonaktif ❌", Color3.fromRGB(255,120,120))
+		print("[FPS BOOST] Mode Ultra Nonaktif")
+
+		-- Pulihkan Lighting aman
+		Lighting.GlobalShadows = true
+		Lighting.FogEnd = 1000
+		Lighting.Brightness = 2
+		Lighting.EnvironmentDiffuseScale = 1
+		Lighting.EnvironmentSpecularScale = 1
+		Lighting.OutdoorAmbient = Color3.new(0.5,0.5,0.5)
+
+		if Terrain then
+			Terrain.WaterWaveSize = 0.15
+			Terrain.WaterWaveSpeed = 10
+			Terrain.WaterReflectance = 1
+			Terrain.WaterTransparency = 0.5
+		end
+
+		settings().Rendering.QualityLevel = Enum.QualityLevel.Automatic
+
+		-- Aktifkan kembali animasi karakter
+		local char = Players.LocalPlayer.Character
+		if char and char:FindFirstChild("Animate") then
+			char.Animate.Disabled = false
+		end
+	end
+end
+
+-- Buat Toggle di UI kamu
+local Toggle = Tab7:Toggle({
+	Title = "FPS Boost Super+++++++",
+	Icon = false,
+	Type = false,
+	Value = false, -- default: off
+	Callback = function(state)
+		applyFPSBoost(state)
+	end
+})
+
 local Toggle = Tab7:Toggle({
     Title = "AntiAFK",
     Desc = "Prevent Roblox from kicking you when idle",
