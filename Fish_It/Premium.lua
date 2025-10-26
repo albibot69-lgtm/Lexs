@@ -430,8 +430,7 @@ local Section = Tab3:Section({
 })
 
 local Toggle = Tab3:Toggle({    
-    Title = "Radar",    
-    Desc = "Toggle fishing radar",    
+    Title = "Fish Radar",  
     Icon = false,    
     Type = false,    
     Default = false,    
