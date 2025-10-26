@@ -294,3 +294,64 @@ local Toggle = Tab2:Toggle({
 	end
 })
 
+-- // DISABLE ANIMATION TOGGLE
+-- by Ibnu 😎
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+-- Fungsi untuk nonaktifkan / aktifkan animasi
+local function toggleAnimation(state)
+	local character = player.Character or player.CharacterAdded:Wait()
+
+	if state then
+		---------------------------------------------------
+		-- 🟢 NONAKTIFKAN ANIMASI
+		---------------------------------------------------
+		print("[ANIM] Animasi dinonaktifkan")
+		
+		-- Nonaktifkan script Animate
+		local animate = character:FindFirstChild("Animate")
+		if animate then
+			animate.Disabled = true
+		end
+
+		-- Hentikan animasi aktif sekarang
+		local humanoid = character:FindFirstChildOfClass("Humanoid")
+		if humanoid then
+			for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
+				track:Stop()
+			end
+		end
+
+	else
+		---------------------------------------------------
+		-- 🔴 AKTIFKAN KEMBALI ANIMASI
+		---------------------------------------------------
+		print("[ANIM] Animasi diaktifkan kembali")
+		
+		local animate = character:FindFirstChild("Animate")
+		if animate then
+			animate.Disabled = false
+		end
+
+		local humanoid = character:FindFirstChildOfClass("Humanoid")
+		if humanoid then
+			-- Muat ulang animasi default
+			local newAnim = Instance.new("StringValue")
+			newAnim.Name = "Animate"
+			newAnim.Value = "Default"
+		end
+	end
+end
+
+-- Tambahkan Toggle ke UI kamu
+local AnimToggle = Tab2:Toggle({
+	Title = "Disable Animation",
+	Icon = false,
+	Type = false,
+	Value = false,
+	Callback = function(state)
+		toggleAnimation(state)
+	end
+})
