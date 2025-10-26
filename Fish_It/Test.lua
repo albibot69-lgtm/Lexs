@@ -306,8 +306,8 @@ end
 local Toggle = Tab3:Toggle({
 	Title = "FPS Boost",
 	Desc = "Kurangi efek visual untuk FPS lebih tinggi",
-	Icon = "false",
-	Type = "false",
+	Icon = false,
+	Type = false,
 	Value = false, -- default: off
 	Callback = function(state)
 		if state then
