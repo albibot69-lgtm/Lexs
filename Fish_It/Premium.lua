@@ -529,120 +529,61 @@ local Toggle = Tab3:Toggle({
     end
 })
 
-local Section = Tab3:Section({     
-    Title = "Gameplay",    
+local Tab4 = Window:Tab({
+    Title = "Auto",
+    Icon = "circle-ellipsis",
+})
+
+local Section = Tab4:Section({     
+    Title = "Enchant",    
     TextXAlignment = "Left",    
     TextSize = 17,    
 })
 
-Tab3:Toggle({
-    Title = "FPS Boost",
+local Toggle = Tab4:Toggle({
+    Title = "Auto Enchant",
     Icon = false,
     Type = false,
     Default = false,
     Callback = function(state)
-        _G.FPSBoost = state
-        local Lighting = game:GetService("Lighting")
-        local Terrain = workspace:FindFirstChildOfClass("Terrain")
-
         if state then
-            if not _G.OldSettings then
-                _G.OldSettings = {
-                    GlobalShadows = Lighting.GlobalShadows,
-                    FogEnd = Lighting.FogEnd,
-                    Brightness = Lighting.Brightness,
-                    Ambient = Lighting.Ambient,
-                    OutdoorAmbient = Lighting.OutdoorAmbient,
-                    WaterReflectance = Lighting.WaterReflectance,
-                    WaterTransparency = Lighting.WaterTransparency,
-                    WaterWaveSize = Lighting.WaterWaveSize,
-                    WaterWaveSpeed = Lighting.WaterWaveSpeed,
-                }
-            end
+            _G.AutoEnchant = true
+            print("Auto Enchant: ON")
 
-            Lighting.GlobalShadows = false
-            Lighting.FogEnd = 1e10
-            Lighting.Brightness = 1
-            Lighting.Ambient = Color3.new(1, 1, 1)
-            Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
-            Lighting.WaterReflectance = 0
-            Lighting.WaterTransparency = 1
-            Lighting.WaterWaveSize = 0
-            Lighting.WaterWaveSpeed = 0
+            local Enchants = {
+                {Name = "Stargazer I", Chance = 7},
+                {Name = "Shiny I", Chance = 5},
+                {Name = "Experienced I", Chance = 7},
+                {Name = "Storm Hunter I", Chance = 7},
+                {Name = "Perfection", Chance = 2},
+            }
 
-            if Terrain then
-                Terrain.WaterReflectance = 0
-                Terrain.WaterTransparency = 1
-                Terrain.WaterWaveSize = 0
-                Terrain.WaterWaveSpeed = 0
-            end
-
-            for _, v in ipairs(workspace:GetDescendants()) do
-                if v:IsA("BasePart") then
-                    v.CastShadow = false
-                    if v.Material == Enum.Material.Glass or v.Material == Enum.Material.SmoothPlastic then
-                        v.Reflectance = 0
+            local function RollEnchant()
+                local total = 0
+                for _, e in ipairs(Enchants) do
+                    total += e.Chance
+                end
+                local roll = math.random(1, total)
+                for _, e in ipairs(Enchants) do
+                    roll -= e.Chance
+                    if roll <= 0 then
+                        return e.Name
                     end
-                elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
-                    v.Enabled = false
-                elseif v:IsA("Explosion") then
-                    v.Visible = false
-                    v.BlastPressure = 0
-                    v.BlastRadius = 0
                 end
             end
-        else
-            if _G.OldSettings then
-                Lighting.GlobalShadows = _G.OldSettings.GlobalShadows
-                Lighting.FogEnd = _G.OldSettings.FogEnd
-                Lighting.Brightness = _G.OldSettings.Brightness
-                Lighting.Ambient = _G.OldSettings.Ambient
-                Lighting.OutdoorAmbient = _G.OldSettings.OutdoorAmbient
-                Lighting.WaterReflectance = _G.OldSettings.WaterReflectance
-                Lighting.WaterTransparency = _G.OldSettings.WaterTransparency
-                Lighting.WaterWaveSize = _G.OldSettings.WaterWaveSize
-                Lighting.WaterWaveSpeed = _G.OldSettings.WaterWaveSpeed
-            end
 
-            for _, v in ipairs(workspace:GetDescendants()) do
-                if v:IsA("ParticleEmitter") or v:IsA("Trail") then
-                    v.Enabled = true
-                elseif v:IsA("BasePart") then
-                    v.CastShadow = true
-                end
-            end
-        end
-    end
-})
-
-local function StartAutoFishing()
-    task.spawn(function()
-        while _G.AutoFishingEnabled do
-            pcall(function()
-                REEquipToolFromHotbar:FireServer(1)
-                local clickX = 5
-                local clickY = camera.ViewportSize.Y - 5
-                VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, true, game, 0)
-                task.wait(_G.FishingDelay)
-                VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, false, game, 0)
-                REFishingCompleted:FireServer()
-                if _G.AutoSellFish then
-                    for _, v in pairs(ReplicatedStorage:GetDescendants()) do
-                        if v:IsA("RemoteEvent") and v.Name:lower():find("sell") then
-                            pcall(function() v:FireServer() end)
-                        end
-                    end
+            task.spawn(function()
+                while _G.AutoEnchant do
+                    local result = RollEnchant()
+                    print("🎲 You got enchant:", result)
+                    task.wait(1.5)
                 end
             end)
-            task.wait(_G.FishingDelay)
-            RunService.Heartbeat:Wait()
+        else
+            _G.AutoEnchant = false
+            print("Auto Enchant: OFF")
         end
-    end)
-end
-
-local Tab4 = Window:Tab({
-    Title = "Exclusive",
-    Icon = "star",
+    end
 })
 
 local Tab5 = Window:Tab({
