@@ -1125,7 +1125,6 @@ end
 
 local Toggle = Tab7:Toggle({
 	Title = "FPS Boost",
-	Desc = "Kurangi efek visual untuk FPS lebih tinggi",
 	Icon = false,
 	Type = false,
 	Value = false, -- default: off
@@ -1141,6 +1140,100 @@ local Toggle = Tab7:Toggle({
 			optimizeWorkspace(false)
 			print("[FPS BOOST] Nonaktif ❌")
 		end
+	end
+})
+
+local Lighting = game:GetService("Lighting")
+local Workspace = game:GetService("Workspace")
+local Terrain = Workspace:FindFirstChildOfClass("Terrain")
+
+-- fungsi untuk hapus efek berat
+local function applyFPSBoost(state)
+	if state then
+		print("[FPS BOOST] Mode Super ON ✅")
+
+		-- Hapus efek Lighting
+		for _, v in ipairs(Lighting:GetChildren()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect")
+				or v:IsA("ColorCorrectionEffect")
+				or v:IsA("BloomEffect")
+				or v:IsA("DepthOfFieldEffect")
+				or v:IsA("Atmosphere")
+				or v:IsA("Sky")
+				or v:IsA("Clouds") then
+				v.Parent = nil
+			end
+		end
+
+		-- Lighting optimization
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 999999
+		Lighting.Brightness = 1
+		Lighting.EnvironmentDiffuseScale = 0
+		Lighting.EnvironmentSpecularScale = 0
+		Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
+
+		-- Terrain simplifikasi
+		if Terrain then
+			Terrain.WaterWaveSize = 0
+			Terrain.WaterWaveSpeed = 0
+			Terrain.WaterReflectance = 0
+			Terrain.WaterTransparency = 1
+		end
+
+		-- Matikan bayangan, texture, dan partikel
+		for _, obj in ipairs(Workspace:GetDescendants()) do
+			-- Hilangkan texture / decal
+			if obj:IsA("Decal") or obj:IsA("Texture") then
+				obj.Transparency = 1
+			end
+
+			-- Nonaktifkan efek partikel
+			if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Fire")
+				or obj:IsA("Smoke") or obj:IsA("Sparkles") then
+				obj.Enabled = false
+			end
+
+			-- Matikan shadow
+			if obj:IsA("BasePart") then
+				obj.CastShadow = false
+				-- Opsional: ubah material jadi lebih ringan
+				pcall(function() obj.Material = Enum.Material.Plastic end)
+			end
+		end
+
+		-- Ubah detail rendering ke minimal
+		settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+
+	else
+		print("[FPS BOOST] Mode Super OFF ❌")
+
+		-- Pulihkan Lighting ke default aman
+		Lighting.GlobalShadows = true
+		Lighting.FogEnd = 1000
+		Lighting.Brightness = 2
+		Lighting.EnvironmentDiffuseScale = 1
+		Lighting.EnvironmentSpecularScale = 1
+
+		if Terrain then
+			Terrain.WaterWaveSize = 0.15
+			Terrain.WaterWaveSpeed = 10
+			Terrain.WaterReflectance = 1
+			Terrain.WaterTransparency = 0.5
+		end
+
+		settings().Rendering.QualityLevel = Enum.QualityLevel.Automatic
+	end
+end
+
+-- UI Toggle (kamu tinggal ganti Tab:Toggle sesuai tab kamu)
+local Toggle = Tab:Toggle({
+	Title = "FPS Boost Super",
+	Icon = false,
+	Type = false,
+	Value = false, -- default OFF
+	Callback = function(state)
+		applyFPSBoost(state)
 	end
 })
 
