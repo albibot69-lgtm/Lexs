@@ -223,9 +223,6 @@ local Toggle = Tab2:Toggle({
     end
 })
 
--- // FULL ANIMATION STOPPER
--- by Ibnu 😎
-
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
@@ -274,8 +271,7 @@ local function toggleAnimation(state)
 	end
 end
 
--- Toggle di UI kamu
-local AnimToggle = Tab2:Toggle({
+local Toggle = Tab2:Toggle({
 	Title = "Disable Animations",
 	Icon = false,
 	Type = false,
@@ -1146,7 +1142,6 @@ local function applyFPSBoost(state)
 	end
 end
 
--- UI Toggle (kamu tinggal ganti Tab:Toggle sesuai tab kamu)
 local Toggle = Tab7:Toggle({
 	Title = "FPS Boost Super",
 	Desc = "cannot be changed once it is turned on"
@@ -1164,7 +1159,6 @@ local Terrain = Workspace:FindFirstChildOfClass("Terrain")
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
 
--- fungsi notifikasi kecil di chat
 local function notify(text, color)
 	pcall(function()
 		StarterGui:SetCore("ChatMakeSystemMessage", {
@@ -1176,7 +1170,6 @@ local function notify(text, color)
 	end)
 end
 
--- fungsi utama FPS Boost
 local function applyFPSBoost(state)
 	if state then
 		---------------------------------------------------
@@ -1234,8 +1227,7 @@ local function applyFPSBoost(state)
 				pcall(function() obj.Material = Enum.Material.Plastic end)
 			end
 		end
-
-		-- Matikan accessories dari character (opsional)
+		
 		local char = Players.LocalPlayer.Character
 		if char then
 			for _, acc in ipairs(char:GetChildren()) do
@@ -1247,16 +1239,13 @@ local function applyFPSBoost(state)
 				char.Animate.Disabled = true
 			end
 		end
-
-		-- Aktifkan Streaming Mode
+		
 		workspace.StreamingEnabled = true
 		workspace.StreamingMinRadius = 64
 		workspace.StreamingTargetRadius = 128
-
-		-- Kurangi kualitas rendering (paling rendah)
+		
 		settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
-
-		-- Bersihkan memory
+		
 		collectgarbage("collect")
 
 	else
@@ -1291,7 +1280,7 @@ local function applyFPSBoost(state)
 	end
 end
 
--- Buat Toggle di UI kamu
+
 local Toggle = Tab7:Toggle({
 	Title = "FPS Boost Super+++++++",
 	Icon = false,
