@@ -367,8 +367,8 @@ Toggle = Tab3:Toggle({
 })
 
 Tab3:Toggle({
-    Title = "Auto Instant Fishing",
-    Desc = "Automatic Instant Fishing",
+    Title = "Auto Instant Fishing v3",
+    Desc = "Recomended",
     Icon = false,
     Type = false,
     Default = false,
