@@ -237,7 +237,7 @@ local function toggleFly(state)
 end
 
 -- Toggle UI kamu
-local Toggle = Tab:Toggle({
+local Toggle = Tab2:Toggle({
 	Title = "Fly Mode",
 	Desc = "Terbang mengikuti arah kamera",
 	Icon = "bird",
@@ -250,7 +250,7 @@ local Toggle = Tab:Toggle({
 })
 
 -- Input UI kamu (atur speed)
-local Input = Tab:Input({
+local Input = Tab2:Input({
 	Title = "Fly Speed",
 	Desc = "Atur kecepatan terbang",
 	Value = tostring(flySpeed),
