@@ -148,210 +148,111 @@ local Input = Tab2:Input({
     end
 })
 
--- by Ibnu 😎
+--// Fly Script (by Ibnu 😎)
 
-local Lighting = game:GetService("Lighting")
-local Workspace = game:GetService("Workspace")
-local Terrain = Workspace:FindFirstChildOfClass("Terrain")
 local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
 local StarterGui = game:GetService("StarterGui")
 
--- fungsi notifikasi kecil di chat
-local function notify(text, color)
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local flying = false
+local flySpeed = 50 -- default speed
+local movement = { Forward = 0, Backward = 0, Left = 0, Right = 0, Up = 0, Down = 0 }
+
+-- Notif ke chat
+local function notify(msg, color)
 	pcall(function()
 		StarterGui:SetCore("ChatMakeSystemMessage", {
-			Text = "[FPS BOOST] " .. text,
-			Color = color or Color3.fromRGB(150,255,150),
+			Text = "[FLY] " .. msg,
+			Color = color or Color3.fromRGB(100,200,255),
 			Font = Enum.Font.SourceSansBold,
 			FontSize = Enum.FontSize.Size24
 		})
 	end)
 end
 
--- fungsi utama FPS Boost
-local function applyFPSBoost(state)
+-- Fungsi aktif/inaktif fly
+local function toggleFly(state)
+	flying = state
+	if not humanoidRootPart then return end
+
 	if state then
-		---------------------------------------------------
-		-- 🟢 AKTIFKAN MODE BOOST
-		---------------------------------------------------
-		notify("Mode Ultra Aktif ✅", Color3.fromRGB(100,255,100))
-		print("[FPS BOOST] Mode Ultra Aktif")
-
-		-- Hapus efek Lighting berat
-		for _, v in ipairs(Lighting:GetChildren()) do
-			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect")
-				or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("Atmosphere")
-				or v:IsA("Sky") or v:IsA("Clouds") or v:IsA("PostEffect") then
-				v.Parent = nil
-			end
-		end
-
-		-- Nonaktifkan Lighting kompleks
-		Lighting.GlobalShadows = false
-		Lighting.FogEnd = 1e6
-		Lighting.Brightness = 1
-		Lighting.EnvironmentDiffuseScale = 0
-		Lighting.EnvironmentSpecularScale = 0
-		Lighting.OutdoorAmbient = Color3.new(1,1,1)
-
-		-- Terrain lebih ringan
-		if Terrain then
-			Terrain.WaterWaveSize = 0
-			Terrain.WaterWaveSpeed = 0
-			Terrain.WaterReflectance = 0
-			Terrain.WaterTransparency = 1
-		end
-
-		-- Bersihkan workspace
-		for _, obj in ipairs(Workspace:GetDescendants()) do
-			-- Hilangkan texture dan decal
-			if obj:IsA("Decal") or obj:IsA("Texture") then
-				obj.Transparency = 1
-			end
-
-			-- Matikan efek visual
-			if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Fire")
-				or obj:IsA("Smoke") or obj:IsA("Sparkles") then
-				obj.Enabled = false
-			end
-
-			-- Hapus efek PBR (SurfaceAppearance)
-			if obj:IsA("SurfaceAppearance") then
-				obj.Parent = nil
-			end
-
-			-- Nonaktifkan shadow dan ubah material ke Plastic
-			if obj:IsA("BasePart") then
-				obj.CastShadow = false
-				pcall(function() obj.Material = Enum.Material.Plastic end)
-			end
-		end
-
-		-- Matikan accessories dari character (opsional)
-		local char = Players.LocalPlayer.Character
-		if char then
-			for _, acc in ipairs(char:GetChildren()) do
-				if acc:IsA("Accessory") then
-					acc:Destroy()
-				end
-			end
-			if char:FindFirstChild("Animate") then
-				char.Animate.Disabled = true
-			end
-		end
-
-		-- Aktifkan Streaming Mode
-		workspace.StreamingEnabled = true
-		workspace.StreamingMinRadius = 64
-		workspace.StreamingTargetRadius = 128
-
-		-- Kurangi kualitas rendering (paling rendah)
-		settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
-
-		-- Bersihkan memory
-		collectgarbage("collect")
-
+		notify("Mode Fly diaktifkan ✈️", Color3.fromRGB(120,255,120))
 	else
-		---------------------------------------------------
-		-- 🔴 MATIKAN MODE BOOST
-		---------------------------------------------------
-		notify("Mode Ultra Nonaktif ❌", Color3.fromRGB(255,120,120))
-		print("[FPS BOOST] Mode Ultra Nonaktif")
-
-		-- Pulihkan Lighting aman
-		Lighting.GlobalShadows = true
-		Lighting.FogEnd = 1000
-		Lighting.Brightness = 2
-		Lighting.EnvironmentDiffuseScale = 1
-		Lighting.EnvironmentSpecularScale = 1
-		Lighting.OutdoorAmbient = Color3.new(0.5,0.5,0.5)
-
-		if Terrain then
-			Terrain.WaterWaveSize = 0.15
-			Terrain.WaterWaveSpeed = 10
-			Terrain.WaterReflectance = 1
-			Terrain.WaterTransparency = 0.5
-		end
-
-		settings().Rendering.QualityLevel = Enum.QualityLevel.Automatic
-
-		-- Aktifkan kembali animasi karakter
-		local char = Players.LocalPlayer.Character
-		if char and char:FindFirstChild("Animate") then
-			char.Animate.Disabled = false
-		end
+		notify("Mode Fly dimatikan 🛬", Color3.fromRGB(255,150,150))
 	end
 end
 
--- Buat Toggle di UI kamu
+-- Fly loop
+RunService.RenderStepped:Connect(function()
+	if flying and humanoidRootPart then
+		local camera = workspace.CurrentCamera
+		local moveDirection = Vector3.zero
+
+		moveDirection += camera.CFrame.LookVector * (movement.Forward - movement.Backward)
+		moveDirection += camera.CFrame.RightVector * (movement.Right - movement.Left)
+		moveDirection += Vector3.new(0, (movement.Up - movement.Down), 0)
+
+		if moveDirection.Magnitude > 0 then
+			moveDirection = moveDirection.Unit * flySpeed
+		end
+
+		humanoidRootPart.Velocity = moveDirection
+	end
+end)
+
+-- Key input handler
+UserInputService.InputBegan:Connect(function(input, gpe)
+	if gpe then return end
+	if input.KeyCode == Enum.KeyCode.W then movement.Forward = 1 end
+	if input.KeyCode == Enum.KeyCode.S then movement.Backward = 1 end
+	if input.KeyCode == Enum.KeyCode.A then movement.Left = 1 end
+	if input.KeyCode == Enum.KeyCode.D then movement.Right = 1 end
+	if input.KeyCode == Enum.KeyCode.Space then movement.Up = 1 end
+	if input.KeyCode == Enum.KeyCode.LeftShift then movement.Down = 1 end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+	if input.KeyCode == Enum.KeyCode.W then movement.Forward = 0 end
+	if input.KeyCode == Enum.KeyCode.S then movement.Backward = 0 end
+	if input.KeyCode == Enum.KeyCode.A then movement.Left = 0 end
+	if input.KeyCode == Enum.KeyCode.D then movement.Right = 0 end
+	if input.KeyCode == Enum.KeyCode.Space then movement.Up = 0 end
+	if input.KeyCode == Enum.KeyCode.LeftShift then movement.Down = 0 end
+end)
+
+-- Toggle UI kamu
 local Toggle = Tab2:Toggle({
-	Title = "FPS Boost Super+++++++",
-	Icon = false,
-	Type = false,
-	Value = false, -- default: off
+	Title = "Fly Mode",
+	Desc = "Aktifkan mode terbang",
+	Icon = "bird",
+	Type = "Checkbox",
+	Value = false,
 	Callback = function(state)
-		applyFPSBoost(state)
+		print("[FLY] Activated: " .. tostring(state))
+		toggleFly(state)
 	end
 })
 
--- // DISABLE ANIMATION TOGGLE
--- by Ibnu 😎
-
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-
--- Fungsi untuk nonaktifkan / aktifkan animasi
-local function toggleAnimation(state)
-	local character = player.Character or player.CharacterAdded:Wait()
-
-	if state then
-		---------------------------------------------------
-		-- 🟢 NONAKTIFKAN ANIMASI
-		---------------------------------------------------
-		print("[ANIM] Animasi dinonaktifkan")
-		
-		-- Nonaktifkan script Animate
-		local animate = character:FindFirstChild("Animate")
-		if animate then
-			animate.Disabled = true
+-- Input UI kamu (speed)
+local Input = Tab2:Input({
+	Title = "Fly Speed",
+	Desc = "Atur kecepatan terbang",
+	Value = "50",
+	InputIcon = "user",
+	Type = "Input",
+	Placeholder = "Masukkan angka kecepatan...",
+	Callback = function(input)
+		local num = tonumber(input)
+		if num and num > 0 then
+			flySpeed = num
+			notify("Kecepatan fly diatur ke: " .. tostring(num), Color3.fromRGB(120,255,120))
+		else
+			notify("Input tidak valid. Gunakan angka.", Color3.fromRGB(255,120,120))
 		end
-
-		-- Hentikan animasi aktif sekarang
-		local humanoid = character:FindFirstChildOfClass("Humanoid")
-		if humanoid then
-			for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
-				track:Stop()
-			end
-		end
-
-	else
-		---------------------------------------------------
-		-- 🔴 AKTIFKAN KEMBALI ANIMASI
-		---------------------------------------------------
-		print("[ANIM] Animasi diaktifkan kembali")
-		
-		local animate = character:FindFirstChild("Animate")
-		if animate then
-			animate.Disabled = false
-		end
-
-		local humanoid = character:FindFirstChildOfClass("Humanoid")
-		if humanoid then
-			-- Muat ulang animasi default
-			local newAnim = Instance.new("StringValue")
-			newAnim.Name = "Animate"
-			newAnim.Value = "Default"
-		end
-	end
-end
-
--- Tambahkan Toggle ke UI kamu
-local AnimToggle = Tab2:Toggle({
-	Title = "Disable Animation",
-	Icon = false,
-	Type = false,
-	Value = false,
-	Callback = function(state)
-		toggleAnimation(state)
 	end
 })
