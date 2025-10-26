@@ -148,22 +148,19 @@ local Input = Tab2:Input({
     end
 })
 
---// Fly Script (by Ibnu 😎)
+--// Fly Script (kamera arah + anti turun) by Ibnu 😎
 
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local StarterGui = game:GetService("StarterGui")
-
 local player = Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
 
 local flying = false
 local flySpeed = 50 -- default speed
-local movement = { Forward = 0, Backward = 0, Left = 0, Right = 0, Up = 0, Down = 0 }
+local humanoidRootPart
 
--- Notif ke chat
+-- fungsi notif
 local function notify(msg, color)
 	pcall(function()
 		StarterGui:SetCore("ChatMakeSystemMessage", {
@@ -175,45 +172,46 @@ local function notify(msg, color)
 	end)
 end
 
--- Fungsi aktif/inaktif fly
-local function toggleFly(state)
-	flying = state
-	if not humanoidRootPart then return end
-
-	if state then
-		notify("Mode Fly diaktifkan ✈️", Color3.fromRGB(120,255,120))
-	else
-		notify("Mode Fly dimatikan 🛬", Color3.fromRGB(255,150,150))
-	end
+-- update character
+local function getCharacter()
+	local char = player.Character or player.CharacterAdded:Wait()
+	humanoidRootPart = char:WaitForChild("HumanoidRootPart")
+	return char
 end
 
--- Fly loop
-RunService.RenderStepped:Connect(function()
+getCharacter()
+player.CharacterAdded:Connect(getCharacter)
+
+-- arah gerakan
+local movement = { Forward = 0, Backward = 0, Left = 0, Right = 0 }
+
+-- Fly logic utama
+RunService.RenderStepped:Connect(function(dt)
 	if flying and humanoidRootPart then
 		local camera = workspace.CurrentCamera
 		local moveDirection = Vector3.zero
 
+		-- gerakan mengikuti arah kamera
 		moveDirection += camera.CFrame.LookVector * (movement.Forward - movement.Backward)
 		moveDirection += camera.CFrame.RightVector * (movement.Right - movement.Left)
-		moveDirection += Vector3.new(0, (movement.Up - movement.Down), 0)
 
+		-- hilangkan efek gravitasi
+		humanoidRootPart.Velocity = Vector3.zero
+
+		-- hanya gerak kalau ada input
 		if moveDirection.Magnitude > 0 then
-			moveDirection = moveDirection.Unit * flySpeed
+			humanoidRootPart.CFrame += moveDirection.Unit * (flySpeed * dt)
 		end
-
-		humanoidRootPart.Velocity = moveDirection
 	end
 end)
 
--- Key input handler
+-- input key
 UserInputService.InputBegan:Connect(function(input, gpe)
 	if gpe then return end
 	if input.KeyCode == Enum.KeyCode.W then movement.Forward = 1 end
 	if input.KeyCode == Enum.KeyCode.S then movement.Backward = 1 end
 	if input.KeyCode == Enum.KeyCode.A then movement.Left = 1 end
 	if input.KeyCode == Enum.KeyCode.D then movement.Right = 1 end
-	if input.KeyCode == Enum.KeyCode.Space then movement.Up = 1 end
-	if input.KeyCode == Enum.KeyCode.LeftShift then movement.Down = 1 end
 end)
 
 UserInputService.InputEnded:Connect(function(input)
@@ -221,14 +219,27 @@ UserInputService.InputEnded:Connect(function(input)
 	if input.KeyCode == Enum.KeyCode.S then movement.Backward = 0 end
 	if input.KeyCode == Enum.KeyCode.A then movement.Left = 0 end
 	if input.KeyCode == Enum.KeyCode.D then movement.Right = 0 end
-	if input.KeyCode == Enum.KeyCode.Space then movement.Up = 0 end
-	if input.KeyCode == Enum.KeyCode.LeftShift then movement.Down = 0 end
 end)
 
+-- fungsi aktifkan fly
+local function toggleFly(state)
+	flying = state
+	local char = player.Character or player.CharacterAdded:Wait()
+	local humanoid = char:FindFirstChildOfClass("Humanoid")
+
+	if state then
+		notify("Mode Fly diaktifkan ✈️", Color3.fromRGB(120,255,120))
+		if humanoid then humanoid.PlatformStand = true end
+	else
+		notify("Mode Fly dimatikan 🛬", Color3.fromRGB(255,150,150))
+		if humanoid then humanoid.PlatformStand = false end
+	end
+end
+
 -- Toggle UI kamu
-local Toggle = Tab2:Toggle({
+local Toggle = Tab:Toggle({
 	Title = "Fly Mode",
-	Desc = "Aktifkan mode terbang",
+	Desc = "Terbang mengikuti arah kamera",
 	Icon = "bird",
 	Type = "Checkbox",
 	Value = false,
@@ -238,12 +249,12 @@ local Toggle = Tab2:Toggle({
 	end
 })
 
--- Input UI kamu (speed)
-local Input = Tab2:Input({
+-- Input UI kamu (atur speed)
+local Input = Tab:Input({
 	Title = "Fly Speed",
 	Desc = "Atur kecepatan terbang",
-	Value = "50",
-	InputIcon = "user",
+	Value = tostring(flySpeed),
+	InputIcon = "bird",
 	Type = "Input",
 	Placeholder = "Masukkan angka kecepatan...",
 	Callback = function(input)
@@ -256,3 +267,4 @@ local Input = Tab2:Input({
 		end
 	end
 })
+
