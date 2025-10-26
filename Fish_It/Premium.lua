@@ -29,7 +29,7 @@ local Window = WindUI:CreateWindow({
 })
 
 Window:Tag({
-    Title = "v0.0.0.8",
+    Title = "v0.0.1.8",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -371,12 +371,6 @@ local Toggle = Tab3:Toggle({
         end)    
     end    
 })    
-    
-local Section = Tab3:Section({     
-    Title = "Other",    
-    TextXAlignment = "Left",    
-    TextSize = 17,    
-})
 
 local autoInstantFishEnabled = true
 local delayTime = 0.1
@@ -414,7 +408,13 @@ Toggle = Tab3:Toggle({
         end
     end
 })
-  
+
+local Section = Tab3:Section({     
+    Title = "Other",    
+    TextXAlignment = "Left",    
+    TextSize = 17,    
+})
+
 local Toggle = Tab3:Toggle({    
     Title = "Radar",    
     Desc = "Toggle fishing radar",    
@@ -472,7 +472,6 @@ local Section = Tab3:Section({
 
 local Toggle = Tab3:Toggle({
     Title = "Auto Enchant",
-    Desc = "Gacha to get good enchants",
     Icon = false,
     Type = false,
     Default = false,
@@ -525,7 +524,6 @@ local Section = Tab3:Section({
 
 Tab3:Toggle({
     Title = "FPS Boost",
-    Desc = "Optimizes performance for smooth gameplay",
     Icon = false,
     Type = false,
     Default = false,
