@@ -286,7 +286,6 @@ end
 -- Buat Toggle di UI kamu
 local Toggle = Tab2:Toggle({
 	Title = "FPS Boost Super+++++++",
-	Desc = "Matikan efek & detail agar FPS lebih tinggi",
 	Icon = false,
 	Type = false,
 	Value = false, -- default: off
