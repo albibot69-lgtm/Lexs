@@ -444,7 +444,7 @@ end)
 Tab3:Toggle({
     Title = "Auto Instant Fishing v1",
     Desc = "Recomended",
-    Icon = false,
+    Icon = "fish",
     Type = false,
     Default = false,
     Callback = function(value)
