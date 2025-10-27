@@ -14,11 +14,11 @@ local premiumKeys = {
     "wJzDnQyGmTcLkVxEoPaFbSgRrUuMiZh",
     "eBtXqNpRzVhLkCmSgJaWiFuTdOyQnPc",
     "qYwRzEbTgLkPmDaVxHnUiFsCoSjMvN",
-    "ZkWmNtGpQrHxSaJlDyCfVuEbLoPiTn",
-    "vQbJnGzHcTtXoLwFfAqSmPrYiEdKuN",
-    "hZpRkQyUxWaJmTfVnSgCoLdEiBtNsM",
-    "rYpXvQzNaHkBtMfLcWgJoSdEuPiVnT",
-    "developer_access"
+    "Budi",
+    "8278f4685e3975b05e818c37e",
+    "10d4908f5e37cab0481dde1e6",
+    "6bab277afae4a41ff863f50dc",
+    "8278f4685e3975b05e818c37e"
 }
 
 local function isPremiumKey(key)
