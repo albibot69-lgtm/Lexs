@@ -413,6 +413,8 @@ Tab3:Toggle({
 })
 
 local player = game.Players.LocalPlayer
+local RepStorage = game:GetService("ReplicatedStorage")
+local net = RepStorage.Packages._Index["sleitnick_net@0.2.0"].net
 
 spawn(function()
     while task.wait(0.05) do
@@ -437,127 +439,102 @@ end)
 
 local player = game.Players.LocalPlayer
 local RepStorage = game:GetService("ReplicatedStorage")
-local success, net = pcall(function()
-    return RepStorage.Packages._Index["sleitnick_net@0.2.0"].net
-end)
+local net = RepStorage.Packages._Index["sleitnick_net@0.2.0"].net
+
+_G.AutoFishing = false
+_G.Delay = 0
+_G.MaxSpeed = true
 
 Tab3:Toggle({
-    Title = "Auto Instant Fishing v1",
-    Desc = "Recomended",
-    Icon = "fish",
-    Type = false,
+    Title = "Auto Instant Fishing",
+    Desc = "Instant Catch + Minigame Bypass",
     Default = false,
-    Callback = function(value)
-        _G.AutoFishing = value
+    Callback = function(v)
+        _G.AutoFishing = v
     end
 })
 
-local RepStorage = game:GetService("ReplicatedStorage")
+Tab3:Input({
+    Title = "Blast Delay",
+    Desc = "0 = Max Speed",
+    Value = "0",
+    Placeholder = "0.01...",
+    Callback = function(v)
+        local d = tonumber(v)
+        if d and d >= 0 then
+            _G.Delay = d
+            _G.MaxSpeed = (d == 0)
+        end
+    end
+})
 
-spawn(function()
-    while wait() do
+local function InstantFish()
+    if not player.Character then return end
+    local vm = player.Character:FindFirstChild("!!!FISHING_VIEW_MODEL!!!")
+    if vm then
+        net["RE/EquipToolFromHotbar"]:FireServer(1)
+    end
+    net["RF/ChargeFishingRod"]:InvokeServer(2)
+    net["RF/RequestFishingMinigameStarted"]:InvokeServer(1, 1)
+    net["RE/FishingCompleted"]:FireServer("FishCaught", "Ghostfin")
+    net["RE/ReplicateCutscene"]:FireServer()
+end
+
+task.spawn(function()
+    while task.wait() do
         if _G.AutoFishing then
-            repeat
-                pcall(function()
-                    local char = player.Character or player.CharacterAdded:Wait()
-                    if char:FindFirstChild("!!!FISHING_VIEW_MODEL!!!") then
-                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/EquipToolFromHotbar"]:FireServer(1)
-                    end
-                    local cosmeticFolder = workspace:FindFirstChild("CosmeticFolder")
-                    if cosmeticFolder and not cosmeticFolder:FindFirstChild(tostring(player.UserId)) then
-                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/ChargeFishingRod"]:InvokeServer(2)
-                        wait(0.5)
-                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/RequestFishingMinigameStarted"]:InvokeServer(1,1)
-                    end
-                end)
-                wait(0.2)
-            until not _G.AutoFishing
+            InstantFish()
+            task.wait(_G.MaxSpeed and 0.001 or (_G.Delay > 0 and _G.Delay or 0.01))
+        else
+            task.wait(0.1)
         end
     end
 end)
 
-spawn(function()
-    while wait() do
-        if _G.AutoFishing then
-            repeat
-                pcall(function()
-                    RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/FishingCompleted"]:FireServer()
-                end)
-                wait(0.2)
-            until not _G.AutoFishing
-        end
-    end
+player.CharacterAdded:Connect(function()
+    task.wait(1)
+    if _G.AutoFishing then InstantFish() end
 end)
+
+local RunService = game:GetService("RunService")    
+local Workspace = game:GetService("Workspace")    
+local VirtualInputManager = game:GetService("VirtualInputManager")    
+local ReplicatedStorage = game:GetService("ReplicatedStorage")    
+local camera = Workspace.CurrentCamera    
+    
+local REEquipToolFromHotbar = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/EquipToolFromHotbar"]
+
+local autoHoldEnabled = false
 
 Toggle = Tab3:Toggle({
-    Title = "Auto Fishing",
-    Desc = "Automatic Auto Fishing v2",
+    Title = "Auto Legit",
+    Desc = "Automatic Legit Fishng",
     Value = false,
     Callback = function(state)
         autoHoldEnabled = state
         if state then
             WindUI:Notify({
-                Title = "Auto Fishing V2",
-                Content = "Enabled",
+                Title = " Auto Legit",
+                Content = "🚀 Extreme Speed Enabled",
                 Duration = 3
             })
+
             task.spawn(function()
-                local holdDuration = 0.4
-                local loopDelay = 0.2
                 while autoHoldEnabled do
                     pcall(function()
                         REEquipToolFromHotbar:FireServer(1)
-                        local clickX = 5
-                        local clickY = camera.ViewportSize.Y - 5
+                        local clickX = 10
+                        local clickY = camera.ViewportSize.Y - 10
                         VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, true, game, 0)
-                        task.wait(holdDuration)
                         VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, false, game, 0)
                     end)
-                    task.wait(loopDelay)
                     RunService.Heartbeat:Wait()
                 end
             end)
         else
             WindUI:Notify({
-                Title = "Auto Fishing V2",
-                Content = "Disabled",
-                Duration = 3
-            })
-        end
-    end
-})
-
-local autoInstantFishEnabled = true
-local delayTime = 0.1
-
-local function startAutoFish()
-    task.spawn(function()
-        while autoInstantFishEnabled do
-            pcall(function()
-                REFishingCompleted:FireServer()
-            end)
-            task.wait(delayTime)
-        end
-    end)
-end
-
-Toggle = Tab3:Toggle({
-    Title = "Auto Instant complete Fishing",
-    Desc = "(for instant fishing v2)",
-    Value = autoInstantFishEnabled,
-    Callback = function(state)
-        autoInstantFishEnabled = state
-        if state then
-            WindUI:Notify({
-                Title = "Auto Instant Fish",
-                Content = "Enabled (Delay: " .. delayTime .. "s)",
-                Duration = 3
-            })
-            startAutoFish()
-        else
-            WindUI:Notify({
-                Title = "Auto Instant Fish",
-                Content = "Disabled",
+                Title = "Auto Legit",
+                Content = "❌ Disabled",
                 Duration = 3
             })
         end
