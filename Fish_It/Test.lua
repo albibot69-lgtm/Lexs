@@ -1256,6 +1256,68 @@ local Toggle = Tab7:Toggle({
 })
 
 local Toggle = Tab7:Toggle({
+    Title = "see coordinates",
+    Desc = "show your coordinates (I don't know what to do)",
+    Icon = "axis-3d",
+    Type = false,
+    Value = false, -- default value
+    Callback = function(state)
+        print("Toggle Activated: " .. tostring(state))
+
+        local player = game.Players.LocalPlayer
+        local char = player.Character or player.CharacterAdded:Wait()
+        local root = char:WaitForChild("HumanoidRootPart")
+
+        -- Simpan variabel agar bisa dihentikan
+        if state then
+            -- Buat GUI
+            local ScreenGui = Instance.new("ScreenGui")
+            ScreenGui.Name = "CoordinateDisplay"
+            ScreenGui.Parent = player:WaitForChild("PlayerGui")
+
+            local Label = Instance.new("TextLabel")
+            Label.Parent = ScreenGui
+            Label.Size = UDim2.new(0, 250, 0, 30)
+            Label.Position = UDim2.new(0, 10, 0, 10)
+            Label.BackgroundTransparency = 0.5
+            Label.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+            Label.TextColor3 = Color3.fromRGB(0, 255, 0)
+            Label.TextSize = 18
+            Label.Font = Enum.Font.SourceSansBold
+            Label.Text = "Loading position..."
+
+            -- Buat koneksi untuk update koordinat
+            local RunService = game:GetService("RunService")
+            local conn
+            conn = RunService.RenderStepped:Connect(function()
+                if not ScreenGui.Parent then
+                    conn:Disconnect()
+                    return
+                end
+                local pos = root.Position
+                Label.Text = string.format("Vector3.new(%d, %d, %d)", math.floor(pos.X), math.floor(pos.Y), math.floor(pos.Z))
+            end)
+
+            -- Simpan koneksi agar bisa dihentikan nanti
+            player:SetAttribute("CoordConnection", conn)
+        else
+            -- Matikan & hapus GUI
+            local gui = player:FindFirstChild("PlayerGui"):FindFirstChild("CoordinateDisplay")
+            if gui then
+                gui:Destroy()
+            end
+
+            -- Putuskan koneksi jika ada
+            local conn = player:GetAttribute("CoordConnection")
+            if conn then
+                conn:Disconnect()
+                player:SetAttribute("CoordConnection", nil)
+            end
+        end
+    end
+})
+
+local Toggle = Tab7:Toggle({
     Title = "AntiAFK",
     Desc = "Prevent Roblox from kicking you when idle",
     Icon = false,
