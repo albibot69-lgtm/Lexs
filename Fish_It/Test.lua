@@ -1256,11 +1256,11 @@ local Toggle = Tab7:Toggle({
 })
 
 local Toggle = Tab7:Toggle({
-    Title = "see coordinates",
-    Desc = "show your coordinates (I don't know what to do)",
+    Title = "show coordinates",
+    Desc = "See your coordinates (I don't know what this is for)",
     Icon = "axis-3d",
     Type = false,
-    Value = false, -- default value
+    Value = false,
     Callback = function(state)
         print("Toggle Activated: " .. tostring(state))
 
@@ -1268,13 +1268,13 @@ local Toggle = Tab7:Toggle({
         local char = player.Character or player.CharacterAdded:Wait()
         local root = char:WaitForChild("HumanoidRootPart")
 
-        -- Simpan variabel agar bisa dihentikan
         if state then
             -- Buat GUI
             local ScreenGui = Instance.new("ScreenGui")
             ScreenGui.Name = "CoordinateDisplay"
             ScreenGui.Parent = player:WaitForChild("PlayerGui")
 
+            -- Label koordinat
             local Label = Instance.new("TextLabel")
             Label.Parent = ScreenGui
             Label.Size = UDim2.new(0, 250, 0, 30)
@@ -1286,7 +1286,20 @@ local Toggle = Tab7:Toggle({
             Label.Font = Enum.Font.SourceSansBold
             Label.Text = "Loading position..."
 
-            -- Buat koneksi untuk update koordinat
+            -- Tombol Copy (icon)
+            local Button = Instance.new("ImageButton")
+            Button.Parent = ScreenGui
+            Button.Size = UDim2.new(0, 30, 0, 30)
+            Button.Position = UDim2.new(0, 270, 0, 10)
+            Button.BackgroundTransparency = 1
+            Button.ImageColor3 = Color3.fromRGB(255, 255, 255)
+            
+            -- Ganti icon di bawah dengan id/icon “mouse-pointer-2”
+            -- Kalau pakai sistem tab kamu, cukup tulis: Icon = "mouse-pointer-2"
+            -- Tapi kalau pakai ImageButton Roblox biasa, isi Image = "rbxassetid://<id_icon>"
+            Button.Image = "mouse-pointer-2" -- contoh: icon pointer (bisa diganti)
+
+            -- Update posisi real-time
             local RunService = game:GetService("RunService")
             local conn
             conn = RunService.RenderStepped:Connect(function()
@@ -1298,16 +1311,29 @@ local Toggle = Tab7:Toggle({
                 Label.Text = string.format("Vector3.new(%d, %d, %d)", math.floor(pos.X), math.floor(pos.Y), math.floor(pos.Z))
             end)
 
-            -- Simpan koneksi agar bisa dihentikan nanti
+            -- Klik icon untuk copy koordinat
+            Button.MouseButton1Click:Connect(function()
+                local pos = root.Position
+                local coord = string.format("Vector3.new(%d, %d, %d)", math.floor(pos.X), math.floor(pos.Y), math.floor(pos.Z))
+                if setclipboard then
+                    setclipboard(coord)
+                    Label.TextColor3 = Color3.fromRGB(0, 255, 255)
+                    Label.Text = coord .. " (Copied)"
+                    task.wait(1)
+                    Label.TextColor3 = Color3.fromRGB(0, 255, 0)
+                else
+                    Label.Text = "Clipboard not supported!"
+                    task.wait(1.5)
+                end
+            end)
+
             player:SetAttribute("CoordConnection", conn)
         else
-            -- Matikan & hapus GUI
             local gui = player:FindFirstChild("PlayerGui"):FindFirstChild("CoordinateDisplay")
             if gui then
                 gui:Destroy()
             end
 
-            -- Putuskan koneksi jika ada
             local conn = player:GetAttribute("CoordConnection")
             if conn then
                 conn:Disconnect()
@@ -1316,6 +1342,7 @@ local Toggle = Tab7:Toggle({
         end
     end
 })
+
 
 local Toggle = Tab7:Toggle({
     Title = "AntiAFK",
