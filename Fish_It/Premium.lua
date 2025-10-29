@@ -909,6 +909,7 @@ local IslandLocations = {
     ["Weather Machine"] = Vector3.new(-1508, 6, 1895),
 	["Fisherman Island"] = Vector3.new(97, 9, 2766),
 	["Mount Hallow"] = Vector3.new(1760, 7, 3044),
+	["Underground Cellar"] = Vector3.new(2135,-92,-695),
 }
 
 local SelectedIsland = nil
@@ -951,9 +952,7 @@ local FishingLocations = {
     ["levers 3"] = Vector3.new(1425,6,126),
     ["levers 4"] = Vector3.new(1837,4,-309),
     ["Sacred Temple"] = Vector3.new(1475,-22,-632),
-    ["Spawn"] = Vector3.new(33, 9, 2810),
     ["Sysyphus Statue"] = Vector3.new(-3712, -137, -1010),
-    ["Underground Cellar"] = Vector3.new(2135,-92,-695),
     ["Volcano"] = Vector3.new(-632, 55, 197),
 	["King Jelly Spot (For quest elemental)"] = Vector3.new(1473.60, 3.58, -328.23),
 	["El Shark Gran Maja Spot"] = Vector3.new(1462, 7, -547),
