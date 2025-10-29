@@ -1255,7 +1255,7 @@ local Toggle = Tab7:Toggle({
 	end
 })
 
-local Toggle = Tab:Toggle({
+local Toggle = Tab7:Toggle({
     Title = "Tampilkan Koordinat",
     Desc = "Menampilkan posisi karakter dengan tombol copy di bawah",
     Icon = "axis-3d",
