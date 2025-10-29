@@ -43,7 +43,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "v0.0.1.8",
+    Title = "v0.0.2.0",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -1304,7 +1304,7 @@ local Toggle = Tab7:Toggle({
 
                     -- 🔔 Gunakan WindUI:Notify
                     WindUI:Notify({
-                        Title = "Koordinat Disalin!",
+                        Title = "coordinate copied!",
                         Content = coord,
                         Duration = 3,
                         Icon = "mouse-pointer-2",
@@ -1312,8 +1312,8 @@ local Toggle = Tab7:Toggle({
 
                 else
                     WindUI:Notify({
-                        Title = "Clipboard Tidak Didukung",
-                        Content = "setclipboard() tidak tersedia di environment ini.",
+                        Title = "clipboard not supported",
+                        Content = "setclipboard() is not available in this environment.",
                         Duration = 3,
                         Icon = "x-circle",
                     })
@@ -1324,8 +1324,8 @@ local Toggle = Tab7:Toggle({
 
             -- Notifikasi awal toggle ON
             WindUI:Notify({
-                Title = "Koordinat Aktif",
-                Content = "Menampilkan posisi pemain secara real-time.",
+                Title = "coordinate on",
+                Content = "Displays player positions in real-time.",
                 Duration = 3,
                 Icon = "axis-3d",
             })
@@ -1345,7 +1345,7 @@ local Toggle = Tab7:Toggle({
             -- Notifikasi toggle OFF
             WindUI:Notify({
                 Title = "coordinates are turned off",
-                Content = "Tampilan posisi telah disembunyikan.",
+                Content = "Position display has been hidden.",
                 Duration = 3,
                 Icon = "axis-3d",
             })
