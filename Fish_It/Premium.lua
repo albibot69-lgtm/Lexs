@@ -1233,6 +1233,127 @@ local Toggle = Tab7:Toggle({
 })
 
 local Toggle = Tab7:Toggle({
+    Title = "Show coordinate",
+    Desc = "show your coordinate",
+    Icon = "axis-3d",
+    Type = false,
+    Value = false,
+    Callback = function(state)
+        print("Toggle Activated: " .. tostring(state))
+
+        local player = game.Players.LocalPlayer
+        local char = player.Character or player.CharacterAdded:Wait()
+        local root = char:WaitForChild("HumanoidRootPart")
+
+        if state then
+            -- Buat GUI
+            local ScreenGui = Instance.new("ScreenGui")
+            ScreenGui.Name = "CoordinateDisplay"
+            ScreenGui.Parent = player:WaitForChild("PlayerGui")
+
+            -- Label koordinat utama
+            local Label = Instance.new("TextLabel")
+            Label.Parent = ScreenGui
+            Label.Size = UDim2.new(0, 250, 0, 30)
+            Label.Position = UDim2.new(0, 10, 0, 10)
+            Label.BackgroundTransparency = 0.5
+            Label.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+            Label.TextColor3 = Color3.fromRGB(0, 255, 0)
+            Label.TextSize = 18
+            Label.Font = Enum.Font.SourceSansBold
+            Label.Text = "Loading position..."
+
+            -- Tombol Copy (icon di bawah)
+            local Button = Instance.new("ImageButton")
+            Button.Parent = ScreenGui
+            Button.Size = UDim2.new(0, 30, 0, 30)
+            Button.Position = UDim2.new(0, 120, 0, 45) -- posisi di bawah label tengah
+            Button.BackgroundTransparency = 1
+            Button.ImageColor3 = Color3.fromRGB(255, 255, 255)
+            Button.Image = "rbxassetid://13039504047" -- contoh: icon pointer (bisa diganti)
+
+            -- Text kecil di bawah tombol
+            local CopyText = Instance.new("TextLabel")
+            CopyText.Parent = ScreenGui
+            CopyText.Size = UDim2.new(0, 100, 0, 20)
+            CopyText.Position = UDim2.new(0, 80, 0, 75)
+            CopyText.BackgroundTransparency = 1
+            CopyText.TextColor3 = Color3.fromRGB(180, 255, 180)
+            CopyText.TextSize = 14
+            CopyText.Font = Enum.Font.SourceSans
+            CopyText.Text = "Salin Koordinat"
+
+            -- Update posisi real-time
+            local RunService = game:GetService("RunService")
+            local conn
+            conn = RunService.RenderStepped:Connect(function()
+                if not ScreenGui.Parent then
+                    conn:Disconnect()
+                    return
+                end
+                local pos = root.Position
+                Label.Text = string.format("Vector3.new(%d, %d, %d)", math.floor(pos.X), math.floor(pos.Y), math.floor(pos.Z))
+            end)
+
+            -- Klik icon untuk copy koordinat
+            Button.MouseButton1Click:Connect(function()
+                local pos = root.Position
+                local coord = string.format("Vector3.new(%d, %d, %d)", math.floor(pos.X), math.floor(pos.Y), math.floor(pos.Z))
+                if setclipboard then
+                    setclipboard(coord)
+
+                    -- 🔔 Gunakan WindUI:Notify
+                    WindUI:Notify({
+                        Title = "Koordinat Disalin!",
+                        Content = coord,
+                        Duration = 3,
+                        Icon = "mouse-pointer-2",
+                    })
+
+                else
+                    WindUI:Notify({
+                        Title = "Clipboard Tidak Didukung",
+                        Content = "setclipboard() tidak tersedia di environment ini.",
+                        Duration = 3,
+                        Icon = "x-circle",
+                    })
+                end
+            end)
+
+            player:SetAttribute("CoordConnection", conn)
+
+            -- Notifikasi awal toggle ON
+            WindUI:Notify({
+                Title = "Koordinat Aktif",
+                Content = "Menampilkan posisi pemain secara real-time.",
+                Duration = 3,
+                Icon = "axis-3d",
+            })
+        else
+            -- Matikan GUI & koneksi
+            local gui = player:FindFirstChild("PlayerGui"):FindFirstChild("CoordinateDisplay")
+            if gui then
+                gui:Destroy()
+            end
+
+            local conn = player:GetAttribute("CoordConnection")
+            if conn then
+                conn:Disconnect()
+                player:SetAttribute("CoordConnection", nil)
+            end
+
+            -- Notifikasi toggle OFF
+            WindUI:Notify({
+                Title = "coordinates are turned off",
+                Content = "Tampilan posisi telah disembunyikan.",
+                Duration = 3,
+                Icon = "axis-3d",
+            })
+        end
+    end
+})
+
+local Toggle = Tab7:Toggle({
     Title = "AntiAFK",
     Desc = "Prevent Roblox from kicking you when idle",
     Icon = false,
