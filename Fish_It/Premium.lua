@@ -953,6 +953,7 @@ local FishingLocations = {
     ["Sysyphus Statue"] = Vector3.new(-3693,-136,-1045),
     ["Underground Cellar"] = Vector3.new(2135,-92,-695),
     ["Volcano"] = Vector3.new(-632, 55, 197),
+	["King Jelly (For quest elemental)"] = Vector3.new(1473.60, 3.58, -328.23),
 }
 
 local SelectedFishing = nil
