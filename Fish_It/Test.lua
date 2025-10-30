@@ -540,30 +540,32 @@ Tab3:Section({
     TextSize = 17,
 })
 
-local Toggle = Tab3:Toggle({    
-    Title = "Auto Sell",    
-    Desc = "Automatic fish sales",    
-    Icon = false,    
-    Type = false,    
-    Default = false,    
-    Callback = function(state)    
-        _G.AutoSell = state    
-        task.spawn(function()    
-            while _G.AutoSell do    
-                task.wait(0.5)    
-                local rs = game:GetService("ReplicatedStorage")    
-                for _, v in pairs(rs:GetDescendants()) do    
-                    if v:IsA("RemoteEvent") and v.Name:lower():find("sell") then    
-                        v:FireServer()    
-                    elseif v:IsA("RemoteFunction") and v.Name:lower():find("sell") then    
-                        pcall(function()    
-                            v:InvokeServer()    
-                        end)    
-                    end    
-                end    
-            end    
-        end)    
-    end    
+Tab3:Toggle({
+    Title = "Auto Sell",
+    Desc = false,
+    Icon = false,
+    Type = "Toggle",
+    Value = false,
+    Callback = function(Value) 
+        AutoSellAnjay = Value
+        if Value then
+            autosell()
+        end
+    end
+})
+
+Tab3:Slider({
+    Title = "Sell Delay",
+    Desc = false,
+    Step = 1,
+    Value = {
+        Min = 1,
+        Max = 120,
+        Default = 30,
+    },
+    Callback = function(Value)
+        selldelay = Value
+    end
 })
 
 local Section = Tab3:Section({     
