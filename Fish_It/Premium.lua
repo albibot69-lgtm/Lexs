@@ -955,7 +955,7 @@ local FishingLocations = {
     ["Sysyphus Statue"] = Vector3.new(-3712, -137, -1010),
     ["Volcano"] = Vector3.new(-632, 55, 197),
 	["King Jelly Spot (For quest elemental)"] = Vector3.new(1473.60, 3.58, -328.23),
-	["El Shark Gran Maja Spot"] = Vector3.new(1462, 7, -547),
+	["El Shark Gran Maja Spot"] = Vector3.new(1526, 4, -629),
 	["Zombie Megalodon Spot"] = Vector3.new(2124, 103, 3338),
 }
 
