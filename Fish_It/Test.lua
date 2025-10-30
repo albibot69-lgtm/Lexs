@@ -395,173 +395,149 @@ local Tab3 = Window:Tab({
     Icon = "gamepad-2",
 })
 
-local Section = Tab3:Section({
+Tab3:Section({
     Title = "Main",
+	Icon = "fish",
     TextXAlignment = "Left",
     TextSize = 17,
 })
 
-Tab3:Toggle({
+local AutoRod = Tab3:Toggle({
     Title = "Auto Equip Rod",
-    Desc = "Automatically equips fishing rod",
+    Desc = false,
     Icon = false,
-    Type = false,
-    Default = false,
-    Callback = function(value)
-        _G.AutoEquipRod = value
+    Type = "Toggle",
+    Value = false,
+    Callback = function(Value) 
+        _G.AutoRod = Value
+        if Value then
+            rod()
+        else return end
     end
 })
 
-local player = game.Players.LocalPlayer
+local CurrentOption = "Instant"
 
-spawn(function()
-    while task.wait(0.05) do
-        if _G.AutoEquipRod then
-            pcall(function()
-                local char = player.Character
-                local humanoid = char and char:FindFirstChild("Humanoid")
-                local backpack = player:FindFirstChild("Backpack")
-                if humanoid and backpack then
-                    local rod = backpack:FindFirstChild("Rod")
-                        or backpack:FindFirstChild("FishingRod")
-                        or backpack:FindFirstChild("OldRod")
-                        or backpack:FindFirstChild("BasicRod")
-                    if rod and not char:FindFirstChild(rod.Name) then
-                        humanoid:EquipTool(rod)
-                    end
-                end
-            end)
-        end
+local Dropdown = Tab3:Dropdown({
+    Title = "Mode",
+    Desc = false,
+    Values = { "Instant", "Legit" },
+    Value = "Instant",
+    Multi = false,
+    AllowNone = false,
+    Callback = function(Option)
+        CurrentOption = Option
+        WindUI:Notify({
+            Title = "Mode Selected",
+            Content = "Mode: " .. Option,
+            Duration = 3,
+            Icon = "check"
+        })
     end
-end)
-
-local player = game.Players.LocalPlayer
-local RepStorage = game:GetService("ReplicatedStorage")
-local success, net = pcall(function()
-    return RepStorage.Packages._Index["sleitnick_net@0.2.0"].net
-end)
+})
 
 Tab3:Toggle({
-    Title = "Auto Instant Fishing v1",
-    Desc = "Recomended",
-    Icon = "fish",
-    Type = false,
-    Default = false,
-    Callback = function(value)
-        _G.AutoFishing = value
-    end
-})
-
-local RepStorage = game:GetService("ReplicatedStorage")
-
-spawn(function()
-    while wait() do
-        if _G.AutoFishing then
-            repeat
-                pcall(function()
-                    local char = player.Character or player.CharacterAdded:Wait()
-                    if char:FindFirstChild("!!!FISHING_VIEW_MODEL!!!") then
-                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/EquipToolFromHotbar"]:FireServer(1)
-                    end
-                    local cosmeticFolder = workspace:FindFirstChild("CosmeticFolder")
-                    if cosmeticFolder and not cosmeticFolder:FindFirstChild(tostring(player.UserId)) then
-                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/ChargeFishingRod"]:InvokeServer(2)
-                        wait(0.5)
-                        RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/RequestFishingMinigameStarted"]:InvokeServer(1,1)
-                    end
-                end)
-                wait(0.2)
-            until not _G.AutoFishing
-        end
-    end
-end)
-
-spawn(function()
-    while wait() do
-        if _G.AutoFishing then
-            repeat
-                pcall(function()
-                    RepStorage.Packages._Index["sleitnick_net@0.2.0"].net["RE/FishingCompleted"]:FireServer()
-                end)
-                wait(0.2)
-            until not _G.AutoFishing
-        end
-    end
-end)
-
-Toggle = Tab3:Toggle({
     Title = "Auto Fishing",
-    Desc = "Automatic Auto Fishing v2",
+    Desc = false,
+    Icon = false,
+    Type = "Toggle",
     Value = false,
-    Callback = function(state)
-        autoHoldEnabled = state
-        if state then
-            WindUI:Notify({
-                Title = "Auto Fishing V2",
-                Content = "Enabled",
-                Duration = 3
-            })
-            task.spawn(function()
-                local holdDuration = 0.4
-                local loopDelay = 0.2
-                while autoHoldEnabled do
-                    pcall(function()
-                        REEquipToolFromHotbar:FireServer(1)
-                        local clickX = 5
-                        local clickY = camera.ViewportSize.Y - 5
-                        VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, true, game, 0)
-                        task.wait(holdDuration)
-                        VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, false, game, 0)
-                    end)
-                    task.wait(loopDelay)
-                    RunService.Heartbeat:Wait()
-                end
-            end)
+    Callback = function(Value)
+        _G.AutoFarm = Value
+        if Value then
+            if CurrentOption == "Instant" then
+                WindUI:Notify({
+                    Title = "Auto Instant Fishing",
+                    Content = "Instant Mode ON",
+                    Duration = 3
+                })
+                task.spawn(function()
+                    _G.Instant = Value
+                end)
+            elseif CurrentOption == "Legit" then
+                WindUI:Notify({
+                    Title = "Auto Legit Fishing",
+                    Content = "Legit Mode ON",
+                    Duration = 3
+                })
+                task.spawn(function()
+                    while _G.AutoFarm and CurrentOption == "Legit" do
+                        autoon()
+                        task.wait(1)
+                    end
+                end)
+            end
         else
             WindUI:Notify({
-                Title = "Auto Fishing V2",
-                Content = "Disabled",
+                Title = "Auto Fishing",
+                Content = "Auto Farm OFF",
                 Duration = 3
             })
+            autooff()
+            cancel()
         end
     end
 })
 
-local autoInstantFishEnabled = true
-local delayTime = 0.1
-
-local function startAutoFish()
-    task.spawn(function()
-        while autoInstantFishEnabled do
-            pcall(function()
-                REFishingCompleted:FireServer()
-            end)
-            task.wait(delayTime)
-        end
-    end)
-end
-
-Toggle = Tab3:Toggle({
-    Title = "Auto Instant complete Fishing",
-    Desc = "(for instant fishing v2)",
-    Value = autoInstantFishEnabled,
-    Callback = function(state)
-        autoInstantFishEnabled = state
-        if state then
-            WindUI:Notify({
-                Title = "Auto Instant Fish",
-                Content = "Enabled (Delay: " .. delayTime .. "s)",
-                Duration = 3
-            })
-            startAutoFish()
-        else
-            WindUI:Notify({
-                Title = "Auto Instant Fish",
-                Content = "Disabled",
-                Duration = 3
-            })
-        end
+Tab3:Slider({
+    Title = "Delay",
+    Desc = false,
+    Step = 0.01,
+    Value = {
+        Min = 0,
+        Max = 5,
+        Default = 1,
+    },
+    Callback = function(Value)
+        delayfishing = Value
     end
+})
+
+Tab3:Toggle({
+    Title = "Super Instant Fishing",
+    Value = _G.Instantt,
+    Callback = function(value)
+        _G.Instant = value    
+    end
+})
+
+Tab3:Toggle({
+    Title = "Blantant",
+    Desc = false,
+    Icon = false,
+    Type = "Toggle",
+    Value = false,
+    Callback = function(Value) 
+        _G.AutoFarm = Value
+        _G.Blantant = Value
+        if Value then
+            while _G.Blantant do
+                task.wait(blantantdelay)
+                icancel()
+            end
+        else return end
+    end
+})
+
+Tab3:Slider({
+    Title = "Blantant Delay",
+    Desc = false,
+    Step = 0.01,
+    Value = {
+        Min = 0,
+        Max = 10,
+        Default = 1,
+    },
+    Callback = function(Value)
+        blantantdelay = Value
+    end
+})
+
+Tab3:Section({
+    Title = "Sell",
+    Icon = "hand-coins",
+    TextXAlignment = "Left",
+    TextSize = 17,
 })
 
 local Toggle = Tab3:Toggle({    
