@@ -31,12 +31,12 @@ SidebarLine.Name = "SidebarLine"
 SidebarLine.Parent = game:GetService("CoreGui") -- Or Window.Gui if accessible
 
 -- Tab
-local Tab = Window:Tab({Title = "Main", Icon = "star"}) do
+local MainTab = Window:Tab({Title = "Main", Icon = "star"}) do
     -- Section
     Tab:Section({Title = "All UI Components"})
 
     -- Toggle
-    Tab:Toggle({
+    MainTab:Toggle({
         Title = "Enable Feature",
         Desc = "Toggle to enable or disable the feature",
         Value = false,
@@ -46,7 +46,7 @@ local Tab = Window:Tab({Title = "Main", Icon = "star"}) do
     })
 
     -- Button
-    Tab:Button({
+    MainTab:Button({
         Title = "Run Action",
         Desc = "Click to perform something",
         Callback = function()
@@ -60,7 +60,7 @@ local Tab = Window:Tab({Title = "Main", Icon = "star"}) do
     })
 
     -- Textbox
-    Tab:Textbox({
+    MainTab:Textbox({
         Title = "Input Text",
         Desc = "Type something here",
         Placeholder = "Enter value",
