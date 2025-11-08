@@ -11,7 +11,10 @@ local Window = MacLib:Window({
     AcrylicBlur = true,
 })
 
-local Tab2 = Window:Tab({
-    Title = "Players",
-    Icon = "user",
+local Tab1=Window:Tab{Title="Main",Icon="landmark"}
+local TabGroup = Window:TabGroup()
+
+local Tab1 = TabGroup:Tab({
+  Name = "Main"
+  Image = "71947103252559"
 })
