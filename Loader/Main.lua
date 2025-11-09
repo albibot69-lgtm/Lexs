@@ -18,6 +18,7 @@ local premiumKeys = {
     "vQbJnGzHcTtXoLwFfAqSmPrYiEdKuN",
     "hZpRkQyUxWaJmTfVnSgCoLdEiBtNsM",
     "rYpXvQzNaHkBtMfLcWgJoSdEuPiVnT",
+    "devoloper_access2",
     "developer_access"
 }
 
