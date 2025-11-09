@@ -1249,6 +1249,73 @@ local Toggle = Tab7:Toggle({
 	end
 })
 
+--// Services
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("CoreGui")
+local player = Players.LocalPlayer
+local PlayerGui = player:WaitForChild("PlayerGui")
+
+--// State
+local blockerEnabled = false
+local guiConnections = {}
+
+--// Fungsi blokir GUI
+local function blockGuiObject(obj)
+    if not blockerEnabled then return end
+    if obj:IsA("ScreenGui") or obj:IsA("BillboardGui") or obj:IsA("SurfaceGui") then
+        local name = obj.Name:lower()
+        if string.find(name, "notif") 
+        or string.find(name, "popup")
+        or string.find(name, "you got")
+        or string.find(name, "drop")
+        or string.find(name, "reward")
+        or string.find(name, "fish")
+        or string.find(name, "catch") then
+            task.wait()
+            pcall(function()
+                obj.Enabled = false
+                obj:Destroy()
+            end)
+            print("[Blocked Game Notification]:", obj.Name)
+        end
+    end
+end
+
+--// Toggle MacLib
+local Toggle = Tab7:Toggle({
+    Title = "Block Game Notifications",
+    Desc = "Hilangkan semua notifikasi tangkapan atau popup dari game",
+    Icon = "bell-off",
+    Type = "Checkbox",
+    Value = false,
+    Callback = function(state)
+        blockerEnabled = state
+
+        if state then
+            print("[🛑 Game Notification Blocker Enabled]")
+
+            -- Hapus GUI yang sudah ada
+            for _, gui in ipairs(PlayerGui:GetChildren()) do
+                blockGuiObject(gui)
+            end
+            for _, gui in ipairs(CoreGui:GetChildren()) do
+                blockGuiObject(gui)
+            end
+
+            -- Awasi GUI baru
+            guiConnections["PlayerGui"] = PlayerGui.ChildAdded:Connect(blockGuiObject)
+            guiConnections["CoreGui"] = CoreGui.ChildAdded:Connect(blockGuiObject)
+
+        else
+            print("[🔔 Game Notification Blocker Disabled]")
+            for _, conn in pairs(guiConnections) do
+                conn:Disconnect()
+            end
+            guiConnections = {}
+        end
+    end
+})
+
 local Toggle = Tab7:Toggle({
     Title = "Tampilkan Koordinat",
     Desc = "Menampilkan posisi karakter dengan tombol copy di bawah",
