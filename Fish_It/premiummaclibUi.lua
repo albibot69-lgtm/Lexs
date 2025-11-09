@@ -11,10 +11,8 @@ local Window = MacLib:Window({
     AcrylicBlur = true,
 })
 
-local Tab1=Window:Tab{Title="Main",Icon="landmark"}
 local TabGroup = Window:TabGroup()
-
-local Tab1 = TabGroup:Tab({
-  Name = "Main"
-  Image = "71947103252559"
+local MainTab = TabGroup:Tab({
+    Name = "Main",
+    Image = "rbxassetid://7734053495" -- icon, max 16x16
 })
