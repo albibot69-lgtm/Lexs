@@ -3,7 +3,7 @@ local success, WindUI = pcall(function()
 end)
 
 if not success or not WindUI then
-    warn("⚠️ UI failed to load! (Script Down)")
+    warn("⚠️ UI failed to load!(SCRIPT DOWN!)")
     return
 else
     print("✓ UI loaded successfully!")
@@ -12,7 +12,7 @@ end
 local Window = WindUI:CreateWindow({
     Title = "Lexs Hub",
     Icon = "rbxassetid://71947103252559",
-    Author = "Lexs | Fish It",
+    Author = "Premium | Fish It",
     Folder = "LEXS_HUB",
     Size = UDim2.fromOffset(260, 290),
     Transparent = true,
@@ -43,7 +43,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "v0.0.2.0",
+    Title = "v0.0.3.3",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -66,26 +66,42 @@ local Tab1 = Window:Tab({
     Icon = "info",
 })
 
-local Section = Tab1:Section({
-    Title = "Community Support",
+Tab1:Section({
+    Title = "Community",
+    Icon = "chevrons-left-right-ellipsis",
     TextXAlignment = "Left",
     TextSize = 17,
 })
+
+Tab1:Divider()
 
 Tab1:Button({
     Title = "Discord",
     Desc = "click to copy link",
     Callback = function()
         if setclipboard then
-            setclipboard("https://discord.gg/Tsa7nGXPUw")
+            setclipboard("https://discord.gg/YYbw8KM5x4")
         end
     end
 })
 
-local Section = Tab1:Section({
+Tab1:Divider()
+
+Tab1:Section({
     Title = "Join discord for update",
     TextXAlignment = "Left",
     TextSize = 17,
+})
+
+Tab1:Divider()
+
+Tab1:Keybind({
+    Title = "Close/Open UI",
+    Desc = "Keybind to Close/Open UI",
+    Value = "L",
+    Callback = function(v)
+        Window:SetToggleKey(Enum.KeyCode[v])
+    end
 })
 
 local Players = game:GetService("Players")
@@ -309,59 +325,45 @@ end)
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
--- Fungsi untuk stop semua animasi yang sedang berjalan
 local function stopAllAnimations()
-	local char = player.Character or player.CharacterAdded:Wait()
-	local humanoid = char:FindFirstChildOfClass("Humanoid")
-	if humanoid then
-		for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
-			track:Stop(0) -- stop langsung tanpa fade
-		end
-	end
+    local char = player.Character or player.CharacterAdded:Wait()
+    local humanoid = char:FindFirstChildOfClass("Humanoid")
+    if humanoid then
+        for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
+            track:Stop(0)
+        end
+    end
 end
 
--- Fungsi toggle animasi
 local function toggleAnimation(state)
-	local char = player.Character or player.CharacterAdded:Wait()
-	local humanoid = char:FindFirstChildOfClass("Humanoid")
-	local animate = char:FindFirstChild("Animate")
+    local char = player.Character or player.CharacterAdded:Wait()
+    local humanoid = char:FindFirstChildOfClass("Humanoid")
+    local animate = char:FindFirstChild("Animate")
 
-	if state then
-		---------------------------------------------------
-		-- 🟢 MATIKAN SEMUA ANIMASI
-		---------------------------------------------------
-		print("[ANIM] Semua animasi dinonaktifkan")
-		if animate then animate.Disabled = true end
-		stopAllAnimations()
-
-		-- Nonaktifkan animator agar game tidak bisa memutar ulang animasi
-		local animator = humanoid:FindFirstChildOfClass("Animator")
-		if animator then
-			animator:Destroy()
-		end
-	else
-		---------------------------------------------------
-		-- 🔴 AKTIFKAN KEMBALI ANIMASI
-		---------------------------------------------------
-		print("[ANIM] Animasi diaktifkan kembali")
-		if animate then animate.Disabled = false end
-
-		-- Buat ulang Animator agar animasi bisa jalan lagi
-		if humanoid and not humanoid:FindFirstChildOfClass("Animator") then
-			local newAnimator = Instance.new("Animator")
-			newAnimator.Parent = humanoid
-		end
-	end
+    if state then
+        if animate then animate.Disabled = true end
+        stopAllAnimations()
+        local animator = humanoid:FindFirstChildOfClass("Animator")
+        if animator then
+            animator:Destroy()
+        end
+    else
+        if animate then animate.Disabled = false end
+        if humanoid and not humanoid:FindFirstChildOfClass("Animator") then
+            local newAnimator = Instance.new("Animator")
+            newAnimator.Parent = humanoid
+        end
+    end
 end
 
-local Toggle = Tab2:Toggle({
-	Title = "Disable Animations",
-	Icon = false,
-	Type = false,
-	Value = false,
-	Callback = function(state)
-		toggleAnimation(state)
-	end
+Tab2:Toggle({
+    Title = "Disable Animations",
+    Icon = false,
+    Type = false,
+    Value = false,
+    Callback = function(state)
+        toggleAnimation(state)
+    end
 })
 
 _G.AutoFishing=false
@@ -471,63 +473,90 @@ Tab3:Slider{
  Callback=function(v)_G.InstantDelay=v WindUI:Notify{Title="Delay",Content="Instant Delay: "..v.."s",Duration=2}end
 }
 
-local Tab4 = Window:Tab({
-    Title = "Auto",
-    Icon = "circle-ellipsis",
-})
-
-local Section = Tab4:Section({     
-    Title = "Enchant",    
-    TextXAlignment = "Left",    
+Tab3:Section({     
+    Title = "Item",
+    Icon = "list-collapse",
+    TextXAlignment = "Left",
     TextSize = 17,    
 })
 
-Tab4:Divider()
+Tab3:Divider()
 
-local Toggle = Tab4:Toggle({
-    Title = "Auto Enchant",
+Tab3:Toggle{
+    Title = "Radar",
+    Value = false,
+    Callback = function(state)
+        local RS = game:GetService("ReplicatedStorage")
+        local Lighting = game:GetService("Lighting")
+        local Replion = require(RS.Packages.Replion).Client:GetReplion("Data")
+        local NetFunction = require(RS.Packages.Net):RemoteFunction("UpdateFishingRadar")
+        
+        if Replion and NetFunction:InvokeServer(state) then
+            local sound = require(RS.Shared.Soundbook).Sounds.RadarToggle:Play()
+            sound.PlaybackSpeed = 1 + math.random() * 0.3
+            
+            local colorEffect = Lighting:FindFirstChildWhichIsA("ColorCorrectionEffect")
+            if colorEffect then
+                require(RS.Packages.spr).stop(colorEffect)
+                local timeController = require(RS.Controllers.ClientTimeController)
+                local lightingProfile = (timeController._getLightingProfile and timeController:_getLightingProfile() or timeController._getLighting_profile and timeController:_getLighting_profile() or {})
+                local colorCorrection = lightingProfile.ColorCorrection or {}
+                
+                colorCorrection.Brightness = colorCorrection.Brightness or 0.04
+                colorCorrection.TintColor = colorCorrection.TintColor or Color3.fromRGB(255, 255, 255)
+                
+                if state then
+                    colorEffect.TintColor = Color3.fromRGB(42, 226, 118)
+                    colorEffect.Brightness = 0.4
+                    require(RS.Controllers.TextNotificationController):DeliverNotification{
+                        Type = "Text",
+                        Text = "Radar: Enabled",
+                        TextColor = {R = 9, G = 255, B = 0}
+                    }
+                else
+                    colorEffect.TintColor = Color3.fromRGB(255, 0, 0)
+                    colorEffect.Brightness = 0.2
+                    require(RS.Controllers.TextNotificationController):DeliverNotification{
+                        Type = "Text",
+                        Text = "Radar: Disabled", 
+                        TextColor = {R = 255, G = 0, B = 0}
+                    }
+                end
+                
+                require(RS.Packages.spr).target(colorEffect, 1, 1, colorCorrection)
+            end
+            
+            require(RS.Packages.spr).stop(Lighting)
+            Lighting.ExposureCompensation = 1
+            require(RS.Packages.spr).target(Lighting, 1, 2, {ExposureCompensation = 0})
+        end
+    end
+}
+
+Tab3:Toggle({
+    Title = "Diving Gear",
+    Desc = "Equip Diving Gear",
     Icon = false,
     Type = false,
     Default = false,
     Callback = function(state)
-        if state then
-            _G.AutoEnchant = true
-            print("Auto Enchant: ON")
-
-            local Enchants = {
-                {Name = "Stargazer I", Chance = 7},
-                {Name = "Shiny I", Chance = 5},
-                {Name = "Experienced I", Chance = 7},
-                {Name = "Storm Hunter I", Chance = 7},
-                {Name = "Perfection", Chance = 2},
+        _G.DivingGear = state
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+        local RemoteFolder = ReplicatedStorage.Packages._Index:FindFirstChild("sleitnick_net@0.2.0").net
+        if _G.DivingGear then
+            local args = {
+                [1] = 105
             }
-
-            local function RollEnchant()
-                local total = 0
-                for _, e in ipairs(Enchants) do
-                    total += e.Chance
-                end
-                local roll = math.random(1, total)
-                for _, e in ipairs(Enchants) do
-                    roll -= e.Chance
-                    if roll <= 0 then
-                        return e.Name
-                    end
-                end
-            end
-
-            task.spawn(function()
-                while _G.AutoEnchant do
-                    local result = RollEnchant()
-                    print("🎲 You got enchant:", result)
-                    task.wait(1.5)
-                end
-            end)
+            RemoteFolder:FindFirstChild("RF/EquipOxygenTank"):InvokeServer(unpack(args))
         else
-            _G.AutoEnchant = false
-            print("Auto Enchant: OFF")
+            RemoteFolder:FindFirstChild("RF/UnequipOxygenTank"):InvokeServer()
         end
     end
+})
+
+local Tab4 = Window:Tab({
+	Title = "Auto",
+	Icon = "circle-ellipsis"
 })
 
 Tab4:Section{Title="Auto Sell",Icon="coins",TextXAlignment="Left",TextSize=17}
@@ -567,94 +596,95 @@ local Tab5 = Window:Tab({
     Icon = "shopping-cart",
 })
 
-Tab5:Section({   
-    Title = "Buy Rod",  
-    TextXAlignment = "Left",  
-    TextSize = 17,  
-})
-
-Tab5:Divider()
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")  
-local RFPurchaseFishingRod = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/PurchaseFishingRod"]  
-
-local rods = {  
-    ["Luck Rod"] = 79,  
-    ["Carbon Rod"] = 76,  
-    ["Grass Rod"] = 85,  
-    ["Demascus Rod"] = 77,  
-    ["Ice Rod"] = 78,  
-    ["Lucky Rod"] = 4,  
-    ["Midnight Rod"] = 80,  
-    ["Steampunk Rod"] = 6,  
-    ["Chrome Rod"] = 7,  
-    ["Astral Rod"] = 5,  
-    ["Ares Rod"] = 126,  
-    ["Angler Rod"] = 168,
-    ["Bamboo Rod"] = 258
-}  
-
-local rodNames = {  
-    "Luck Rod (350 Coins)", "Carbon Rod (900 Coins)", "Grass Rod (1.5k Coins)", "Demascus Rod (3k Coins)",  
-    "Ice Rod (5k Coins)", "Lucky Rod (15k Coins)", "Midnight Rod (50k Coins)", "Steampunk Rod (215k Coins)",  
-    "Chrome Rod (437k Coins)", "Astral Rod (1M Coins)", "Ares Rod (3M Coins)", "Angler Rod (8M Coins)",
-    "Bamboo Rod (12M Coins)"
-}  
-
-local rodKeyMap = {  
-    ["Luck Rod (350 Coins)"]="Luck Rod",  
-    ["Carbon Rod (900 Coins)"]="Carbon Rod",  
-    ["Grass Rod (1.5k Coins)"]="Grass Rod",  
-    ["Demascus Rod (3k Coins)"]="Demascus Rod",  
-    ["Ice Rod (5k Coins)"]="Ice Rod",  
-    ["Lucky Rod (15k Coins)"]="Lucky Rod",  
-    ["Midnight Rod (50k Coins)"]="Midnight Rod",  
-    ["Steampunk Rod (215k Coins)"]="Steampunk Rod",  
-    ["Chrome Rod (437k Coins)"]="Chrome Rod",  
-    ["Astral Rod (1M Coins)"]="Astral Rod",  
-    ["Ares Rod (3M Coins)"]="Ares Rod",  
-    ["Angler Rod (8M Coins)"]="Angler Rod",
-    ["Bamboo Rod (12M Coins)"]="Bamboo Rod"
-}  
-
-local selectedRod = rodNames[1]  
-
-Tab5:Dropdown({  
-    Title = "Select Rod",  
-    Values = rodNames,  
-    Value = selectedRod,  
-    Callback = function(value)  
-        selectedRod = value  
-        WindUI:Notify({Title="Rod Selected", Content=value, Duration=3})  
-    end  
-})  
-
-Tab5:Button({  
-    Title="Buy Rod",  
-    Callback=function()  
-        local key = rodKeyMap[selectedRod]  
-        if key and rods[key] then  
-            local success, err = pcall(function()  
-                RFPurchaseFishingRod:InvokeServer(rods[key])  
-            end)  
-            if success then  
-                WindUI:Notify({Title="Rod Purchase", Content="Purchased "..selectedRod, Duration=3})  
-            else  
-                WindUI:Notify({Title="Rod Purchase Error", Content=tostring(err), Duration=5})  
-            end  
-        end  
-    end  
-})
-
-local Section = Tab5:Section({
-    Title = "Buy Baits",
+Tab5:Section({ 
+    Title = "Buy Rod",
+    Icon = "shrimp",
     TextXAlignment = "Left",
     TextSize = 17,
 })
 
 Tab5:Divider()
 
-local ReplicatedStorage = game:GetService("ReplicatedStorage")  
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RFPurchaseFishingRod = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/PurchaseFishingRod"]
+
+local rods = {
+    ["Luck Rod"] = 79,
+    ["Carbon Rod"] = 76,
+    ["Grass Rod"] = 85,
+    ["Demascus Rod"] = 77,
+    ["Ice Rod"] = 78,
+    ["Lucky Rod"] = 4,
+    ["Midnight Rod"] = 80,
+    ["Steampunk Rod"] = 6,
+    ["Chrome Rod"] = 7,
+    ["Astral Rod"] = 5,
+    ["Ares Rod"] = 126,
+    ["Angler Rod"] = 168,
+    ["Bamboo Rod"] = 258
+}
+
+local rodNames = {
+    "Luck Rod (350 Coins)", "Carbon Rod (900 Coins)", "Grass Rod (1.5k Coins)", "Demascus Rod (3k Coins)",
+    "Ice Rod (5k Coins)", "Lucky Rod (15k Coins)", "Midnight Rod (50k Coins)", "Steampunk Rod (215k Coins)",
+    "Chrome Rod (437k Coins)", "Astral Rod (1M Coins)", "Ares Rod (3M Coins)", "Angler Rod (8M Coins)",
+    "Bamboo Rod (12M Coins)"
+}
+
+local rodKeyMap = {
+    ["Luck Rod (350 Coins)"] = "Luck Rod",
+    ["Carbon Rod (900 Coins)"] = "Carbon Rod",
+    ["Grass Rod (1.5k Coins)"] = "Grass Rod",
+    ["Demascus Rod (3k Coins)"] = "Demascus Rod",
+    ["Ice Rod (5k Coins)"] = "Ice Rod",
+    ["Lucky Rod (15k Coins)"] = "Lucky Rod",
+    ["Midnight Rod (50k Coins)"] = "Midnight Rod",
+    ["Steampunk Rod (215k Coins)"] = "Steampunk Rod",
+    ["Chrome Rod (437k Coins)"] = "Chrome Rod",
+    ["Astral Rod (1M Coins)"] = "Astral Rod",
+    ["Ares Rod (3M Coins)"] = "Ares Rod",
+    ["Angler Rod (8M Coins)"] = "Angler Rod",
+    ["Bamboo Rod (12M Coins)"] = "Bamboo Rod"
+}
+
+local selectedRod = rodNames[1]
+
+Tab5:Dropdown({
+    Title = "Select Rod",
+    Values = rodNames,
+    Value = selectedRod,
+    Callback = function(value)
+        selectedRod = value
+        WindUI:Notify({Title="Rod Selected", Content=value, Duration=3})
+    end
+})
+
+Tab5:Button({
+    Title="Buy Rod",
+    Callback=function()
+        local key = rodKeyMap[selectedRod]
+        if key and rods[key] then
+            local success, err = pcall(function()
+                RFPurchaseFishingRod:InvokeServer(rods[key])
+            end)
+            if success then
+                WindUI:Notify({Title="Rod Purchase", Content="Purchased "..selectedRod, Duration=3})
+            else
+                WindUI:Notify({Title="Rod Purchase Error", Content=tostring(err), Duration=5})
+            end
+        end
+    end
+})
+
+Tab5:Section({
+    Title = "Buy Baits",
+    Icon = "compass",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+Tab5:Divider()
+
 local RFPurchaseBait = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/PurchaseBait"]  
 
 local baits = {
@@ -664,28 +694,26 @@ local baits = {
     ["Chroma Bait"] = 6,
     ["Dark Mater Bait"] = 8,
     ["Corrupt Bait"] = 15,
-    ["Aether Bait"] = 16
+    ["Aether Bait"] = 16,
+    ["Floral Bait"] = 20,
 }
 
-local baitNames = {
-    "TopWater Bait (100 Coins)",
-    "Lucky Bait (1k Coins)",
-    "Midnight Bait (3k Coins)",
-    "Chroma Bait (290k Coins)",
-    "Dark Mater Bait (630k Coins)",
-    "Corrupt Bait (1.15M Coins)",
-    "Aether Bait (3.7M Coins)"
-}
+local baitNames = {  
+    "Luck Bait (1k Coins)", "Midnight Bait (3k Coins)", "Nature Bait (83.5k Coins)",  
+    "Chroma Bait (290k Coins)", "Dark Matter Bait (630k Coins)", "Corrupt Bait (1.15M Coins)",  
+    "Aether Bait (3.7M Coins)", "Floral Bait (4M Coins)"  
+}  
 
-local baitKeyMap = {
-    ["TopWater Bait (100 Coins)"] = "TopWater Bait",
-    ["Lucky Bait (1k Coins)"] = "Lucky Bait",
-    ["Midnight Bait (3k Coins)"] = "Midnight Bait",
-    ["Chroma Bait (290k Coins)"] = "Chroma Bait",
-    ["Dark Mater Bait (630k Coins)"] = "Dark Mater Bait",
-    ["Corrupt Bait (1.15M Coins)"] = "Corrupt Bait",
-    ["Aether Bait (3.7M Coins)"] = "Aether Bait"
-}
+local baitKeyMap = {  
+    ["Luck Bait (1k Coins)"] = "Luck Bait",  
+    ["Midnight Bait (3k Coins)"] = "Midnight Bait",  
+    ["Nature Bait (83.5k Coins)"] = "Nature Bait",  
+    ["Chroma Bait (290k Coins)"] = "Chroma Bait",  
+    ["Dark Matter Bait (630k Coins)"] = "Dark Matter Bait",  
+    ["Corrupt Bait (1.15M Coins)"] = "Corrupt Bait",  
+    ["Aether Bait (3.7M Coins)"] = "Aether Bait",  
+    ["Floral Bait (4M Coins)"] = "Floral Bait"  
+}  
 
 local selectedBait = baitNames[1]  
 
@@ -715,25 +743,25 @@ Tab5:Button({
     end  
 })
 
-local Section = Tab5:Section({
+Tab5:Section({
     Title = "Buy Weather Event",
+    Icon = "cloud-drizzle",
     TextXAlignment = "Left",
     TextSize = 17,
 })
 
 Tab5:Divider()
 
-local ReplicatedStorage = game:GetService("ReplicatedStorage")  
 local RFPurchaseWeatherEvent = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/PurchaseWeatherEvent"]  
 
-local weatherEvents = {  
-    ["Windy"] = 10000,  
-    ["Cloudy"] = 20000,  
-    ["Stormy"] = 35000,  
-    ["Shining"] = 50000,  
-    ["Shark Hunt"] = 300000,  
-    ["Snow"] = 15000  
-}  
+local weathers = {
+    ["Wind"] = "Wind",
+    ["Cloudy"] = "Cloudy",
+    ["Snow"] = "Snow",
+    ["Storm"] = "Storm",
+    ["Shine"] = "Shine",
+    ["Shark Hunt"] = "Shark Hunt"
+}
 
 local weatherNames = {  
     "Windy (10k Coins)", "Cloudy (20k Coins)", "Stormy (35k Coins)", 
@@ -741,11 +769,11 @@ local weatherNames = {
 }  
 
 local weatherKeyMap = {  
-    ["Windy (10k Coins)"] = "Windy",  
+    ["Windy (10k Coins)"] = "Wind",  
     ["Cloudy (20k Coins)"] = "Cloudy",  
-    ["Stormy (35k Coins)"] = "Stormy",  
-    ["Shining (50k Coins)"] = "Shining",  
-    ["Shark Hunt (300k Coins)"] = "Shark Hunt",  
+    ["Stormy (35k Coins)"] = "Storm",  
+    ["Shining (50k Coins)"] = "Shine",  
+    ["Shark Hunt (300k Coins)"] = "Shark Hunting",  
     ["Snow (15k Coins)"] = "Snow"  
 }  
 
@@ -764,9 +792,9 @@ Tab5:Button({
     Title = "Buy Weather Event",  
     Callback = function()  
         local key = weatherKeyMap[selectedWeather]  
-        if key and weatherEvents[key] then  
+        if key and weathers[key] then  
             local success, err = pcall(function()  
-                RFPurchaseWeatherEvent:InvokeServer(weatherEvents[key])  
+                RFPurchaseWeatherEvent:InvokeServer(weathers[key])  
             end)  
             if success then  
                 WindUI:Notify({Title = "Weather Purchase", Content = "Purchased " .. selectedWeather, Duration = 3})  
@@ -782,9 +810,9 @@ local Tab6 = Window:Tab({
     Icon = "map-pin",
 })
 
-local Section = Tab6:Section({ 
+Tab6:Section({ 
     Title = "Island",
-    Icon = "tree-palm"
+    Icon = "tree-palm",
     TextXAlignment = "Left",
     TextSize = 17,
 })
@@ -792,17 +820,24 @@ local Section = Tab6:Section({
 Tab6:Divider()
 
 local IslandLocations = {
-    ["Ancient Junggle"] = Vector3.new(1252,7,-153),
+    ["Admin Event"] = Vector3.new(-1981, -442, 7428),
+    ["Ancient Jungle"] = Vector3.new(1518, 1, -186),
     ["Coral Refs"] = Vector3.new(-2855, 47, 1996),
+    ["Crater Island"] = Vector3.new(997, 1, 5012),
+    ["Crystal Cavern"] = Vector3.new(-1841, -456, 7186),
     ["Enchant Room"] = Vector3.new(3221, -1303, 1406),
+    ["Enchant Room 2"] = Vector3.new(1480, 126, -585),
     ["Esoteric Island"] = Vector3.new(1990, 5, 1398),
+    ["Fisherman Island"] = Vector3.new(-175, 3, 2772),
+    ["Kohana Volcano"] = Vector3.new(-545.302429, 17.1266193, 118.870537),
     ["Konoha"] = Vector3.new(-603, 3, 719),
+    ["Lost Isle"] = Vector3.new(-3643, 1, -1061),
+    ["Sacred Temple"] = Vector3.new(1498, -23, -644),
+    ["Sysyphus Statue"] = Vector3.new(-3783.26807, -135.073914, -949.946289),
     ["Treasure Room"] = Vector3.new(-3600, -267, -1575),
     ["Tropical Grove"] = Vector3.new(-2091, 6, 3703),
+    ["Underground Cellar"] = Vector3.new(2135, -93, -701),
     ["Weather Machine"] = Vector3.new(-1508, 6, 1895),
-	["Fisherman Island"] = Vector3.new(97, 9, 2766),
-	["Mount Hallow"] = Vector3.new(1760, 7, 3044),
-	["Underground Cellar"] = Vector3.new(2135,-92,-695),
 }
 
 local SelectedIsland = nil
@@ -831,9 +866,9 @@ Tab6:Button({
     end
 })
 
-local Section = Tab6:Section({ 
+Tab6:Section({ 
     Title = "Fishing Spot",
-	Icon = "spotlight"
+    Icon = "spotlight",
     TextXAlignment = "Left",
     TextSize = 17,
 })
@@ -841,13 +876,10 @@ local Section = Tab6:Section({
 Tab6:Divider()
 
 local FishingLocations = {
-    ["Coral Refs"] = Vector3.new(-2855, 47, 1996),
-    ["Konoha"] = Vector3.new(-603, 3, 719),
     ["Levers 1"] = Vector3.new(1475,4,-847),
     ["Levers 2"] = Vector3.new(882,5,-321),
     ["levers 3"] = Vector3.new(1425,6,126),
     ["levers 4"] = Vector3.new(1837,4,-309),
-    ["Sacred Temple"] = Vector3.new(1475,-22,-632),
     ["Sysyphus Statue"] = Vector3.new(-3712, -137, -1010),
     ["Volcano"] = Vector3.new(-632, 55, 197),
 	["King Jelly Spot (For quest elemental)"] = Vector3.new(1473.60, 3.58, -328.23),
@@ -856,7 +888,7 @@ local FishingLocations = {
 
 local SelectedFishing = nil
 
-local FishingDropdown = Tab6:Dropdown({
+Tab6:Dropdown({
     Title = "Select Spot",
     Values = (function()
         local keys = {}
@@ -880,8 +912,8 @@ Tab6:Button({
     end
 })
 
-Tab6:Section({ 
-    Title = "Npc Location",
+Tab6:Section({
+    Title = "Location NPC",
     Icon = "bot",
     TextXAlignment = "Left",
     TextSize = 17,
@@ -911,7 +943,7 @@ local NPC_Locations = {
 
 local SelectedNPC = nil
 
-local NPCDropdown = Tab6:Dropdown({
+Tab6:Dropdown({
     Title = "Select NPC",
     Values = (function()
         local keys = {}
@@ -935,8 +967,9 @@ Tab6:Button({
     end
 })
 
-local Section = Tab6:Section({
+Tab6:Section({
     Title = "Event Teleporter",
+    Icon = "calendar",
     TextXAlignment = "Left",
     TextSize = 17,
 })
@@ -955,7 +988,7 @@ local Event_Locations = {
 
 local ActiveEvent = nil
 
-local EventDropdown = Tab6:Dropdown({
+Tab6:Dropdown({
     Title = "Select Event",
     Values = (function()
         local keys = {}
@@ -973,7 +1006,6 @@ local EventDropdown = Tab6:Dropdown({
 Tab6:Button({
     Title = "Teleport to Event",
     Callback = function()
-        local Player = game.Players.LocalPlayer
         local Char = Player.Character or Player.CharacterAdded:Wait()
         local HRP = Char:FindFirstChild("HumanoidRootPart")
         if not HRP then return end
@@ -988,145 +1020,7 @@ local Tab7 = Window:Tab({
     Icon = "settings",
 })
 
-local Section = Tab7:Section({
-    Title = "Other",
-    TextXAlignment = "Left",
-    TextSize = 17,
-})
-
-Tab7:Divider()
-
-local Keybind = Tab7:Keybind({
-    Title = "Close/Open ui",
-    Desc = "Keybind to Close/Open ui",
-    Value = "L",
-    Callback = function(v)
-        Window:SetToggleKey(Enum.KeyCode[v])
-    end
-})
-
-local Toggle = Tab7:Toggle({
-    Title = "Show coordinate",
-    Desc = "show your coordinate",
-    Icon = false,
-    Type = false,
-    Value = false,
-    Callback = function(state)
-        print("Toggle Activated: " .. tostring(state))
-
-        local player = game.Players.LocalPlayer
-        local char = player.Character or player.CharacterAdded:Wait()
-        local root = char:WaitForChild("HumanoidRootPart")
-
-        if state then
-            -- Buat GUI
-            local ScreenGui = Instance.new("ScreenGui")
-            ScreenGui.Name = "CoordinateDisplay"
-            ScreenGui.Parent = player:WaitForChild("PlayerGui")
-
-            -- Label koordinat utama
-            local Label = Instance.new("TextLabel")
-            Label.Parent = ScreenGui
-            Label.Size = UDim2.new(0, 250, 0, 30)
-            Label.Position = UDim2.new(0, 10, 0, 10)
-            Label.BackgroundTransparency = 0.5
-            Label.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-            Label.TextColor3 = Color3.fromRGB(0, 255, 0)
-            Label.TextSize = 18
-            Label.Font = Enum.Font.SourceSansBold
-            Label.Text = "Loading position..."
-
-            -- Tombol Copy (icon di bawah)
-            local Button = Instance.new("ImageButton")
-            Button.Parent = ScreenGui
-            Button.Size = UDim2.new(0, 30, 0, 30)
-            Button.Position = UDim2.new(0, 120, 0, 45) -- posisi di bawah label tengah
-            Button.BackgroundTransparency = 1
-            Button.ImageColor3 = Color3.fromRGB(255, 255, 255)
-            Button.Image = "rbxassetid://13039504047" -- contoh: icon pointer (bisa diganti)
-
-            -- Text kecil di bawah tombol
-            local CopyText = Instance.new("TextLabel")
-            CopyText.Parent = ScreenGui
-            CopyText.Size = UDim2.new(0, 100, 0, 20)
-            CopyText.Position = UDim2.new(0, 80, 0, 75)
-            CopyText.BackgroundTransparency = 1
-            CopyText.TextColor3 = Color3.fromRGB(180, 255, 180)
-            CopyText.TextSize = 14
-            CopyText.Font = Enum.Font.SourceSans
-            CopyText.Text = "Salin Koordinat"
-
-            -- Update posisi real-time
-            local RunService = game:GetService("RunService")
-            local conn
-            conn = RunService.RenderStepped:Connect(function()
-                if not ScreenGui.Parent then
-                    conn:Disconnect()
-                    return
-                end
-                local pos = root.Position
-                Label.Text = string.format("Vector3.new(%d, %d, %d)", math.floor(pos.X), math.floor(pos.Y), math.floor(pos.Z))
-            end)
-
-            -- Klik icon untuk copy koordinat
-            Button.MouseButton1Click:Connect(function()
-                local pos = root.Position
-                local coord = string.format("Vector3.new(%d, %d, %d)", math.floor(pos.X), math.floor(pos.Y), math.floor(pos.Z))
-                if setclipboard then
-                    setclipboard(coord)
-
-                    -- 🔔 Gunakan WindUI:Notify
-                    WindUI:Notify({
-                        Title = "coordinate copied!",
-                        Content = coord,
-                        Duration = 3,
-                        Icon = "mouse-pointer-2",
-                    })
-
-                else
-                    WindUI:Notify({
-                        Title = "clipboard not supported",
-                        Content = "setclipboard() is not available in this environment.",
-                        Duration = 3,
-                        Icon = "x-circle",
-                    })
-                end
-            end)
-
-            player:SetAttribute("CoordConnection", conn)
-
-            -- Notifikasi awal toggle ON
-            WindUI:Notify({
-                Title = "coordinate on",
-                Content = "Displays player positions in real-time.",
-                Duration = 3,
-                Icon = "axis-3d",
-            })
-        else
-            -- Matikan GUI & koneksi
-            local gui = player:FindFirstChild("PlayerGui"):FindFirstChild("CoordinateDisplay")
-            if gui then
-                gui:Destroy()
-            end
-
-            local conn = player:GetAttribute("CoordConnection")
-            if conn then
-                conn:Disconnect()
-                player:SetAttribute("CoordConnection", nil)
-            end
-
-            -- Notifikasi toggle OFF
-            WindUI:Notify({
-                Title = "coordinates are turned off",
-                Content = "Position display has been hidden.",
-                Duration = 3,
-                Icon = "axis-3d",
-            })
-        end
-    end
-})
-
-local Toggle = Tab7:Toggle({
+Tab7:Toggle({
     Title = "AntiAFK",
     Desc = "Prevent Roblox from kicking you when idle",
     Icon = false,
@@ -1163,9 +1057,9 @@ local Toggle = Tab7:Toggle({
     end
 })
 
-local Toggle = Tab7:Toggle({
+Tab7:Toggle({
     Title = "Auto Reconnect",
-    Desc = "Auto reconnect if disconnected",
+    Desc = "Automatic reconnect if disconnected",
     Icon = false,
     Default = false,
     Callback = function(state)
@@ -1191,8 +1085,366 @@ local Toggle = Tab7:Toggle({
     end
 })
 
-local Section = Tab7:Section({ 
+Tab7:Section({ 
+    Title = "Graphics In Game",
+    Icon = "chart-bar",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+Tab7:Divider()
+
+local Lighting = game:GetService("Lighting")
+local Workspace = game:GetService("Workspace")
+local Terrain = Workspace:FindFirstChildOfClass("Terrain")
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+
+local function notify(text, color)
+	pcall(function()
+		StarterGui:SetCore("ChatMakeSystemMessage", {
+			Text = "[FPS BOOST] " .. text,
+			Color = color or Color3.fromRGB(150,255,150),
+			Font = Enum.Font.SourceSansBold,
+			FontSize = Enum.FontSize.Size24
+		})
+	end)
+end
+
+local function applyFPSBoost(state)
+	if state then
+		---------------------------------------------------
+		-- 🟢 AKTIFKAN MODE BOOST
+		---------------------------------------------------
+		notify("Mode Ultra Aktif ✅", Color3.fromRGB(100,255,100))
+		print("[FPS BOOST] Mode Ultra Aktif")
+
+		-- Hapus efek Lighting berat
+		for _, v in ipairs(Lighting:GetChildren()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect")
+				or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("Atmosphere")
+				or v:IsA("Sky") or v:IsA("Clouds") or v:IsA("PostEffect") then
+				v.Parent = nil
+			end
+		end
+
+		-- Nonaktifkan Lighting kompleks
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 1e6
+		Lighting.Brightness = 1
+		Lighting.EnvironmentDiffuseScale = 0
+		Lighting.EnvironmentSpecularScale = 0
+		Lighting.OutdoorAmbient = Color3.new(1,1,1)
+
+		-- Terrain lebih ringan
+		if Terrain then
+			Terrain.WaterWaveSize = 0
+			Terrain.WaterWaveSpeed = 0
+			Terrain.WaterReflectance = 0
+			Terrain.WaterTransparency = 1
+		end
+
+		-- Bersihkan workspace
+		for _, obj in ipairs(Workspace:GetDescendants()) do
+			-- Hilangkan texture dan decal
+			if obj:IsA("Decal") or obj:IsA("Texture") then
+				obj.Transparency = 1
+			end
+
+			-- Matikan efek visual
+			if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Fire")
+				or obj:IsA("Smoke") or obj:IsA("Sparkles") then
+				obj.Enabled = false
+			end
+
+			-- Hapus efek PBR (SurfaceAppearance)
+			if obj:IsA("SurfaceAppearance") then
+				obj.Parent = nil
+			end
+
+			-- Nonaktifkan shadow dan ubah material ke Plastic
+			if obj:IsA("BasePart") then
+				obj.CastShadow = false
+				pcall(function() obj.Material = Enum.Material.Plastic end)
+			end
+		end
+		
+		local char = Players.LocalPlayer.Character
+		if char then
+			for _, acc in ipairs(char:GetChildren()) do
+				if acc:IsA("Accessory") then
+					acc:Destroy()
+				end
+			end
+			if char:FindFirstChild("Animate") then
+				char.Animate.Disabled = true
+			end
+		end
+		
+		workspace.StreamingEnabled = true
+		workspace.StreamingMinRadius = 64
+		workspace.StreamingTargetRadius = 128
+		
+		settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+		
+		collectgarbage("collect")
+
+	else
+		---------------------------------------------------
+		-- 🔴 MATIKAN MODE BOOST
+		---------------------------------------------------
+		notify("Mode Ultra Nonaktif ❌", Color3.fromRGB(255,120,120))
+		print("[FPS BOOST] Mode Ultra Nonaktif")
+
+		-- Pulihkan Lighting aman
+		Lighting.GlobalShadows = true
+		Lighting.FogEnd = 1000
+		Lighting.Brightness = 2
+		Lighting.EnvironmentDiffuseScale = 1
+		Lighting.EnvironmentSpecularScale = 1
+		Lighting.OutdoorAmbient = Color3.new(0.5,0.5,0.5)
+
+		if Terrain then
+			Terrain.WaterWaveSize = 0.15
+			Terrain.WaterWaveSpeed = 10
+			Terrain.WaterReflectance = 1
+			Terrain.WaterTransparency = 0.5
+		end
+
+		settings().Rendering.QualityLevel = Enum.QualityLevel.Automatic
+
+		-- Aktifkan kembali animasi karakter
+		local char = Players.LocalPlayer.Character
+		if char and char:FindFirstChild("Animate") then
+			char.Animate.Disabled = false
+		end
+	end
+end
+
+
+local Toggle = Tab7:Toggle({
+	Title = "FPS Boost",
+	Icon = false,
+	Type = false,
+	Value = false,
+	Callback = function(state)
+		applyFPSBoost(state)
+	end
+})
+
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("CoreGui")
+local player = Players.LocalPlayer
+local PlayerGui = player:WaitForChild("PlayerGui")
+
+--// State
+local blockerEnabled = false
+local guiConnections = {}
+
+--// Fungsi blokir GUI
+local function blockGuiObject(obj)
+    if not blockerEnabled then return end
+    if obj:IsA("ScreenGui") or obj:IsA("BillboardGui") or obj:IsA("SurfaceGui") then
+        local name = obj.Name:lower()
+        if string.find(name, "notif") 
+        or string.find(name, "popup")
+        or string.find(name, "you got")
+        or string.find(name, "drop")
+        or string.find(name, "reward")
+        or string.find(name, "fish")
+        or string.find(name, "catch") then
+            task.wait()
+            pcall(function()
+                obj.Enabled = false
+                obj:Destroy()
+            end)
+            print("[Blocked Game Notification]:", obj.Name)
+        end
+    end
+end
+
+--// Toggle MacLib
+local Toggle = Tab7:Toggle({
+    Title = "Hide All Notifications",
+    Desc = "Hide All Notifications Fish Caught",
+    Icon = false,
+    Type = false,
+    Value = false,
+    Callback = function(state)
+        blockerEnabled = state
+
+        if state then
+            print("[🛑 Game Notification Blocker Enabled]")
+
+            -- Hapus GUI yang sudah ada
+            for _, gui in ipairs(PlayerGui:GetChildren()) do
+                blockGuiObject(gui)
+            end
+            for _, gui in ipairs(CoreGui:GetChildren()) do
+                blockGuiObject(gui)
+            end
+
+            -- Awasi GUI baru
+            guiConnections["PlayerGui"] = PlayerGui.ChildAdded:Connect(blockGuiObject)
+            guiConnections["CoreGui"] = CoreGui.ChildAdded:Connect(blockGuiObject)
+
+        else
+            print("[🔔 Game Notification Blocker Disabled]")
+            for _, conn in pairs(guiConnections) do
+                conn:Disconnect()
+            end
+            guiConnections = {}
+        end
+    end
+})
+
+--// Services
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+
+--// GUI placeholder
+local whiteScreen = nil
+
+--// Toggle MacLib
+local Toggle = Tab7:Toggle({
+    Title = "Disable 3D Rendering",
+    Icon = false,
+    Type = false,
+    Value = false,
+    Callback = function(state)
+        if state then
+            print("[🛑 3D Rendering Disabled + White Screen Enabled]")
+
+            -- Matikan rendering 3D
+            pcall(function()
+                RunService:Set3dRenderingEnabled(false)
+            end)
+
+            -- Buat layar putih full
+            whiteScreen = Instance.new("ScreenGui")
+            whiteScreen.IgnoreGuiInset = true
+            whiteScreen.ResetOnSpawn = false
+            whiteScreen.Name = "WhiteScreenOverlay"
+            whiteScreen.Parent = PlayerGui
+
+            local frame = Instance.new("Frame")
+            frame.Size = UDim2.new(1, 0, 1, 0)
+            frame.Position = UDim2.new(0, 0, 0, 0)
+            frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            frame.BorderSizePixel = 0
+            frame.Parent = whiteScreen
+
+        else
+            print("[✅ 3D Rendering Re-enabled + White Screen Removed]")
+
+            -- Aktifkan render kembali
+            pcall(function()
+                RunService:Set3dRenderingEnabled(true)
+            end)
+
+            -- Hapus layar putih
+            if whiteScreen then
+                whiteScreen:Destroy()
+                whiteScreen = nil
+            end
+        end
+    end
+})
+
+local Workspace = game:GetService("Workspace")
+local Lighting = game:GetService("Lighting")
+
+-- State
+local vfxDisabled = false
+local storedVFX = {}
+
+-- Daftar tipe efek yang ingin dinonaktifkan
+local vfxClasses = {
+	"ParticleEmitter", "Beam", "Trail", "Smoke", "Fire", "Sparkles", "Explosion",
+	"PointLight", "SpotLight", "SurfaceLight", "Highlight"
+}
+
+-- Efek Lighting pasca-proses
+local lightingEffects = {
+	"BloomEffect", "SunRaysEffect", "ColorCorrectionEffect", "DepthOfFieldEffect", "Atmosphere"
+}
+
+-- Nonaktifkan semua efek visual
+local function disableAllVFX()
+	for _, obj in ipairs(Workspace:GetDescendants()) do
+		if table.find(vfxClasses, obj.ClassName) then
+			if obj.Enabled ~= nil and obj.Enabled == true then
+				storedVFX[obj] = true
+				obj.Enabled = false
+			end
+		end
+	end
+
+	-- Matikan efek di Lighting
+	for _, effName in ipairs(lightingEffects) do
+		local eff = Lighting:FindFirstChildOfClass(effName)
+		if eff and eff.Enabled ~= nil then
+			storedVFX[eff] = true
+			eff.Enabled = false
+		end
+	end
+
+	print("[🧊 All VFX Disabled]")
+end
+
+-- Aktifkan kembali efek visual
+local function enableAllVFX()
+	for obj in pairs(storedVFX) do
+		if obj and obj.Parent and obj.Enabled ~= nil then
+			obj.Enabled = true
+		end
+	end
+	storedVFX = {}
+	print("[✨ All VFX Restored]")
+end
+
+-- Toggle UI
+local Toggle = Tab7:Toggle({
+    Title = "Hide All VFX",
+    Icon = false,
+    Type = false,
+    Value = false,
+    Callback = function(state)
+        vfxDisabled = state
+
+        if state then
+            disableAllVFX()
+
+            -- Jika efek baru muncul setelah toggle aktif
+            Workspace.DescendantAdded:Connect(function(obj)
+                if vfxDisabled and table.find(vfxClasses, obj.ClassName) then
+                    task.wait()
+                    if obj.Enabled ~= nil then
+                        obj.Enabled = false
+                    end
+                end
+            end)
+
+            Lighting.DescendantAdded:Connect(function(obj)
+                if vfxDisabled and table.find(lightingEffects, obj.ClassName) then
+                    task.wait()
+                    if obj.Enabled ~= nil then
+                        obj.Enabled = false
+                    end
+                end
+            end)
+
+        else
+            enableAllVFX()
+        end
+    end
+})
+
+Tab7:Section({ 
     Title = "Server",
+    Icon = "server",
     TextXAlignment = "Left",
     TextSize = 17,
 })
@@ -1214,8 +1466,42 @@ TeleportService:Teleport(game.PlaceId, player)
     end
 })
 
-local Section = Tab7:Section({ 
+Tab7:Button({
+    Title = "Server Hop",
+    Desc = "Switch to another server",
+    Callback = function()
+        local HttpService = game:GetService("HttpService")
+        local TeleportService = game:GetService("TeleportService")
+        
+        local function GetServers()
+            local url = "https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Desc&limit=100"
+            local response = HttpService:JSONDecode(game:HttpGet(url))
+            return response.data
+        end
+
+        local function FindBestServer(servers)
+            for _, server in ipairs(servers) do
+                if server.playing < server.maxPlayers and server.id ~= game.JobId then
+                    return server.id
+                end
+            end
+            return nil
+        end
+
+        local servers = GetServers()
+        local serverId = FindBestServer(servers)
+
+        if serverId then
+            TeleportService:TeleportToPlaceInstance(game.PlaceId, serverId, game.Players.LocalPlayer)
+        else
+            warn("⚠️ No suitable server found!")
+        end
+    end
+})
+
+Tab7:Section({ 
     Title = "Config",
+    Icon = "folder-open",
     TextXAlignment = "Left",
     TextSize = 17,
 })
@@ -1307,15 +1593,16 @@ Tab7:Button({
     end
 })
 
-local Section = Tab7:Section({ 
+Tab7:Section({ 
     Title = "Other Scripts",
+    Icon = "file-code-2",
     TextXAlignment = "Left",
     TextSize = 17,
 })
 
 Tab7:Divider()
 
-local Button = Tab7:Button({
+Tab7:Button({
     Title = "Infinite Yield",
     Desc = "Other Scripts",
     Locked = false,
