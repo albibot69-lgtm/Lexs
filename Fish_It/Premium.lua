@@ -1610,3 +1610,11 @@ Tab7:Button({
         loadstring(game:HttpGet('https://raw.githubusercontent.com/DarkNetworks/Infinite-Yield/main/latest.lua'))()
     end
 })
+
+-- 🧩 Tambahkan baris ini di paling bawah Premium.lua
+
+-- Simpan window ke global agar bisa diakses dari luar
+getgenv().LexsHubWindow = Window
+
+-- Kembalikan window agar pcall atau loadstring bisa membaca
+return Window
