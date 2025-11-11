@@ -48,7 +48,7 @@ local gameScripts = {
     [121864768012064] = {
         name = "Fish It",
         free = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fish_It/Main.lua",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fish_It/Premium.lua"
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fish_It/PremiumOpen.CloseUi.lua"
     },
     [18687417158] = {
         name = "Forsaken",
