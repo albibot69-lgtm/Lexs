@@ -509,8 +509,8 @@ Tab3:Toggle{
 }
 
 Tab3:Toggle({
-    Title = "Diving Gear",
-    Desc = "Equip Diving Gear",
+    Title = "Bypass Oxygen",
+    Desc = "Inf Oxygen",
     Icon = false,
     Type = false,
     Default = false,
@@ -565,6 +565,101 @@ Tab4:Slider{
 		_G.SellDelay=v
 	end
 }
+
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local players = game:GetService("Players")
+local player = players.LocalPlayer
+
+local QuestList = require(replicatedStorage.Shared.Quests.QuestList)
+local QuestUtility = require(replicatedStorage.Shared.Quests.QuestUtility)
+local Replion = require(replicatedStorage.Packages.Replion)
+
+local repl = nil
+task.spawn(function()
+    repl = Replion.Client:WaitReplion("Data")
+end)
+
+local function GetDeepSea()
+    if not repl then return nil end
+    return repl:Get(QuestList.DeepSea.ReplionPath)
+end
+
+_G.CheckQuestProgress = function()
+    local data = GetDeepSea()
+    if not data then
+        WindUI:Notify({
+            Title = "Deep Sea Quest",
+            Content = "Quest tidak ditemukan",
+            Duration = 4,
+            Icon = "alert-triangle"
+        })
+        return
+    end
+
+    if not data.Available or not data.Available.Forever then
+        WindUI:Notify({
+            Title = "Deep Sea Quest",
+            Content = "Tidak ada quest Forever",
+            Duration = 4,
+            Icon = "alert-circle"
+        })
+        return
+    end
+
+    local quests = data.Available.Forever.Quests
+    local total = #quests
+    local done = 0
+    local list = ""
+
+    for i, q in ipairs(quests) do
+        local info = QuestUtility:GetQuestData("DeepSea", "Forever", q.QuestId)
+        if info then
+            local maxVal = QuestUtility.GetQuestValue(repl, info)
+            local progress = math.clamp(q.Progress / maxVal, 0, 1)
+            local percent = math.floor(progress * 100)
+
+            if percent >= 100 then
+                done = done + 1
+            end
+
+            list = list..info.DisplayName.." - "..percent.."%\n"
+        end
+    end
+
+    local totalPercent = math.floor((done / total) * 100)
+
+    WindUI:Notify({
+        Title = "Deep Sea Progress",
+        Content = "Total: "..totalPercent.."%\n\n"..list,
+        Duration = 7,
+        Icon = "check-circle"
+    })
+end
+
+task.spawn(function()
+    while task.wait(5) do
+        if _G.AutoNotifyQuest then
+            _G.CheckQuestProgress()
+        end
+    end
+end)
+
+Tab4:Section({ 
+    Title = "Quest",
+    Icon = "file-question-mark",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+Tab4:Divider()
+
+Tab4:Button({
+    Title = "Deep Sea Quest Progress",
+    Desc = "Check Deep Sea Quest Progress",
+    Callback = function()
+        _G.CheckQuestProgress()
+    end
+})
 
 local Tab5 = Window:Tab({
     Title = "Shop",
@@ -813,6 +908,7 @@ local IslandLocations = {
     ["Tropical Grove"] = Vector3.new(-2091, 6, 3703),
     ["Underground Cellar"] = Vector3.new(2135, -93, -701),
     ["Weather Machine"] = Vector3.new(-1508, 6, 1895),
+    ["Ancient Ruin"] = Vector3.new(6051, -541, 4414),
 }
 
 local SelectedIsland = nil
@@ -859,6 +955,7 @@ local FishingLocations = {
     ["Volcano"] = Vector3.new(-632, 55, 197),
 	["King Jelly Spot (For quest elemental)"] = Vector3.new(1473.60, 3.58, -328.23),
 	["El Shark Gran Maja Spot"] = Vector3.new(1526, 4, -629),
+    ["Ancient Lochness"] = Vector3.new(6078, -586, 4629),
 }
 
 local SelectedFishing = nil
