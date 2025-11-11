@@ -566,43 +566,64 @@ Tab4:Slider{
 	end
 }
 
-local replicatedStorage = game:GetService("ReplicatedStorage")
+local rs = game:GetService("ReplicatedStorage")
 local players = game:GetService("Players")
 local player = players.LocalPlayer
 
-local QuestList = require(replicatedStorage.Shared.Quests.QuestList)
-local QuestUtility = require(replicatedStorage.Shared.Quests.QuestUtility)
-local Replion = require(replicatedStorage.Packages.Replion)
+local QuestList = require(rs.Shared.Quests.QuestList)
+local QuestUtility = require(rs.Shared.Quests.QuestUtility)
+local Replion = require(rs.Packages.Replion)
 
 local repl = nil
 task.spawn(function()
     repl = Replion.Client:WaitReplion("Data")
 end)
 
+local function GetEJ()
+    if not repl then return nil end
+    return repl:Get(QuestList.ElementJungle.ReplionPath)
+end
+
 local function GetDeepSea()
     if not repl then return nil end
     return repl:Get(QuestList.DeepSea.ReplionPath)
 end
 
-_G.CheckQuestProgress = function()
-    local data = GetDeepSea()
-    if not data then
-        WindUI:Notify({
-            Title = "Deep Sea Quest",
-            Content = "Quest tidak ditemukan",
-            Duration = 4,
-            Icon = "alert-triangle"
-        })
+_G.CheckEJ = function()
+    local data = GetEJ()
+    if not data or not data.Available or not data.Available.Forever then
+        WindUI:Notify({Title="Element Jungle",Content="Quest tidak ditemukan",Duration=4,Icon="alert-circle"})
         return
     end
+    
+    local quests = data.Available.Forever.Quests
+    local total = #quests
+    local done = 0
+    local list = ""
 
-    if not data.Available or not data.Available.Forever then
-        WindUI:Notify({
-            Title = "Deep Sea Quest",
-            Content = "Tidak ada quest Forever",
-            Duration = 4,
-            Icon = "alert-circle"
-        })
+    for _,q in ipairs(quests) do
+        local info = QuestUtility:GetQuestData("ElementJungle","Forever",q.QuestId)
+        if info then
+            local maxVal = QuestUtility.GetQuestValue(repl,info)
+            local percent = math.floor(math.clamp(q.Progress/maxVal,0,1)*100)
+            if percent>=100 then done+=1 end
+            list = list..info.DisplayName.." - "..percent.."%\n"
+        end
+    end
+
+    local totalPercent = math.floor((done/total)*100)
+    WindUI:Notify({
+        Title="Element Jungle Progress",
+        Content="Total: "..totalPercent.."%\n\n"..list,
+        Duration=7,
+        Icon="leaf"
+    })
+end
+
+_G.CheckQuestProgress = function()
+    local data = GetDeepSea()
+    if not data or not data.Available or not data.Available.Forever then
+        WindUI:Notify({Title="Deep Sea Quest",Content="Quest tidak ditemukan",Duration=4,Icon="alert-circle"})
         return
     end
 
@@ -611,52 +632,53 @@ _G.CheckQuestProgress = function()
     local done = 0
     local list = ""
 
-    for i, q in ipairs(quests) do
-        local info = QuestUtility:GetQuestData("DeepSea", "Forever", q.QuestId)
+    for _,q in ipairs(quests) do
+        local info = QuestUtility:GetQuestData("DeepSea","Forever",q.QuestId)
         if info then
-            local maxVal = QuestUtility.GetQuestValue(repl, info)
-            local progress = math.clamp(q.Progress / maxVal, 0, 1)
-            local percent = math.floor(progress * 100)
-
-            if percent >= 100 then
-                done = done + 1
-            end
-
+            local maxVal = QuestUtility.GetQuestValue(repl,info)
+            local percent = math.floor(math.clamp(q.Progress/maxVal,0,1)*100)
+            if percent>=100 then done+=1 end
             list = list..info.DisplayName.." - "..percent.."%\n"
         end
     end
 
-    local totalPercent = math.floor((done / total) * 100)
-
+    local totalPercent = math.floor((done/total)*100)
     WindUI:Notify({
-        Title = "Deep Sea Progress",
-        Content = "Total: "..totalPercent.."%\n\n"..list,
-        Duration = 7,
-        Icon = "check-circle"
+        Title="Deep Sea Progress",
+        Content="Total: "..totalPercent.."%\n\n"..list,
+        Duration=7,
+        Icon="check-circle"
     })
 end
 
 task.spawn(function()
     while task.wait(5) do
-        if _G.AutoNotifyQuest then
-            _G.CheckQuestProgress()
-        end
+        if _G.AutoNotifyEJ then _G.CheckEJ() end
+        if _G.AutoNotifyQuest then _G.CheckQuestProgress() end
     end
 end)
 
-Tab4:Section({ 
+Tab4:Section({
     Title = "Quest",
     Icon = "file-question-mark",
-    TextXAlignment = "Left",
-    TextSize = 17,
+    TextXAlignment="Left",
+    TextSize=17
 })
 
 Tab4:Divider()
 
 Tab4:Button({
+    Title = "Element Jungle Quest Progress",
+    Desc = "Check Element Junggle Quest Progress",
+    Callback=function()
+        _G.CheckEJ()
+    end
+})
+
+Tab4:Button({
     Title = "Deep Sea Quest Progress",
     Desc = "Check Deep Sea Quest Progress",
-    Callback = function()
+    Callback=function()
         _G.CheckQuestProgress()
     end
 })
