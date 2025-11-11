@@ -28,20 +28,6 @@ local Window = WindUI:CreateWindow({
     },
 })
 
-Window:EditOpenButton({
-    Title = "Lexs Hub",
-    Icon = "rbxassetid://71947103252559",
-    CornerRadius = UDim.new(0,16),
-    StrokeThickness = 2,
-    Color = ColorSequence.new( -- gradient
-        Color3.fromHex("#00fbff"), 
-        Color3.fromHex("#ffffff")
-    ),
-    OnlyMobile = true,
-    Enabled = true,
-    Draggable = true,
-})
-
 Window:Tag({
     Title = "v0.0.3.3",
     Color = Color3.fromRGB(255, 255, 255),
@@ -91,17 +77,6 @@ Tab1:Section({
     Title = "Join discord for update",
     TextXAlignment = "Left",
     TextSize = 17,
-})
-
-Tab1:Divider()
-
-Tab1:Keybind({
-    Title = "Close/Open UI",
-    Desc = "Keybind to Close/Open UI",
-    Value = "L",
-    Callback = function(v)
-        Window:SetToggleKey(Enum.KeyCode[v])
-    end
 })
 
 local Players = game:GetService("Players")
@@ -1611,10 +1586,6 @@ Tab7:Button({
     end
 })
 
--- 🧩 Tambahkan baris ini di paling bawah Premium.lua
-
--- Simpan window ke global agar bisa diakses dari luar
 getgenv().LexsHubWindow = Window
 
--- Kembalikan window agar pcall atau loadstring bisa membaca
 return Window
