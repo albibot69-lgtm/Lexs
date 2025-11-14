@@ -21,7 +21,7 @@ print("✅ Executor terdeteksi:", executor)
 
 
 local success, WindUI = pcall(function()
-	return loadstring(game:HttpGet("https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fish_It/Premium.lua"))()
+	return loadstring(game:HttpGet("https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fish_It/Main.lua"))()
 end)
 
 if not success then
