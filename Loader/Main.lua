@@ -1,6 +1,9 @@
-local StarterGui = game:GetService("StarterGui")
 local TweenService = game:GetService("TweenService")
-local CoreGui = game:GetService("CoreGui")
+local Lighting = game:GetService("Lighting")
+local SoundService = game:GetService("SoundService")
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local HttpService = game:GetService("HttpService")
 local placeId = game.PlaceId
 
 _G.scripts_key = _G.scripts_key or scripts_key or "FREE_USER"
@@ -26,9 +29,7 @@ local premiumKeys = {
 
 local function isPremiumKey(key)
     for _, k in ipairs(premiumKeys) do
-        if key == k then
-            return true
-        end
+        if key == k then return true end
     end
     return false
 end
@@ -58,63 +59,218 @@ local gameScripts = {
     }
 }
 
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.IgnoreGuiInset = true
-ScreenGui.ResetOnSpawn = false
-ScreenGui.Parent = CoreGui
+local player = Players.LocalPlayer
+local PlayerGui = player:WaitForChild("PlayerGui")
 
-local Frame = Instance.new("Frame")
-Frame.Size = UDim2.new(0, 320, 0, 160)
-Frame.Position = UDim2.new(0.5, -160, 0.5, -80)
-Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Frame.BackgroundTransparency = 0.3
-Frame.BorderSizePixel = 0
-Frame.Parent = ScreenGui
+local blur = Instance.new("BlurEffect")
+blur.Size = 0
+blur.Parent = Lighting
+TweenService:Create(blur, TweenInfo.new(3, Enum.EasingStyle.Sine), {Size = 30}):Play()
 
-local UICorner = Instance.new("UICorner")
-UICorner.CornerRadius = UDim.new(0, 20)
-UICorner.Parent = Frame
+local gui = Instance.new("ScreenGui")
+gui.IgnoreGuiInset = true
+gui.ResetOnSpawn = false
+gui.Parent = PlayerGui
 
-local UIStroke = Instance.new("UIStroke")
-UIStroke.Thickness = 2
-UIStroke.Color = Color3.fromRGB(0, 255, 255)
-UIStroke.Parent = Frame
+local bg1 = Instance.new("ImageLabel", gui)
+bg1.Size = UDim2.new(1.3,0,1.3,0)
+bg1.Position = UDim2.new(0.5,0,0.5,0)
+bg1.AnchorPoint = Vector2.new(0.5,0.5)
+bg1.BackgroundTransparency = 1
+bg1.Image = "rbxassetid://9154083120"
+bg1.ImageTransparency = 0.82
+bg1.ImageColor3 = Color3.fromRGB(0,255,255)
+TweenService:Create(bg1, TweenInfo.new(18, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), {Rotation = 10}):Play()
 
-local Image = Instance.new("ImageLabel")
-Image.Image = streeLogo
-Image.BackgroundTransparency = 1
-Image.Size = UDim2.new(0, 80, 0, 80)
-Image.Position = UDim2.new(0.5, -40, 0, 15)
-Image.Parent = Frame
+local bg2 = Instance.new("ImageLabel", gui)
+bg2.Size = UDim2.new(1.6,0,1.6,0)
+bg2.Position = UDim2.new(0.5,0,0.5,0)
+bg2.AnchorPoint = Vector2.new(0.5,0.5)
+bg2.BackgroundTransparency = 1
+bg2.Image = "rbxassetid://9154219234"
+bg2.ImageTransparency = 0.9
+bg2.ImageColor3 = Color3.fromRGB(0,255,255)
+TweenService:Create(bg2, TweenInfo.new(25, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1), {Rotation = -360}):Play()
 
-local Title = Instance.new("TextLabel")
-Title.Text = "Lexs Hub"
-Title.Font = Enum.Font.GothamBold
-Title.TextSize = 22
-Title.TextColor3 = Color3.fromRGB(0, 255, 255)
-Title.BackgroundTransparency = 1
-Title.Position = UDim2.new(0, 0, 0, 105)
-Title.Size = UDim2.new(1, 0, 0, 30)
-Title.Parent = Frame
+local scan = Instance.new("Frame", gui)
+scan.Size = UDim2.new(1,0,1,0)
+scan.BackgroundColor3 = Color3.fromRGB(255,255,255)
+scan.BackgroundTransparency = 0.95
+TweenService:Create(scan, TweenInfo.new(7, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), {BackgroundTransparency = 0.97}):Play()
 
-local Loading = Instance.new("Frame")
-Loading.Size = UDim2.new(0, 260, 0, 6)
-Loading.Position = UDim2.new(0.5, -130, 1, -20)
-Loading.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Loading.BorderSizePixel = 0
-Loading.Parent = Frame
+local particles = Instance.new("Frame", gui)
+particles.Size = UDim2.new(1,0,1,0)
+particles.BackgroundTransparency = 1
 
-local Bar = Instance.new("Frame")
-Bar.Size = UDim2.new(0, 0, 1, 0)
-Bar.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
-Bar.BorderSizePixel = 0
-Bar.Parent = Loading
+for i = 1, 35 do
+    local p = Instance.new("Frame", particles)
+    p.Size = UDim2.new(0, math.random(2,6), 0, math.random(20,40))
+    p.BackgroundColor3 = Color3.fromRGB(0,255,255)
+    p.BackgroundTransparency = 0.15
+    p.Position = UDim2.new(math.random(),0,math.random(),0)
+    TweenService:Create(p, TweenInfo.new(math.random(2,6), Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), {Position = UDim2.new(math.random(),0,math.random(),0)}):Play()
+end
 
-local tween = TweenService:Create(Bar, TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(1, 0, 1, 0)})
-tween:Play()
-tween.Completed:Wait()
-task.wait(0.3)
-ScreenGui:Destroy()
+local holder = Instance.new("Frame", gui)
+holder.Size = UDim2.new(0.9,0,0.22,0)
+holder.Position = UDim2.new(0.5,0,0.4,0)
+holder.AnchorPoint = Vector2.new(0.5,0.5)
+holder.BackgroundTransparency = 1
+
+local function layer(c,t,z)
+    local x = Instance.new("TextLabel", holder)
+    x.Size = UDim2.new(1,0,1,0)
+    x.BackgroundTransparency = 1
+    x.Font = Enum.Font.GothamBlack
+    x.TextScaled = true
+    x.TextColor3 = c
+    x.TextTransparency = t
+    x.ZIndex = z
+    x.Text = ""
+    return x
+end
+
+local main = layer(Color3.fromRGB(0,255,255), 0, 100)
+local glow = layer(Color3.fromRGB(255,255,255), 0.7, 90)
+local glow2 = layer(Color3.fromRGB(0,200,255), 0.4, 80)
+local outline = layer(Color3.fromRGB(0,80,120), 0.4, 70)
+local depth1 = layer(Color3.fromRGB(0,120,200), 0.6, 60)
+local depth2 = layer(Color3.fromRGB(255,255,255), 0.9, 50)
+
+local text = "L E X S   H U B"
+for i = 1, #text do
+    local s = text:sub(1, i)
+    main.Text = s
+    glow.Text = s
+    glow2.Text = s
+    outline.Text = s
+    depth1.Text = s
+    depth2.Text = s
+    task.wait(0.035)
+end
+
+local shock = Instance.new("ImageLabel", gui)
+shock.Size = UDim2.new(0,0,0,0)
+shock.AnchorPoint = Vector2.new(0.5,0.5)
+shock.Position = UDim2.new(0.5,0,0.45,0)
+shock.BackgroundTransparency = 1
+shock.Image = "rbxassetid://13850812317"
+shock.ImageColor3 = Color3.fromRGB(0,255,255)
+shock.ImageTransparency = 0.25
+
+task.wait(0.05)
+TweenService:Create(shock, TweenInfo.new(1.8, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(2.5,0,2.5,0), ImageTransparency = 1}):Play()
+
+local gframe = Instance.new("Frame", gui)
+gframe.Size = UDim2.new(1,0,1,0)
+gframe.BackgroundTransparency = 1
+
+task.spawn(function()
+    while gframe.Parent do
+        if math.random(1,9) == 1 then
+            local g = Instance.new("Frame", gframe)
+            g.Size = UDim2.new(1,0,0, math.random(10,30))
+            g.Position = UDim2.new(0,0, math.random(), 0)
+            g.BackgroundColor3 = Color3.fromRGB(0,255,255)
+            g.BackgroundTransparency = 0.65
+            TweenService:Create(g, TweenInfo.new(0.15), {BackgroundTransparency = 1}):Play()
+            task.wait(0.22)
+            g:Destroy()
+        end
+        task.wait(0.05)
+    end
+end)
+
+local logo = Instance.new("ImageLabel", gui)
+logo.Size = UDim2.new(0,0,0,0)
+logo.AnchorPoint = Vector2.new(0.5,0.5)
+logo.Position = UDim2.new(0.5,0,0.68,0)
+logo.BackgroundTransparency = 1
+logo.Image = streeLogo
+logo.ImageColor3 = Color3.fromRGB(0,255,255)
+
+local flash = Instance.new("Frame", gui)
+flash.Size = UDim2.new(1,0,1,0)
+flash.BackgroundColor3 = Color3.fromRGB(255,255,255)
+flash.BackgroundTransparency = 1
+flash.ZIndex = 999
+
+TweenService:Create(logo, TweenInfo.new(2, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Size = UDim2.new(0,300,0,300)}):Play()
+TweenService:Create(flash, TweenInfo.new(0.2, Enum.EasingStyle.Quad), {BackgroundTransparency = 0}):Play()
+task.wait(0.1)
+TweenService:Create(flash, TweenInfo.new(0.6, Enum.EasingStyle.Sine), {BackgroundTransparency = 1}):Play()
+
+local s1 = Instance.new("Sound", SoundService) s1.SoundId = "rbxassetid://535716488" s1.Volume = 2
+local s2 = Instance.new("Sound", SoundService) s2.SoundId = "rbxassetid://138081500" s2.Volume = 2
+local s3 = Instance.new("Sound", SoundService) s3.SoundId = "rbxassetid://9117908220" s3.Volume = 2
+local s4 = Instance.new("Sound", SoundService) s4.SoundId = "rbxassetid://1847853090" s4.Volume = 2
+task.delay(0.1, function() s1:Play() end)
+task.delay(0.3, function() s2:Play() end)
+task.delay(0.7, function() s3:Play() end)
+task.delay(1.2, function() s4:Play() end)
+
+TweenService:Create(logo, TweenInfo.new(14, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1), {Rotation = 360}):Play()
+
+local elec = Instance.new("Frame", gui)
+elec.Size = UDim2.new(1,0,1,0)
+elec.BackgroundTransparency = 1
+
+task.spawn(function()
+    while elec.Parent do
+        local spark = Instance.new("Frame", elec)
+        spark.Size = UDim2.new(0, math.random(6,14), 0, math.random(6,14))
+        spark.Position = UDim2.new(0.5 + math.random(-20,20)/100,0, 0.68 + math.random(-20,20)/100,0)
+        spark.BackgroundColor3 = Color3.fromRGB(0,255,255)
+        spark.BackgroundTransparency = 0
+        TweenService:Create(spark, TweenInfo.new(0.25), {BackgroundTransparency = 1, Position = spark.Position + UDim2.new(0,0,-0.05,0)}):Play()
+        task.wait(0.03)
+        spark:Destroy()
+    end
+end)
+
+local shockwave = Instance.new("ImageLabel", gui)
+shockwave.Size = UDim2.new(0,0,0,0)
+shockwave.AnchorPoint = Vector2.new(0.5,0.5)
+shockwave.Position = UDim2.new(0.5,0,0.45,0)
+shockwave.BackgroundTransparency = 1
+shockwave.Image = "rbxassetid://13850812317"
+shockwave.ImageColor3 = Color3.fromRGB(0,255,255)
+shockwave.ImageTransparency = 0.35
+
+TweenService:Create(shockwave, TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(2,0,2,0), ImageTransparency = 1}):Play()
+
+local elecBurst = Instance.new("Frame", gui)
+elecBurst.Size = UDim2.new(1,0,1,0)
+elecBurst.BackgroundTransparency = 1
+
+task.spawn(function()
+    for i = 1, 18 do
+        local b = Instance.new("Frame", elecBurst)
+        b.Size = UDim2.new(0, math.random(6,18), 0, math.random(6,18))
+        b.Position = UDim2.new(0.5 + math.random(-30,30)/100,0, 0.68 + math.random(-30,30)/100,0)
+        b.BackgroundColor3 = Color3.fromRGB(0,255,255)
+        b.BackgroundTransparency = 0
+        b.Rotation = math.random(-180,180)
+        TweenService:Create(b, TweenInfo.new(0.35, Enum.EasingStyle.Quad), {BackgroundTransparency = 1, Position = b.Position + UDim2.new(0, math.random(-40,40),0, math.random(-40,40))}):Play()
+        game.Debris:AddItem(b, 0.4)
+        task.wait(0.03)
+    end
+end)
+
+local depthShadow = Instance.new("TextLabel", holder)
+depthShadow.Size = UDim2.new(1,0,1,0)
+depthShadow.BackgroundTransparency = 1
+depthShadow.Font = Enum.Font.GothamBlack
+depthShadow.TextScaled = true
+depthShadow.TextColor3 = Color3.fromRGB(0,40,40)
+depthShadow.TextTransparency = 0.8
+depthShadow.ZIndex = 5
+depthShadow.Text = main.Text
+depthShadow.Position = UDim2.new(0,8,0,8)
+
+task.wait(2)
+TweenService:Create(blur, TweenInfo.new(2), {Size = 0}):Play()
+gui:Destroy()
 
 local gameData = gameScripts[placeId]
 local gameName = gameData and gameData.name or "Unknown Game"
@@ -142,18 +298,11 @@ if gameData then
         Icon = streeLogo,
         Duration = 3
     })
-    local scriptContent = game:HttpGet(scriptUrl)
-    if scriptContent and scriptContent ~= "" then
-        local loadedFunction, errorMessage = loadstring(scriptContent)
-        if loadedFunction then
-            loadedFunction()
-        else
-            StarterGui:SetCore("SendNotification", {
-                Title = "Lexs Hub",
-                Text = "Error loading script: " .. (errorMessage or "Unknown"),
-                Icon = streeLogo,
-                Duration = 4
-            })
+    local success, scriptContent = pcall(function() return game:HttpGet(scriptUrl) end)
+    if success and scriptContent and scriptContent ~= "" then
+        local f, e = loadstring(scriptContent)
+        if f then
+            f()
         end
     else
         StarterGui:SetCore("SendNotification", {
