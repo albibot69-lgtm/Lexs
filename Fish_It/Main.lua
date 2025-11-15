@@ -1542,3 +1542,7 @@ Player.CharacterAdded:Connect(function(char)
     humanoid.UseJumpPower = true
     humanoid.JumpPower = _G.CustomJumpPower or 50
 end)
+
+getgenv().LexsHubWindow = Window
+
+return Window
