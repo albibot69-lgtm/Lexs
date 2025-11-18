@@ -1083,6 +1083,66 @@ Tab6:Button({
 })
 
 Tab6:Section({
+    Title = "Player",
+    Icon = "user-search",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+Tab6:Divider()
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local function GetPlayerList()
+    local list = {}
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= LocalPlayer then
+            table.insert(list, plr.Name)
+        end
+    end
+    return list
+end
+
+local SelectedPlayer = nil
+
+local Dropdown = Tab6:Dropdown({
+    Title = "Teleport Target",
+    Values = GetPlayerList(),
+    Value = GetPlayerList()[1],
+    Callback = function(option)
+        SelectedPlayer = option
+    end
+})
+
+local TPButton = Tab6:Button({
+    Title = "Teleport to Player",
+    Locked = false,
+    Callback = function()
+        if not SelectedPlayer then
+            warn("Belum pilih player!")
+            return
+        end
+
+        local target = Players:FindFirstChild(SelectedPlayer)
+        if target and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
+            LocalPlayer.Character.HumanoidRootPart.CFrame =
+                target.Character.HumanoidRootPart.CFrame + Vector3.new(0, 3, 0)
+        else
+            warn("Player tidak valid atau tidak ada!")
+        end
+    end
+})
+
+local RefreshButton = Tab6:Button({
+    Title = "Refresh Player List",
+    Locked = false,
+    Callback = function()
+        Dropdown:Set(GetPlayerList())
+    end
+})
+
+Tab6:Section({
     Title = "Event Teleporter",
     Icon = "calendar",
     TextXAlignment = "Left",
