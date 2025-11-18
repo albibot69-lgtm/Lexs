@@ -29,7 +29,7 @@ local Window = WindUI:CreateWindow({
 })
 
 Window:Tag({
-    Title = "v0.0.3.7",
+    Title = "v0.0.3.8",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
