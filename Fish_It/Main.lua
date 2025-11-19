@@ -13,19 +13,12 @@ local Window = WindUI:CreateWindow({
     Title = "Lexs Hub",
     Icon = "rbxassetid://71947103252559",
     Author = "Freemium | Fish It",
-    Folder = "STREE_HUB",
+    Folder = "Lexs_HUB",
     Size = UDim2.fromOffset(260, 290),
     Transparent = true,
     Theme = "Dark",
     SideBarWidth = 170,
     HasOutline = true,
-    User = {
-        Enabled = true,
-        Anonymous = true,
-        Callback = function()
-            WindUI:SetTheme("Dark")
-        end,
-    },
 })
 
 Window:EditOpenButton({
@@ -43,7 +36,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "v0.0.3.5",
+    Title = "v0.0.5.5",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -74,7 +67,7 @@ Tab1:Button({
     Desc = "click to copy link",
     Callback = function()
         if setclipboard then
-            setclipboard("https://discord.gg/Tsa7nGXPUw")
+            setclipboard("https://discord.gg/YYbw8KM5x4")
         end
     end
 })
@@ -554,13 +547,6 @@ Tab3:Toggle({
     end
 })
 
-Tab3:Section({
-    Title = "Radar",
-    Icon = "radar",
-    TextXAlignment = "Left",
-    TextSize = 17
-})
-
 Tab3:Divider()
 
 Tab3:Toggle({
@@ -604,153 +590,6 @@ Tab3:Toggle({
     end
 })
 
-Tab3:Section({     
-    Title = "Gameplay",
-    Icon = "gamepad",
-    TextXAlignment = "Left",
-    TextSize = 17,    
-})
-
-Tab3:Divider()
-
-local Lighting = game:GetService("Lighting")
-local Workspace = game:GetService("Workspace")
-local Terrain = Workspace:FindFirstChildOfClass("Terrain")
-local Players = game:GetService("Players")
-local StarterGui = game:GetService("StarterGui")
-
-local function notify(text, color)
-	pcall(function()
-		StarterGui:SetCore("ChatMakeSystemMessage", {
-			Text = "[FPS BOOST] " .. text,
-			Color = color or Color3.fromRGB(150,255,150),
-			Font = Enum.Font.SourceSansBold,
-			FontSize = Enum.FontSize.Size24
-		})
-	end)
-end
-
-local function applyFPSBoost(state)
-	if state then
-		---------------------------------------------------
-		-- 🟢 AKTIFKAN MODE BOOST
-		---------------------------------------------------
-		notify("Mode Ultra Aktif ✅", Color3.fromRGB(100,255,100))
-		print("[FPS BOOST] Mode Ultra Aktif")
-
-		-- Hapus efek Lighting berat
-		for _, v in ipairs(Lighting:GetChildren()) do
-			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect")
-				or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("Atmosphere")
-				or v:IsA("Sky") or v:IsA("Clouds") or v:IsA("PostEffect") then
-				v.Parent = nil
-			end
-		end
-
-		-- Nonaktifkan Lighting kompleks
-		Lighting.GlobalShadows = false
-		Lighting.FogEnd = 1e6
-		Lighting.Brightness = 1
-		Lighting.EnvironmentDiffuseScale = 0
-		Lighting.EnvironmentSpecularScale = 0
-		Lighting.OutdoorAmbient = Color3.new(1,1,1)
-
-		-- Terrain lebih ringan
-		if Terrain then
-			Terrain.WaterWaveSize = 0
-			Terrain.WaterWaveSpeed = 0
-			Terrain.WaterReflectance = 0
-			Terrain.WaterTransparency = 1
-		end
-
-		-- Bersihkan workspace
-		for _, obj in ipairs(Workspace:GetDescendants()) do
-			-- Hilangkan texture dan decal
-			if obj:IsA("Decal") or obj:IsA("Texture") then
-				obj.Transparency = 1
-			end
-
-			-- Matikan efek visual
-			if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Fire")
-				or obj:IsA("Smoke") or obj:IsA("Sparkles") then
-				obj.Enabled = false
-			end
-
-			-- Hapus efek PBR (SurfaceAppearance)
-			if obj:IsA("SurfaceAppearance") then
-				obj.Parent = nil
-			end
-
-			-- Nonaktifkan shadow dan ubah material ke Plastic
-			if obj:IsA("BasePart") then
-				obj.CastShadow = false
-				pcall(function() obj.Material = Enum.Material.Plastic end)
-			end
-		end
-		
-		local char = Players.LocalPlayer.Character
-		if char then
-			for _, acc in ipairs(char:GetChildren()) do
-				if acc:IsA("Accessory") then
-					acc:Destroy()
-				end
-			end
-			if char:FindFirstChild("Animate") then
-				char.Animate.Disabled = true
-			end
-		end
-		
-		workspace.StreamingEnabled = true
-		workspace.StreamingMinRadius = 64
-		workspace.StreamingTargetRadius = 128
-		
-		settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
-		
-		collectgarbage("collect")
-
-	else
-		---------------------------------------------------
-		-- 🔴 MATIKAN MODE BOOST
-		---------------------------------------------------
-		notify("Mode Ultra Nonaktif ❌", Color3.fromRGB(255,120,120))
-		print("[FPS BOOST] Mode Ultra Nonaktif")
-
-		-- Pulihkan Lighting aman
-		Lighting.GlobalShadows = true
-		Lighting.FogEnd = 1000
-		Lighting.Brightness = 2
-		Lighting.EnvironmentDiffuseScale = 1
-		Lighting.EnvironmentSpecularScale = 1
-		Lighting.OutdoorAmbient = Color3.new(0.5,0.5,0.5)
-
-		if Terrain then
-			Terrain.WaterWaveSize = 0.15
-			Terrain.WaterWaveSpeed = 10
-			Terrain.WaterReflectance = 1
-			Terrain.WaterTransparency = 0.5
-		end
-
-		settings().Rendering.QualityLevel = Enum.QualityLevel.Automatic
-
-		-- Aktifkan kembali animasi karakter
-		local char = Players.LocalPlayer.Character
-		if char and char:FindFirstChild("Animate") then
-			char.Animate.Disabled = false
-		end
-	end
-end
-
-
-local Toggle = Tab3:Toggle({
-	Title = "FPS Boost",
-	Icon = false,
-	Type = false,
-	Value = false, -- default: off
-	Callback = function(state)
-		applyFPSBoost(state)
-	end
-})
-
 local Tab4 = Window:Tab({
     Title = "Auto",
     Icon = "gauge",
@@ -783,62 +622,6 @@ Tab4:Toggle({
 })
 
 Tab4:Slider({ Title = "Sell Delay", Step = 1, Value = { Min = 1, Max = 120, Default = 30 }, Callback = function(v) _G.SellDelay = v end })
-
-Tab4:Section({     
-    Title = "Enchant",
-    Icon = "flask-conical",
-    TextXAlignment = "Left",
-    TextSize = 17,
-})
-
-Tab4:Divider()
-
-local Toggle = Tab4:Toggle({
-    Title = "Auto Enchant",
-    Desc = "Gacha to get good enchants (No Work For Now)",
-    Icon = false,
-    Type = false,
-    Default = false,
-    Callback = function(state)
-        if state then
-            _G.AutoEnchant = true
-            print("Auto Enchant: ON")
-
-            local Enchants = {
-                {Name = "Stargazer I", Chance = 7},
-                {Name = "Shiny I", Chance = 5},
-                {Name = "Experienced I", Chance = 7},
-                {Name = "Storm Hunter I", Chance = 7},
-                {Name = "Perfection", Chance = 2},
-            }
-
-            local function RollEnchant()
-                local total = 0
-                for _, e in ipairs(Enchants) do
-                    total += e.Chance
-                end
-                local roll = math.random(1, total)
-                for _, e in ipairs(Enchants) do
-                    roll -= e.Chance
-                    if roll <= 0 then
-                        return e.Name
-                    end
-                end
-            end
-
-            task.spawn(function()
-                while _G.AutoEnchant do
-                    local result = RollEnchant()
-                    print("🎲 You got enchant:", result)
-                    task.wait(1.5)
-                end
-            end)
-        else
-            _G.AutoEnchant = false
-            print("Auto Enchant: OFF")
-        end
-    end
-})
 
 local Tab5 = Window:Tab({
     Title = "Shop",
@@ -991,9 +774,9 @@ Tab5:Button({
     end  
 })
 
-local Tab5Section = Tab5:Section({ 
-    Title = "Buy Weathers",
-    Icon = "cloud",
+Tab5:Section({
+    Title = "Auto Buy Weather Event",
+    Icon = "cloud-drizzle",
     TextXAlignment = "Left",
     TextSize = 17,
 })
@@ -1248,6 +1031,71 @@ Tab6:Button({
 })
 
 Tab6:Section({
+    Title = "Player",
+    Icon = "user-search",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+Tab6:Divider()
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local function GetPlayerList()
+    local list = {}
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= LocalPlayer then
+            table.insert(list, plr.Name)
+        end
+    end
+    return list
+end
+
+local SelectedPlayer = nil
+
+local Dropdown = Tab6:Dropdown({
+    Title = "Teleport Target",
+    Values = GetPlayerList(),
+    Value = GetPlayerList()[1],
+    Callback = function(option)
+        SelectedPlayer = option
+    end
+})
+
+local function RefreshDropdown()
+    local list = GetPlayerList()
+    Dropdown:Set(list) -- update list pilihan
+    Dropdown:SetValue(list[1] or nil) -- atur value default baru
+    SelectedPlayer = list[1] or nil
+end
+
+local TPButton = Tab6:Button({
+    Title = "Teleport to Player",
+    Locked = false,
+    Callback = function()
+        if not SelectedPlayer then
+            warn("Belum pilih player!")
+            return
+        end
+
+        local target = Players:FindFirstChild(SelectedPlayer)
+        if target and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
+            LocalPlayer.Character.HumanoidRootPart.CFrame =
+                target.Character.HumanoidRootPart.CFrame + Vector3.new(0, 3, 0)
+        else
+            warn("Player tidak valid atau tidak ada!")
+        end
+    end
+})
+
+local RefreshButton = Tab6:Button({
+    Title = "Refresh Player List",
+    Locked = false,
+    Callback = RefreshDropdown
+})
+
+Tab6:Section({
     Title = "Event Teleporter",
     Icon = "calendar",
     TextXAlignment = "Left",
@@ -1256,44 +1104,180 @@ Tab6:Section({
 
 Tab6:Divider()
 
-local Event_Locations = {
-    ["Black Hole"] = Vector3.new(883, -1.4, 2542),
-    ["Ghost Shark Hunt"] = Vector3.new(489.559, -1.35, 25.406),
-    ["Megalodon Hunt"] = Vector3.new(-1076.3, -1.4, 1676.2),
-    ["Meteor Rain"] = Vector3.new(383, -1.4, 2452),
-    ["Shark Hunt"] = Vector3.new(1.65, -1.35, 2095.725),
-    ["Storm Hunt"] = Vector3.new(1735.85, -1.4, -208.425),
-    ["Worm Hunt"] = Vector3.new(1591.55, -1.4, -105.925),
+local Workspace = game:GetService("Workspace")
+local StarterGui = game:GetService("StarterGui")
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+player.CharacterAdded:Connect(function(c)
+	character = c
+	hrp = c:WaitForChild("HumanoidRootPart")
+end)
+
+local megCheckRadius = 150
+
+local autoEventTPEnabled = false
+local selectedEvents = {}
+local createdEventPlatform = nil
+
+local eventData = {
+	["Worm Hunt"] = {
+		TargetName = "Model",
+		Locations = {
+			Vector3.new(2190.85, -1.4, 97.575), 
+			Vector3.new(-2450.679, -1.4, 139.731), 
+			Vector3.new(-267.479, -1.4, 5188.531),
+			Vector3.new(-327, -1.4, 2422)
+		},
+		PlatformY = 107,
+		Priority = 1,
+		Icon = "fish"
+	},
+	["Megalodon Hunt"] = {
+		TargetName = "Megalodon Hunt",
+		Locations = {
+			Vector3.new(-1076.3, -1.4, 1676.2),
+			Vector3.new(-1191.8, -1.4, 3597.3),
+			Vector3.new(412.7, -1.4, 4134.4),
+		},
+		PlatformY = 107,
+		Priority = 2,
+		Icon = "anchor"
+	},
+	["Ghost Shark Hunt"] = {
+		TargetName = "Ghost Shark Hunt",
+		Locations = {
+			Vector3.new(489.559, -1.35, 25.406), 
+			Vector3.new(-1358.216, -1.35, 4100.556), 
+			Vector3.new(627.859, -1.35, 3798.081)
+		},
+		PlatformY = 107,
+		Priority = 3,
+		Icon = "fish"
+	},
+	["Shark Hunt"] = {
+		TargetName = "Shark Hunt",
+		Locations = {
+			Vector3.new(1.65, -1.35, 2095.725),
+			Vector3.new(1369.95, -1.35, 930.125),
+			Vector3.new(-1585.5, -1.35, 1242.875),
+			Vector3.new(-1896.8, -1.35, 2634.375)
+		},
+		PlatformY = 107,
+		Priority = 4,
+		Icon = "fish"
+	},
 }
 
-local ActiveEvent = nil
+local eventNames = {}
+for name in pairs(eventData) do
+	table.insert(eventNames, name)
+end
 
-local EventDropdown = Tab6:Dropdown({
-    Title = "Select Event",
-    Values = (function()
-        local keys = {}
-        for name in pairs(Event_Locations) do
-            table.insert(keys, name)
-        end
-        table.sort(keys)
-        return keys
-    end)(),
-    Callback = function(Value)
-        ActiveEvent = Value
-    end
+local function destroyEventPlatform()
+	if createdEventPlatform and createdEventPlatform.Parent then
+		createdEventPlatform:Destroy()
+		createdEventPlatform = nil
+	end
+end
+
+local function createAndTeleportToPlatform(targetPos, y)
+	destroyEventPlatform()
+
+	local platform = Instance.new("Part")
+	platform.Size = Vector3.new(5, 1, 5)
+	platform.Position = Vector3.new(targetPos.X, y, targetPos.Z)
+	platform.Anchored = true
+	platform.Transparency = 1
+	platform.CanCollide = true
+	platform.Name = "EventPlatform"
+	platform.Parent = Workspace
+	createdEventPlatform = platform
+
+	hrp.CFrame = CFrame.new(platform.Position + Vector3.new(0, 3, 0))
+end
+
+local function runMultiEventTP()
+	while autoEventTPEnabled do
+		local sorted = {}
+		for _, e in ipairs(selectedEvents) do
+			if eventData[e] then
+				table.insert(sorted, eventData[e])
+			end
+		end
+		table.sort(sorted, function(a, b) return a.Priority < b.Priority end)
+
+		for _, config in ipairs(sorted) do
+			local foundTarget, foundPos = nil, nil
+
+			if config.TargetName == "Model" then
+				local menuRings = Workspace:FindFirstChild("!!! MENU RINGS")
+				if menuRings then
+					for _, props in ipairs(menuRings:GetChildren()) do
+						if props.Name == "Props" then
+							local model = props:FindFirstChild("Model")
+							if model and model.PrimaryPart then
+								for _, loc in ipairs(config.Locations) do
+									if (model.PrimaryPart.Position - loc).Magnitude <= megCheckRadius then
+										foundTarget = model
+										foundPos = model.PrimaryPart.Position
+										break
+									end
+								end
+							end
+						end
+						if foundTarget then break end
+					end
+				end
+			else
+				for _, loc in ipairs(config.Locations) do
+					for _, d in ipairs(Workspace:GetDescendants()) do
+						if d.Name == config.TargetName then
+							local pos = d:IsA("BasePart") and d.Position or (d.PrimaryPart and d.PrimaryPart.Position)
+							if pos and (pos - loc).Magnitude <= megCheckRadius then
+								foundTarget = d
+								foundPos = pos
+								break
+							end
+						end
+					end
+					if foundTarget then break end
+				end
+			end
+
+			if foundTarget and foundPos then
+				createAndTeleportToPlatform(foundPos, config.PlatformY)
+			end
+		end
+		task.wait(0.05)
+	end
+	destroyEventPlatform()
+end
+
+Tab6:Dropdown({
+	Title = "Select Events",
+	Values = eventNames,
+	Multi = true,
+	AllowNone = true,
+	Callback = function(values)
+		selectedEvents = values
+		print("[EventTP] Selected Events:", table.concat(values, ", "))
+	end
 })
 
-Tab6:Button({
-    Title = "Teleport to Event",
-    Callback = function()
-        local Player = game.Players.LocalPlayer
-        local Char = Player.Character or Player.CharacterAdded:Wait()
-        local HRP = Char:FindFirstChild("HumanoidRootPart")
-        if not HRP then return end
-        if ActiveEvent and Event_Locations[ActiveEvent] then
-            HRP.CFrame = CFrame.new(Event_Locations[ActiveEvent])
-        end
-    end
+Tab6:Toggle({
+	Title = "Auto Event",
+	Icon = false,
+	Type = false,
+	Value = false,
+	Callback = function(state)
+		autoEventTPEnabled = state
+		if state then
+			task.spawn(runMultiEventTP)
+		else
+		end
+	end
 })
 
 local Tab7 = Window:Tab({
@@ -1371,6 +1355,363 @@ local Toggle = Tab7:Toggle({
                     end
                 end
             end)
+        end
+    end
+})
+
+Tab7:Section({ 
+    Title = "Graphics In Game",
+    Icon = "chart-bar",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+Tab7:Divider()
+
+local Lighting = game:GetService("Lighting")
+local Workspace = game:GetService("Workspace")
+local Terrain = Workspace:FindFirstChildOfClass("Terrain")
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+
+local function notify(text, color)
+	pcall(function()
+		StarterGui:SetCore("ChatMakeSystemMessage", {
+			Text = "[FPS BOOST] " .. text,
+			Color = color or Color3.fromRGB(150,255,150),
+			Font = Enum.Font.SourceSansBold,
+			FontSize = Enum.FontSize.Size24
+		})
+	end)
+end
+
+local function applyFPSBoost(state)
+	if state then
+		---------------------------------------------------
+		-- 🟢 AKTIFKAN MODE BOOST
+		---------------------------------------------------
+		notify("Mode Ultra Aktif ✅", Color3.fromRGB(100,255,100))
+		print("[FPS BOOST] Mode Ultra Aktif")
+
+		-- Hapus efek Lighting berat
+		for _, v in ipairs(Lighting:GetChildren()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect")
+				or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("Atmosphere")
+				or v:IsA("Sky") or v:IsA("Clouds") or v:IsA("PostEffect") then
+				v.Parent = nil
+			end
+		end
+
+		-- Nonaktifkan Lighting kompleks
+		Lighting.GlobalShadows = false
+		Lighting.FogEnd = 1e6
+		Lighting.Brightness = 1
+		Lighting.EnvironmentDiffuseScale = 0
+		Lighting.EnvironmentSpecularScale = 0
+		Lighting.OutdoorAmbient = Color3.new(1,1,1)
+
+		-- Terrain lebih ringan
+		if Terrain then
+			Terrain.WaterWaveSize = 0
+			Terrain.WaterWaveSpeed = 0
+			Terrain.WaterReflectance = 0
+			Terrain.WaterTransparency = 1
+		end
+
+		-- Bersihkan workspace
+		for _, obj in ipairs(Workspace:GetDescendants()) do
+			-- Hilangkan texture dan decal
+			if obj:IsA("Decal") or obj:IsA("Texture") then
+				obj.Transparency = 1
+			end
+
+			-- Matikan efek visual
+			if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Fire")
+				or obj:IsA("Smoke") or obj:IsA("Sparkles") then
+				obj.Enabled = false
+			end
+
+			-- Hapus efek PBR (SurfaceAppearance)
+			if obj:IsA("SurfaceAppearance") then
+				obj.Parent = nil
+			end
+
+			-- Nonaktifkan shadow dan ubah material ke Plastic
+			if obj:IsA("BasePart") then
+				obj.CastShadow = false
+				pcall(function() obj.Material = Enum.Material.Plastic end)
+			end
+		end
+		
+		local char = Players.LocalPlayer.Character
+		if char then
+			for _, acc in ipairs(char:GetChildren()) do
+				if acc:IsA("Accessory") then
+					acc:Destroy()
+				end
+			end
+			if char:FindFirstChild("Animate") then
+				char.Animate.Disabled = true
+			end
+		end
+		
+		workspace.StreamingEnabled = true
+		workspace.StreamingMinRadius = 64
+		workspace.StreamingTargetRadius = 128
+		
+		settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+		
+		collectgarbage("collect")
+
+	else
+		---------------------------------------------------
+		-- 🔴 MATIKAN MODE BOOST
+		---------------------------------------------------
+		notify("Mode Ultra Nonaktif ❌", Color3.fromRGB(255,120,120))
+		print("[FPS BOOST] Mode Ultra Nonaktif")
+
+		-- Pulihkan Lighting aman
+		Lighting.GlobalShadows = true
+		Lighting.FogEnd = 1000
+		Lighting.Brightness = 2
+		Lighting.EnvironmentDiffuseScale = 1
+		Lighting.EnvironmentSpecularScale = 1
+		Lighting.OutdoorAmbient = Color3.new(0.5,0.5,0.5)
+
+		if Terrain then
+			Terrain.WaterWaveSize = 0.15
+			Terrain.WaterWaveSpeed = 10
+			Terrain.WaterReflectance = 1
+			Terrain.WaterTransparency = 0.5
+		end
+
+		settings().Rendering.QualityLevel = Enum.QualityLevel.Automatic
+
+		-- Aktifkan kembali animasi karakter
+		local char = Players.LocalPlayer.Character
+		if char and char:FindFirstChild("Animate") then
+			char.Animate.Disabled = false
+		end
+	end
+end
+
+
+local Toggle = Tab7:Toggle({
+	Title = "FPS Boost",
+	Icon = false,
+	Type = false,
+	Value = false,
+	Callback = function(state)
+		applyFPSBoost(state)
+	end
+})
+
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("CoreGui")
+local player = Players.LocalPlayer
+local PlayerGui = player:WaitForChild("PlayerGui")
+
+--// State
+local blockerEnabled = false
+local guiConnections = {}
+
+--// Fungsi blokir GUI
+local function blockGuiObject(obj)
+    if not blockerEnabled then return end
+    if obj:IsA("ScreenGui") or obj:IsA("BillboardGui") or obj:IsA("SurfaceGui") then
+        local name = obj.Name:lower()
+        if string.find(name, "notif") 
+        or string.find(name, "popup")
+        or string.find(name, "you got")
+        or string.find(name, "drop")
+        or string.find(name, "reward")
+        or string.find(name, "fish")
+        or string.find(name, "catch") then
+            task.wait()
+            pcall(function()
+                obj.Enabled = false
+                obj:Destroy()
+            end)
+            print("[Blocked Game Notification]:", obj.Name)
+        end
+    end
+end
+
+--// Toggle MacLib
+local Toggle = Tab7:Toggle({
+    Title = "Hide All Notifications",
+    Desc = "Hide All Notifications Fish Caught",
+    Icon = false,
+    Type = false,
+    Value = false,
+    Callback = function(state)
+        blockerEnabled = state
+
+        if state then
+            print("[🛑 Game Notification Blocker Enabled]")
+
+            -- Hapus GUI yang sudah ada
+            for _, gui in ipairs(PlayerGui:GetChildren()) do
+                blockGuiObject(gui)
+            end
+            for _, gui in ipairs(CoreGui:GetChildren()) do
+                blockGuiObject(gui)
+            end
+
+            -- Awasi GUI baru
+            guiConnections["PlayerGui"] = PlayerGui.ChildAdded:Connect(blockGuiObject)
+            guiConnections["CoreGui"] = CoreGui.ChildAdded:Connect(blockGuiObject)
+
+        else
+            print("[🔔 Game Notification Blocker Disabled]")
+            for _, conn in pairs(guiConnections) do
+                conn:Disconnect()
+            end
+            guiConnections = {}
+        end
+    end
+})
+
+--// Services
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+
+--// GUI placeholder
+local whiteScreen = nil
+
+--// Toggle MacLib
+local Toggle = Tab7:Toggle({
+    Title = "Disable 3D Rendering",
+    Icon = false,
+    Type = false,
+    Value = false,
+    Callback = function(state)
+        if state then
+            print("[🛑 3D Rendering Disabled + White Screen Enabled]")
+
+            -- Matikan rendering 3D
+            pcall(function()
+                RunService:Set3dRenderingEnabled(false)
+            end)
+
+            -- Buat layar putih full
+            whiteScreen = Instance.new("ScreenGui")
+            whiteScreen.IgnoreGuiInset = true
+            whiteScreen.ResetOnSpawn = false
+            whiteScreen.Name = "WhiteScreenOverlay"
+            whiteScreen.Parent = PlayerGui
+
+            local frame = Instance.new("Frame")
+            frame.Size = UDim2.new(1, 0, 1, 0)
+            frame.Position = UDim2.new(0, 0, 0, 0)
+            frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            frame.BorderSizePixel = 0
+            frame.Parent = whiteScreen
+
+        else
+            print("[✅ 3D Rendering Re-enabled + White Screen Removed]")
+
+            -- Aktifkan render kembali
+            pcall(function()
+                RunService:Set3dRenderingEnabled(true)
+            end)
+
+            -- Hapus layar putih
+            if whiteScreen then
+                whiteScreen:Destroy()
+                whiteScreen = nil
+            end
+        end
+    end
+})
+
+local Workspace = game:GetService("Workspace")
+local Lighting = game:GetService("Lighting")
+
+-- State
+local vfxDisabled = false
+local storedVFX = {}
+
+-- Daftar tipe efek yang ingin dinonaktifkan
+local vfxClasses = {
+	"ParticleEmitter", "Beam", "Trail", "Smoke", "Fire", "Sparkles", "Explosion",
+	"PointLight", "SpotLight", "SurfaceLight", "Highlight"
+}
+
+-- Efek Lighting pasca-proses
+local lightingEffects = {
+	"BloomEffect", "SunRaysEffect", "ColorCorrectionEffect", "DepthOfFieldEffect", "Atmosphere"
+}
+
+-- Nonaktifkan semua efek visual
+local function disableAllVFX()
+	for _, obj in ipairs(Workspace:GetDescendants()) do
+		if table.find(vfxClasses, obj.ClassName) then
+			if obj.Enabled ~= nil and obj.Enabled == true then
+				storedVFX[obj] = true
+				obj.Enabled = false
+			end
+		end
+	end
+
+	-- Matikan efek di Lighting
+	for _, effName in ipairs(lightingEffects) do
+		local eff = Lighting:FindFirstChildOfClass(effName)
+		if eff and eff.Enabled ~= nil then
+			storedVFX[eff] = true
+			eff.Enabled = false
+		end
+	end
+
+	print("[🧊 All VFX Disabled]")
+end
+
+-- Aktifkan kembali efek visual
+local function enableAllVFX()
+	for obj in pairs(storedVFX) do
+		if obj and obj.Parent and obj.Enabled ~= nil then
+			obj.Enabled = true
+		end
+	end
+	storedVFX = {}
+	print("[✨ All VFX Restored]")
+end
+
+-- Toggle UI
+local Toggle = Tab7:Toggle({
+    Title = "Hide All VFX",
+    Icon = false,
+    Type = false,
+    Value = false,
+    Callback = function(state)
+        vfxDisabled = state
+
+        if state then
+            disableAllVFX()
+
+            -- Jika efek baru muncul setelah toggle aktif
+            Workspace.DescendantAdded:Connect(function(obj)
+                if vfxDisabled and table.find(vfxClasses, obj.ClassName) then
+                    task.wait()
+                    if obj.Enabled ~= nil then
+                        obj.Enabled = false
+                    end
+                end
+            end)
+
+            Lighting.DescendantAdded:Connect(function(obj)
+                if vfxDisabled and table.find(lightingEffects, obj.ClassName) then
+                    task.wait()
+                    if obj.Enabled ~= nil then
+                        obj.Enabled = false
+                    end
+                end
+            end)
+
+        else
+            enableAllVFX()
         end
     end
 })
