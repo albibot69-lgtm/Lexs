@@ -29,7 +29,7 @@ local Window = WindUI:CreateWindow({
 })
 
 Window:Tag({
-    Title = "v0.0.3.8",
+    Title = "v0.0.3.7",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -1138,7 +1138,37 @@ local RefreshButton = Tab6:Button({
     Title = "Refresh Player List",
     Locked = false,
     Callback = function()
-        Dropdown:Set(GetPlayerList())
+        local newList = GetPlayerList()
+        local success = false
+        
+        -- Update dropdown
+        if Dropdown.SetValues then
+            Dropdown:SetValues(newList)
+            success = true
+        elseif Dropdown.Refresh then
+            Dropdown:Refresh(newList)
+            success = true
+        elseif Dropdown.Update then
+            Dropdown:Update(newList)
+            success = true
+        else
+            warn("Function update dropdown tidak ditemukan!")
+        end
+        
+        -- Set ulang ke player pertama kalau ada
+        if newList[1] then
+            SelectedPlayer = newList[1]
+            if Dropdown.Set then
+                Dropdown:Set(newList[1])
+            end
+        end
+
+        -- Print status hasil refresh
+        if success then
+            print("✓ Pemain berhasil di-refresh (" .. #newList .. " pemain ditemukan)")
+        else
+            print("✗ Gagal refresh daftar pemain")
+        end
     end
 })
 
