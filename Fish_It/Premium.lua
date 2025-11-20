@@ -29,9 +29,112 @@ local Window = WindUI:CreateWindow({
 })
 
 Window:Tag({
-    Title = "v0.0.3.7",
+    Title = "V0.0.6.7",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
+})
+
+local executorName = "Unknown"
+if identifyexecutor then
+    executorName = identifyexecutor()
+elseif getexecutorname then
+    executorName = getexecutorname()
+elseif executor then
+    executorName = executor
+end
+
+-- Pilih warna berdasarkan executor
+local executorColor = Color3.fromRGB(200, 200, 200) -- Default (abu-abu)
+
+if executorName:lower():find("flux") then
+    executorColor = Color3.fromHex("#30ff6a")     -- Fluxus
+elseif executorName:lower():find("delta") then
+    executorColor = Color3.fromHex("#38b6ff")     -- Delta
+elseif executorName:lower():find("arceus") then
+    executorColor = Color3.fromHex("#a03cff")     -- Arceus X
+elseif executorName:lower():find("krampus") or executorName:lower():find("oxygen") then
+    executorColor = Color3.fromHex("#ff3838")     -- Krampus / Oxygen
+elseif executorName:lower():find("volcano") then
+    executorColor = Color3.fromHex("#ff8c00")     -- Volcano
+elseif executorName:lower():find("synapse") or executorName:lower():find("script") or executorName:lower():find("krypton") then
+    executorColor = Color3.fromHex("#ffd700")     -- Synapse / Script-Ware / Krypton
+elseif executorName:lower():find("wave") then
+    executorColor = Color3.fromHex("#00e5ff")     -- Wave
+elseif executorName:lower():find("zenith") then
+    executorColor = Color3.fromHex("#ff00ff")     -- Zenith
+elseif executorName:lower():find("seliware") then
+    executorColor = Color3.fromHex("#00ffa2")     -- Seliware
+elseif executorName:lower():find("krnl") then
+    executorColor = Color3.fromHex("#1e90ff")     -- KRNL
+elseif executorName:lower():find("trigon") then
+    executorColor = Color3.fromHex("#ff007f")     -- Trigon
+elseif executorName:lower():find("nihon") then
+    executorColor = Color3.fromHex("#8a2be2")     -- Nihon
+elseif executorName:lower():find("celery") then
+    executorColor = Color3.fromHex("#4caf50")     -- Celery
+elseif executorName:lower():find("lunar") then
+    executorColor = Color3.fromHex("#8080ff")     -- Lunar
+elseif executorName:lower():find("valyse") then
+    executorColor = Color3.fromHex("#ff1493")     -- Valyse
+elseif executorName:lower():find("vega") then
+    executorColor = Color3.fromHex("#4682b4")     -- Vega X
+elseif executorName:lower():find("electron") then
+    executorColor = Color3.fromHex("#7fffd4")     -- Electron
+elseif executorName:lower():find("awp") then
+    executorColor = Color3.fromHex("#ff005e") -- AWP (merah neon ke pink)
+elseif executorName:lower():find("bunni") or executorName:lower():find("bunni.lol") then
+    executorColor = Color3.fromHex("#ff69b4") -- Bunni.lol (Hot Pink / Neon Pink)
+end
+
+-- Buat Tag UI
+local TagUI = Window:Tag({
+    Title = "EXECUTOR | " .. tostring(executorName),
+    Icon = "github",
+    Color = executorColor,
+    Radius = 0
+})
+
+local Dialog = Window:Dialog({
+    Icon = "circle-plus",
+    Title = "Join Discord",
+    Content = "For Update",
+    Buttons = {
+        {
+            Title = "Copy Discord",
+            Callback = function()
+                if setclipboard then
+                    setclipboard("https://discord.gg/YYbw8KM5x4")
+                    
+                    -- Notify jika berhasil
+                    WindUI:Notify({
+                        Title = "Copied Successfully!",
+                        Content = "The Discord link has been copied to the clipboard.",
+                        Duration = 3,
+                        Icon = "check"
+                    })
+                else
+                    -- Notify jika executor tidak support
+                    WindUI:Notify({
+                        Title = "Fail!",
+                        Content = "Your executor does not support the auto-copy command.",
+                        Duration = 3,
+                        Icon = "x"
+                    })
+                end
+            end,
+        },
+        {
+            Title = "No",
+            Callback = function()
+                WindUI:Notify({
+                    Title = "Canceled",
+                    Content = "You cancel the action.",
+                    Duration = 3,
+                    Icon = "x"
+                })
+            end,
+        },
+    },
 })
 
 WindUI:Notify({
@@ -72,6 +175,8 @@ Tab1:Section({
     TextXAlignment = "Left",
     TextSize = 17,
 })
+
+Tab1:Divider()
 
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
@@ -1163,11 +1268,23 @@ local RefreshButton = Tab6:Button({
             end
         end
 
-        -- Print status hasil refresh
+        -- Notifikasi + print status refresh
         if success then
-            print("✓ Pemain berhasil di-refresh (" .. #newList .. " pemain ditemukan)")
+            print("✓ Player successfully refreshed (" .. #newList .. " player found)")
+            WindUI:Notify({
+                Title = "Refresh Successful!",
+                Content = tostring(#newList) .. " player found",
+                Duration = 3,
+                Icon = "check"
+            })
         else
-            print("✗ Gagal refresh daftar pemain")
+            print("✗ Failed to refresh player list")
+            WindUI:Notify({
+                Title = "Refresh Failed",
+                Content = "Unable to update player list",
+                Duration = 3,
+                Icon = "x"
+            })
         end
     end
 })
