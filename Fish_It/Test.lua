@@ -391,187 +391,96 @@ player.CharacterAdded:Connect(function(char)
 end)
 
 _G.AutoFishing = false
-_G.AutoEquipRod = false
-_G.AutoSell = false
-_G.Radar = false
-_G.Instant = false
-_G.SellDelay = _G.SellDelay or 30
-_G.CallMinDelay = _G.CallMinDelay or 0.12
-_G.CallBackoff = _G.CallBackoff or 1.5
+_G.CancelDelay = 1.8
+_G.CompletedDelay = 1.6
 
-local lastCall = {}
-local function safeCall(key, fn)
-    local now = os.clock()
-    local minDelay = _G.CallMinDelay or 0.12
-    local backoff = _G.CallBackoff or 1.5
-    if lastCall[key] and now - lastCall[key] < minDelay then
-        task.wait(minDelay - (now - lastCall[key]))
-    end
-    local ok, res = pcall(fn)
-    lastCall[key] = os.clock()
-    if not ok then
-        local msg = tostring(res):lower()
-        if msg:find("429") or msg:find("too many requests") then
-            task.wait(backoff)
-        else
+local RS = game:GetService("ReplicatedStorage")
+local Net = RS.Packages._Index:FindFirstChild("sleitnick_net@0.2.0").net
+
+local RE = {
+    Equip = Net:FindFirstChild("RE/EquipToolFromHotbar"),
+    Completed = Net:FindFirstChild("RE/FishingCompleted")
+}
+
+local RF = {
+    Cancel = Net:FindFirstChild("RF/CancelFishingInputs"),
+    Charge = Net:FindFirstChild("RF/ChargeFishingRod"),
+    Request = Net:FindFirstChild("RF/RequestFishingMinigameStarted")
+}
+
+local function EquipRod()
+    pcall(function()
+        RE.Equip:FireServer(1)
+    end)
+end
+
+local function ChargeRod()
+    pcall(function()
+        RF.Charge:InvokeServer(math.huge)
+    end)
+end
+
+local function RequestGame()
+    pcall(function()
+        RF.Request:InvokeServer(-139.63, 0.996)
+    end)
+end
+
+local function Completed(minDelay)
+    pcall(function()
+        task.wait(minDelay or _G.CompletedDelay)
+        RE.Completed:FireServer()
+    end)
+end
+
+local function CancelFishing(minDelay)
+    pcall(function()
+        task.wait(minDelay or _G.CancelDelay)
+        RF.Cancel:InvokeServer()
+    end)
+end
+
+task.spawn(function()
+    while task.wait() do
+        if _G.AutoFishing then
+            EquipRod()
+            task.wait(0.1)
+            ChargeRod()
             task.wait(0.2)
+            RequestGame()
+            Completed()
+            CancelFishing()
         end
     end
-    return ok, res
-end
+end)
 
-local function rod()
-    safeCall("EquipToolFromHotbar", function()
-        game:GetService("ReplicatedStorage"):WaitForChild("Packages")
-        :WaitForChild("_Index"):WaitForChild("sleitnick_net@0.2.0")
-        :WaitForChild("net"):WaitForChild("RE/EquipToolFromHotbar"):FireServer(1)
-    end)
-end
-
-local function sell()
-    safeCall("SellAllItems", function()
-        game:GetService("ReplicatedStorage"):WaitForChild("Packages")
-        :WaitForChild("_Index"):WaitForChild("sleitnick_net@0.2.0")
-        :WaitForChild("net"):WaitForChild("RF/SellAllItems"):InvokeServer()
-    end)
-end
-
-local function radar()
-    safeCall("UpdateFishingRadar_true", function()
-        game:GetService("ReplicatedStorage"):WaitForChild("Packages")
-        :WaitForChild("_Index"):WaitForChild("sleitnick_net@0.2.0")
-        :WaitForChild("net"):WaitForChild("RF/UpdateFishingRadar"):InvokeServer(true)
-    end)
-end
-
-local function autoon()
-    safeCall("UpdateAutoFishingState_true", function()
-        game:GetService("ReplicatedStorage"):WaitForChild("Packages")
-        :WaitForChild("_Index"):WaitForChild("sleitnick_net@0.2.0")
-        :WaitForChild("net"):WaitForChild("RF/UpdateAutoFishingState"):InvokeServer(true)
-    end)
-end
-
-local function autooff()
-    safeCall("UpdateAutoFishingState_false", function()
-        game:GetService("ReplicatedStorage"):WaitForChild("Packages")
-        :WaitForChild("_Index"):WaitForChild("sleitnick_net@0.2.0")
-        :WaitForChild("net"):WaitForChild("RF/UpdateAutoFishingState"):InvokeServer(false)
-    end)
-end
-
-local function catch()
-    safeCall("FishingCompleted", function()
-        game:GetService("ReplicatedStorage"):WaitForChild("Packages")
-        :WaitForChild("_Index"):WaitForChild("sleitnick_net@0.2.0")
-        :WaitForChild("net"):WaitForChild("RE/FishingCompleted"):FireServer()
-    end)
-end
-
-local function charge()
-    safeCall("ChargeFishingRod", function()
-        game:GetService("ReplicatedStorage"):WaitForChild("Packages")
-        :WaitForChild("_Index"):WaitForChild("sleitnick_net@0.2.0")
-        :WaitForChild("net"):WaitForChild("RF/ChargeFishingRod"):InvokeServer()
-    end)
-end
-
-local function lempar()
-    safeCall("RequestFishingMinigameStarted", function()
-        game:GetService("ReplicatedStorage"):WaitForChild("Packages")
-        :WaitForChild("_Index"):WaitForChild("sleitnick_net@0.2.0")
-        :WaitForChild("net"):WaitForChild("RF/RequestFishingMinigameStarted"):InvokeServer(-1.233, 0.996, 1761532005.497)
-    end)
-    safeCall("ChargeFishingRod_after_lempar", function()
-        game:GetService("ReplicatedStorage"):WaitForChild("Packages")
-        :WaitForChild("_Index"):WaitForChild("sleitnick_net@0.2.0")
-        :WaitForChild("net"):WaitForChild("RF/ChargeFishingRod"):InvokeServer()
-    end)
-end
-
-local function autosell()
-    while _G.AutoSell do
-        sell()
-        local delay = tonumber(_G.SellDelay) or 30
-        local waited = 0
-        while waited < delay and _G.AutoSell do
-            task.wait(0.25)
-            waited = waited + 0.25
+Tab3:Input({
+    Title = "Cancel Delay",
+    Placeholder = "1.8",
+    Callback = function(input)
+        local num = tonumber(input)
+        if num then
+            _G.CancelDelay = num
         end
     end
-end
+})
 
-local function perform_instant_cycle()
-    charge()
-    task.wait(0)
-    lempar()
-    task.wait(1)
-    if _G.Instant then
-        local loops = 5
-        local fast = 0
-        for i = 1, loops do
-            if not _G.Instant then break end
-            catch()
-            task.wait(fast)
+Tab3:Input({
+    Title = "Completed Delay",
+    Placeholder = "1.6",
+    Callback = function(input)
+        local num = tonumber(input)
+        if num then
+            _G.CompletedDelay = num
         end
-    else
-        catch()
-    end
-end
-
-local Tab3 = Window:Tab({ Title = "Main", Icon = "landmark" })
-
-Tab3:Section({ Title = "Fishing", Icon = "anchor", TextXAlignment = "Left", TextSize = 17 })
-
-Tab3:Toggle({ Title = "Auto Equip Rod", Value = false, Callback = function(v) _G.AutoEquipRod = v if v then rod() end end })
-
-local CurrentOption = "Instant"
-local autoFishingThread = nil
-local autosellThread = nil
-
-Tab3:Dropdown({
-    Title = "Mode",
-    Values = { "Instant", "Legit" },
-    Value = "Instant",
-    Callback = function(opt)
-        CurrentOption = opt
-        WindUI:Notify({ Title = "Mode Selected", Content = "Mode: " .. opt, Duration = 3, Icon = "check" })
     end
 })
 
 Tab3:Toggle({
-    Title = "Auto Fishing",
-    Value = false,
+    Title = "Blantant Fishing",
+    Default = false,
     Callback = function(v)
         _G.AutoFishing = v
-        if v then
-            if CurrentOption == "Instant" then
-                _G.Instant = true
-                WindUI:Notify({ Title = "Auto Fishing", Content = "Instant Mode ON", Duration = 3 })
-                if autoFishingThread then autoFishingThread = nil end
-                autoFishingThread = task.spawn(function()
-                    while _G.AutoFishing and CurrentOption == "Instant" do
-                        perform_instant_cycle()
-                        task.wait(1)
-                    end
-                end)
-            else
-                WindUI:Notify({ Title = "Auto Fishing", Content = "Legit Mode ON", Duration = 3 })
-                if autoFishingThread then autoFishingThread = nil end
-                autoFishingThread = task.spawn(function()
-                    while _G.AutoFishing and CurrentOption == "Legit" do
-                        autoon()
-                        task.wait(1)
-                    end
-                end)
-            end
-        else
-            WindUI:Notify({ Title = "Auto Fishing", Content = "OFF", Duration = 3 })
-            autooff()
-            _G.Instant = false
-            if autoFishingThread then task.cancel(autoFishingThread) end
-            autoFishingThread = nil
-        end
     end
 })
 
