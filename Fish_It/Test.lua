@@ -49,7 +49,7 @@ Window:Tag({
 })
 
 Window:Tag({
-    Title = "Premium",
+    Title = "test",
     Color = Color3.fromRGB(0, 242, 255),
     Radius = 17,
 })
@@ -481,69 +481,6 @@ Tab3:Toggle({
     Default = false,
     Callback = function(v)
         _G.AutoFishing = v
-    end
-})
-
-Tab3:Section({ Title = "Auto Sell", Icon = "coins", TextXAlignment = "Left", TextSize = 17 })
-
-Tab3:Toggle({
-    Title = "Auto Sell",
-    Value = false,
-    Callback = function(v)
-        _G.AutoSell = v
-        if v then
-            if autosellThread then task.cancel(autosellThread) end
-            autosellThread = task.spawn(autosell)
-        else
-            _G.AutoSell = false
-            if autosellThread then task.cancel(autosellThread) end
-            autosellThread = nil
-        end
-    end
-})
-
-Tab3:Slider({ Title = "Sell Delay", Step = 1, Value = { Min = 1, Max = 120, Default = 30 }, Callback = function(v) _G.SellDelay = v end })
-
-Tab3:Section({ Title = "Radar", Icon = "radar", TextXAlignment = "Left", TextSize = 17 })
-
-Tab3:Toggle({
-    Title = "Radar",
-    Value = false,
-    Callback = function(state)
-        local ReplicatedStorage = game:GetService("ReplicatedStorage")
-        local Lighting = game:GetService("Lighting")
-        local Replion = require(ReplicatedStorage.Packages.Replion)
-        local Net = require(ReplicatedStorage.Packages.Net)
-        local spr = require(ReplicatedStorage.Packages.spr)
-        local Soundbook = require(ReplicatedStorage.Shared.Soundbook)
-        local ClientTimeController = require(ReplicatedStorage.Controllers.ClientTimeController)
-        local TextNotificationController = require(ReplicatedStorage.Controllers.TextNotificationController)
-        local RemoteRadar = Net:RemoteFunction("UpdateFishingRadar")
-        local Data = Replion.Client:GetReplion("Data")
-        if Data then
-            if RemoteRadar:InvokeServer(state) then
-                Soundbook.Sounds.RadarToggle:Play().PlaybackSpeed = 1 + math.random() * 0.3
-                local effect = Lighting:FindFirstChildWhichIsA("ColorCorrectionEffect")
-                if effect then
-                    spr.stop(effect)
-                    local profile = ClientTimeController._getLightingProfile and ClientTimeController:_getLightingProfile() or ClientTimeController._getLighting_profile and ClientTimeController:_getLighting_profile()
-                    local cc = (profile and profile(profile.ColorCorrection)) and profile.ColorCorrection or {}
-                    if not cc.Brightness then cc.Brightness = 0.04 end
-                    if not cc.TintColor then cc.TintColor = Color3.fromRGB(255, 255, 255) end
-                    effect.TintColor = Color3.fromRGB(42, 226, 118)
-                    effect.Brightness = 0.4
-                    spr.target(effect, 1, 1, cc)
-                end
-                spr.stop(Lighting)
-                Lighting.ExposureCompensation = 1
-                spr.target(Lighting, 1, 2, { ["ExposureCompensation"] = 0 })
-                TextNotificationController:DeliverNotification({
-                    ["Type"] = "Text",
-                    ["Text"] = ("Radar: %*"):format(state and "Enabled" or "Disabled"),
-                    ["TextColor"] = state and {["R"]=9,["G"]=255,["B"]=0} or {["R"]=255,["G"]=0,["B"]=0}
-                })
-            end
-        end
     end
 })
 
