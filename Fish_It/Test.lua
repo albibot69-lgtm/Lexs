@@ -390,6 +390,21 @@ player.CharacterAdded:Connect(function(char)
 	end
 end)
 
+local Tab3 = Window:Tab({
+    Title = "Main",
+    Icon = "gamepad-2", -- optional
+    Locked = false,
+})
+
+local Section = Tab3:Section({
+	Title = "Blantant Fishing",
+	Icon = "fish",
+	TextXAlignment = "Left",
+	TextSize = 17
+})
+
+Tab3:Divider()
+
 _G.AutoFishing = false
 _G.CancelDelay = 1.8
 _G.CompletedDelay = 1.6
@@ -426,30 +441,56 @@ local function RequestGame()
     end)
 end
 
-local function Completed(minDelay)
+local function Completed()
     pcall(function()
-        task.wait(minDelay or _G.CompletedDelay)
+        task.wait(_G.CompletedDelay)
         RE.Completed:FireServer()
     end)
 end
 
-local function CancelFishing(minDelay)
+local function CancelFishing()
     pcall(function()
-        task.wait(minDelay or _G.CancelDelay)
+        task.wait(_G.CancelDelay)
         RF.Cancel:InvokeServer()
     end)
 end
 
 task.spawn(function()
-    while task.wait() do
+    while task.wait(0.05) do
         if _G.AutoFishing then
-            EquipRod()
-            task.wait(0.1)
+            for i = 1, 5 do
+                EquipRod()
+                task.wait(0.02)
+            end
+            
             ChargeRod()
-            task.wait(0.2)
+            task.wait(0.1)
+            
+            for i = 1, 3 do
+                EquipRod()
+                task.wait(0.02)
+            end
+            
             RequestGame()
+            
+            for i = 1, 4 do
+                EquipRod()
+                task.wait(0.02)
+            end
+            
             Completed()
+            
+            for i = 1, 3 do
+                EquipRod()
+                task.wait(0.02)
+            end
+            
             CancelFishing()
+            
+            for i = 1, 4 do
+                EquipRod()
+                task.wait(0.02)
+            end
         end
     end
 end)
@@ -477,7 +518,7 @@ Tab3:Input({
 })
 
 Tab3:Toggle({
-    Title = "Blantant Fishing",
+    Title = "Blatant Fishing",
     Default = false,
     Callback = function(v)
         _G.AutoFishing = v
