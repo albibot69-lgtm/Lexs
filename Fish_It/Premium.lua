@@ -43,7 +43,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "V0.0.6.7",
+    Title = "V0.0.6.9",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -1492,6 +1492,53 @@ local Tab7 = Window:Tab({
     Title = "Settings",
     Icon = "settings",
 })
+
+Tab7:Section({ 
+    Title = "Vuln",
+    Icon = "shield-alert",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+Tab7:Divider()
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local GiftingController = require(ReplicatedStorage:WaitForChild("Controllers"):WaitForChild("GiftingController"))
+
+local Button = Tab7:Button({
+    Title = "Gift Skin Soul Scythe",
+    Locked = false,
+    Callback = function()
+        if GiftingController and GiftingController.Open then
+            GiftingController:Open("Soul Scythe")
+            
+            -- Notifikasi sukses
+            WindUI:Notify({
+                Title = "Gift Open",
+                Content = "Soul Scythe Gift Opened Successfully",
+                Duration = 3,
+                Icon = "check"
+            })
+        else
+            -- Notifikasi error
+            WindUI:Notify({
+                Title = "Failed!!",
+                Content = "Patched",
+                Duration = 3,
+                Icon = "x"
+            })
+        end
+    end
+})
+
+Tab7:Section({ 
+    Title = "Player In Game",
+    Icon = "play",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+Tab7:Divider()
 
 Tab7:Toggle({
     Title = "AntiAFK",
