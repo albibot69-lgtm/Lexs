@@ -1507,6 +1507,7 @@ local GiftingController = require(ReplicatedStorage:WaitForChild("Controllers"):
 
 local Button = Tab7:Button({
     Title = "Gift Skin Soul Scythe",
+	Desc = "you can still buy it but the price is 999,999,999 robux",
     Locked = false,
     Callback = function()
         if GiftingController and GiftingController.Open then
