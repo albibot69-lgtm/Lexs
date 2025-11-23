@@ -43,7 +43,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "V0.0.6.9",
+    Title = "V0.0.7.0",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -111,7 +111,7 @@ local TagUI = Window:Tag({
 local Dialog = Window:Dialog({
     Icon = "circle-plus",
     Title = "Join Discord",
-    Content = "For Update",
+    Content = "For Info Update",
     Buttons = {
         {
             Title = "Copy Discord",
