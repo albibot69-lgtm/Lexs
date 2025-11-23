@@ -43,7 +43,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "V0.0.7.0",
+    Title = "V0.0.6.7",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -111,7 +111,7 @@ local TagUI = Window:Tag({
 local Dialog = Window:Dialog({
     Icon = "circle-plus",
     Title = "Join Discord",
-    Content = "For Info Update",
+    Content = "For Update",
     Buttons = {
         {
             Title = "Copy Discord",
@@ -1507,7 +1507,6 @@ local GiftingController = require(ReplicatedStorage:WaitForChild("Controllers"):
 
 local Button = Tab7:Button({
     Title = "Gift Skin Soul Scythe",
-	Desc = "you can still buy it but the price is 999,999,999 robux",
     Locked = false,
     Callback = function()
         if GiftingController and GiftingController.Open then
@@ -1540,6 +1539,30 @@ Tab7:Section({
 })
 
 Tab7:Divider()
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Camera = workspace.CurrentCamera
+
+local DefaultMaxZoom = LocalPlayer.CameraMaxZoomDistance
+local DefaultMinZoom = LocalPlayer.CameraMinZoomDistance
+
+local Toggle = Tab7:Toggle({
+    Title = "Infinite Zoom",
+    Desc = "infinite zoom to take a photo",
+    Icon = false,
+    Type = false,
+    Value = false,
+    Callback = function(state)
+        if state then
+            LocalPlayer.CameraMaxZoomDistance = math.huge
+            LocalPlayer.CameraMinZoomDistance = 0.5
+        else
+            LocalPlayer.CameraMaxZoomDistance = DefaultMaxZoom or 128
+            LocalPlayer.CameraMinZoomDistance = DefaultMinZoom or 0.5
+        end
+    end
+})
 
 Tab7:Toggle({
     Title = "AntiAFK",
