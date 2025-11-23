@@ -101,6 +101,49 @@ local TagUI = Window:Tag({
     Radius = 0
 })
 
+local Dialog = Window:Dialog({
+    Icon = "circle-plus",
+    Title = "Join Discord",
+    Content = "For Info Update",
+    Buttons = {
+        {
+            Title = "Copy Discord",
+            Callback = function()
+                if setclipboard then
+                    setclipboard("https://discord.gg/YYbw8KM5x4")
+                    
+                    -- Notify jika berhasil
+                    WindUI:Notify({
+                        Title = "Copied Successfully!",
+                        Content = "The Discord link has been copied to the clipboard.",
+                        Duration = 3,
+                        Icon = "check"
+                    })
+                else
+                    -- Notify jika executor tidak support
+                    WindUI:Notify({
+                        Title = "Fail!",
+                        Content = "Your executor does not support the auto-copy command.",
+                        Duration = 3,
+                        Icon = "x"
+                    })
+                end
+            end,
+        },
+        {
+            Title = "No",
+            Callback = function()
+                WindUI:Notify({
+                    Title = "Canceled",
+                    Content = "You cancel the action.",
+                    Duration = 3,
+                    Icon = "x"
+                })
+            end,
+        },
+    },
+})
+
 WindUI:Notify({
     Title = "Lexs Hub Loaded",
     Content = "UI loaded successfully!",
