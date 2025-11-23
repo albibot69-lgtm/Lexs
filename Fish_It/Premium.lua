@@ -43,7 +43,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "V0.0.6.7",
+    Title = "V0.0.7.0",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -1507,6 +1507,7 @@ local GiftingController = require(ReplicatedStorage:WaitForChild("Controllers"):
 
 local Button = Tab7:Button({
     Title = "Gift Skin Soul Scythe",
+    Desc = "you can still buy it but the price is 999,999,999 robux if you are rich you can buy it",
     Locked = false,
     Callback = function()
         if GiftingController and GiftingController.Open then
