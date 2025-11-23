@@ -101,49 +101,6 @@ local TagUI = Window:Tag({
     Radius = 0
 })
 
-local Dialog = Window:Dialog({
-    Icon = "circle-plus",
-    Title = "Join Discord",
-    Content = "For Info Update",
-    Buttons = {
-        {
-            Title = "Copy Discord",
-            Callback = function()
-                if setclipboard then
-                    setclipboard("https://discord.gg/YYbw8KM5x4")
-                    
-                    -- Notify jika berhasil
-                    WindUI:Notify({
-                        Title = "Copied Successfully!",
-                        Content = "The Discord link has been copied to the clipboard.",
-                        Duration = 3,
-                        Icon = "check"
-                    })
-                else
-                    -- Notify jika executor tidak support
-                    WindUI:Notify({
-                        Title = "Fail!",
-                        Content = "Your executor does not support the auto-copy command.",
-                        Duration = 3,
-                        Icon = "x"
-                    })
-                end
-            end,
-        },
-        {
-            Title = "No",
-            Callback = function()
-                WindUI:Notify({
-                    Title = "Canceled",
-                    Content = "You cancel the action.",
-                    Duration = 3,
-                    Icon = "x"
-                })
-            end,
-        },
-    },
-})
-
 WindUI:Notify({
     Title = "Lexs Hub Loaded",
     Content = "UI loaded successfully!",
@@ -1425,12 +1382,74 @@ local Tab7 = Window:Tab({
     Icon = "settings",
 })
 
-Tab7:Keybind({
-    Title = "Close/Open ui",
-    Desc = "Keybind to Close/Open ui",
-    Value = "L",
-    Callback = function(v)
-        Window:SetToggleKey(Enum.KeyCode[v])
+Tab7:Section({ 
+    Title = "Vuln",
+    Icon = "shield-alert",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+Tab7:Divider()
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local GiftingController = require(ReplicatedStorage:WaitForChild("Controllers"):WaitForChild("GiftingController"))
+
+local Button = Tab7:Button({
+    Title = "Gift Skin Soul Scythe",
+    Locked = false,
+    Callback = function()
+        if GiftingController and GiftingController.Open then
+            GiftingController:Open("Soul Scythe")
+            
+            -- Notifikasi sukses
+            WindUI:Notify({
+                Title = "Gift Open",
+                Content = "Soul Scythe Gift Opened Successfully",
+                Duration = 3,
+                Icon = "check"
+            })
+        else
+            -- Notifikasi error
+            WindUI:Notify({
+                Title = "Failed!!",
+                Content = "Patched",
+                Duration = 3,
+                Icon = "x"
+            })
+        end
+    end
+})
+
+Tab7:Section({ 
+    Title = "Player In Game",
+    Icon = "play",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+Tab7:Divider()
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Camera = workspace.CurrentCamera
+
+local DefaultMaxZoom = LocalPlayer.CameraMaxZoomDistance
+local DefaultMinZoom = LocalPlayer.CameraMinZoomDistance
+
+local Toggle = Tab7:Toggle({
+    Title = "Infinite Zoom",
+    Desc = "infinite zoom to take a photo",
+    Icon = false,
+    Type = false,
+    Value = false,
+    Callback = function(state)
+        if state then
+            LocalPlayer.CameraMaxZoomDistance = math.huge
+            LocalPlayer.CameraMinZoomDistance = 0.5
+        else
+            LocalPlayer.CameraMaxZoomDistance = DefaultMaxZoom or 128
+            LocalPlayer.CameraMinZoomDistance = DefaultMinZoom or 0.5
+        end
     end
 })
 
