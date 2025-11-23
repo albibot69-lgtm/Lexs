@@ -36,7 +36,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "v0.0.5.5",
+    Title = "v0.0.5.6",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -1396,7 +1396,7 @@ local GiftingController = require(ReplicatedStorage:WaitForChild("Controllers"):
 
 local Button = Tab7:Button({
     Title = "Gift Skin Soul Scythe",
-	Desc = "you can still buy it but the price is 999,999,999 robux if you are rich you can buy it",
+    Desc = "you can still buy it but the price is 999,999,999 robux if you are rich you can buy it",
     Locked = false,
     Callback = function()
         if GiftingController and GiftingController.Open then
@@ -1518,6 +1518,90 @@ local Toggle = Tab7:Toggle({
         end
     end
 })
+
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+local LocalPlayer = Players.LocalPlayer
+local PlaceId = game.PlaceId
+local AutoRejoinEnabled = true
+
+local BlacklistedUserIds = {
+    75974130,
+    40397833,
+    187190686,
+    33372493,
+    889918695,
+    33679472,
+    30944240,
+    25050357,
+    8462585751,
+    8811129148,
+    192821024,
+    4509801805,
+    124505170,
+    108397209,
+}
+
+Tab7:Toggle({
+    Title = "Anti Staff",
+    Desc = "Auto serverhop if there is staff",
+    Icon = false,
+    Type = false,
+    Value = true,
+    Callback = function(state)
+        AutoRejoinEnabled = true
+    end
+})
+
+local function IsBlacklisted(userId)
+    for _, id in ipairs(BlacklistedUserIds) do
+        if userId == id then
+            return true
+        end
+    end
+    return false
+end
+
+local function ServerHop()
+    task.wait(6)
+    local Servers = game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..PlaceId.."/servers/Public?sortOrder=Asc&limit=100")).data
+    for _, server in ipairs(Servers) do
+        if server.playing < server.maxPlayers and server.id ~= game.JobId then
+            TeleportService:TeleportToPlaceInstance(PlaceId, server.id, LocalPlayer)
+            break
+        end
+    end
+end
+
+Players.PlayerAdded:Connect(function(player)
+    if AutoRejoinEnabled and player ~= LocalPlayer and IsBlacklisted(player.UserId) then
+        WindUI:Notify({
+            Title = "Lexs Hub",
+            Content = player.Name .. " telah join, serverhop dalam 6 detik...",
+            Duration = 6,
+            Icon = "alert-triangle",
+        })
+        ServerHop()
+    end
+end)
+
+task.spawn(function()
+    while task.wait(2) do
+        if AutoRejoinEnabled then
+            for _, player in ipairs(Players:GetPlayers()) do
+                if player ~= LocalPlayer and IsBlacklisted(player.UserId) then
+                    WindUI:Notify({
+                        Title = "Lexs Hub",
+                        Content = player.Name .. " terdeteksi, serverhop dalam 6 detik...",
+                        Duration = 6,
+                        Icon = "alert-triangle",
+                    })
+                    ServerHop()
+                end
+            end
+        end
+    end
+end)
 
 Tab7:Section({ 
     Title = "Graphics In Game",
