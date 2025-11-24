@@ -43,7 +43,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "V0.0.7.1",
+    Title = "V0.0.7.2",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -1056,7 +1056,6 @@ local IslandLocations = {
     ["Ancient Jungle"] = Vector3.new(1518, 1, -186),
     ["Coral Refs"] = Vector3.new(-2855, 47, 1996),
     ["Crater Island"] = Vector3.new(997, 1, 5012),
-    ["Crystal Cavern"] = Vector3.new(-1841, -456, 7186),
     ["Enchant Room"] = Vector3.new(3221, -1303, 1406),
     ["Enchant Room 2"] = Vector3.new(1480, 126, -585),
     ["Esoteric Island"] = Vector3.new(1990, 5, 1398),
@@ -1071,6 +1070,9 @@ local IslandLocations = {
     ["Underground Cellar"] = Vector3.new(2135, -93, -701),
     ["Weather Machine"] = Vector3.new(-1508, 6, 1895),
     ["Ancient Ruin"] = Vector3.new(6051, -541, 4414),
+    ["Iron Cavern"] = Vector3.new(-9194, -582, 157),
+    ["Classic Island"] = Vector3.new(1178, 3, 2838),
+    ["Iron Cafe"] = Vector3.new(-8692, -549, 161),
 }
 
 local SelectedIsland = nil
@@ -1114,10 +1116,12 @@ local FishingLocations = {
     ["levers 3"] = Vector3.new(1425,6,126),
     ["levers 4"] = Vector3.new(1837,4,-309),
     ["Sysyphus Statue"] = Vector3.new(-3712, -137, -1010),
-    ["Volcano"] = Vector3.new(-632, 55, 197),
 	["King Jelly Spot (For quest elemental)"] = Vector3.new(1473.60, 3.58, -328.23),
 	["El Shark Gran Maja Spot"] = Vector3.new(1526, 4, -629),
     ["Ancient Lochness"] = Vector3.new(6078, -586, 4629),
+    ["Iron Cavern"] = Vector3.new(-8760, -554, 215),
+    ["Classic Island"] = Vector3.new(1463, 70, 2798),
+    ["Iron Cafe"] = Vector3.new(-8634, -523, 149),
 }
 
 local SelectedFishing = nil
