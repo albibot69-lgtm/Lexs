@@ -623,6 +623,115 @@ Tab3:Slider({
     end
 })
 
+local Section = Tab3:Section({
+	Title = "Blantant Fishing",
+	Icon = "fish",
+	TextXAlignment = "Left",
+	TextSize = 17
+})
+
+Tab3:Divider()
+
+_G.AutoFishing = false
+_G.CancelDelay = 1.8
+_G.CompletedDelay = 1.5
+
+local RS = game:GetService("ReplicatedStorage")
+local Net = RS.Packages._Index:FindFirstChild("sleitnick_net@0.2.0").net
+
+local RE = {
+    Equip = Net:FindFirstChild("RE/EquipToolFromHotbar"),
+    Completed = Net:FindFirstChild("RE/FishingCompleted"),
+    FishCaught = Net:FindFirstChild("RE/FishCaught")
+}
+
+local RF = {
+    Cancel = Net:FindFirstChild("RF/CancelFishingInputs"),
+    Charge = Net:FindFirstChild("RF/ChargeFishingRod"),
+    Request = Net:FindFirstChild("RF/RequestFishingMinigameStarted")
+}
+
+local isFishing = false
+local latestFish = 0
+
+local function secureInvoke(fn, ...)
+    local ok = pcall(fn, ...)
+end
+
+local function EquipRod()
+    secureInvoke(function() RE.Equip:FireServer(1) end)
+end
+
+local function ChargeRod()
+    secureInvoke(function() RF.Charge:InvokeServer(math.huge) end)
+end
+
+local function RequestGame()
+    secureInvoke(function() RF.Request:InvokeServer(-139.63, 0.996, -1761532005.497) end)
+end
+
+local function Completed(delay)
+    task.wait(delay or _G.CompletedDelay)
+    secureInvoke(function() RE.Completed:FireServer() end)
+end
+
+local function CancelFishing(delay)
+    task.wait(delay or _G.CancelDelay)
+    secureInvoke(function() RF.Cancel:InvokeServer() end)
+end
+
+if RE.FishCaught then
+    RE.FishCaught.OnClientEvent:Connect(function()
+        latestFish = tick()
+        if _G.AutoFishing and isFishing then
+            Completed(0)
+        end
+    end)
+end
+
+task.spawn(function()
+    while task.wait(0.1) do
+        if _G.AutoFishing and not isFishing then
+            isFishing = true
+            EquipRod()
+            task.wait(0.05)
+            ChargeRod()
+            RequestGame()
+            if tick() - latestFish > 0.1 then
+                Completed(_G.CompletedDelay)
+            end
+            CancelFishing(_G.CancelDelay)
+            isFishing = false
+        end
+    end
+end)
+
+Tab3:Input({
+    Title = "Cancel Delay",
+    Placeholder = "1.8",
+    Callback = function(v)
+        local n = tonumber(v)
+        if n then _G.CancelDelay = n end
+    end
+})
+
+Tab3:Input({
+    Title = "Completed Delay",
+    Placeholder = "1.5",
+    Callback = function(v)
+        local n = tonumber(v)
+        if n then _G.CompletedDelay = n end
+    end
+})
+
+Tab3:Toggle({
+    Title = "Blantant Fishing",
+    Default = false,
+    Callback = function(v)
+        _G.AutoFishing = v
+    end
+})
+
 Tab3:Section({     
     Title = "Item",
     Icon = "list-collapse",
