@@ -1035,7 +1035,7 @@ local FishingLocations = {
 	["El Shark Gran Maja Spot"] = Vector3.new(1526, 4, -629),
     ["Ancient Lochness"] = Vector3.new(6078, -586, 4629),
     ["Iron Cavern"] = Vector3.new(-8760, -554, 215),
-    ["Classic Island"] = Vector3.new(1463, 70, 2798),
+    ["Classic Island"] = Vector3.new(1316, 9, 2871),
     ["Iron Cafe"] = Vector3.new(-8634, -523, 149),
 }
 
