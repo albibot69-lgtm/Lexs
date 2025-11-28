@@ -111,7 +111,7 @@ local Keys = {
     "LexsPrem_p8Mr9AVnTO",
     "LexsPrem_d9Ns3DXoUL",
     "LexsPrem_a0Ot6BLmWP", -- 100
-    "developer_access"
+    "developer_access",
 }
 
 local function isPremiumKey(key)
