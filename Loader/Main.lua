@@ -21,26 +21,6 @@ local Keys = {
     "LexsPrem_x8Eu3CYvMP",
     "LexsPrem_f9Ry6JDtVN",
     "LexsPrem_q0Ui7LGaWR", -- 10
-    "LexsPrem_b1Aa8QPxEM",
-    "LexsPrem_n2Dc5ZWrUK",
-    "LexsPrem_s3Fv6TMnYL",
-    "LexsPrem_u4Hg3BLjWO",
-    "LexsPrem_w5Jt9YKeIP",
-    "LexsPrem_k6Ls4XWdTR",
-    "LexsPrem_r7Nz2CVmUJ",
-    "LexsPrem_y8Pe7ABtIL",
-    "LexsPrem_g9Qh3SWoMP",
-    "LexsPrem_s0Rj5DNxVK", -- 20
-    "LexsPrem_c1Af4GEqYL",
-    "LexsPrem_o2Ee7CHxWR",
-    "LexsPrem_t3Hk1BFoUI",
-    "LexsPrem_v4Lr9AZpOM",
-    "LexsPrem_x5Mq2DYrTP",
-    "LexsPrem_l6Nn6WTaIK",
-    "LexsPrem_s7Op3QEvRN",
-    "LexsPrem_z8Pq8LBmJU",
-    "LexsPrem_h9Rs5XVoIL",
-    "LexsPrem_t0St4CDnWM", -- 30
     "developer_access",
 }
 
