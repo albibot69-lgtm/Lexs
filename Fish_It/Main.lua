@@ -36,7 +36,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "v0.0.5.7",
+    Title = "v0.0.5.8",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -51,7 +51,7 @@ elseif executor then
 end
 
 -- Pilih warna berdasarkan executor
-local executorColor = Color3.fromRGB(200, 200, 200) -- Default (abu-abu)
+local executorColor = Color3.fromRGB(200, 200, 200)
 
 if executorName:lower():find("flux") then
     executorColor = Color3.fromHex("#30ff6a")     -- Fluxus
@@ -127,7 +127,7 @@ Tab1:Button({
     Desc = "click to copy link",
     Callback = function()
         if setclipboard then
-            setclipboard("https://discord.gg/KDKTYUMyWA")
+            setclipboard("https://discord.gg/YYbw8KM5x4")
         end
     end
 })
@@ -357,63 +357,50 @@ end)
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
--- Fungsi untuk stop semua animasi yang sedang berjalan
 local function stopAllAnimations()
-	local char = player.Character or player.CharacterAdded:Wait()
-	local humanoid = char:FindFirstChildOfClass("Humanoid")
-	if humanoid then
-		for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
-			track:Stop(0) -- stop langsung tanpa fade
-		end
-	end
+    local char = player.Character or player.CharacterAdded:Wait()
+    local humanoid = char:FindFirstChildOfClass("Humanoid")
+    if humanoid then
+        for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
+            track:Stop(0)
+        end
+    end
 end
 
--- Fungsi toggle animasi
 local function toggleAnimation(state)
-	local char = player.Character or player.CharacterAdded:Wait()
-	local humanoid = char:FindFirstChildOfClass("Humanoid")
-	local animate = char:FindFirstChild("Animate")
+    local char = player.Character or player.CharacterAdded:Wait()
+    local humanoid = char:FindFirstChildOfClass("Humanoid")
+    local animate = char:FindFirstChild("Animate")
 
-	if state then
-		---------------------------------------------------
-		-- 🟢 MATIKAN SEMUA ANIMASI
-		---------------------------------------------------
-		print("[ANIM] Semua animasi dinonaktifkan")
-		if animate then animate.Disabled = true end
-		stopAllAnimations()
-
-		-- Nonaktifkan animator agar game tidak bisa memutar ulang animasi
-		local animator = humanoid:FindFirstChildOfClass("Animator")
-		if animator then
-			animator:Destroy()
-		end
-	else
-		---------------------------------------------------
-		-- 🔴 AKTIFKAN KEMBALI ANIMASI
-		---------------------------------------------------
-		print("[ANIM] Animasi diaktifkan kembali")
-		if animate then animate.Disabled = false end
-
-		-- Buat ulang Animator agar animasi bisa jalan lagi
-		if humanoid and not humanoid:FindFirstChildOfClass("Animator") then
-			local newAnimator = Instance.new("Animator")
-			newAnimator.Parent = humanoid
-		end
-	end
+    if state then
+        if animate then animate.Disabled = true end
+        stopAllAnimations()
+        local animator = humanoid:FindFirstChildOfClass("Animator")
+        if animator then
+            animator:Destroy()
+        end
+    else
+        if animate then animate.Disabled = false end
+        if humanoid and not humanoid:FindFirstChildOfClass("Animator") then
+            local newAnimator = Instance.new("Animator")
+            newAnimator.Parent = humanoid
+        end
+    end
 end
 
-local Toggle = Tab2:Toggle({
-	Title = "Disable Animations",
-	Icon = false,
-	Type = false,
-	Value = false,
-	Callback = function(state)
-		toggleAnimation(state)
-	end
+Tab2:Toggle({
+    Title = "Disable Animations",
+    Icon = false,
+    Type = false,
+    Value = false,
+    Callback = function(state)
+        toggleAnimation(state)
+    end
 })
 
 _G.AutoFishing = false
 _G.AutoEquipRod = false
+_G.Radar = false
 _G.Instant = false
 _G.InstantDelay = _G.InstantDelay or 0.35
 _G.CallMinDelay = _G.CallMinDelay or 0.18
@@ -477,6 +464,9 @@ local function lempar()
     safeCall("lempar", function()
         net["RF/RequestFishingMinigameStarted"]:InvokeServer(-139.63, 0.996, -1761532005.497)
     end)
+    safeCall("charge2", function()
+        net["RF/ChargeFishingRod"]:InvokeServer()
+    end)
 end
 
 local function autosell()
@@ -491,35 +481,16 @@ local function autosell()
     end
 end
 
-
-
 local function instant_cycle()
-    local delay = tonumber(_G.InstantDelay) or 0.35
-    
-    -- Charge Rod (async)
-    task.spawn(function()
-        net["RF/ChargeFishingRod"]:InvokeServer()
-    end)
-
-    -- Start minigame + charge again (async)
-    task.spawn(function()
-        net["RF/RequestFishingMinigameStarted"]:InvokeServer(-139.63, 0.996, -1761532005.497)
-        net["RF/ChargeFishingRod"]:InvokeServer()
-    end)
-
-    -- One-time wait
-    task.wait(delay)
-
-    -- Catch (async)
-    task.spawn(function()
-        net["RE/FishingCompleted"]:FireServer()
-    end)
+    charge()
+    lempar()
+    task.wait(_G.InstantDelay)
+    catch()
 end
 
---------------------------------------------------------------------
 local Tab3 = Window:Tab({
     Title = "Main",
-    Icon = "gamepad-2",
+    Icon = "gamepad-2"
 })
 
 Tab3:Section({
@@ -565,7 +536,7 @@ Tab3:Toggle({
                 fishThread = task.spawn(function()
                     while _G.AutoFishing and mode == "Instant" do
                         instant_cycle()
-                        task.wait(0.05) -- lebih cepat daripada 0.35 default cycle
+                        task.wait(0.35)
                     end
                 end)
             else
@@ -1035,7 +1006,7 @@ local FishingLocations = {
 	["El Shark Gran Maja Spot"] = Vector3.new(1526, 4, -629),
     ["Ancient Lochness"] = Vector3.new(6078, -586, 4629),
     ["Iron Cavern"] = Vector3.new(-8760, -554, 215),
-    ["Classic Island"] = Vector3.new(1316, 9, 2871),
+    ["Classic Island"] = Vector3.new(1463, 70, 2798),
     ["Iron Cafe"] = Vector3.new(-8634, -523, 149),
 }
 
