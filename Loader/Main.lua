@@ -126,13 +126,13 @@ local userType = isPremiumKey(_G.scripts_key) and "Premium" or "Freemium"
 local gameScripts = {
     [2753915549] = {
         name = "Blox Fruit",
-        free = "https://raw.githubusercontent.com/create-stree/STREE-HUB/main/Main.lua",
-        premium = "https://raw.githubusercontent.com/create-stree/STREE-HUB/main/Premium.lua"
+        free = "https://raw.githubusercontent.com/wjwwjwjfheufueeuhfhuefa",
+        premium = "https://raw.githubusercontent.com/wkwkwkkwkw"
     },
     [1239215938] = {
         name = "Climb and Jump Tower",
-        free = "https://raw.githubusercontent.com/create-stree/STREE-HUB/refs/heads/main/Climb%20and%20Jump%20Tower/Main.lua",
-        premium = "https://raw.githubusercontent.com/create-stree/STREE-HUB/refs/heads/main/Climb%20and%20Jump%20Tower/Premium.lua"
+        free = "https://raw.githubusercontent.com/wdwdwdwdwdwdwdwdwdwdwdw",
+        premium = "https://raw.githubusercontent.com/wdwdwdwdwdwdwdw"
     },
     [121864768012064] = {
         name = "Fish It",
@@ -141,8 +141,8 @@ local gameScripts = {
     },
     [18687417158] = {
         name = "Forsaken",
-        free = "https://raw.githubusercontent.com/create-stree/STREE-HUB/refs/heads/main/Forsaken/Main.lua",
-        premium = "https://raw.githubusercontent.com/create-stree/STREE-HUB/refs/heads/main/Forsaken/Premium.lua"
+        free = "https://raw.githubusercontent.com/wdwdwdwdwdwdwdwdwd",
+        premium = "https://raw.githubusercontent.com/wdwdwdwdww"
     }
 }
 
