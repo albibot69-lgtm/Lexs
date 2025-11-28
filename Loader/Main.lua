@@ -20,6 +20,46 @@ local premiumKeys = {
     "LexsPrem_x8Eu3CYvMP",
     "LexsPrem_f9Ry6JDtVN",
     "LexsPrem_q0Ui7LGaWR", -- 10
+    "LexsPrem_w1Hr9TBmZE",
+    "LexsPrem_d2Ko4PLsYX",
+    "LexsPrem_u3Jf6CVaQR",
+    "LexsPrem_i4Nx8GMsTP",
+    "LexsPrem_k5Rz2WDeUV",
+    "LexsPrem_o6Ba7JYqIM",
+    "LexsPrem_t7Hc3KLwOP",
+    "LexsPrem_g8Vn5XZdQJ",
+    "LexsPrem_n9Lu1MBtRK",
+    "LexsPrem_s0Qp4YDvLF", -- 20
+    "LexsPrem_y1Xg9SAkQJ",
+    "LexsPrem_f2Zm4HVeUR",
+    "LexsPrem_r3Qb6JLnWT",
+    "LexsPrem_p4Aa8YKtIP",
+    "LexsPrem_d5Sj2WUoML",
+    "LexsPrem_h6Kx7BZiVN",
+    "LexsPrem_k7Yu3NTsOR",
+    "LexsPrem_z8Fv5CWaQI",
+    "LexsPrem_m9Rr1JXeTP",
+    "LexsPrem_a0Ng4LGyDW", -- 30
+    "LexsPrem_e1Td9HQmPI",
+    "LexsPrem_g2Bx4CZpUR",
+    "LexsPrem_l3Mp6JVsQT",
+    "LexsPrem_o4Fj8WNdIK",
+    "LexsPrem_s5Rw2YLtOM",
+    "LexsPrem_t6Aa7KXeVN",
+    "LexsPrem_w7Hc3DJsPR",
+    "LexsPrem_n8Vn5TBwQI",
+    "LexsPrem_i9Lu1MGxTK",
+    "LexsPrem_q0Qp4YDfLF", -- 40
+    "LexsPrem_j1Xg9SAkQW",
+    "LexsPrem_k2Zm4HVeUT",
+    "LexsPrem_l3Qb6JLnWV",
+    "LexsPrem_m4Aa8YKtIX",
+    "LexsPrem_n5Sj2WUoMZ",
+    "LexsPrem_o6Kx7BZiVP",
+    "LexsPrem_p7Yu3NTsOR",
+    "LexsPrem_q8Fv5CWaQS",
+    "LexsPrem_r9Rr1JXeTU",
+    "LexsPrem_s0Ng4LGyDQ", -- 50
     "developer_access"
 }
 
