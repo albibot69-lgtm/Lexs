@@ -73,10 +73,10 @@ end
 local userType = isPremiumKey(_G.scripts_key) and "Premium" or "Freemium"
 
 local gameScripts = {
-    [2753915549] = {
-        name = "Blox Fruit",
-        free = "https://raw.githubusercontent.com/wjwwjwjfheufueeuhfhuefa",
-        premium = "https://raw.githubusercontent.com/wkwkwkkwkw"
+    [96151237893653] = {
+        name = "Brainrot Royale",
+        free = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BrainrotRoyale/FreemiumOpenCloseui.lua",
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BrainrotRoyale/PremiumOpenCloseui.lua"
     },
     [1239215938] = {
         name = "Climb and Jump Tower",
