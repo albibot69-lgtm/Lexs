@@ -11,7 +11,7 @@ local streeLogo = "rbxassetid://71947103252559"
 
 local premiumKeys = {
     "LexsPrem_a1Xk9QWzJH", -- Content
-    "LexsPrem_m2Hc4VPeYU",
+    "LexsPrem_m2Hc4VPeYU", -- Thailand: wdwawadwa
     "LexsPrem_r3Dz7BLoKI",
     "LexsPrem_t4Np2SZvUF",
     "LexsPrem_v5Gq8XMdTW",
