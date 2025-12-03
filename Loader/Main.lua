@@ -16,7 +16,7 @@ local premiumKeys = {
     "kafi_love_aul", -- Indo: Kafi (agustukiman)
     "LexsPrem_v5Gq8XMdTW", -- Indo: Hasbi (luxzz0607_06817)
     "LexsPrem_j6Ba1HKeQL", -- Indo: kykykun
-    "LexsPrem_p7Ws5OTnIR",
+    "LexsPrem_p7Ws5OTnIR", -- Indo: wafiabai
     "LexsPrem_x8Eu3CYvMP",
     "LexsPrem_f9Ry6JDtVN",
     "LexsPrem_q0Ui7LGaWR", -- 10
