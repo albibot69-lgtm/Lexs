@@ -20,7 +20,7 @@ local premiumKeys = {
     "LexsPrem_x8Eu3CYvMP", -- Indo: knight937378
     "LexsPrem_f9Ry6JDtVN", -- Thailand: titikorn99
     "LexsPrem_q0Ui7LGaWR", -- 10 -- Indo: .baji_gur
-    "LexsPrem_w1Hr9TBmZE",
+    "LexsPrem_w1Hr9TBmZE", -- Indo: telurayam124_2
     "LexsPrem_d2Ko4PLsYX",
     "LexsPrem_u3Jf6CVaQR",
     "LexsPrem_i4Nx8GMsTP",
