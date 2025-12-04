@@ -23,7 +23,7 @@ local premiumKeys = {
     "LexsPrem_w1Hr9TBmZE", -- Indo: telurayam124_2
     "LexsPrem_d2Ko4PLsYX", -- Indo: _rizalfahri
     "LexsPrem_u3Jf6CVaQR", -- Indo/Luar negeri: fahrezy0406
-    "LexsPrem_i4Nx8GMsTP",
+    "LexsPrem_i4Nx8GMsTP", -- Indo dari Matrix: jmgprtpsx2732
     "LexsPrem_k5Rz2WDeUV",
     "LexsPrem_o6Ba7JYqIM",
     "LexsPrem_t7Hc3KLwOP",
