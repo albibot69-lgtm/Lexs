@@ -54,7 +54,7 @@ local premiumKeys = {
     "LexsPrem_k2Zm4HVeUT", -- Indo dari matrix: lamhot0892_35506
     "LexsPrem_l3Qb6JLnWV", -- Indo dari matrix: apisslah15
     "LexsPrem_m4Aa8YKtIX", -- Indo dari matrix: zall9696
-    "LexsPrem_n5Sj2WUoMZ",
+    "LexsPrem_n5Sj2WUoMZ", -- Indo dari matrix: mercy512
     "LexsPrem_o6Kx7BZiVP",
     "LexsPrem_p7Yu3NTsOR",
     "LexsPrem_q8Fv5CWaQS",
