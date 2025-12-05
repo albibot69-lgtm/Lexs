@@ -48,7 +48,7 @@ local premiumKeys = {
     "LexsPrem_t6Aa7KXeVN", -- Indo dari matrix: 7i28822
     "LexsPrem_w7Hc3DJsPR", -- Indo dari matrix: rizky7772._92931
     "LexsPrem_n8Vn5TBwQI", -- Indo dari matrix: mayy5910
-    "LexsPrem_i9Lu1MGxTK",
+    "LexsPrem_i9Lu1MGxTK", -- Indo dari matrix: aripsaepuloh
     "LexsPrem_q0Qp4YDfLF", -- 40
     "LexsPrem_j1Xg9SAkQW",
     "LexsPrem_k2Zm4HVeUT",
