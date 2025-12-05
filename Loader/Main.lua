@@ -99,7 +99,7 @@ local premiumKeys = {
     "LexsPrem_Tg9VrM2yLo",
     "LexsPrem_Dm1FqZ6pHw",
     "LexsPrem_Gx8KbS3cJr", -- 40
-    "developer_accesprem"
+    "developer_accesprem", 
 }
 
 local function isPremiumKey(key)
