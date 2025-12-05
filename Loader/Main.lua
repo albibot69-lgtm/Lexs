@@ -99,17 +99,7 @@ local premiumKeys = {
     "LexsPrem_Tg9VrM2yLo",
     "LexsPrem_Dm1FqZ6pHw",
     "LexsPrem_Gx8KbS3cJr", -- 40
-    "LexsPrem_Ve2NtA5uQy",
-    "LexsPrem_Cw7JmP9sFt",
-    "LexsPrem_Lq4ZgR1xVo",
-    "LexsPrem_Yp6TdK8hBn",
-    "LexsPrem_Pf3WsE7rMq",
-    "LexsPrem_Ht9QvL2cXe",
-    "LexsPrem_Ju5KmT0yBr",
-    "LexsPrem_Sa8FpD4nWo",
-    "LexsPrem_Xr1CvG6pHz",
-    "LexsPrem_Om7LyB3sQf", -- 50
-    "developer_access"
+     "developer_access"
 }
 
 local function isPremiumKey(key)
