@@ -38,14 +38,14 @@ local premiumKeys = {
     "LexsPrem_h6Kx7BZiVN", -- Indo dari matrix: pecintakinyis
     "LexsPrem_k7Yu3NTsOR", -- Indo dari matrix: 20lilshen_
     "LexsPrem_z8Fv5CWaQI", -- Indo dari matrix: vels.thetic
-    "LexsPrem_m9Rr1JXeTP",
-    "LexsPrem_a0Ng4LGyDW", -- 30
-    "LexsPrem_e1Td9HQmPI",
-    "LexsPrem_g2Bx4CZpUR",
-    "LexsPrem_l3Mp6JVsQT",
-    "LexsPrem_o4Fj8WNdIK",
-    "LexsPrem_s5Rw2YLtOM",
-    "LexsPrem_t6Aa7KXeVN",
+    "LexsPrem_m9Rr1JXeTP", -- Indo dari matrix: idulrasta_56829
+    "LexsPrem_a0Ng4LGyDW", -- 30  -- Indo dari matrix: fhry0643
+    "LexsPrem_e1Td9HQmPI", -- Indo dari matrix: yudhasetiawan0016 --Dh masuk prem
+    "LexsPrem_g2Bx4CZpUR", -- Indo dari matrix: xiaoakira1_98941
+    "LexsPrem_l3Mp6JVsQT", -- Indo dari matrix: ren095998
+    "LexsPrem_o4Fj8WNdIK", -- Indo dari matrix: talong0806
+    "LexsPrem_s5Rw2YLtOM", -- Indo dari matrix: nanangsatria_08751
+    "LexsPrem_t6Aa7KXeVN", -- Indo dari matrix: 7i28822
     "LexsPrem_w7Hc3DJsPR",
     "LexsPrem_n8Vn5TBwQI",
     "LexsPrem_i9Lu1MGxTK",
