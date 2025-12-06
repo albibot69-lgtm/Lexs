@@ -79,26 +79,6 @@ local premiumKeys = {
     "LexsPrem_Aq3VdK7yBp",
     "LexsPrem_Pm5GhN0cTs",
     "LexsPrem_Ej7ZtW2vFx", -- 20
-    "LexsPrem_Tk1CpM6sHr",
-    "LexsPrem_Dg8YrA4wQp",
-    "LexsPrem_Fb2LsD9cXe",
-    "LexsPrem_Hq5WkP3uZ0",
-    "LexsPrem_Nv9EmT1bRs",
-    "LexsPrem_Jw3CxL8hTf',
-    "LexsPrem_Rp7ZqN5yKd",
-    "LexsPrem_Su4BtF2vMp",
-    "LexsPrem_Kh6WdA0sYr",
-    "LexsPrem_Ot1QmP9xFe", -- 30
-    "LexsPrem_Zn8VjK3rWu",
-    "LexsPrem_Mc4YsH7pQo",
-    "LexsPrem_Bf9XpD2mKr",
-    "LexsPrem_Ws6RgC1uTe",
-    "LexsPrem_Qp7LtF4nVa",
-    "LexsPrem_Uk3BmJ8wSd",
-    "LexsPrem_Ah5XcN0tPe",
-    "LexsPrem_Tg9VrM2yLo",
-    "LexsPrem_Dm1FqZ6pHw",
-    "LexsPrem_Gx8KbS3cJr", -- 40
     "developer_accesprem", 
 }
 
