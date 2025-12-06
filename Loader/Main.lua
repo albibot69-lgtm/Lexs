@@ -80,9 +80,9 @@ local premiumKeys = {
     "LexsPrem_Pm5GhN0cTs", -- Indo dari matrix: wandakurnia
     "LexsPrem_Ej7ZtW2vFx", -- 70 -- Indo dari matrix: fardan.1_71462
     "LexsPrem_Qk8TrW1mZa", -- Indo dari matrix: albarkawi13 prem
-    "LexsPrem_Bs4VyN9pLf",
-    "LexsPrem_Jd6MqR3xTu",
-    "LexsPrem_Wa9FcK2hPz",
+    "LexsPrem_Bs4VyN9pLf", -- Indo dari matrix: ryonaa6049
+    "LexsPrem_Jd6MqR3xTu", -- Indo dari matrix: elang0426
+    "LexsPrem_Wa9FcK2hPz", -- Indo dari matrix: wirasun
     "LexsPrem_Up3ZyL7tQe",
     "LexsPrem_Km5XtD8vHs",
     "LexsPrem_Cr7WbF1qYo",
