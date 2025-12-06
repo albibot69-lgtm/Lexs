@@ -89,15 +89,15 @@ local premiumKeys = {
     "LexsPrem_Nx2GjM6pVt", -- Indo dari matrix: svcxxv
     "LexsPrem_Eh4LkS0wBr", -- Indo dari matrix: vistheback
     "LexsPrem_Zv1PqT5nJc", -- 80 -- Indo dari matrix: rimss69
-    "LexsPrem_Rt9HwC3fXe", -- Indo dari matrix: wisnuuz99 prem
+    "LexsPrem_Rt9HwC3fXe", -- Indo dari matrix: wisnuuz99
     "LexsPrem_Gp6SdA8kVo", -- Indo dari matrix: azkrzky
     "LexsPrem_Lf2NyR7mQs", -- Indo dari matrix: jonayish
     "LexsPrem_Yc5KbW4tPx", -- Indo dari matrix: gondesz03
-    "LexsPrem_Dq8MgF1zHu",
-    "LexsPrem_Sw0XpJ6vBe",
-    "LexsPrem_Mj3TcN9yFo",
-    "LexsPrem_Xu7VrG2pLd",
-    "LexsPrem_Hg1ZsQ5kRn",
+    "LexsPrem_Dq8MgF1zHu", -- Indo dari matrix: jdndbb__32745
+    "LexsPrem_Sw0XpJ6vBe", -- Indo dari matrix: ryzenncuy prem
+    "LexsPrem_Mj3TcN9yFo", -- Indo dari matrix: _randy.01
+    "LexsPrem_Xu7VrG2pLd", -- Indo dari matrix: vynnn5125
+    "LexsPrem_Hg1ZsQ5kRn", -- Indo dari matrix: ssancanghns._
     "LexsPrem_Pb4FvE0mWy", --90
     "developer_accesprem", 
 }
