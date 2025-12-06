@@ -98,7 +98,7 @@ local premiumKeys = {
     "LexsPrem_Mj3TcN9yFo", -- Indo dari matrix: _randy.01
     "LexsPrem_Xu7VrG2pLd", -- Indo dari matrix: vynnn5125
     "LexsPrem_Hg1ZsQ5kRn", -- Indo dari matrix: ssancanghns._
-    "LexsPrem_Pb4FvE0mWy", --90
+    "LexsPrem_Pb4FvE0mWy", --90 -- Indo dari matrix: ssancanghns._
     "developer_accesprem", 
 }
 
