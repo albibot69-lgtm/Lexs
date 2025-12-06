@@ -10,7 +10,7 @@ _G.scripts_key = _G.scripts_key or scripts_key or "FREE_USER"
 local streeLogo = "rbxassetid://71947103252559"
 
 local premiumKeys = {
-    "LexsPrem_a1Xk9QWzJH", -- Content
+    "LexsPrem_a1Xk9QWzJH", -- Content/hfkdj__44173
     "LexsPrem_m2Hc4VPeYU", -- Thailand: wdwawadwa
     "LexsPrem_r3Dz7BLoKI", -- Indo: ahsnhfztt_
     "kafi_love_aul", -- Indo: Kafi (agustukiman)
@@ -63,7 +63,7 @@ local premiumKeys = {
     "LexsPrem_k3F9LmQ2Ax", -- Indo dari matrix: adielbarek7957
     "LexsPrem_Zp8rTq9HfW", -- Indo dari matrix: lepisigma_
     "LexsPrem_Qw7DxL2bVp", -- Indo dari matrix: krismm.
-    "LexsPrem_Bs9VkE1uJo",
+    "LexsPrem_Bs9VkE1uJo", -- Indo dari matrix: jackzdstar
     "LexsPrem_Rt2LmK8wQf",
     "LexsPrem_Hd5PqA3xVz",
     "LexsPrem_Wu1NsC7gKr",
