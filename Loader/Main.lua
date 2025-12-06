@@ -10,7 +10,7 @@ _G.scripts_key = _G.scripts_key or scripts_key or "FREE_USER"
 local streeLogo = "rbxassetid://71947103252559"
 
 local premiumKeys = {
-    "LexsPrem_a1Xk9QWzJH", -- Content/hfkdj__44173
+    "LexsPrem_a1Xk9QWzJH", -- Content/hfkdj__44173/snipe77123
     "LexsPrem_m2Hc4VPeYU", -- Thailand: wdwawadwa
     "LexsPrem_r3Dz7BLoKI", -- Indo: ahsnhfztt_
     "kafi_love_aul", -- Indo: Kafi (agustukiman)
