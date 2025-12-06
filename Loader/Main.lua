@@ -70,15 +70,15 @@ local premiumKeys = {
     "LexsPrem_Jc6FyL4mTe", -- Indo dari matrix: nvrxditt48
     "LexsPrem_s0Ng4LGyDQ", -- 60 -- Indo dari matrix: benzy29
     "LexsPrem_Lp9QbZ8uFr", -- Indo: donzai0910_84868
-    "LexsPrem_Vt3MxR1nYa",
-    "LexsPrem_Gk7DnT2hWp",
-    "LexsPrem_Cf2WxE5sVu", 
-    "LexsPrem_Yr4HpC9qLd",
-    "LexsPrem_Uo6BtF1wXe",
-    "LexsPrem_Xn8JsR4pMq",
-    "LexsPrem_Aq3VdK7yBp",
-    "LexsPrem_Pm5GhN0cTs",
-    "LexsPrem_Ej7ZtW2vFx", -- 70
+    "LexsPrem_Vt3MxR1nYa", -- Indo dari matrix: dwikkkkk
+    "LexsPrem_Gk7DnT2hWp", -- Indo dari matrix: sinziii
+    "LexsPrem_Cf2WxE5sVu", -- Indo dari matirx: jenni2022
+    "LexsPrem_Yr4HpC9qLd", -- Indo dari matrix: rappluvluv 
+    "LexsPrem_Uo6BtF1wXe", -- Indo dari matrix: lowkeypoopfart
+    "LexsPrem_Xn8JsR4pMq", -- Indo dari matrix: ladyfox2851  prem
+    "LexsPrem_Aq3VdK7yBp", -- Indo dari matrix: onimaru2010
+    "LexsPrem_Pm5GhN0cTs", -- Indo dari matrix: wandakurnia
+    "LexsPrem_Ej7ZtW2vFx", -- 70 -- Indo dari matrix: fardan.1_71462
     "developer_accesprem", 
 }
 
