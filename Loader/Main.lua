@@ -85,7 +85,7 @@ local premiumKeys = {
     "LexsPrem_Wa9FcK2hPz", -- Indo dari matrix: wirasun prem
     "LexsPrem_Up3ZyL7tQe", -- Indo dari matrix: ubaaz_
     "LexsPrem_Km5XtD8vHs", -- Indo dari matrix: dhikadanz
-    "LexsPrem_Cr7WbF1qYo",
+    "LexsPrem_Cr7WbF1qYo", -- Indo dari matrix: exuberant_star_31798
     "LexsPrem_Nx2GjM6pVt",
     "LexsPrem_Eh4LkS0wBr",
     "LexsPrem_Zv1PqT5nJc", -- 80
