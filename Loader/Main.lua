@@ -79,6 +79,26 @@ local premiumKeys = {
     "LexsPrem_Aq3VdK7yBp", -- Indo dari matrix: onimaru2010
     "LexsPrem_Pm5GhN0cTs", -- Indo dari matrix: wandakurnia
     "LexsPrem_Ej7ZtW2vFx", -- 70 -- Indo dari matrix: fardan.1_71462
+    "LexsPrem_Qk8TrW1mZa", -- Indo dari matrix: albarkawi13
+    "LexsPrem_Bs4VyN9pLf",
+    "LexsPrem_Jd6MqR3xTu",
+    "LexsPrem_Wa9FcK2hPz",
+    "LexsPrem_Up3ZyL7tQe",
+    "LexsPrem_Km5XtD8vHs",
+    "LexsPrem_Cr7WbF1qYo",
+    "LexsPrem_Nx2GjM6pVt",
+    "LexsPrem_Eh4LkS0wBr",
+    "LexsPrem_Zv1PqT5nJc", -- 80
+    "LexsPrem_Rt9HwC3fXe",
+    "LexsPrem_Gp6SdA8kVo",
+    "LexsPrem_Lf2NyR7mQs",
+    "LexsPrem_Yc5KbW4tPx",
+    "LexsPrem_Dq8MgF1zHu",
+    "LexsPrem_Sw0XpJ6vBe",
+    "LexsPrem_Mj3TcN9yFo",
+    "LexsPrem_Xu7VrG2pLd",
+    "LexsPrem_Hg1ZsQ5kRn",
+    "LexsPrem_Pb4FvE0mWy", --90
     "developer_accesprem", 
 }
 
