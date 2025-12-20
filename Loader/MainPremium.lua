@@ -5,7 +5,7 @@ local placeId = game.PlaceId
 local iconlexs = "rbxassetid://71947103252559"
 
 local gameScripts = {
-    [96151237893653] = {
+    [76558904092080] = {
         name = "The Forge",
         premium = "https://raw.githubusercontent.com/albibot69-lgtm/L"
     },
