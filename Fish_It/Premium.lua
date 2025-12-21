@@ -1,14 +1,6 @@
 local success, WindUI = pcall(function()
     return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 end)
-
-if not success or not WindUI then
-    warn("⚠️ UI failed to load!(SCRIPT DOWN!)")
-    return
-else
-    print("✓ UI loaded successfully!")
-end
-
 -- ============================
 -- UI
 -- ============================
@@ -26,16 +18,16 @@ local Window = WindUI:CreateWindow({
     KeySystem = {                                                   
         Note = "Key For Premium",        
         API = {                                                     
-            { -- pandadevelopment
-                Type = "pandadevelopment", -- type
-                ServiceId = "luaaaaaaa", -- service id
+            { 
+                Type = "pandadevelopment", 
+                ServiceId = "luaaaaaaa", 
             },                                                      
         },                                                          
     },                                                              
 })
 
 Window:Tag({
-    Title = "V0.0.8.4",
+    Title = "V0.0.8.3",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
