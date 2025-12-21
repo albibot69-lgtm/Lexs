@@ -1461,9 +1461,6 @@ local IslandLocations = {
     ["Underground Cellar"] = Vector3.new(2135, -93, -701),
     ["Weather Machine"] = Vector3.new(-1508, 6, 1895),
     ["Ancient Ruin"] = Vector3.new(6051, -541, 4414),
-    ["Iron Cavern"] = Vector3.new(-9194, -582, 157),
-    ["Classic Island"] = Vector3.new(1178, 3, 2838),
-    ["Iron Cafe"] = Vector3.new(-8692, -549, 161),
     ["Christmas Island"] = Vector3.new(673, 5, 1568),
 }
 
@@ -1510,9 +1507,8 @@ local FishingLocations = {
 	["King Jelly Spot (For quest elemental)"] = Vector3.new(1473.60, 3.58, -328.23),
 	["El Shark Gran Maja Spot"] = Vector3.new(1526, 4, -629),
     ["Ancient Lochness"] = Vector3.new(6078, -586, 4629),
-    ["Iron Cavern"] = Vector3.new(-8964, -610, 54),
-    ["Classic Island"] = Vector3.new(1316, 9, 2871),
-    ["Iron Cafe"] = Vector3.new(-8634, -523, 149),
+    ["Christmas Island"] = Vector3.new(918, 2, 1235),
+    ["Christmas Cave"] = Vector3.new(606, -581, 8887),
 }
 
 local SelectedFishing = nil
