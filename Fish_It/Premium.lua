@@ -1,1 +1,2542 @@
---[[ v1.0.0 https://wearedevs.net/obfuscator ]] return(function(...)local T={"\106\043\071\108\110\098\061\061";"\106\105\056\061","\083\119\080\065\106\051\076\047","\087\082\052\065\076\087\074\073\081\068\071\050\106\068\115\061","\090\119\065\065\089\080\086\050\081\087\071\102\102\122\101\105\110\087\056\061","\083\054\047\101\106\068\047\099\080\122\081\090\076\068\065\122";"\083\068\102\073\106\068\103\061","\081\068\052\084\081\043\082\050\076\087\085\061";"\081\068\071\050\106\068\115\061";"\083\087\076\043\043\122\071\075\076\054\065\116\102\115\073\114\104\070\061\061","\080\068\071\065\083\068\080\112\085\056\074\047\081\068\080\116\081\068\080\054\085\070\061\061";"\076\087\086\112\106\051\085\061";"\083\117\080\108\106\043\080\108\089\087\074\073\089\119\066\047","\089\117\073\073\083\069\061\061";"\076\119\066\107\106\051\085\061";"\079\114\074\108\083\056\081\047\081\098\061\061";"\110\071\081\110\043\068\071\073\102\120\073\117\079\119\052\113\110\098\061\061","\115\071\088\103\109\105\071\073\102\082\101\110\076\114\071\079";"\076\056\100\115\115\115\074\080\083\080\081\107\081\108\085\082\043\056\118\061";"\074\082\086\115\079\122\047\053\104\114\088\112\113\087\074\112\090\054\097\061","\087\082\052\122\089\103\061\061";"\087\082\052\088\106\119\074\047\109\098\061\061";"\081\068\052\120\081\114\086\088\106\119\083\061";"\083\051\074\112\110\043\100\122","\104\069\061\061";"\106\105\085\061","\104\050\069\047\076\048\075\088\104\069\061\061","\076\051\102\082\089\069\061\061";"\110\068\102\101\102\051\073\121\043\068\113\108\115\047\074\119","","\089\122\047\108\076\070\061\061";"\106\068\080\084";"\074\115\066\090\089\051\113\118\102\108\047\071\090\069\061\061","\089\117\052\084\089\117\071\108";"\080\080\054\108\083\117\056\112\079\120\115\108\081\051\113\100\113\119\108\061","\076\117\071\065\076\070\061\061";"\109\080\080\054\076\047\080\105\080\068\073\070\090\071\070\082";"\081\043\100\103\089\043\102\057","\070\043\102\115\113\082\102\079\081\069\061\061","\106\068\052\073\076\114\102\108\083\119\047\084\076\103\061\061","\089\103\049\052\052\110\085\112\109\079\115\102\083\117\065\120\101\069\110\097\119\065\122\102\115\108\118\112\070\109\111\068\116\054\069\074\054\080\076\087\116\104\085\061";"\087\082\052\099\076\043\118\061","\083\120\085\066\115\108\052\068\090\068\071\076\043\047\071\120\070\122\102\089","\083\119\071\084\076\068\052\065","\106\115\088\043\110\115\070\112\083\043\088\053\081\071\073\067\089\119\056\061","\043\114\056\118\115\116\047\111\089\116\056\066\074\108\089\066\076\082\054\061";"\076\117\082\073\081\068\102\075"}for O,y in ipairs({{-577938+577939,-274800+274847};{-948947-(-948948);698004-697960};{519997-519952,-897166-(-897213)}})do while y[-508085-(-508086)]<y[-885969-(-885971)]do T[y[241849-241848]],T[y[517179-517177]],y[-478932-(-478933)],y[553150-553148]=T[y[712419+-712417]],T[y[952516-952515]],y[858437+-858436]+(-970496+970497),y[-551487+551489]-(544086+-544085)end end local function O(O)return T[O+(686186-673633)]end do local O=T local y=string.sub local N=type local S=string.len local c=table.insert local b=string.char local Q=table.concat local p=math.floor local U={l=438810-438758,I=-765854-(-765887);S=525376+-525348,N=776277-776246,v=-934044+934100;G=187324+-187319;x=-670310+670361,e=-170714+170715,P=903287+-903266;m=1029057+-1029027;Y=184142+-184118;k=-380485+380532,M=197641+-197582,j=-105951-(-105978),K=926770+-926730,u=-476821+476875;z=-625512-(-625551);W=-543958+543981;L=-176128-(-176153),g=574540+-574492;B=881146-881097,["\057"]=-915316+915359,["\052"]=437553+-437492,C=1019426+-1019411;Q=9805+-9776,a=707117-707057;U=-581371+581379;t=-794174+794209;T=-968779+968825;["\050"]=-401588+401622,["\048"]=396011+-396009,R=540668-540615;n=705677+-705651;b=-575032+575032,F=-923678-(-923694),r=-962893+962900,f=914119-914106,["\054"]=-407185+407221;E=-861115-(-861147),["\051"]=565034+-564979;o=-869179-(-869190),p=1041127+-1041077,D=898176+-898170,["\053"]=-360229+360239,y=868715+-868657;d=171730-171673;i=-677908-(-677911),h=-501548-(-501562),O=-95494-(-95512),V=-515090+515099,["\047"]=-617762-(-617799),X=-78373-(-78414);["\055"]=495497-495455;H=-522099+522162;Z=-388618-(-388637),["\049"]=-657337-(-657399),s=-1045149-(-1045169),c=-250414-(-250458),q=-536470+536482;J=-552690+552707;A=365997+-365952,["\056"]=-82776-(-82780),["\043"]=712174+-712152;w=-61393-(-61431)}for T=-1032847+1032848,#O,-35111+35112 do local E=O[T]if N(E)=="\115\116\114\105\110\103"then local N=S(E)local w={}local D=1022867+-1022866 local K=417507-417507 local z=-850728+850728 while D<=N do local T=y(E,D,D)local O=U[T]if O then K=K+O*(-235078-(-235142))^((145395-145392)-z)z=z+(533460+-533459)if z==218342-218338 then z=-447731-(-447731)local T=p(K/(-369213+434749))local O=p((K%(-539040-(-604576)))/(406286-406030))local y=K%(-47030+47286)c(w,b(T,O,y))K=493843+-493843 end elseif T=="\061"then c(w,b(p(K/(752121+-686585))))if D>=N or y(E,D+(-528625+528626),D+(723785-723784))~="\061"then c(w,b(p((K%(863196-797660))/(816895-816639))))end break end D=D+(-343745-(-343746))end O[T]=Q(w)end end end return(function(T,N,S,c,b,Q,p,x,w,K,y,U,z,W,F,P,u,E,D,v)U,z,D,u,F,v,P,y,K,w,E,W,x={},function(T)local O,y=216982+-216981,T[-658777-(-658778)]while y do E[y],O=E[y]-(-522951-(-522952)),(-456598+456599)+O if E[y]==-789061-(-789061)then E[y],U[y]=nil,nil end y=T[O]end end,-468223+468223,function(T,O)local N=K(O)local S=function(S)return y(T,{S},O,N)end return S end,function(T,O)local N=K(O)local S=function(S,c,b,Q,p)return y(T,{S;c;b,Q,p},O,N)end return S end,function(T,O)local N=K(O)local S=function(S,c,b)return y(T,{S;c;b},O,N)end return S end,function(T,O)local N=K(O)local S=function(S,c)return y(T,{S,c},O,N)end return S end,function(y,S,c,b)local m,Z,h,q,i,M,L,s,K,z,I,g,d,H,j,Y,E,J,V,e,r,X,o,G,t,W,k,C,a,n,l,R,D,p while y do if y<8425444-(-878229)then if y<121460+4437811 then if y<2030086-(-265686)then if y<433948+151004 then if y<-586422+914868 then if y<550892-450831 then if y<1035662+-986794 then p={}y=T[O(-376541+364005)]else y=true y=y and 12385311-(-744896)or-158361+4614109 end else D=U[c[-696839-(-696841)]]K=U[c[-938425+938428]]E=D==K y=9531488-29635 p=E end else if y<-135832+645145 then D=U[c[-764908+764911]]K=-640141-(-640350)y=13511884-(-235963)E=D*K D=707289-707032 p=E%D U[c[-327978+327981]]=p else p={D}y=T[O(-58768-(-46231))]end end else if y<928130-(-507549)then if y<-862101+1611827 then g=not C I=I+G j=I<=V j=g and j g=I>=V g=C and g j=g or j g=7976227-(-719184)y=j and g j=963172+14766566 y=y or j else o=not l Y=Y+e J=Y<=R J=o and J o=Y>=R o=l and o J=o or J o=14365916-262249 y=J and o J=3715204-35402 y=y or J end else if y<-966078+3155860 then L=926485+-926484 q=h[L]m=q y=11398073-(-917806)else y=94578+15034980 end end end else if y<2513154-(-651076)then if y<3155279-331356 then if y<3029023-247549 then if y<2280314-(-131765)then z=-1035552-(-1035553)D=U[c[-350941-(-350942)]]W=-502679+502681 K=D(z,W)D=735663+-735662 E=K==D y=E and-660122+10161975 or 821700+-709055 p=E else q=y s=-892562-(-892563)d=h[s]s=false L=d==s m=L y=L and 735220+7868996 or 421279+10358942 end else y=4015843-(-630135)U[c[791353+-791348]]=p E=nil end else if y<2259847-(-670451)then G=O(455-12962)a=O(522167-534700)y=T[a]V=T[G]a=y(V)y=O(-950591-(-938061))T[y]=a y=-200886+7321313 else G=not V X=X+a p=X<=Z p=G and p G=X>=Z G=V and G p=G or p G=1030297+9898459 y=p and G p=14291867-(-556859)y=y or p end end else if y<3692303-(-337756)then if y<3463184-(-163921)then K=O(1001496+-1014043)D=T[K]K=O(-538496+525990)E=D[K]K=U[c[-629463-(-629464)]]D={E(K)}y=T[O(-170521-(-157975))]p={N(D)}else z=nil k=nil t=nil y=-445394-(-958512)end else if y<5246000-976128 then q=U[D]y=q and 1341289-(-127254)or 12536414-220535 m=q else y=P(9757696-67653,{z})Z={y()}y=T[O(-566431+553921)]p={N(Z)}end end end end else if y<6073395-(-599964)then if y<5788901-(-300825)then if y<6735333-810494 then if y<4451214-(-651712)then if y<4948035-251818 then y=U[c[-845691-(-845698)]]y=y and 766955+5808486 or-925428+16038516 else y=1234886-721768 end else y={}W=35184372185248-96416 U[c[453853-453851]]=y k=-358601+358856 p=U[c[998626+-998623]]z=p p=D%W J=O(578540+-591072)U[c[-638982+638986]]=p t=D%k k=534476-534474 W=t+k U[c[-320645+320650]]=W k=T[J]J=O(-1025771-(-1013247))t=k[J]k=t(E)y=210842-(-933042)t=O(322265-334791)R=k Y=237401+-237400 K[D]=t t=-770044+770272 J=229193-229192 e=Y Y=-693321+693321 l=e<Y Y=J-e end else if y<6897004-918635 then y=true D=w()K=O(246151+-258683)U[D]=y p=T[K]K=O(-453637-(-441128))E=S z=w()y=p[K]W=w()K=w()U[K]=y J=F(12336696-319003,{W})y=v(-916825+10403573,{})U[z]=y y=false k=O(-584035+571486)U[W]=y t=T[k]k=t(J)y=k and-1021973+9846188 or-211419+9033552 p=k else y=139387+11497077 o=O(-939448+926901)l=T[o]o=O(421047+-433565)e=l[o]R=e end end else if y<6148990-(-13548)then if y<-398687+6507388 then K=K+W k=not t D=K<=z D=k and D k=K>=z k=t and k D=k or D k=-284729+15508897 y=D and k D=14984149-424797 y=y or D else t=nil o=nil I=w()j={}L=nil z=nil U[I]=j g={}h=O(206078+-218630)C=O(-1042095+1029552)G=w()V=v(9896461-1034476,{I,R,Y,W})j=w()U[j]=V M=O(68580-81114)k=nil J=nil V={}U[G]=V e=nil V=T[C]n=U[G]H={[M]=n,[h]=L}W=x(W)C=V(g,H)W=O(21806+-34322)V=v(11847089-(-388935),{G;I,l,R;Y,j})j=x(j)G=x(G)I=x(I)R=x(R)z=T[W]K=C Y=x(Y)y=T[O(-236004+223483)]k=O(-980917-(-968397))e=34081142981306-(-719684)t=T[k]D=V l=x(l)Y=O(800053-812568)R=D(Y,e)J=K[R]R=O(216389-228929)R=t[R]k={R(t,J)}p={}K=nil D=nil W=z(N(k))z=W()end else if y<-354394+6703061 then V=137260-137254 a=-406823+406824 y=U[k]Z=y(a,V)y=O(824341+-836871)V=O(822904+-835434)T[y]=Z a=T[V]V=464691+-464689 y=a>V y=y and-519+2825526 or 630325+8444434 else E=O(977435+-989979)y=T[E]D=U[c[169834-169826]]K=-343361+343361 E=y(D,K)y=15913062-799974 end end end else if y<8765237-(-25307)then if y<-701065+9347704 then if y<-504374+7969684 then if y<464673+6634543 then n=x(n)C=x(C)H=x(H)G=x(G)g=x(g)M=x(M)h=nil y=954234+1976906 else y=914864+8922109 end else y=-261982+11042203 s=133425-133423 d=h[s]s=U[n]L=d==s m=L end else if y<9696589-1000302 then j=I g=j o[j]=g j=nil y=-340036-(-970801)else y=T[O(531189-543739)]p={}end end else if y<9472525-639398 then if y<9304602-482009 then k=O(-652800-(-640292))t=p p=T[k]k=O(818532-831044)l=O(792042-804589)y=p[k]J=O(709468-722015)k=w()U[k]=y p=T[J]J=O(499681-512203)y=p[J]Y=y J=y e=T[l]y=e and 986497+5046851 or 10745439-(-891025)R=e else t=U[W]y=580889+8241244 p=t end else if y<-766007+9749588 then E=U[c[283113-283112]]p=#E E=805394-805394 y=p==E y=y and-834284+14533660 or 10769+3600101 else V=O(8487-21017)y=T[V]V=O(879318-891825)T[V]=y y=6888375-(-232052)end end end end end else if y<506271+12426980 then if y<425489+10389495 then if y<-735090+10613750 then if y<10419497-615851 then if y<9323202-(-266325)then if y<-849640+10339614 then p=O(92190-104734)E=O(369522+-382067)y=T[p]p=y(E)y=T[O(381495-394046)]p={}else y=p and 11295876-(-726284)or 945187+3700791 end else y=-378408+13374255 end else if y<471298+9369456 then y=true y=y and 916317+5369059 or-391017+439488 else I=#o V=-948256-(-948256)j=I==V y=j and-543189+6657412 or 693405+14265083 end end else if y<-797082+10964210 then if y<-350782+10307727 then K=641150-641118 D=U[c[-379177+379180]]E=D%K e=-113503-(-113516)z=U[c[908344+-908340]]k=U[c[538833-538831]]y=-824644+4435514 R=-378340+378342 j=U[c[-13663+13666]]o=j-E j=806445-806413 l=o/j Y=e-l J=R^Y R=-952616+952872 t=k/J W=z(t)z=-491997+4295459293 K=W%z W=820421+-820419 z=W^E D=K/z z=U[c[-635456+635460]]J=1001016+-1001015 k=D%J J=794417+4294172879 t=k*J W=z(t)z=U[c[-489094-(-489098)]]t=z(D)k=-646489-(-712025)K=W+t W=-55657-(-121193)z=K%W t=K-z E=nil K=nil e=637512-637256 W=t/k k=843848+-843592 t=z%k J=z-t k=J/R R=-947089-(-947345)z=nil J=W%R Y=W-J D=nil R=Y/e Y={t,k,J;R}J=nil k=nil W=nil U[c[-914752-(-914753)]]=Y R=nil t=nil else U[D]=p y=7789070-723023 end else if y<10453089-(-138639)then m=U[D]y=m and-505032+3246323 or 9669704-(-305511)p=m else p=m y=q y=-235570+10210785 end end end else if y<11902682-(-196932)then if y<545716+11243717 then if y<270647+11109140 then if y<-684294+11665736 then G=w()C=O(534191+-546699)U[G]=X p=T[C]C=O(536974+-549486)y=p[C]C=277947-277946 g=933901-933801 h=560533+-560531 p=y(C,g)H=440113+-439858 C=w()g=432112-432112 U[C]=p y=U[k]p=y(g,H)g=w()H=840727+-840726 U[g]=p n=-406098-(-406099)y=U[k]M=U[C]p=y(H,M)H=w()U[H]=p p=U[k]M=p(n,h)h=O(131130+-143661)p=-775839+775840 L=O(-903473+890940)i=-74553-(-74553)y=M==p p=O(-146186+133657)M=w()U[M]=y r=-506512+516512 y=O(-225696-(-213168))y=j[y]q=T[L]d=U[k]s={d(i,r)}L=q(N(s))q=O(731725+-744256)m=L..q n=h..m y=y(j,p,n)n=w()h=O(-327666-(-315117))U[n]=y m=u(2110038-(-205965),{k;G,Y,K,D,I,M;n;C,H,g;R})p=T[h]h={p(m)}y={N(h)}h=y y=U[M]y=y and 267344+10226416 or-577322+4810793 else K=U[c[-736414+736420]]y=2975717-162038 D=K==E p=D end else p=R y=Y y=R and-418112+12734347 or 17787994-1045547 end else if y<-1043246+13063623 then y=true p={}U[c[731290-731289]]=y y=T[O(701356+-713895)]else p=O(792904+-805452)y=T[p]J=O(-82632-(-70083))z=O(300240+-312773)E=U[c[-744711-(-744715)]]K=T[z]R=u(13333039-(-308689),{})k=T[J]J={k(R)}k=-184617+184619 t={N(J)}W=t[k]z=K(W)K=O(-885114+872585)D=E(z,K)E={D()}p=y(N(E))E=p D=U[c[-674067-(-674072)]]y=D and 10012657-(-1016275)or 1995111-(-818568)p=D end end else if y<-402647+12718663 then if y<11833612-(-440926)then y=U[c[227318+-227317]]K=y D=S[814374-814372]y=K[D]E=S[-877504+877505]y=y and-667819+5395099 or 4611527-(-796728)else i=319735+-319734 U[D]=m s=U[H]d=s+i L=h[d]q=e+L L=-671580+671836 y=q%L d=U[g]e=y L=l+d d=644830+-644574 q=L%d y=7982622-916575 l=q end else if y<11505384-(-838484)then e=-228085-(-228150)R=w()o=O(217254-229803)U[R]=p Y=-423132+423135 y=U[k]p=y(Y,e)y=-476579-(-476579)Y=w()j=F(-522926+14046981,{})U[Y]=p e=y p=T[o]y=507621-507621 l=y o={p(j)}y={N(o)}o=y p=772532-772530 y=o[p]a=O(-640190-(-627657))p=O(605773-618321)j=y y=T[p]I=U[K]Z=T[a]a=Z(j)Z=O(405126+-417655)X=I(a,Z)I={X()}p=y(N(I))I=w()U[I]=p p=-637824-(-637825)X=U[Y]Z=X X=-27189+27190 y=3124540-193400 a=X X=-597736+597736 V=a<X X=p-a else U[D]=X y=U[D]y=y and 1852675-(-443025)or 13980478-(-702777)end end end end else if y<15044848-485477 then if y<12740127-(-999724)then if y<14548582-973368 then if y<13986862-663806 then if y<12536790-(-466207)then y=true y=y and 255037+14253262 or 9028833-240104 else y=9130289-(-706684)end else p=8872630-830084 K=654639+11598942 D=O(442637+-455154)E=D^K y=p-E E=y p=O(213833+-226344)y=p/E p={y}y=T[O(684893-697431)]end else if y<-181101+13851023 then K=820136+1494156 p=14528368-754125 D=O(178119+-190642)E=D^K y=p-E p=O(290588+-303101)E=y y=p/E p={y}y=T[O(620182+-632709)]else D=U[c[876304+-876302]]K=-296567-(-296632)E=D*K D=-605253+10090153217696 p=E+D E=282490+35184371806342 D=-1034538-(-1034539)y=p%E U[c[711058-711056]]=y y=-161560-(-658124)E=U[c[85102+-85099]]p=E~=D end end else if y<-50532+14540555 then if y<13832514-(-16973)then K=652137-652136 D=U[c[-1033651+1033654]]E=D~=K y=E and-554705+10450952 or 745739-249175 else J=Y a=O(408821+-421353)Z=T[a]a=O(641551-654076)X=Z[a]Z=X(E,J)X=U[c[-105816-(-105822)]]y=1793063-649179 a=X()I=Z+a j=I+t I=370360-370104 o=j%I J=nil I=K[D]t=o a=165808+-165807 Z=t+a X=z[Z]j=I..X K[D]=j end else if y<179824+14333530 then E=O(956871-969378)p=O(-578045+565515)y=T[p]p=T[E]E=O(-415317+402810)T[E]=y y=-884829+13880676 E=O(761798+-774328)T[E]=p E=U[c[355485-355484]]D=E()else y=U[c[-403290+403300]]D=U[c[-133453-(-133464)]]E[y]=D y=U[c[-279033+279045]]D={y(E)}y=T[O(-476018+463499)]p={N(D)}end end end else if y<14688981-(-531801)then if y<-1025043+16064169 then if y<15364908-481111 then if y<-965035+15736931 then y=true y=4829524-373776 else Z=U[D]y=Z and 15844220-(-503164)or-102437+12599913 X=Z end else I=839204-839203 V=#o j=z(I,V)I=t(o,j)g=-386703-(-386704)j=nil V=U[l]C=I-g G=k(C)V[I]=G y=9948497-78962 I=nil end else if y<83844+15035766 then D=-300662-(-300663)K=U[c[61636-61627]]y={}z=K E=y K=401074-401073 W=K K=-286357-(-286357)t=W<K y=6080645-(-22761)K=D-W else k=x(k)l=nil t=nil D=x(D)k=O(864079-876587)I=x(I)I=-519218+519474 z=x(z)J=nil o=nil W=x(W)K=x(K)e=nil K=nil Y=x(Y)Y=w()D=nil t=O(-713189-(-700681))V=I R=x(R)I=75471-75470 e={}W=T[t]t=O(1006484-1019025)j=nil z=W[t]W=w()U[W]=z J=O(-720583-(-708036))t=T[k]k=O(-503488-(-490976))j=-139453-(-139454)z=t[k]R=O(225645-238177)k=T[J]J=O(-981064-(-968558))t=k[J]l=w()J=T[R]R=O(-233433+220891)G=I k=J[R]R=w()J=-170971+170971 U[R]=J J=733567+-733565 U[Y]=J o={}U[l]=e J={}e=-718285+718285 I=-455073-(-455073)y=-222417-(-853182)C=G<I I=j-G end end else if y<873484+15198154 then if y<14897492-(-770202)then D=K R=814476+-814221 J=-1013895+1013895 y=U[c[648620+-648619]]k=y(J,R)y=5463481-(-639925)E[D]=k D=nil else V=47187-47187 y=71723+14886765 I=#o j=I==V end else if y<-194126+16608337 then Z=e==l X=Z y=13493906-996430 else Y=O(-796560+784042)R=T[Y]y=12178930-(-137305)p=R end end end end end end end y=#b return N(p)end,function(T)for O=-673885+673886,#T,-963700+963701 do E[T[O]]=(-629413-(-629414))+E[T[O]]end if S then local y=S(true)local N=b(y)N[O(-609183+596649)],N[O(-182985+170450)],N[O(-444880+432366)]=T,z,function()return-376105+-2345643 end return y else return c({},{[O(-663124+650589)]=z,[O(-1030527-(-1017993))]=T;[O(671313-683827)]=function()return-16075+-2705673 end})end end,function()D=(-468498-(-468499))+D E[D]=-837600-(-837601)return D end,{},function(T,O)local N=K(O)local S=function(...)return y(T,{...},O,N)end return S end,function(T)E[T]=E[T]-(-600448+600449)if 1541+-1541==E[T]then E[T],U[T]=nil,nil end end return(W(773308+5175100,{}))(N(p))end)(getfenv and getfenv()or _ENV,unpack or table[O(-17428+4910)],newproxy,setmetatable,getmetatable,select,{...})end)(...)
+local success, WindUI = pcall(function()
+    return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+end)
+
+if not success or not WindUI then
+    warn("⚠️ UI failed to load!(SCRIPT DOWN!)")
+    return
+else
+    print("✓ UI loaded successfully!")
+end
+
+-- ============================
+-- UI
+-- ============================
+
+local Window = WindUI:CreateWindow({
+    Title = "Lexs Hub",
+    Icon = "rbxassetid://71947103252559",
+    Author = "Premium | Fish It",
+    Folder = "LEXS_HUB",
+    Size = UDim2.fromOffset(260, 290),
+    Transparent = true,
+    Theme = "Dark",
+    SideBarWidth = 170,
+    HasOutline = true,
+    KeySystem = {                                                   
+        Note = "Key For Premium",        
+        API = {                                                     
+            { -- pandadevelopment
+                Type = "pandadevelopment", -- type
+                ServiceId = "luaaaaaaa", -- service id
+            },                                                      
+        },                                                          
+    },                                                              
+})
+
+Window:Tag({
+    Title = "V0.0.8.3",
+    Color = Color3.fromRGB(255, 255, 255),
+    Radius = 17,
+})
+
+local executorName = "Unknown"
+if identifyexecutor then
+    executorName = identifyexecutor()
+elseif getexecutorname then
+    executorName = getexecutorname()
+elseif executor then
+    executorName = executor
+end
+
+-- Pilih warna berdasarkan executor
+local executorColor = Color3.fromRGB(200, 200, 200) -- Default (abu-abu)
+
+if executorName:lower():find("flux") then
+    executorColor = Color3.fromHex("#30ff6a")     -- Fluxus
+elseif executorName:lower():find("delta") then
+    executorColor = Color3.fromHex("#38b6ff")     -- Delta
+elseif executorName:lower():find("arceus") then
+    executorColor = Color3.fromHex("#a03cff")     -- Arceus X
+elseif executorName:lower():find("krampus") or executorName:lower():find("oxygen") then
+    executorColor = Color3.fromHex("#ff3838")     -- Krampus / Oxygen
+elseif executorName:lower():find("volcano") then
+    executorColor = Color3.fromHex("#ff8c00")     -- Volcano
+elseif executorName:lower():find("synapse") or executorName:lower():find("script") or executorName:lower():find("krypton") then
+    executorColor = Color3.fromHex("#ffd700")     -- Synapse / Script-Ware / Krypton
+elseif executorName:lower():find("wave") then
+    executorColor = Color3.fromHex("#00e5ff")     -- Wave
+elseif executorName:lower():find("zenith") then
+    executorColor = Color3.fromHex("#ff00ff")     -- Zenith
+elseif executorName:lower():find("seliware") then
+    executorColor = Color3.fromHex("#00ffa2")     -- Seliware
+elseif executorName:lower():find("krnl") then
+    executorColor = Color3.fromHex("#1e90ff")     -- KRNL
+elseif executorName:lower():find("trigon") then
+    executorColor = Color3.fromHex("#ff007f")     -- Trigon
+elseif executorName:lower():find("nihon") then
+    executorColor = Color3.fromHex("#8a2be2")     -- Nihon
+elseif executorName:lower():find("celery") then
+    executorColor = Color3.fromHex("#4caf50")     -- Celery
+elseif executorName:lower():find("lunar") then
+    executorColor = Color3.fromHex("#8080ff")     -- Lunar
+elseif executorName:lower():find("valyse") then
+    executorColor = Color3.fromHex("#ff1493")     -- Valyse
+elseif executorName:lower():find("vega") then
+    executorColor = Color3.fromHex("#4682b4")     -- Vega X
+elseif executorName:lower():find("electron") then
+    executorColor = Color3.fromHex("#7fffd4")     -- Electron
+elseif executorName:lower():find("awp") then
+    executorColor = Color3.fromHex("#ff005e") -- AWP (merah neon ke pink)
+elseif executorName:lower():find("bunni") or executorName:lower():find("bunni.lol") then
+    executorColor = Color3.fromHex("#ff69b4") -- Bunni.lol (Hot Pink / Neon Pink)
+end
+
+-- Buat Tag UI
+local TagUI = Window:Tag({
+    Title = "EXECUTOR | " .. tostring(executorName),
+    Icon = "github",
+    Color = executorColor,
+    Radius = 0
+})
+
+local Dialog = Window:Dialog({
+    Icon = "circle-plus",
+    Title = "Join Discord",
+    Content = "For Update",
+    Buttons = {
+        {
+            Title = "Copy Discord",
+            Callback = function()
+                if setclipboard then
+                    setclipboard("https://discord.gg/tjb2jWgfVC")
+                    
+                    -- Notify jika berhasil
+                    WindUI:Notify({
+                        Title = "Copied Successfully!",
+                        Content = "The Discord link has been copied to the clipboard.",
+                        Duration = 3,
+                        Icon = "check"
+                    })
+                else
+                    -- Notify jika executor tidak support
+                    WindUI:Notify({
+                        Title = "Fail!",
+                        Content = "Your executor does not support the auto-copy command.",
+                        Duration = 3,
+                        Icon = "x"
+                    })
+                end
+            end,
+        },
+        {
+            Title = "No",
+            Callback = function()
+                WindUI:Notify({
+                    Title = "Canceled",
+                    Content = "You cancel the action.",
+                    Duration = 3,
+                    Icon = "x"
+                })
+            end,
+        },
+    },
+})
+
+WindUI:Notify({
+    Title = "Lexs Hub Loaded",
+    Content = "UI loaded successfully!",
+    Duration = 3,
+    Icon = "bell",
+})
+
+local Tab1 = Window:Tab({
+    Title = "Info",
+    Icon = "info",
+})
+
+Window:SelectTab(1)
+
+    Tab1:Paragraph({
+        Title = "Lexs Hub Community",
+        Desc = "Join Our Community Discord Server to get the latest updates, support, and connect with other users!",
+        Image = "rbxassetid://71947103252559",
+        ImageSize = 24,
+        Buttons = {
+            {
+                Title = "Copy Link",
+                Icon = "link",
+                Callback = function()
+                    setclipboard("https://discord.gg/tjb2jWgfVC")
+                    WindUI:Notify({
+                        Title = "Link Disalin!",
+                        Content = "Link Discord RockHub berhasil disalin.",
+                        Duration = 3,
+                        Icon = "copy",
+                    })
+                end,
+            }
+        }
+    })
+
+local Player = game:GetService("Players").LocalPlayer
+
+local Tab2 = Window:Tab({
+    Title = "Players",
+    Icon = "user"
+})
+
+other = Tab2:Section({ 
+    Title = "Other",
+    Icon = "user",
+    TextXAlignment = "Left",
+    TextSize = 17, -- Default Size
+    Opened = true,
+})
+
+other:Slider({
+    Title = "Speed",
+    Desc = "Default 16",
+    Step = 1,
+    Value = { Min = 18, Max = 100, Default = 18 },
+    Callback = function(Value)
+        local humanoid = Player.Character and Player.Character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.WalkSpeed = Value
+        end
+    end
+})
+
+other:Slider({
+    Title = "Jump",
+    Desc = "Default 50",
+    Step = 1,
+    Value = { Min = 50, Max = 500, Default = 50 },
+    Callback = function(Value)
+        local humanoid = Player.Character and Player.Character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.JumpPower = Value
+        end
+    end
+})
+
+Tab2:Divider()
+
+local P = game.Players.LocalPlayer
+local UIS = game:GetService("UserInputService")
+_G.InfiniteJump = false
+
+other:Toggle({
+    Title = "Infinite Jump",
+    Desc = "activate to use infinite jump",
+    Icon = false,
+    Type = false,
+    Default = false,
+    Callback = function(state)
+        _G.InfiniteJump = state
+    end
+})
+
+UIS.JumpRequest:Connect(function()
+    if _G.InfiniteJump then
+        local h = P.Character and P.Character:FindFirstChildOfClass("Humanoid")
+        if h then
+            h:ChangeState(Enum.HumanoidStateType.Jumping)
+        end
+    end
+end)
+
+local Player = game:GetService("Players").LocalPlayer
+
+other:Toggle({
+    Title = "Noclip",
+    Desc = "Walk through walls",
+    Icon = false,
+    Type = false,
+    Default = false,
+    Callback = function(state)
+        _G.Noclip = state
+        if state then
+            -- Pastikan cuma satu loop yang berjalan
+            task.spawn(function()
+                while _G.Noclip do
+                    task.wait(0.1)
+                    local character = Player.Character
+                    if character then
+                        for _, part in pairs(character:GetDescendants()) do
+                            if part:IsA("BasePart") and part.CanCollide then
+                                part.CanCollide = false
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end
+})
+
+local P, SG = game.Players.LocalPlayer, game.StarterGui
+local frozen, last
+
+local function msg(t,c)
+	pcall(function()
+		SG:SetCore("ChatMakeSystemMessage",{
+			Text="[FREEZE] "..t,
+			Color=c or Color3.fromRGB(150,255,150),
+			Font=Enum.Font.SourceSansBold,
+			FontSize=Enum.FontSize.Size24
+		})
+	end)
+end
+
+local function setFreeze(s)
+	local c = P.Character or P.CharacterAdded:Wait()
+	local h = c:FindFirstChildOfClass("Humanoid")
+	local r = c:FindFirstChild("HumanoidRootPart")
+	if not h or not r then return end
+
+	if s then
+		last = r.CFrame
+		h.WalkSpeed,h.JumpPower,h.AutoRotate,h.PlatformStand = 0,0,false,true
+		for _,t in ipairs(h:GetPlayingAnimationTracks()) do t:Stop(0) end
+		local a = h:FindFirstChildOfClass("Animator")
+		if a then a:Destroy() end
+		r.Anchored = true
+		msg("Freeze character",Color3.fromRGB(100,200,255))
+	else
+		h.WalkSpeed,h.JumpPower,h.AutoRotate,h.PlatformStand = 16,50,true,false
+		if not h:FindFirstChildOfClass("Animator") then Instance.new("Animator",h) end
+		r.Anchored = false
+		if last then r.CFrame = last end
+		msg("Character released",Color3.fromRGB(255,150,150))
+	end
+end
+
+other:Toggle({
+	Title="Freeze Character",
+	Value=false,
+	Callback=function(s)
+		frozen = s
+		setFreeze(s)
+	end
+})
+
+P.CharacterAdded:Connect(function(c)
+	if frozen then task.wait(.5); setFreeze(true) end
+end)
+
+local P = game.Players.LocalPlayer
+
+local function toggleAnim(s)
+    local c = P.Character or P.CharacterAdded:Wait()
+    local h = c:FindFirstChildOfClass("Humanoid")
+    local a = c:FindFirstChild("Animate")
+    if not h then return end
+
+    if s then
+        if a then a.Disabled = true end
+        for _,t in ipairs(h:GetPlayingAnimationTracks()) do t:Stop(0) end
+        local an = h:FindFirstChildOfClass("Animator")
+        if an then an:Destroy() end
+    else
+        if a then a.Disabled = false end
+        if not h:FindFirstChildOfClass("Animator") then
+            Instance.new("Animator", h)
+        end
+    end
+end
+
+other:Toggle({
+    Title = "Disable Animations",
+    Value = false,
+    Callback = toggleAnim
+})
+
+_G.AutoFishing = false
+_G.AutoEquipRod = false
+_G.Radar = false
+_G.Instant = false
+_G.InstantDelay = _G.InstantDelay or 0.35
+_G.CallMinDelay = _G.CallMinDelay or 0.18
+_G.CallBackoff = _G.CallBackoff or 1.5
+
+local lastCall = {}
+local function safeCall(k, f)
+    local n = os.clock()
+    if lastCall[k] and n - lastCall[k] < _G.CallMinDelay then
+        task.wait(_G.CallMinDelay - (n - lastCall[k]))
+    end
+    local ok, result = pcall(f)
+    lastCall[k] = os.clock()
+    if not ok then
+        local msg = tostring(result):lower()
+        task.wait(msg:find("429") or msg:find("too many requests") and _G.CallBackoff or 0.2)
+    end
+    return ok, result
+end
+
+local RS = game:GetService("ReplicatedStorage")
+local net = RS.Packages._Index["sleitnick_net@0.2.0"].net
+
+local function rod()
+    safeCall("rod", function()
+        net["RE/EquipToolFromHotbar"]:FireServer(1)
+    end)
+end
+
+local function autoon()
+    safeCall("autoon", function()
+        net["RF/UpdateAutoFishingState"]:InvokeServer(true)
+    end)
+end
+
+local function autooff()
+    safeCall("autooff", function()
+        net["RF/UpdateAutoFishingState"]:InvokeServer(false)
+    end)
+end
+
+local function catch()
+    safeCall("catch", function()
+        net["RE/FishingCompleted"]:FireServer()
+    end)
+end
+
+local function charge()
+    safeCall("charge", function()
+        net["RF/ChargeFishingRod"]:InvokeServer()
+    end)
+end
+
+local function lempar()
+    safeCall("lempar", function()
+        net["RF/RequestFishingMinigameStarted"]:InvokeServer(-139.63, 0.996, -1761532005.497)
+    end)
+    safeCall("charge2", function()
+        net["RF/ChargeFishingRod"]:InvokeServer()
+    end)
+end
+
+local function autosell()
+    while _G.AutoSell do
+        sell()
+        local d = tonumber(_G.SellDelay) or 30
+        local t = 0
+        while t < d and _G.AutoSell do
+            task.wait(0.25)
+            t += 0.25
+        end
+    end
+end
+
+local function instant_cycle()
+    charge()
+    lempar()
+    task.wait(_G.InstantDelay)
+    catch()
+end
+
+local Tab3 = Window:Tab({
+    Title = "Main",
+    Icon = "gamepad-2"
+})
+
+fishing = Tab3:Section({
+    Title = "Fishing",
+    Icon = "fish",
+    TextXAlignment = "Left",
+    TextSize = 17
+})
+
+fishing:Toggle({
+    Title = "Auto Equip Rod",
+    Value = false,
+    Callback = function(v)
+        _G.AutoEquipRod = v
+        if v then rod() end
+    end
+})
+
+local mode = "Instant"
+local fishThread
+local sellThread
+
+fishing:Dropdown({
+    Title = "Mode",
+    Values = {"Instant", "Legit"},
+    Value = "Instant",
+    Callback = function(v)
+        mode = v
+    end
+})
+
+fishing:Toggle({
+    Title = "Auto Fishing",
+    Value = false,
+    Callback = function(v)
+        _G.AutoFishing = v
+        if v then
+            if mode == "Instant" then
+                _G.Instant = true
+                if fishThread then fishThread = nil end
+                fishThread = task.spawn(function()
+                    while _G.AutoFishing and mode == "Instant" do
+                        instant_cycle()
+                        task.wait(0.35)
+                    end
+                end)
+            else
+                if fishThread then fishThread = nil end
+                fishThread = task.spawn(function()
+                    while _G.AutoFishing and mode == "Legit" do
+                        autoon()
+                        task.wait(1)
+                    end
+                end)
+            end
+        else
+            autooff()
+            _G.Instant = false
+            if fishThread then task.cancel(fishThread) end
+            fishThread = nil
+        end
+    end
+})
+
+fishing:Slider({
+    Title = "Instant Fishing Delay",
+    Step = 0.01,
+    Value = {Min = 0.05, Max = 5, Default = 0.65},
+    Callback = function(v)
+        _G.InstantDelay = v
+    end
+})
+
+item = Tab3:Section({     
+    Title = "Item",
+    Icon = "list-collapse",
+    TextXAlignment = "Left",
+    TextSize = 17,    
+})
+
+item:Toggle({
+    Title = "Radar",
+    Value = false,
+    Callback = function(s)
+        local RS, L = game.ReplicatedStorage, game.Lighting
+        if require(RS.Packages.Replion).Client:GetReplion("Data")
+        and require(RS.Packages.Net):RemoteFunction("UpdateFishingRadar"):InvokeServer(s) then
+
+            local spr = require(RS.Packages.spr)
+            local cc = L:FindFirstChildWhichIsA("ColorCorrectionEffect")
+
+            require(RS.Shared.Soundbook).Sounds.RadarToggle:Play().PlaybackSpeed = 1 + math.random() * .3
+
+            if cc then
+                spr.stop(cc)
+                local prof = (require(RS.Controllers.ClientTimeController)._getLightingProfile or require(RS.Controllers.ClientTimeController)._getLighting_profile)(require(RS.Controllers.ClientTimeController)) or {}
+                local cfg = prof.ColorCorrection or {}
+
+                cfg.Brightness = cfg.Brightness or .04
+                cfg.TintColor = cfg.TintColor or Color3.new(1,1,1)
+
+                cc.TintColor = s and Color3.fromRGB(42,226,118) or Color3.fromRGB(255,0,0)
+                cc.Brightness = s and .4 or .2
+
+                require(RS.Controllers.TextNotificationController):DeliverNotification{
+                    Type="Text",
+                    Text="Radar: "..(s and "Enabled" or "Disabled"),
+                    TextColor=s and {R=9,G=255,B=0} or {R=255,G=0,B=0}
+                }
+
+                spr.target(cc,1,1,cfg)
+            end
+
+            spr.stop(L)
+            L.ExposureCompensation = 1
+            spr.target(L,1,2,{ExposureCompensation=0})
+        end
+    end
+})
+
+item:Toggle({
+    Title = "Bypass Oxygen",
+    Desc = "Inf Oxygen",
+    Default = false,
+    Callback = function(s)
+        local net = game.ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net
+        if s then
+            net["RF/EquipOxygenTank"]:InvokeServer(105)
+        else
+            net["RF/UnequipOxygenTank"]:InvokeServer()
+        end
+    end
+})
+
+local Tab4 = Window:Tab({
+	Title = "Auto",
+	Icon = "circle-ellipsis"
+})
+
+sell = Tab4:Section({
+    Title = "Sell",
+    Icon = "coins",
+    TextXAlignment = "Left",
+    TextSize = 17
+})
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+
+local SellAllRF =
+    ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/SellAllItems"]
+
+local AutoSell = false
+local SellAt = 100
+local Selling = false
+
+local ItemUtility = require(ReplicatedStorage.Shared.ItemUtility)
+local Data = require(ReplicatedStorage.Packages.Replion).Client:WaitReplion("Data")
+
+local function getFishCount()
+    local items = Data:GetExpect({ "Inventory", "Items" })
+    local count = 0
+    for _, v in pairs(items) do
+        local itemData = ItemUtility.GetItemDataFromItemType("Items", v.Id)
+        if itemData and itemData.Data and itemData.Data.Type == "Fish" then
+            count += 1
+        end
+    end
+    return count
+end
+
+sell:Input({
+    Title = "Auto Sell When Fish ≥",
+    Placeholder = "contoh: 100",
+    Value = tostring(SellAt),
+    Callback = function(text)
+        local n = tonumber(text)
+        if n and n > 0 then
+            SellAt = math.floor(n)
+        end
+    end
+})
+
+sell:Toggle({
+    Title = "Auto Sell All Fish",
+    Value = false,
+    Icon = "dollar-sign",
+    Callback = function(state)
+        AutoSell = state
+    end
+})
+
+RunService.Heartbeat:Connect(function()
+    if not AutoSell or Selling then return end
+    if getFishCount() >= SellAt then
+        Selling = true
+        pcall(function()
+            SellAllRF:InvokeServer()
+        end)
+        task.delay(1.5, function()
+            Selling = false
+        end)
+    end
+end)
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+
+local SellAllRF =
+    ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/SellAllItems"]
+
+local AutoSell = false
+local SellMinute = 5
+local Selling = false
+local LastSell = 0
+
+local ItemUtility = require(ReplicatedStorage.Shared.ItemUtility)
+local Data = require(ReplicatedStorage.Packages.Replion).Client:WaitReplion("Data")
+
+local function getFishCount()
+    local items = Data:GetExpect({ "Inventory", "Items" })
+    local count = 0
+    for _, v in pairs(items) do
+        local itemData = ItemUtility.GetItemDataFromItemType("Items", v.Id)
+        if itemData and itemData.Data and itemData.Data.Type == "Fish" then
+            count += 1
+        end
+    end
+    return count
+end
+
+sell:Input({
+    Title = "Auto Sell Interval (Minute)",
+    Placeholder = "contoh: 5",
+    Value = tostring(SellMinute),
+    Callback = function(text)
+        local n = tonumber(text)
+        if n and n > 0 then
+            SellMinute = math.floor(n)
+        end
+    end
+})
+
+sell:Toggle({
+    Title = "Auto Sell All (By Minute)",
+    Value = false,
+    Icon = "clock",
+    Callback = function(state)
+        AutoSell = state
+        if state then
+            LastSell = os.clock()
+        end
+    end
+})
+
+RunService.Heartbeat:Connect(function()
+    if not AutoSell or Selling then return end
+    if os.clock() - LastSell >= (SellMinute * 60) then
+        if getFishCount() > 0 then
+            Selling = true
+            pcall(function()
+                SellAllRF:InvokeServer()
+            end)
+            LastSell = os.clock()
+            task.delay(1.5, function()
+                Selling = false
+            end)
+        else
+            LastSell = os.clock()
+        end
+    end
+end)
+
+event = Tab4:Section({
+    Title = "Event",
+    Icon = "snowflake",
+    TextXAlignment = "Left",
+    TextSize = 17
+})
+
+local RS = game:GetService("ReplicatedStorage")
+local Remote = RS.Packages._Index["sleitnick_net@0.2.0"].net["RF/SpecialDialogueEvent"]
+
+local NPCs = {
+    "Alien Merchant","Billy Bob","Seth","Joe","Aura Kid","Boat Expert",
+    "Scott","Ron","Jeffery","McBoatson","Scientist","Silly Fisherman","Tim","Santa"
+}
+
+local auto = false
+
+event:Toggle({
+    Title = "Auto Claim",
+    Desc = "Auto Claim Christmas Presents",
+    Value = false,
+    Callback = function(s)
+        auto = s
+        task.spawn(function()
+            while auto do
+                for i = 1, #NPCs do
+                    if not auto then break end
+                    pcall(Remote.InvokeServer, Remote, NPCs[i], "ChristmasPresents")
+                    task.wait(0.15)
+                end
+                task.wait(2)
+            end
+        end)
+    end
+})
+
+local Tab0 = Window:Tab({
+    Title = "Exclusive",
+    Icon = "star",
+})
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local c={d=false,e=1.6,f=0.37}
+
+local g=ReplicatedStorage:WaitForChild("Packages"):WaitForChild("_Index"):WaitForChild("sleitnick_net@0.2.0"):WaitForChild("net")
+
+local h,i,j,k,l
+pcall(function()
+    h=g:WaitForChild("RF/ChargeFishingRod")
+    i=g:WaitForChild("RF/RequestFishingMinigameStarted")
+    j=g:WaitForChild("RE/FishingCompleted")
+    k=g:WaitForChild("RE/EquipToolFromHotbar")
+    l=g:WaitForChild("RF/CancelFishingInputs")
+end)
+
+local m=nil
+local n=nil
+local o=nil
+
+local function p()
+    task.spawn(function()
+        pcall(function()
+            local q,r=l:InvokeServer()
+            if not q then
+                while not q do
+                    local s=l:InvokeServer()
+                    if s then break end
+                    task.wait(0.05)
+                end
+            end
+
+            local t,u=h:InvokeServer(math.huge)
+            if not t then
+                while not t do
+                    local v=h:InvokeServer(math.huge)
+                    if v then break end
+                    task.wait(0.05)
+                end
+            end
+
+            i:InvokeServer(-139.63,0.996)
+        end)
+    end)
+
+    task.spawn(function()
+        task.wait(c.f)
+        if c.d then
+            pcall(j.FireServer,j)
+        end
+    end)
+end
+
+local function w()
+    n=task.spawn(function()
+        while c.d do
+            pcall(k.FireServer,k,1)
+            task.wait(1.5)
+        end
+    end)
+
+    while c.d do
+        p()
+        task.wait(c.e)
+        if not c.d then break end
+        task.wait(0.1)
+    end
+end
+
+local function x(y)
+    c.d=y
+    if y then
+        if m then task.cancel(m) end
+        if n then task.cancel(n) end
+        m=task.spawn(w)
+    else
+        if m then task.cancel(m) end
+        if n then task.cancel(n) end
+        m=nil
+        n=nil
+        pcall(l.InvokeServer,l)
+    end
+end
+
+blantant = Tab0:Section({ 
+    Title = "Blantant X7 V1 | Recomended",
+    Icon = "fish",
+    TextTransparency = 0.05,
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+blantant:Toggle({
+    Title = "Blantant",
+    Value = c.d,
+    Callback = function(z2)
+        x(z2)
+    end
+})
+
+blantant:Input({
+    Title = "Cancel Delay",
+    Placeholder = "1.7",
+    Default = tostring(c.e),
+    Callback = function(z4)
+        local z5 = tonumber(z4)
+        if z5 and z5 > 0 then
+            c.e = z5
+        end
+    end
+})
+
+blantant:Input({
+    Title = "Complete Delay",
+    Placeholder = "1.4",
+    Default = tostring(c.f),
+    Callback = function(z7)
+        local z8 = tonumber(z7)
+        if z8 and z8 > 0 then
+            c.f = z8
+        end
+    end
+})
+
+local RS = game:GetService("ReplicatedStorage")
+local Net = RS.Packages._Index["sleitnick_net@0.2.0"].net
+local FC = require(RS.Controllers.FishingController)
+
+local oc, orc = FC.RequestFishingMinigameClick, FC.RequestChargeFishingRod
+local ap = false
+
+task.spawn(function()
+    while task.wait() do
+        if ap then
+            Net["RF/UpdateAutoFishingState"]:InvokeServer(true)
+        end
+    end
+end)
+
+blantant:Toggle({
+    Title = "Auto Perfection",
+    Value = false,
+    Callback = function(s)
+        ap = s
+        if s then
+            FC.RequestFishingMinigameClick = function() end
+            FC.RequestChargeFishingRod = function() end
+        else
+            Net["RF/UpdateAutoFishingState"]:InvokeServer(false)
+            FC.RequestFishingMinigameClick = oc
+            FC.RequestChargeFishingRod = orc
+        end
+    end
+})
+
+Tab0:Space()
+
+blantant:Button({
+    Title = "X5 V1",
+    Desc = "This Is X5 In Free Script",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/pIoVjvmR/raw"))()
+    end
+})
+
+webhook = Tab0:Section({ 
+	Title = "Webhook Fish Caught",
+	Icon = "webhook",
+	TextXAlignment = "Left",
+	TextSize = 17 
+})
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local HttpService = game:GetService("HttpService")
+
+local httpRequest = syn and syn.request or http and http.request or http_request or (fluxus and fluxus.request) or request
+if not httpRequest then return end
+
+local ItemUtility, Replion, DataService
+local fishDB = {}
+local rarityList = { "Common", "Uncommon", "Rare", "Epic", "Legendary", "Mythic", "SECRET" }
+local tierToRarity = {
+    [1] = "Common",
+    [2] = "Uncommon",
+    [3] = "Rare",
+    [4] = "Epic",
+    [5] = "Legendary",
+    [6] = "Mythic",
+    [7] = "SECRET"
+}
+local knownFishUUIDs = {}
+
+pcall(function()
+    ItemUtility = require(ReplicatedStorage.Shared.ItemUtility)
+    Replion = require(ReplicatedStorage.Packages.Replion)
+    DataService = Replion.Client:WaitReplion("Data")
+end)
+
+function buildFishDatabase()
+    local RS = game:GetService("ReplicatedStorage")
+    local itemsContainer = RS:WaitForChild("Items")
+    if not itemsContainer then return end
+
+    for _, itemModule in ipairs(itemsContainer:GetChildren()) do
+        local success, itemData = pcall(require, itemModule)
+        if success and type(itemData) == "table" and itemData.Data and itemData.Data.Type == "Fish" then
+            local data = itemData.Data
+            if data.Id and data.Name then
+                fishDB[data.Id] = {
+                    Name = data.Name,
+                    Tier = data.Tier,
+                    Icon = data.Icon,
+                    SellPrice = itemData.SellPrice
+                }
+            end
+        end
+    end
+end
+
+function getInventoryFish()
+    if not (DataService and ItemUtility) then return {} end
+    local inventoryItems = DataService:GetExpect({ "Inventory", "Items" })
+    local fishes = {}
+    for _, v in pairs(inventoryItems) do
+        local itemData = ItemUtility.GetItemDataFromItemType("Items", v.Id)
+        if itemData and itemData.Data.Type == "Fish" then
+            table.insert(fishes, { Id = v.Id, UUID = v.UUID, Metadata = v.Metadata })
+        end
+    end
+    return fishes
+end
+
+function getPlayerCoins()
+    if not DataService then return "N/A" end
+    local success, coins = pcall(function() return DataService:Get("Coins") end)
+    if success and coins then
+        return string.format("%d", coins):reverse():gsub("(%d%d%d)", "%1,"):reverse():gsub("^,", "")
+    end
+    return "N/A"
+end
+
+function getThumbnailURL(assetString)
+    local assetId = assetString:match("rbxassetid://(%d+)")
+    if not assetId then return nil end
+    local api = string.format(
+        "https://thumbnails.roblox.com/v1/assets?assetIds=%s&type=Asset&size=420x420&format=Png",
+        assetId
+    )
+    local success, response = pcall(function()
+        return HttpService:JSONDecode(game:HttpGet(api))
+    end)
+    return success and response and response.data and response.data[1] and response.data[1].imageUrl
+end
+
+function sendTestWebhook()
+    if not httpRequest or not _G.WebhookURL or not _G.WebhookURL:match("discord.com/api/webhooks") then
+        WindUI:Notify({ Title = "Error", Content = "Webhook URL Empty" })
+        return
+    end
+
+    local payload = {
+        username = "Lexs Hub Webhook",
+        avatar_url = "https://cdn.discordapp.com/attachments/1403943739176783954/1451856403621871729/ChatGPT_Image_27_Sep_2025_16.38.53.png",
+        embeds = {{
+            title = "Test Webhook Connected",
+            description = "Webhook connection successful!",
+            color = 0xFFFFFF
+        }}
+    }
+
+    pcall(function()
+        httpRequest({
+            Url = _G.WebhookURL,
+            Method = "POST",
+            Headers = { ["Content-Type"] = "application/json" },
+            Body = HttpService:JSONEncode(payload)
+        })
+    end)
+end
+
+function sendNewFishWebhook(newlyCaughtFish)
+    if not httpRequest or not _G.WebhookURL or not _G.WebhookURL:match("discord.com/api/webhooks") then return end
+
+    local newFishDetails = fishDB[newlyCaughtFish.Id]
+    if not newFishDetails then return end
+
+    local newFishRarity = tierToRarity[newFishDetails.Tier] or "Unknown"
+    if #_G.WebhookRarities > 0 and not table.find(_G.WebhookRarities, newFishRarity) then return end
+
+    local fishWeight = (newlyCaughtFish.Metadata and newlyCaughtFish.Metadata.Weight and string.format("%.2f Kg", newlyCaughtFish.Metadata.Weight)) or "N/A"
+    local mutation   = (newlyCaughtFish.Metadata and newlyCaughtFish.Metadata.VariantId and tostring(newlyCaughtFish.Metadata.VariantId)) or "None"
+    local sellPrice  = (newFishDetails.SellPrice and ("$"..string.format("%d", newFishDetails.SellPrice):reverse():gsub("(%d%d%d)", "%1,"):reverse():gsub("^,", "").." Coins")) or "N/A"
+    local currentCoins = getPlayerCoins()
+
+    local totalFishInInventory = #getInventoryFish()
+    local backpackInfo = string.format("%d/4500", totalFishInInventory)
+
+    local playerName = game.Players.LocalPlayer.Name
+
+    local payload = {
+        content = nil,
+        embeds = {{
+            title = "Lexs Hub Webhook Fish caught!",
+            description = string.format(
+                "Congrats! **%s** You obtained new **%s** here for full detail fish :",
+                playerName, newFishRarity
+            ),
+            url = "https://discord.gg/tjb2jWgfVC ",
+            color = 65280,
+
+            -- === PERUBAHAN SATU-SATUNYA DI SINI (FIELDS) ===
+            fields = {
+                {
+                    name = "Fish Details",
+                    value =
+                        "```" ..
+                        "Name Fish        : " .. newFishDetails.Name .. "\n" ..
+                        "Rarity           : " .. newFishRarity .. "\n" ..
+                        "Weight           : " .. fishWeight .. "\n" ..
+                        "Mutation         : " .. mutation .. "\n" ..
+                        "Sell Price       : " .. sellPrice .. "\n" ..
+                        "Backpack Counter : " .. backpackInfo .. "\n" ..
+                        "Current Coin     : " .. currentCoins .. "\n" ..
+                        "```"
+                }
+            },
+            -- === AKHIR PERUBAHAN ===
+
+            footer = {
+                text = "Lexs Hub Webhook",
+                icon_url = "https://cdn.discordapp.com/attachments/1403943739176783954/1451856403621871729/ChatGPT_Image_27_Sep_2025_16.38.53.png"
+            },
+            timestamp = os.date("!%Y-%m-%dT%H:%M:%S.000Z"),
+            thumbnail = {
+                url = getThumbnailURL(newFishDetails.Icon)
+            }
+        }},
+        username = "Lexs Hub Webhook",
+        avatar_url = "https://cdn.discordapp.com/attachments/1403943739176783954/1451856403621871729/ChatGPT_Image_27_Sep_2025_16.38.53.png",
+        attachments = {}
+    }
+
+    pcall(function()
+        httpRequest({
+            Url = _G.WebhookURL,
+            Method = "POST",
+            Headers = { ["Content-Type"] = "application/json" },
+            Body = HttpService:JSONEncode(payload)
+        })
+    end)
+end
+
+U = webhook:Input({
+    Title = "URL Webhook",
+    Placeholder = "Paste your Discord Webhook URL here",
+    Value = _G.WebhookURL or "",
+    Callback = function(text)
+        _G.WebhookURL = text
+    end
+})
+
+V = webhook:Dropdown({
+    Title = "Rarity Filter",
+    Values = rarityList,
+    Multi = true,
+    AllowNone = true,
+    Value = _G.WebhookRarities or {},
+    Callback = function(selected_options)
+        _G.WebhookRarities = selected_options
+    end
+})
+
+WU = webhook:Toggle({
+    Title = "Send Webhook",
+    Value = _G.DetectNewFishActive or false,
+    Callback = function(state)
+        _G.DetectNewFishActive = state
+    end
+})
+
+webhook:Button({
+    Title = "Test Webhook",
+    Callback = sendTestWebhook
+})
+
+buildFishDatabase()
+
+task.spawn(function()
+    local initialFishList = getInventoryFish()
+    for _, fish in ipairs(initialFishList) do
+        if fish and fish.UUID then
+            knownFishUUIDs[fish.UUID] = true
+        end
+    end
+end)
+
+task.spawn(function()
+    while task.wait(3) do
+        if _G.DetectNewFishActive then
+            local currentFishList = getInventoryFish()
+            for _, fish in ipairs(currentFishList) do
+                if fish and fish.UUID and not knownFishUUIDs[fish.UUID] then
+                    knownFishUUIDs[fish.UUID] = true
+                    sendNewFishWebhook(fish)
+                end
+            end
+        end
+    end
+end)
+
+local Tab5 = Window:Tab({
+    Title = "Shop",
+    Icon = "shopping-cart",
+})
+
+rod = Tab5:Section({ 
+    Title = "Buy Rod",
+    Icon = "shrimp",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local RS = game:GetService("ReplicatedStorage")
+local RF = RS.Packages._Index["sleitnick_net@0.2.0"].net["RF/PurchaseFishingRod"]
+
+local R = {
+    ["Luck Rod"] = 79,
+    ["Carbon Rod"] = 76,
+    ["Grass Rod"] = 85,
+    ["Demascus Rod"] = 77,
+    ["Ice Rod"] = 78,
+    ["Lucky Rod"] = 4,
+    ["Midnight Rod"] = 80,
+    ["Steampunk Rod"] = 6,
+    ["Chrome Rod"] = 7,
+    ["Astral Rod"] = 5,
+    ["Ares Rod"] = 126,
+    ["Angler Rod"] = 168,
+    ["Bamboo Rod"] = 258
+}
+
+local N = {
+    "Luck Rod (350 Coins)",
+    "Carbon Rod (900 Coins)",
+    "Grass Rod (1.5k Coins)",
+    "Demascus Rod (3k Coins)",
+    "Ice Rod (5k Coins)",
+    "Lucky Rod (15k Coins)",
+    "Midnight Rod (50k Coins)",
+    "Steampunk Rod (215k Coins)",
+    "Chrome Rod (437k Coins)",
+    "Astral Rod (1M Coins)",
+    "Ares Rod (3M Coins)",
+    "Angler Rod (8M Coins)",
+    "Bamboo Rod (12M Coins)"
+}
+
+local M = {
+    ["Luck Rod (350 Coins)"] = "Luck Rod",
+    ["Carbon Rod (900 Coins)"] = "Carbon Rod",
+    ["Grass Rod (1.5k Coins)"] = "Grass Rod",
+    ["Demascus Rod (3k Coins)"] = "Demascus Rod",
+    ["Ice Rod (5k Coins)"] = "Ice Rod",
+    ["Lucky Rod (15k Coins)"] = "Lucky Rod",
+    ["Midnight Rod (50k Coins)"] = "Midnight Rod",
+    ["Steampunk Rod (215k Coins)"] = "Steampunk Rod",
+    ["Chrome Rod (437k Coins)"] = "Chrome Rod",
+    ["Astral Rod (1M Coins)"] = "Astral Rod",
+    ["Ares Rod (3M Coins)"] = "Ares Rod",
+    ["Angler Rod (8M Coins)"] = "Angler Rod",
+    ["Bamboo Rod (12M Coins)"] = "Bamboo Rod"
+}
+
+local S = N[1]
+
+rod:Dropdown({
+    Title = "Select Rod",
+    SearchBarEnabled = true,
+    Values = N,
+    Value = S,
+    Callback = function(v)
+        S = v
+    end
+})
+
+rod:Button({
+    Title = "Buy Rod",
+    Callback = function()
+        local k = M[S]
+        if k and R[k] then
+            pcall(function()
+                RF:InvokeServer(R[k])
+            end)
+        end
+    end
+})
+
+bait = Tab5:Section({
+    Title = "Buy Baits",
+    Icon = "compass",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local RS = game:GetService("ReplicatedStorage")
+local RF = RS.Packages._Index["sleitnick_net@0.2.0"].net["RF/PurchaseBait"]
+
+local B = {
+    ["Luck Bait"] = 2,
+    ["Midnight Bait"] = 3,
+    ["Nature Bait"] = 10,
+    ["Chroma Bait"] = 6,
+    ["Dark Matter Bait"] = 8,
+    ["Corrupt Bait"] = 15,
+    ["Aether Bait"] = 16,
+    ["Floral Bait"] = 20
+}
+
+local N = {
+    "Luck Bait (1k Coins)",
+    "Midnight Bait (3k Coins)",
+    "Nature Bait (83.5k Coins)",
+    "Chroma Bait (290k Coins)",
+    "Dark Matter Bait (630k Coins)",
+    "Corrupt Bait (1.15M Coins)",
+    "Aether Bait (3.7M Coins)",
+    "Floral Bait (4M Coins)"
+}
+
+local M = {
+    ["Luck Bait (1k Coins)"] = "Luck Bait",
+    ["Midnight Bait (3k Coins)"] = "Midnight Bait",
+    ["Nature Bait (83.5k Coins)"] = "Nature Bait",
+    ["Chroma Bait (290k Coins)"] = "Chroma Bait",
+    ["Dark Matter Bait (630k Coins)"] = "Dark Matter Bait",
+    ["Corrupt Bait (1.15M Coins)"] = "Corrupt Bait",
+    ["Aether Bait (3.7M Coins)"] = "Aether Bait",
+    ["Floral Bait (4M Coins)"] = "Floral Bait"
+}
+
+local S = N[1]
+
+bait:Dropdown({
+    Title = "Select Bait",
+    SearchBarEnabled = true,
+    Values = N,
+    Value = S,
+    Callback = function(v)
+        S = v
+    end
+})
+
+bait:Button({
+    Title = "Buy Bait",
+    Callback = function()
+        local k = M[S]
+        if k and B[k] then
+            pcall(function()
+                RF:InvokeServer(B[k])
+            end)
+        end
+    end
+})
+
+weather = Tab5:Section({
+    Title = "Buy Weather Event",
+    Icon = "cloud-drizzle",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RFPurchaseWeatherEvent = ReplicatedStorage.Packages._Index["sleitnick_net@0.2.0"].net["RF/PurchaseWeatherEvent"]
+
+local weatherKeyMap = {
+    ["Wind (10k Coins)"] = "Wind",
+    ["Snow (15k Coins)"] = "Snow",
+    ["Cloudy (20k Coins)"] = "Cloudy",
+    ["Storm (35k Coins)"] = "Storm",
+    ["Radiant (50k Coins)"] = "Radiant",
+    ["Shark Hunt (300k Coins)"] = "Shark Hunt"
+}
+
+local weatherNames = {
+    "Wind (10k Coins)", "Snow (15k Coins)", "Cloudy (20k Coins)",
+    "Storm (35k Coins)", "Radiant (50k Coins)", "Shark Hunt (300k Coins)"
+}
+
+local selectedWeathers = {}
+local autoBuyEnabled = false
+local buyDelay = 540
+
+weather:Dropdown({
+    Title = "Select Weather",
+    Values = weatherNames,
+    Multi = true,
+    Callback = function(values)
+        selectedWeathers = values
+    end
+})
+
+weather:Input({
+    Title = "Buy Delay (minutes)",
+    Desc = "Default 9 Minutes",
+    Placeholder = "9",
+    Callback = function(input)
+        local num = tonumber(input)
+        if num and num > 0 then
+            buyDelay = num * 60
+            WindUI:Notify({
+                Title = "Delay Updated",
+                Content = "Pembelian setiap " .. num .. " menit",
+                Duration = 2
+            })
+        else
+            WindUI:Notify({
+                Title = "Input Invalid",
+                Content = "Masukkan angka > 0",
+                Duration = 2
+            })
+        end
+    end
+})
+
+local function startAutoBuy()
+    task.spawn(function()
+        while autoBuyEnabled do
+            for _, displayName in ipairs(selectedWeathers) do
+                local key = weatherKeyMap[displayName]
+                if key then
+                    local success, err = pcall(function()
+                        RFPurchaseWeatherEvent:InvokeServer(key)
+                    end)
+                    if success then
+                        WindUI:Notify({
+                            Title = "Weather Purchased",
+                            Content = displayName .. " berhasil dibeli",
+                            Duration = 2
+                        })
+                    else
+                        warn("Error buying weather:", err)
+                    end
+                end
+            end
+            task.wait(buyDelay)
+        end
+    end)
+end
+
+weather:Toggle({
+    Title = "Buy Weather",
+    Value = false,
+    Callback = function(state)
+        autoBuyEnabled = state
+        if state then
+            WindUI:Notify({
+                Title = "Auto Buy",
+                Content = "Enabled (Beli setiap " .. (buyDelay / 60) .. " menit)",
+                Duration = 2
+            })
+            startAutoBuy()
+        else
+            WindUI:Notify({
+                Title = "Auto Buy",
+                Content = "Disabled",
+                Duration = 2
+            })
+        end
+    end
+})
+
+local Tab6 = Window:Tab({
+    Title = "Teleport",
+    Icon = "map-pin",
+})
+
+island = Tab6:Section({ 
+    Title = "Island",
+    Icon = "tree-palm",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local IslandLocations = {
+    ["Admin Event"] = Vector3.new(-1981, -442, 7428),
+    ["Ancient Jungle"] = Vector3.new(1518, 1, -186),
+    ["Coral Refs"] = Vector3.new(-2855, 47, 1996),
+    ["Crater Island"] = Vector3.new(997, 1, 5012),
+    ["Enchant Room"] = Vector3.new(3221, -1303, 1406),
+    ["Enchant Room 2"] = Vector3.new(1480, 126, -585),
+    ["Esoteric Island"] = Vector3.new(1990, 5, 1398),
+    ["Fisherman Island"] = Vector3.new(-64, 3, 2767),
+    ["Kohana Volcano"] = Vector3.new(-545.302429, 17.1266193, 118.870537),
+    ["Konoha"] = Vector3.new(-603, 3, 719),
+    ["Lost Isle"] = Vector3.new(-3643, 1, -1061),
+    ["Sacred Temple"] = Vector3.new(1498, -23, -644),
+    ["Sysyphus Statue"] = Vector3.new(-3783.26807, -135.073914, -949.946289),
+    ["Treasure Room"] = Vector3.new(-3600, -267, -1575),
+    ["Tropical Grove"] = Vector3.new(-2091, 6, 3703),
+    ["Underground Cellar"] = Vector3.new(2135, -93, -701),
+    ["Weather Machine"] = Vector3.new(-1508, 6, 1895),
+    ["Ancient Ruin"] = Vector3.new(6051, -541, 4414),
+    ["Iron Cavern"] = Vector3.new(-9194, -582, 157),
+    ["Classic Island"] = Vector3.new(1178, 3, 2838),
+    ["Iron Cafe"] = Vector3.new(-8692, -549, 161),
+    ["Christmas Island"] = Vector3.new(673, 5, 1568),
+}
+
+local SelectedIsland = nil
+
+island:Dropdown({
+    Title = "Select Island",
+    SearchBarEnabled = true,
+    Values = (function()
+        local keys = {}
+        for name in pairs(IslandLocations) do
+            table.insert(keys, name)
+        end
+        table.sort(keys)
+        return keys
+    end)(),
+    Callback = function(Value)
+        SelectedIsland = Value
+    end
+})
+
+island:Button({
+    Title = "Teleport to Island",
+    Callback = function()
+        if SelectedIsland and IslandLocations[SelectedIsland] and Player.Character and Player.Character:FindFirstChild("HumanoidRootPart") then
+            Player.Character.HumanoidRootPart.CFrame = CFrame.new(IslandLocations[SelectedIsland])
+        end
+    end
+})
+
+spot = Tab6:Section({ 
+    Title = "Fishing Spot",
+    Icon = "spotlight",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local FishingLocations = {
+    ["Levers 1"] = Vector3.new(1475,4,-847),
+    ["Levers 2"] = Vector3.new(882,5,-321),
+    ["levers 3"] = Vector3.new(1425,6,126),
+    ["levers 4"] = Vector3.new(1837,4,-309),
+    ["Sysyphus Statue"] = Vector3.new(-3710, -97, -952),
+	["King Jelly Spot (For quest elemental)"] = Vector3.new(1473.60, 3.58, -328.23),
+	["El Shark Gran Maja Spot"] = Vector3.new(1526, 4, -629),
+    ["Ancient Lochness"] = Vector3.new(6078, -586, 4629),
+    ["Iron Cavern"] = Vector3.new(-8964, -610, 54),
+    ["Classic Island"] = Vector3.new(1316, 9, 2871),
+    ["Iron Cafe"] = Vector3.new(-8634, -523, 149),
+}
+
+local SelectedFishing = nil
+
+spot:Dropdown({
+    Title = "Select Spot",
+    SearchBarEnabled = true,
+    Values = (function()
+        local keys = {}
+        for name in pairs(FishingLocations) do
+            table.insert(keys, name)
+        end
+        table.sort(keys)
+        return keys
+    end)(),
+    Callback = function(Value)
+        SelectedFishing = Value
+    end
+})
+
+spot:Button({
+    Title = "Teleport to Fishing Spot",
+    Callback = function()
+        if SelectedFishing and FishingLocations[SelectedFishing] and Player.Character and Player.Character:FindFirstChild("HumanoidRootPart") then
+            Player.Character.HumanoidRootPart.CFrame = CFrame.new(FishingLocations[SelectedFishing])
+        end
+    end
+})
+
+tpplayer = Tab6:Section({
+    Title = "Player",
+    Icon = "user-search",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local P = game:GetService("Players")
+local LP = P.LocalPlayer
+local S
+
+local function L()
+    local t = {}
+    for _,p in ipairs(P:GetPlayers()) do
+        if p ~= LP then
+            t[#t+1] = p.Name
+        end
+    end
+    return t
+end
+
+tpplayer:Dropdown({
+    Title = "Teleport Target",
+    Values = L(),
+    Value = L()[1],
+    Callback = function(v)
+        S = v
+    end
+})
+
+tpplayer:Button({
+    Title = "Teleport to Player",
+    Callback = function()
+        local T = S and P:FindFirstChild(S)
+        if T and T.Character and T.Character:FindFirstChild("HumanoidRootPart") then
+            LP.Character.HumanoidRootPart.CFrame =
+                T.Character.HumanoidRootPart.CFrame + Vector3.new(0,3,0)
+        end
+    end
+})
+
+tpplayer:Button({
+    Title = "Refresh Player List",
+    Callback = function()
+        local n = L()
+        if D.SetValues then
+            D:SetValues(n)
+        elseif D.Refresh then
+            D:Refresh(n)
+        elseif D.Update then
+            D:Update(n)
+        end
+        if n[1] then
+            S = n[1]
+            if D.Set then D:Set(n[1]) end
+        end
+    end
+})
+
+events = Tab6:Section({
+    Title = "Event Teleporter",
+    Icon = "calendar",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+-- SERVICES (SATU TABLE)
+local S = setmetatable({}, {
+    __index = function(_, k)
+        return game:GetService(k)
+    end
+})
+
+-- STATE
+local ST = {
+    player = S.Players.LocalPlayer,
+    char = nil,
+    hrp = nil,
+
+    megRadius = 150,
+    autoTP = false,
+    autoFloat = false,
+    selectedEvents = {},
+    lastTP = nil,
+    tpCooldown = 0.3,
+    floatOffset = 6
+}
+
+-- INIT CHARACTER
+local function bindChar(c)
+    ST.char = c
+    task.wait(1)
+    ST.hrp = c:WaitForChild("HumanoidRootPart")
+end
+
+bindChar(ST.player.Character or ST.player.CharacterAdded:Wait())
+ST.player.CharacterAdded:Connect(bindChar)
+
+-- EVENT DATA (TETAP)
+local eventData = {
+    ["Worm Hunt"] = {
+        TargetName = "Model",
+        Locations = {
+            Vector3.new(2190.85, -1.4, 97.575),
+            Vector3.new(-2450.679, -1.4, 139.731),
+            Vector3.new(-267.479, -1.4, 5188.531),
+            Vector3.new(-327, -1.4, 2422)
+        },
+        PlatformY = 106,
+        Priority = 1
+    },
+
+    ["Megalodon Hunt"] = {
+        TargetName = "Megalodon Hunt",
+        Locations = {
+            Vector3.new(-1076.3, -1.4, 1676.2),
+            Vector3.new(-1191.8, -1.4, 3597.3),
+            Vector3.new(412.7, -1.4, 4134.4)
+        },
+        PlatformY = 106,
+        Priority = 2
+    },
+
+    ["Ghost Shark Hunt"] = {
+        TargetName = "Ghost Shark Hunt",
+        Locations = {
+            Vector3.new(489.559, -1.35, 25.406),
+            Vector3.new(-1358.216, -1.35, 4100.556),
+            Vector3.new(627.859, -1.35, 3798.081)
+        },
+        PlatformY = 106,
+        Priority = 3
+    },
+
+    ["Shark Hunt"] = {
+        TargetName = "Shark Hunt",
+        Locations = {
+            Vector3.new(1.65, -1.35, 2095.725),
+            Vector3.new(1369.95, -1.35, 930.125),
+            Vector3.new(-1585.5, -1.35, 1242.875),
+            Vector3.new(-1896.8, -1.35, 2634.375)
+        },
+        PlatformY = 106,
+        Priority = 4
+    }
+}
+
+-- EVENT NAMES
+local eventNames = {}
+for n in pairs(eventData) do
+    eventNames[#eventNames+1] = n
+end
+
+-- FORCE TP
+local function forceTP(pos)
+    if not ST.lastTP or (ST.lastTP - pos).Magnitude > 5 then
+        ST.lastTP = pos
+        for _ = 1, 2 do
+            ST.hrp.CFrame = CFrame.new(pos.X, pos.Y + 3, pos.Z)
+            ST.hrp.AssemblyLinearVelocity = Vector3.zero
+            ST.hrp.Velocity = Vector3.zero
+            task.wait(0.02)
+        end
+    end
+end
+
+-- MAIN TP LOOP
+local function runEventTP()
+    while ST.autoTP do
+        local list = {}
+
+        for _, name in ipairs(ST.selectedEvents) do
+            if eventData[name] then
+                list[#list+1] = eventData[name]
+            end
+        end
+
+        table.sort(list, function(a, b)
+            return a.Priority < b.Priority
+        end)
+
+        for _, cfg in ipairs(list) do
+            local found
+
+            if cfg.TargetName == "Model" then
+                local rings = S.Workspace:FindFirstChild("!!! MENU RINGS")
+                if rings then
+                    for _, p in ipairs(rings:GetChildren()) do
+                        if p.Name == "Props" then
+                            local m = p:FindFirstChild("Model")
+                            if m and m.PrimaryPart then
+                                for _, loc in ipairs(cfg.Locations) do
+                                    if (m.PrimaryPart.Position - loc).Magnitude <= ST.megRadius then
+                                        found = m.PrimaryPart.Position
+                                        break
+                                    end
+                                end
+                            end
+                        end
+                        if found then break end
+                    end
+                end
+            else
+                for _, loc in ipairs(cfg.Locations) do
+                    for _, d in ipairs(S.Workspace:GetDescendants()) do
+                        if d.Name == cfg.TargetName then
+                            local pos = d:IsA("BasePart") and d.Position or (d.PrimaryPart and d.PrimaryPart.Position)
+                            if pos and (pos - loc).Magnitude <= ST.megRadius then
+                                found = pos
+                                break
+                            end
+                        end
+                    end
+                    if found then break end
+                end
+            end
+
+            if found then
+                forceTP(found)
+            end
+        end
+
+        task.wait(ST.tpCooldown)
+    end
+end
+
+-- FLOAT
+S.RunService.RenderStepped:Connect(function()
+    if ST.autoFloat and ST.hrp then
+        local pos = ST.hrp.Position
+        local targetY = S.Workspace.Terrain.WaterLevel + ST.floatOffset
+        if pos.Y < targetY then
+            ST.hrp.CFrame = CFrame.new(pos.X, targetY, pos.Z)
+            ST.hrp.AssemblyLinearVelocity = Vector3.zero
+        end
+    end
+end)
+
+Tab6:Dropdown({
+    Title = "Select Events",
+    Values = eventNames,
+    Multi = true,
+    AllowNone = true,
+    Callback = function(v)
+        ST.selectedEvents = v
+    end
+})
+
+Tab6:Toggle({
+    Title = "Auto Event",
+    Value = false,
+    Callback = function(state)
+        ST.autoTP = state
+        ST.autoFloat = state
+        ST.lastTP = nil
+        if state then
+            task.defer(runEventTP)
+        end
+    end
+})
+
+local Tab7 = Window:Tab({
+    Title = "Settings",
+    Icon = "settings",
+})
+
+player = Tab7:Section({ 
+    Title = "Player In Game",
+    Icon = "play",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local P = game:GetService("Players").LocalPlayer
+local C = P.Character or P.CharacterAdded:Wait()
+local O = C:WaitForChild("HumanoidRootPart"):WaitForChild("Overhead")
+local H = O.Content.Header
+local L = O.LevelContainer.Label
+
+local D = {h = H.Text, l = L.Text, ch = H.Text, cl = L.Text, on = false}
+
+player:Input({
+    Title = "Hide Name",
+    Placeholder = "Input Name",
+    Default = D.h,
+    Callback = function(v)
+        D.ch = v
+        if D.on then H.Text = v end
+    end
+})
+
+player:Input({
+    Title = "Hide Level",
+    Placeholder = "Input Level",
+    Default = D.l,
+    Callback = function(v)
+        D.cl = v
+        if D.on then L.Text = v end
+    end
+})
+
+player:Toggle({
+    Title = "Hide Name & Level (Custom)",
+    Default = false,
+    Callback = function(v)
+        D.on = v
+        if v then
+            H.Text = D.ch
+            L.Text = D.cl
+        else
+            H.Text = D.h
+            L.Text = D.l
+        end
+    end
+})
+
+local P = game:GetService("Players").LocalPlayer
+local HN, HL = "discord.gg/tjb2jWgfVC", "Lv. ???"
+local S = {on = false, ui = nil}
+
+local function setup(c)
+    local o = c:WaitForChild("HumanoidRootPart"):WaitForChild("Overhead")
+    local h = o.Content.Header
+    local l = o.LevelContainer.Label
+    return {h = h, l = l, dh = h.Text, dl = l.Text}
+end
+
+S.ui = setup(P.Character or P.CharacterAdded:Wait())
+
+P.CharacterAdded:Connect(function(c)
+    task.wait(0.2)
+    S.ui = setup(c)
+    if S.on then
+        S.ui.h.Text = HN
+        S.ui.l.Text = HL
+    end
+end)
+
+player:Toggle({
+    Title = "Hide Name & Level (Default)",
+    Default = false,
+    Callback = function(v)
+        S.on = v
+        if not S.ui then return end
+        if v then
+            S.ui.h.Text = HN
+            S.ui.l.Text = HL
+        else
+            S.ui.h.Text = S.ui.dh
+            S.ui.l.Text = S.ui.dl
+        end
+    end
+})
+
+local P = game:GetService("Players").LocalPlayer
+local Z = {P.CameraMaxZoomDistance, P.CameraMinZoomDistance}
+
+player:Toggle({
+    Title="Infinite Zoom",
+    Desc="infinite zoom to take a photo",
+    Icon=false,
+    Type=false,
+    Value=false,
+    Callback=function(s)
+        if s then
+            P.CameraMaxZoomDistance=math.huge
+            P.CameraMinZoomDistance=.5
+        else
+            P.CameraMaxZoomDistance=Z[1] or 128
+            P.CameraMinZoomDistance=Z[2] or .5
+        end
+    end
+})
+
+player:Toggle({
+    Title = "AntiAFK",
+    Desc = "Prevent Roblox from kicking you when idle",
+    Icon = false,
+    Type = false,
+    Default = false,
+    Callback = function(state)
+        _G.AntiAFK = state
+        local VirtualUser = game:GetService("VirtualUser")
+
+        if state then
+            task.spawn(function()
+                while _G.AntiAFK do
+                    task.wait(60)
+                    pcall(function()
+                        VirtualUser:CaptureController()
+                        VirtualUser:ClickButton2(Vector2.new())
+                    end)
+                end
+            end)
+
+            game:GetService("StarterGui"):SetCore("SendNotification", {
+                Title = "AntiAFK loaded!",
+                Text = "Coded By Lexs",
+                Button1 = "Okey",
+                Duration = 5
+            })
+        else
+            game:GetService("StarterGui"):SetCore("SendNotification", {
+                Title = "AntiAFK Disabled",
+                Text = "Stopped AntiAFK",
+                Duration = 3
+            })
+        end
+    end
+})
+
+player:Toggle({
+    Title = "Auto Reconnect",
+    Desc = "Automatic reconnect if disconnected",
+    Icon = false,
+    Default = false,
+    Callback = function(state)
+        _G.AutoReconnect = state
+        if state then
+            task.spawn(function()
+                while _G.AutoReconnect do
+                    task.wait(2)
+
+                    local reconnectUI = game:GetService("CoreGui"):FindFirstChild("RobloxPromptGui")
+                    if reconnectUI then
+                        local prompt = reconnectUI:FindFirstChild("promptOverlay")
+                        if prompt then
+                            local button = prompt:FindFirstChild("ButtonPrimary")
+                            if button and button.Visible then
+                                firesignal(button.MouseButton1Click)
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end
+})
+
+local P = game:GetService("Players")
+local T = game:GetService("TeleportService")
+local LP = P.LocalPlayer
+local PID = game.PlaceId
+local ON = true
+
+local BL = {
+    [75974130]=1,[40397833]=1,[187190686]=1,[33372493]=1,[889918695]=1,
+    [33679472]=1,[30944240]=1,[25050357]=1,[8462585751]=1,[8811129148]=1,
+    [192821024]=1,[4509801805]=1,[124505170]=1,[108397209]=1
+}
+
+player:Toggle({
+    Title="Anti Staff",
+    Desc="Auto serverhop if there is staff",
+    Icon=false,
+    Type=false,
+    Value=true,
+    Callback=function(s)
+        ON=s
+    end
+})
+
+local function hop()
+    task.wait(6)
+    local d = game.HttpService:JSONDecode(
+        game:HttpGet("https://games.roblox.com/v1/games/"..PID.."/servers/Public?sortOrder=Asc&limit=100")
+    ).data
+    for _,v in ipairs(d) do
+        if v.playing < v.maxPlayers and v.id ~= game.JobId then
+            T:TeleportToPlaceInstance(PID, v.id, LP)
+            break
+        end
+    end
+end
+
+P.PlayerAdded:Connect(function(plr)
+    if ON and plr~=LP and BL[plr.UserId] then
+        WindUI:Notify({
+            Title="Lexs Hub",
+            Content=plr.Name.." telah join, serverhop dalam 6 detik...",
+            Duration=6,
+            Icon="alert-triangle"
+        })
+        hop()
+    end
+end)
+
+task.spawn(function()
+    while task.wait(2) do
+        if ON then
+            for _,plr in ipairs(P:GetPlayers()) do
+                if plr~=LP and BL[plr.UserId] then
+                    WindUI:Notify({
+                        Title="Lexs Hub",
+                        Content=plr.Name.." terdeteksi, serverhop dalam 6 detik...",
+                        Duration=6,
+                        Icon="alert-triangle"
+                    })
+                    hop()
+                    break
+                end
+            end
+        end
+    end
+end)
+
+graphic = Tab7:Section({ 
+    Title = "Graphics In Game",
+    Icon = "chart-bar",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local L = game:GetService("Lighting")
+local W = workspace
+local T = W:FindFirstChildOfClass("Terrain")
+local P = game:GetService("Players").LocalPlayer
+local SG = game:GetService("StarterGui")
+
+local function n(t,c)
+	pcall(function()
+		SG:SetCore("ChatMakeSystemMessage",{
+			Text="[FPS BOOST] "..t,
+			Color=c or Color3.fromRGB(150,255,150),
+			Font=Enum.Font.SourceSansBold,
+			FontSize=Enum.FontSize.Size24
+		})
+	end)
+end
+
+local function boost(s)
+	if s then
+		n("Mode Ultra Aktif ✅",Color3.fromRGB(100,255,100))
+
+		for _,v in ipairs(L:GetChildren()) do
+			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect")
+			or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("Atmosphere")
+			or v:IsA("Sky") or v:IsA("Clouds") or v:IsA("PostEffect") then
+				v.Parent=nil
+			end
+		end
+
+		L.GlobalShadows=false
+		L.FogEnd=1e6
+		L.Brightness=1
+		L.EnvironmentDiffuseScale=0
+		L.EnvironmentSpecularScale=0
+		L.OutdoorAmbient=Color3.new(1,1,1)
+
+		if T then
+			T.WaterWaveSize=0
+			T.WaterWaveSpeed=0
+			T.WaterReflectance=0
+			T.WaterTransparency=1
+		end
+
+		for _,o in ipairs(W:GetDescendants()) do
+			if o:IsA("Decal") or o:IsA("Texture") then
+				o.Transparency=1
+			elseif o:IsA("ParticleEmitter") or o:IsA("Trail") or o:IsA("Fire")
+			or o:IsA("Smoke") or o:IsA("Sparkles") then
+				o.Enabled=false
+			elseif o:IsA("SurfaceAppearance") then
+				o.Parent=nil
+			elseif o:IsA("BasePart") then
+				o.CastShadow=false
+				pcall(function() o.Material=Enum.Material.Plastic end)
+			end
+		end
+
+		local c=P.Character
+		if c then
+			for _,a in ipairs(c:GetChildren()) do
+				if a:IsA("Accessory") then a:Destroy() end
+			end
+			if c:FindFirstChild("Animate") then c.Animate.Disabled=true end
+		end
+
+		W.StreamingEnabled=true
+		W.StreamingMinRadius=64
+		W.StreamingTargetRadius=128
+		settings().Rendering.QualityLevel=Enum.QualityLevel.Level01
+		collectgarbage("collect")
+	else
+		n("Mode Ultra Nonaktif ❌",Color3.fromRGB(255,120,120))
+
+		L.GlobalShadows=true
+		L.FogEnd=1000
+		L.Brightness=2
+		L.EnvironmentDiffuseScale=1
+		L.EnvironmentSpecularScale=1
+		L.OutdoorAmbient=Color3.new(.5,.5,.5)
+
+		if T then
+			T.WaterWaveSize=.15
+			T.WaterWaveSpeed=10
+			T.WaterReflectance=1
+			T.WaterTransparency=.5
+		end
+
+		settings().Rendering.QualityLevel=Enum.QualityLevel.Automatic
+
+		local c=P.Character
+		if c and c:FindFirstChild("Animate") then
+			c.Animate.Disabled=false
+		end
+	end
+end
+
+graphic:Toggle({
+	Title="FPS Boost",
+	Icon=false,
+	Type=false,
+	Value=false,
+	Callback=function(s)
+		boost(s)
+	end
+})
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local player = Players.LocalPlayer
+local PlayerGui = player:WaitForChild("PlayerGui")
+
+local PopupConn
+local RemoteConn
+
+graphic:Toggle({
+    Title = "Remove Fish Notification Pop-up",
+    Value = false,
+    Icon = "slash",
+    Callback = function(state)
+
+        local function getPopup()
+            local gui = PlayerGui:FindFirstChild("Small Notification")
+            if not gui then return end
+            local display = gui:FindFirstChild("Display")
+            if not display then return end
+            return display:FindFirstChild("NewFrame")
+        end
+
+        local RemoteEvent =
+            ReplicatedStorage
+            :WaitForChild("Packages")
+            :WaitForChild("_Index")
+            :WaitForChild("sleitnick_net@0.2.0")
+            :WaitForChild("net")
+            :WaitForChild("RE/ObtainedNewFishNotification")
+
+        if state then
+            local frame = getPopup()
+            if frame then
+                frame.Visible = false
+                frame:Destroy()
+            end
+
+            PopupConn = PlayerGui.DescendantAdded:Connect(function(v)
+                if v.Name == "NewFrame" then
+                    task.wait()
+                    v.Visible = false
+                    v:Destroy()
+                end
+            end)
+
+            RemoteConn = RemoteEvent.OnClientEvent:Connect(function()
+                local f = getPopup()
+                if f then
+                    f.Visible = false
+                    f:Destroy()
+                end
+            end)
+
+            WindUI:Notify({
+                Title = "Fish Pop-up Disabled",
+                Duration = 3,
+                Icon = "check"
+            })
+        else
+            if PopupConn then PopupConn:Disconnect() PopupConn = nil end
+            if RemoteConn then RemoteConn:Disconnect() RemoteConn = nil end
+
+            WindUI:Notify({
+                Title = "Fish Pop-up Enabled",
+                Duration = 3,
+                Icon = "x"
+            })
+        end
+    end
+})
+
+local R = game:GetService("RunService")
+local P = game:GetService("Players").LocalPlayer
+local G
+
+graphic:Toggle({
+    Title = "Disable 3D Rendering",
+    Icon = false,
+    Type = false,
+    Value = false,
+    Callback = function(s)
+        pcall(function() R:Set3dRenderingEnabled(not s) end)
+        if s then
+            G = Instance.new("ScreenGui")
+            G.IgnoreGuiInset = true
+            G.ResetOnSpawn = false
+            G.Parent = P.PlayerGui
+
+            Instance.new("Frame", G).Size = UDim2.fromScale(1,1)
+            G.Frame.BackgroundColor3 = Color3.new(1,1,1)
+            G.Frame.BorderSizePixel = 0
+        elseif G then
+            G:Destroy()
+            G = nil
+        end
+    end
+})
+
+local W = workspace
+local L = game:GetService("Lighting")
+
+local S = {on = false, cache = {}}
+
+local VFX = {
+    ParticleEmitter = true, Beam = true, Trail = true, Smoke = true,
+    Fire = true, Sparkles = true, Explosion = true,
+    PointLight = true, SpotLight = true, SurfaceLight = true, Highlight = true
+}
+
+local LE = {
+    BloomEffect = true, SunRaysEffect = true, ColorCorrectionEffect = true,
+    DepthOfFieldEffect = true, Atmosphere = true
+}
+
+local function disable()
+    for _, o in ipairs(W:GetDescendants()) do
+        if VFX[o.ClassName] and o.Enabled == true then
+            S.cache[o] = true
+            o.Enabled = false
+        end
+    end
+
+    for _, o in ipairs(L:GetChildren()) do
+        if LE[o.ClassName] and o.Enabled ~= nil then
+            S.cache[o] = true
+            o.Enabled = false
+        end
+    end
+end
+
+local function restore()
+    for o in pairs(S.cache) do
+        if o and o.Parent and o.Enabled ~= nil then
+            o.Enabled = true
+        end
+    end
+    table.clear(S.cache)
+end
+
+-- listener cuma sekali (ANTI LEAK)
+W.DescendantAdded:Connect(function(o)
+    if S.on and VFX[o.ClassName] and o.Enabled ~= nil then
+        task.defer(function() o.Enabled = false end)
+    end
+end)
+
+L.DescendantAdded:Connect(function(o)
+    if S.on and LE[o.ClassName] and o.Enabled ~= nil then
+        task.defer(function() o.Enabled = false end)
+    end
+end)
+
+graphic:Toggle({
+    Title = "Hide All VFX",
+    Icon = false,
+    Type = false,
+    Value = false,
+    Callback = function(state)
+        S.on = state
+        if state then
+            disable()
+        else
+            restore()
+        end
+    end
+})
+
+local VFX = require(game:GetService("ReplicatedStorage").Controllers.VFXController)
+
+-- simpan fungsi asli (cukup sekali)
+local ORI = {
+    H = VFX.Handle,
+    P = VFX.RenderAtPoint,
+    I = VFX.RenderInstance
+}
+
+graphic:Toggle({
+    Title = "Remove Skin Effect",
+    Desc = "Remove Your Skin Effect",
+    Default = false,
+    Callback = function(state)
+        if state then
+            -- disable VFX
+            VFX.Handle = function() end
+            VFX.RenderAtPoint = function() end
+            VFX.RenderInstance = function() end
+
+            local f = workspace:FindFirstChild("CosmeticFolder")
+            if f then
+                pcall(f.ClearAllChildren, f)
+            end
+
+            WindUI:Notify({
+                Title = "Skin Effect Disabled",
+                Duration = 3,
+                Icon = "eye-off"
+            })
+        else
+            -- restore VFX
+            VFX.Handle = ORI.H
+            VFX.RenderAtPoint = ORI.P
+            VFX.RenderInstance = ORI.I
+
+            WindUI:Notify({
+                Title = "Skin Effect Enabled",
+                Duration = 3,
+                Icon = "eye"
+            })
+        end
+    end
+})
+
+server = Tab7:Section({ 
+    Title = "Server",
+    Icon = "server",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+server:Button({
+    Title = "Rejoin",
+    Desc = "rejoin to the same server",
+    Locked = false,
+    Callback = function()
+        local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+
+TeleportService:Teleport(game.PlaceId, player)
+
+    end
+})
+
+server:Button({
+    Title = "Server Hop",
+    Desc = "Switch to another server",
+    Callback = function()
+        local HttpService = game:GetService("HttpService")
+        local TeleportService = game:GetService("TeleportService")
+        
+        local function GetServers()
+            local url = "https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Desc&limit=100"
+            local response = HttpService:JSONDecode(game:HttpGet(url))
+            return response.data
+        end
+
+        local function FindBestServer(servers)
+            for _, server in ipairs(servers) do
+                if server.playing < server.maxPlayers and server.id ~= game.JobId then
+                    return server.id
+                end
+            end
+            return nil
+        end
+
+        local servers = GetServers()
+        local serverId = FindBestServer(servers)
+
+        if serverId then
+            TeleportService:TeleportToPlaceInstance(game.PlaceId, serverId, game.Players.LocalPlayer)
+        else
+            warn("⚠️ No suitable server found!")
+        end
+    end
+})
+
+config = Tab7:Section({ 
+    Title = "Config",
+    Icon = "folder-open",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+local ConfigFolder = "LEXS_HUB/Configs"
+if not isfolder("LEXS_HUB") then makefolder("LEXS_HUB") end
+if not isfolder(ConfigFolder) then makefolder(ConfigFolder) end
+
+local ConfigName = "default.json"
+
+local function GetConfig()
+    return {
+        WalkSpeed = Humanoid.WalkSpeed,
+        JumpPower = _G.CustomJumpPower or 50,
+        InfiniteJump = _G.InfiniteJump or false,
+        AutoSell = _G.AutoSell or false,
+        InstantCatch = _G.InstantCatch or false,
+        AntiAFK = _G.AntiAFK or false,
+        AutoReconnect = _G.AutoReconnect or false,
+    }
+end
+
+local function ApplyConfig(data)
+    if data.WalkSpeed then 
+        Humanoid.WalkSpeed = data.WalkSpeed 
+    end
+    if data.JumpPower then
+        _G.CustomJumpPower = data.JumpPower
+        local humanoid = Player.Character and Player.Character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.UseJumpPower = true
+            humanoid.JumpPower = data.JumpPower
+        end
+    end
+    if data.InfiniteJump ~= nil then
+        _G.InfiniteJump = data.InfiniteJump
+    end
+    if data.AutoSell ~= nil then
+        _G.AutoSell = data.AutoSell
+    end
+    if data.InstantCatch ~= nil then
+        _G.InstantCatch = data.InstantCatch
+    end
+    if data.AntiAFK ~= nil then
+        _G.AntiAFK = data.AntiAFK
+    end
+    if data.AutoReconnect ~= nil then
+        _G.AutoReconnect = data.AutoReconnect
+    end
+end
+
+config:Button({
+    Title = "Save Config",
+    Desc = "Save all settings",
+    Callback = function()
+        local data = GetConfig()
+        writefile(ConfigFolder.."/"..ConfigName, game:GetService("HttpService"):JSONEncode(data))
+        print("✅ Config saved!")
+    end
+})
+
+config:Button({
+    Title = "Load Config",
+    Desc = "Use saved config",
+    Callback = function()
+        if isfile(ConfigFolder.."/"..ConfigName) then
+            local data = readfile(ConfigFolder.."/"..ConfigName)
+            local decoded = game:GetService("HttpService"):JSONDecode(data)
+            ApplyConfig(decoded)
+            print("✅ Config applied!")
+        else
+            warn("⚠️ Config not found, please Save first.")
+        end
+    end
+})
+
+config:Button({
+    Title = "Delete Config",
+    Desc = "Delete saved config",
+    Callback = function()
+        if isfile(ConfigFolder.."/"..ConfigName) then
+            delfile(ConfigFolder.."/"..ConfigName)
+            print("🗑 Config deleted!")
+        else
+            warn("⚠️ No config to delete.")
+        end
+    end
+})
+
+script = Tab7:Section({ 
+    Title = "Other Scripts",
+    Icon = "scroll",
+    TextXAlignment = "Left",
+    TextSize = 17,
+})
+
+script:Button({
+    Title = "Infinite Yield",
+    Desc = "Other Scripts",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/DarkNetworks/Infinite-Yield/main/latest.lua'))()
+    end
+})
+
+getgenv().LexsHubWindow = Window
+
+return Window
