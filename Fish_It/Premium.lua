@@ -115,7 +115,7 @@ local Dialog = Window:Dialog({
             Title = "Copy Discord",
             Callback = function()
                 if setclipboard then
-                    setclipboard("https://discord.gg/tjb2jWgfVC")
+                    setclipboard("https://discord.gg/lexshub")
                     
                     -- Notify jika berhasil
                     WindUI:Notify({
@@ -173,7 +173,7 @@ Window:SelectTab(1)
                 Title = "Copy Link",
                 Icon = "link",
                 Callback = function()
-                    setclipboard("https://discord.gg/tjb2jWgfVC")
+                    setclipboard("https://discord.gg/lexshub")
                     WindUI:Notify({
                         Title = "Link Disalin!",
                         Content = "Link Discord Lexs Hub berhasil disalin.",
@@ -1134,7 +1134,7 @@ function sendNewFishWebhook(newlyCaughtFish)
                 "Congrats! **%s** You obtained new **%s** here for full detail fish :",
                 playerName, newFishRarity
             ),
-            url = "https://discord.gg/tjb2jWgfVC ",
+            url = "https://discord.gg/lexshub",
             color = 65535,
 
             -- === PERUBAHAN SATU-SATUNYA DI SINI (FIELDS) ===
@@ -1923,7 +1923,7 @@ player:Toggle({
 })
 
 local P = game:GetService("Players").LocalPlayer
-local HN, HL = "discord.gg/tjb2jWgfVC", "Lv. ???"
+local HN, HL = "discord.gg/lexshub", "Lv. ???"
 local S = {on = false, ui = nil}
 
 local function setup(c)
