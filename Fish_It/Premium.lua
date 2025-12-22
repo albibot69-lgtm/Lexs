@@ -972,38 +972,6 @@ blantant:Input({
     end
 })
 
-
-local RS = game:GetService("ReplicatedStorage")
-local Net = RS.Packages._Index["sleitnick_net@0.2.0"].net
-local FC = require(RS.Controllers.FishingController)
-
-local oc, orc = FC.RequestFishingMinigameClick, FC.RequestChargeFishingRod
-local ap = false
-
-task.spawn(function()
-    while task.wait() do
-        if ap then
-            Net["RF/UpdateAutoFishingState"]:InvokeServer(true)
-        end
-    end
-end)
-
-blantant:Toggle({
-    Title = "Auto Perfection",
-    Value = false,
-    Callback = function(s)
-        ap = s
-        if s then
-            FC.RequestFishingMinigameClick = function() end
-            FC.RequestChargeFishingRod = function() end
-        else
-            Net["RF/UpdateAutoFishingState"]:InvokeServer(false)
-            FC.RequestFishingMinigameClick = oc
-            FC.RequestChargeFishingRod = orc
-        end
-    end
-})
-
 Tab0:Space()
 
 blantant:Button({
