@@ -41,7 +41,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "V0.0.8.4",
+    Title = "V0.0.8.5",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -1012,6 +1012,15 @@ blantant:Button({
     Locked = false,
     Callback = function()
         loadstring(game:HttpGet("https://pastefy.app/pIoVjvmR/raw"))()
+    end
+})
+
+blantant:Button({
+    Title = "X7 OLD",
+    Desc = "OLD METHOD X7",
+    Locked = false,
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/lrOQwepH/raw"))()
     end
 })
 
