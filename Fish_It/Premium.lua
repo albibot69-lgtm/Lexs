@@ -176,7 +176,7 @@ Window:SelectTab(1)
                     setclipboard("https://discord.gg/tjb2jWgfVC")
                     WindUI:Notify({
                         Title = "Link Disalin!",
-                        Content = "Link Discord RockHub berhasil disalin.",
+                        Content = "Link Discord Lexs Hub berhasil disalin.",
                         Duration = 3,
                         Icon = "copy",
                     })
