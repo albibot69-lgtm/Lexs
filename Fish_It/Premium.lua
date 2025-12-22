@@ -24,7 +24,21 @@ local Window = WindUI:CreateWindow({
             },                                                      
         },                                                          
     },                                                              
-})                                                            
+})  
+
+Window:EditOpenButton({
+    Title = "Open Example UI",
+    Icon = "monitor",
+    CornerRadius = UDim.new(0,16),
+    StrokeThickness = 2,
+    Color = ColorSequence.new( -- gradient
+        Color3.fromHex("#00c3ff"), 
+        Color3.fromHex("#ffffff")
+    ),
+    OnlyMobile = true,
+    Enabled = true,
+    Draggable = true,
+})
 
 Window:Tag({
     Title = "V0.0.8.4",
