@@ -14,20 +14,20 @@ local Window = WindUI:CreateWindow({
     Transparent = true,
     Theme = "Dark",
     SideBarWidth = 170,
-    HasOutline = true,
-    KeySystem = {                                                   
-        Note = "Key For Premium",        
+    HasOutline = true, 
+        KeySystem = {                                                   
+        Note = "Enter Your Premium Key.",        
         API = {                                                     
-            { 
-                Type = "pandadevelopment", 
-                ServiceId = "luaaaaaaa", 
+            { -- pandadevelopment
+                Type = "pandadevelopment", -- type
+                ServiceId = "luaaaaaaa", -- service id
             },                                                      
         },                                                          
     },                                                              
-})
+})                                                            
 
 Window:Tag({
-    Title = "V0.0.8.3",
+    Title = "V0.0.8.4",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -79,9 +79,9 @@ elseif executorName:lower():find("vega") then
 elseif executorName:lower():find("electron") then
     executorColor = Color3.fromHex("#7fffd4")     -- Electron
 elseif executorName:lower():find("awp") then
-    executorColor = Color3.fromHex("#ff005e") -- AWP (merah neon ke pink)
+    executorColor = Color3.fromHex("#ff005e") -- AWP 
 elseif executorName:lower():find("bunni") or executorName:lower():find("bunni.lol") then
-    executorColor = Color3.fromHex("#ff69b4") -- Bunni.lol (Hot Pink / Neon Pink)
+    executorColor = Color3.fromHex("#ff69b4") -- Bunni.lol 
 end
 
 -- Buat Tag UI
@@ -834,6 +834,82 @@ local function x(y)
     end
 end
 
+netFolder = ReplicatedStorage:WaitForChild('Packages')
+    :WaitForChild('_Index')
+    :WaitForChild('sleitnick_net@0.2.0')
+    :WaitForChild('net')
+Remotes = {}
+Remotes.RF_RequestFishingMinigameStarted = netFolder:WaitForChild("RF/RequestFishingMinigameStarted")
+Remotes.RF_ChargeFishingRod = netFolder:WaitForChild("RF/ChargeFishingRod")
+Remotes.RF_CancelFising = netFolder:WaitForChild('RF/CancelFishingInputs')
+Remotes.RF_CancelFishing = netFolder:WaitForChild("RF/CancelFishingInputs")
+Remotes.chargeRod = netFolder:WaitForChild('RF/ChargeFishingRod')
+Remotes.RE_FishingCompleted = netFolder:WaitForChild("RE/FishingCompleted")
+Remotes.RF_AutoFish = netFolder:WaitForChild("RF/UpdateAutoFishingState")
+
+toggleState = {
+    autoFishing = false,
+    blatantRunning = false,
+}
+
+FishingController = require(
+    ReplicatedStorage:WaitForChild('Controllers')
+        :WaitForChild('FishingController')
+)
+
+local oldCharge = FishingController.RequestChargeFishingRod
+FishingController.RequestChargeFishingRod = function(...)
+    if toggleState.blatantRunning or toggleState.autoFishing then
+        return
+    end
+	return oldCharge(...)
+end
+
+local isAutoRunning = false
+
+local isSuperInstantRunning = false
+_G.ReelSuper = 1.15
+     toggleState.completeDelays = 0.30
+     toggleState.delayStart = 0.2
+    local function autoEquipSuper()
+        local success, err = pcall(function()
+            Remotes.RE_EquipTool:FireServer(1)
+        end)
+        if success then
+        end
+    end
+
+    local function superInstantFishingCycle()
+        task.spawn(function()
+            Remotes.RF_CancelFishing:InvokeServer()
+            Remotes.RF_ChargeFishingRod:InvokeServer(tick())
+            Remotes.RF_RequestFishingMinigameStarted:InvokeServer(-139.63796997070312, 0.9964792798079721)
+            task.wait(toggleState.completeDelays)
+            Remotes.RE_FishingCompleted:FireServer()
+        end)
+    end
+
+    local function doSuperFishingFlow()
+        superInstantFishingCycle()
+    end
+
+local function startSuperInstantFishing()
+    if isSuperInstantRunning then return end
+    isSuperInstantRunning = true
+
+    task.spawn(function()
+        while isSuperInstantRunning do
+            superInstantFishingCycle()
+            task.wait(math.max(_G.ReelSuper, 0.1))
+        end
+    end)
+end
+
+    local function stopSuperInstantFishing()
+        isSuperInstantRunning = false
+        print('Super Instant Fishing stopped')
+    end
+  
 blantant = Tab0:Section({ 
     Title = "Blantant X7 V1 | Recomended",
     Icon = "fish",
@@ -843,36 +919,45 @@ blantant = Tab0:Section({
 })
 
 blantant:Toggle({
-    Title = "Blantant",
-    Value = c.d,
-    Callback = function(z2)
-        x(z2)
-    end
-})
+    Title = "Blatant Mode",
+    Value = toggleState.blatantRunning,
+    Callback = function(value)
+        toggleState.blatantRunning = value
+        Remotes.RF_AutoFish:InvokeServer(value)
 
-blantant:Input({
-    Title = "Cancel Delay",
-    Placeholder = "1.7",
-    Default = tostring(c.e),
-    Callback = function(z4)
-        local z5 = tonumber(z4)
-        if z5 and z5 > 0 then
-            c.e = z5
+        if value then
+            startSuperInstantFishing()
+        else
+            stopSuperInstantFishing()
         end
     end
 })
 
 blantant:Input({
-    Title = "Complete Delay",
-    Placeholder = "1.4",
-    Default = tostring(c.f),
-    Callback = function(z7)
-        local z8 = tonumber(z7)
-        if z8 and z8 > 0 then
-            c.f = z8
+    Title = "Reel Delay",
+    Placeholder = "Delay (seconds)",
+    Default = tostring(_G.ReelSuper),
+    Callback = function(input)
+        local num = tonumber(input)
+        if num and num >= 0 then
+            _G.ReelSuper = num
+            print("ReelSuper updated to:", num)
         end
     end
 })
+
+blantant:Input({
+    Title = "Custom Complete Delay",
+    Placeholder = "Delay (seconds)",
+    Default = tostring(toggleState.completeDelays),
+    Callback = function(input)
+        local num = tonumber(input)
+        if num and num > 0 then
+            toggleState.completeDelays = num
+        end
+    end
+})
+
 
 local RS = game:GetService("ReplicatedStorage")
 local Net = RS.Packages._Index["sleitnick_net@0.2.0"].net
@@ -1059,7 +1144,7 @@ function sendNewFishWebhook(newlyCaughtFish)
                 playerName, newFishRarity
             ),
             url = "https://discord.gg/tjb2jWgfVC ",
-            color = 65280,
+            color = 65535,
 
             -- === PERUBAHAN SATU-SATUNYA DI SINI (FIELDS) ===
             fields = {
