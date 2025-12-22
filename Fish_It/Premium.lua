@@ -27,8 +27,8 @@ local Window = WindUI:CreateWindow({
 })  
 
 Window:EditOpenButton({
-    Title = "Open Example UI",
-    Icon = "monitor",
+    Title = "Lexs Hub",
+    Icon = "rbxassetid://71947103252559",
     CornerRadius = UDim.new(0,16),
     StrokeThickness = 2,
     Color = ColorSequence.new( -- gradient
