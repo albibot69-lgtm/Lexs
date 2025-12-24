@@ -831,6 +831,53 @@ event:Toggle({
     end
 })
 
+local RS = game:GetService("ReplicatedStorage")
+local Net = RS:WaitForChild("Packages")
+	:WaitForChild("_Index")
+	:WaitForChild("sleitnick_net@0.2.0")
+	:WaitForChild("net")
+
+local Auto = false
+local Running = false
+
+local STEP_DELAY = 0.2
+local WAVE_DELAY = 5
+
+local function RunSequence()
+	if Running then return end
+	Running = true
+
+	task.spawn(function()
+		while Auto do
+			Net:WaitForChild("RE/EquipItem"):FireServer(
+				"0e98569c-edd0-4d75-bab9-7788a9ea0a4f",
+				"Gears"
+			)
+			task.wait(STEP_DELAY)
+
+			Net:WaitForChild("RE/EquipToolFromHotbar"):FireServer(5)
+			task.wait(STEP_DELAY)
+
+			Net:WaitForChild("RF/RedeemGift"):InvokeServer()
+
+			task.wait(WAVE_DELAY)
+		end
+		Running = false
+	end)
+end
+
+event:Toggle({
+	Title = "Auto Present Factory",
+    Desc = "Auto Gift Present To Factory",
+	Default = false,
+	Callback = function(v)
+		Auto = v
+		if Auto then
+			RunSequence()
+		end
+	end
+})
+
 local Tab0 = Window:Tab({
     Title = "Exclusive",
     Icon = "star",
@@ -1950,6 +1997,97 @@ player = Tab7:Section({
     TextSize = 17,
 })
 
+Players = game:GetService("Players")
+Stats = game:GetService("Stats")
+RunService = game:GetService("RunService")
+UIS = game:GetService("UserInputService")
+
+Player = Players.LocalPlayer
+
+Gui = Instance.new("ScreenGui")
+Gui.ResetOnSpawn = false
+Gui.Parent = Player.PlayerGui
+Gui.DisplayOrder = 999999
+
+Frame = Instance.new("Frame")
+Frame.Size = UDim2.fromOffset(140,50)
+Frame.Position = UDim2.fromScale(0.5,0.02)
+Frame.AnchorPoint = Vector2.new(0.5,0)
+Frame.BackgroundColor3 = Color3.fromRGB(40,40,40)
+Frame.BorderSizePixel = 0
+Frame.Visible = false
+Frame.Parent = Gui
+
+Instance.new("UICorner",Frame).CornerRadius = UDim.new(0,6)
+
+d=false;sp=nil;ds=nil
+Frame.InputBegan:Connect(function(i)
+	if i.UserInputType==Enum.UserInputType.MouseButton1 then
+		d=true;ds=i.Position;sp=Frame.Position
+	end
+end)
+Frame.InputEnded:Connect(function(i)
+	if i.UserInputType==Enum.UserInputType.MouseButton1 then d=false end
+end)
+UIS.InputChanged:Connect(function(i)
+	if d and i.UserInputType==Enum.UserInputType.MouseMovement then
+		dl=i.Position-ds
+		Frame.Position=UDim2.new(sp.X.Scale,sp.X.Offset+dl.X,sp.Y.Scale,sp.Y.Offset+dl.Y)
+	end
+end)
+
+Text = Instance.new("TextLabel")
+Text.Size = UDim2.new(1,0,0,35)
+Text.BackgroundTransparency = 1
+Text.Font = Enum.Font.GothamBold
+Text.TextSize = 16
+Text.Text = "PING: -- ms"
+Text.Parent = Frame
+
+Region = Instance.new("TextLabel")
+Region.Size = UDim2.new(1,0,0,14)
+Region.Position = UDim2.new(0,0,0.7,0)
+Region.BackgroundTransparency = 1
+Region.Font = Enum.Font.Gotham
+Region.TextSize = 12
+Region.TextColor3 = Color3.fromRGB(200,200,200)
+Region.Text = "REGION: ?"
+Region.Parent = Frame
+
+PingStat = Stats.Network.ServerStatsItem["Data Ping"]
+
+ON = false
+
+RunService.RenderStepped:Connect(function()
+	if not ON then return end
+
+	ping = math.floor(PingStat:GetValue())
+	Text.Text = "PING: "..ping.." ms"
+
+	if ping < 60 then
+		Text.TextColor3 = Color3.fromRGB(0,255,0)
+		Region.Text = "REGION: SG"
+	elseif ping < 120 then
+		Text.TextColor3 = Color3.fromRGB(255,200,0)
+		Region.Text = "REGION: ASIA"
+	elseif ping < 220 then
+		Text.TextColor3 = Color3.fromRGB(255,140,0)
+		Region.Text = "REGION: EU"
+	else
+		Text.TextColor3 = Color3.fromRGB(255,0,0)
+		Region.Text = "REGION: US"
+	end
+end)
+
+player:Toggle({
+	Title = "Ping Display",
+	Default = false,
+	Callback = function(v)
+		ON = v
+		Frame.Visible = v
+	end
+})
+
 local P = game:GetService("Players").LocalPlayer
 local C = P.Character or P.CharacterAdded:Wait()
 local O = C:WaitForChild("HumanoidRootPart"):WaitForChild("Overhead")
@@ -2088,32 +2226,39 @@ player:Toggle({
     end
 })
 
-player:Toggle({
-    Title = "Auto Reconnect",
-    Desc = "Automatic reconnect if disconnected",
-    Icon = false,
-    Default = false,
-    Callback = function(state)
-        _G.AutoReconnect = state
-        if state then
-            task.spawn(function()
-                while _G.AutoReconnect do
-                    task.wait(2)
+local CG = game:GetService("CoreGui")
+local VIM = game:GetService("VirtualInputManager")
 
-                    local reconnectUI = game:GetService("CoreGui"):FindFirstChild("RobloxPromptGui")
-                    if reconnectUI then
-                        local prompt = reconnectUI:FindFirstChild("promptOverlay")
-                        if prompt then
-                            local button = prompt:FindFirstChild("ButtonPrimary")
-                            if button and button.Visible then
-                                firesignal(button.MouseButton1Click)
-                            end
-                        end
-                    end
-                end
-            end)
-        end
-    end
+local AutoReconnect = false
+
+local function click(btn)
+	local pos = btn.AbsolutePosition + btn.AbsoluteSize / 2
+	VIM:SendMouseButtonEvent(pos.X, pos.Y, 0, true, game, 0)
+	task.wait(0.05)
+	VIM:SendMouseButtonEvent(pos.X, pos.Y, 0, false, game, 0)
+end
+
+CG:WaitForChild("RobloxPromptGui")
+	:WaitForChild("promptOverlay")
+	.ChildAdded:Connect(function(v)
+		if not AutoReconnect then return end
+		if v.Name ~= "ErrorPrompt" then return end
+
+		task.wait(0.3)
+
+		local btn = v:FindFirstChild("ReconnectButton", true)
+		if btn then
+			click(btn)
+		end
+	end)
+
+player:Toggle({
+	Title = "Auto Reconnect",
+	Desc = "Auto click Reconnect",
+	Default = false,
+	Callback = function(v)
+		AutoReconnect = v
+	end
 })
 
 local P = game:GetService("Players")
@@ -2190,109 +2335,87 @@ graphic = Tab7:Section({
     TextSize = 17,
 })
 
-local L = game:GetService("Lighting")
-local W = workspace
-local T = W:FindFirstChildOfClass("Terrain")
-local P = game:GetService("Players").LocalPlayer
-local SG = game:GetService("StarterGui")
+local Players = game:GetService("Players")
+local Lighting = game:GetService("Lighting")
+local Terrain = workspace:FindFirstChildOfClass("Terrain")
+local Player = Players.LocalPlayer
 
-local function n(t,c)
-	pcall(function()
-		SG:SetCore("ChatMakeSystemMessage",{
-			Text="[FPS BOOST] "..t,
-			Color=c or Color3.fromRGB(150,255,150),
-			Font=Enum.Font.SourceSansBold,
-			FontSize=Enum.FontSize.Size24
-		})
-	end)
-end
+local Cache = {}
+local White = Color3.fromRGB(220,220,220)
+local ON = false
 
-local function boost(s)
-	if s then
-		n("Mode Ultra Aktif ✅",Color3.fromRGB(100,255,100))
-
-		for _,v in ipairs(L:GetChildren()) do
-			if v:IsA("BlurEffect") or v:IsA("SunRaysEffect") or v:IsA("ColorCorrectionEffect")
-			or v:IsA("BloomEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("Atmosphere")
-			or v:IsA("Sky") or v:IsA("Clouds") or v:IsA("PostEffect") then
-				v.Parent=nil
-			end
-		end
-
-		L.GlobalShadows=false
-		L.FogEnd=1e6
-		L.Brightness=1
-		L.EnvironmentDiffuseScale=0
-		L.EnvironmentSpecularScale=0
-		L.OutdoorAmbient=Color3.new(1,1,1)
-
-		if T then
-			T.WaterWaveSize=0
-			T.WaterWaveSpeed=0
-			T.WaterReflectance=0
-			T.WaterTransparency=1
-		end
-
-		for _,o in ipairs(W:GetDescendants()) do
-			if o:IsA("Decal") or o:IsA("Texture") then
-				o.Transparency=1
-			elseif o:IsA("ParticleEmitter") or o:IsA("Trail") or o:IsA("Fire")
-			or o:IsA("Smoke") or o:IsA("Sparkles") then
-				o.Enabled=false
-			elseif o:IsA("SurfaceAppearance") then
-				o.Parent=nil
-			elseif o:IsA("BasePart") then
-				o.CastShadow=false
-				pcall(function() o.Material=Enum.Material.Plastic end)
-			end
-		end
-
-		local c=P.Character
-		if c then
-			for _,a in ipairs(c:GetChildren()) do
-				if a:IsA("Accessory") then a:Destroy() end
-			end
-			if c:FindFirstChild("Animate") then c.Animate.Disabled=true end
-		end
-
-		W.StreamingEnabled=true
-		W.StreamingMinRadius=64
-		W.StreamingTargetRadius=128
-		settings().Rendering.QualityLevel=Enum.QualityLevel.Level01
-		collectgarbage("collect")
-	else
-		n("Mode Ultra Nonaktif ❌",Color3.fromRGB(255,120,120))
-
-		L.GlobalShadows=true
-		L.FogEnd=1000
-		L.Brightness=2
-		L.EnvironmentDiffuseScale=1
-		L.EnvironmentSpecularScale=1
-		L.OutdoorAmbient=Color3.new(.5,.5,.5)
-
-		if T then
-			T.WaterWaveSize=.15
-			T.WaterWaveSpeed=10
-			T.WaterReflectance=1
-			T.WaterTransparency=.5
-		end
-
-		settings().Rendering.QualityLevel=Enum.QualityLevel.Automatic
-
-		local c=P.Character
-		if c and c:FindFirstChild("Animate") then
-			c.Animate.Disabled=false
-		end
+local function cache(o)
+	if Cache[o] then return end
+	if o:IsA("BasePart") then
+		Cache[o] = {o.Color, o.Material}
+	elseif o:IsA("PointLight") or o:IsA("SpotLight") or o:IsA("SurfaceLight")
+	or o:IsA("ParticleEmitter") or o:IsA("Beam") or o:IsA("Trail")
+	or o:IsA("Fire") or o:IsA("Smoke") then
+		Cache[o] = o.Enabled
 	end
 end
 
+local function apply(o)
+	if o:IsDescendantOf(Player.PlayerGui)
+	or (Terrain and o:IsDescendantOf(Terrain))
+	or (Player.Character and o:IsDescendantOf(Player.Character)) then return end
+
+	cache(o)
+
+	if o:IsA("BasePart") then
+		o.Color = White
+		o.Material = Enum.Material.SmoothPlastic
+
+	elseif o:IsA("PointLight")
+	or o:IsA("SpotLight")
+	or o:IsA("SurfaceLight")
+	or o:IsA("ParticleEmitter")
+	or o:IsA("Beam")
+	or o:IsA("Trail")
+	or o:IsA("Fire")
+	or o:IsA("Smoke") then
+		o.Enabled = false
+	end
+end
+
+local function restore(o)
+	local d = Cache[o]
+	if d == nil then return end
+
+	if o:IsA("BasePart") then
+		o.Color, o.Material = d[1], d[2]
+	else
+		o.Enabled = d
+	end
+end
+
+workspace.DescendantAdded:Connect(function(o)
+	if ON then task.wait(); apply(o) end
+end)
+
 graphic:Toggle({
-	Title="FPS Boost",
-	Icon=false,
-	Type=false,
-	Value=false,
-	Callback=function(s)
-		boost(s)
+	Title = "FPS Boost",
+	Default = false,
+	Callback = function(v)
+		ON = v
+
+		Lighting.GlobalShadows = not v
+		Lighting.EnvironmentDiffuseScale = v and 0 or 1
+		Lighting.EnvironmentSpecularScale = v and 0 or 1
+
+		for _,e in ipairs(Lighting:GetChildren()) do
+			if e:IsA("BloomEffect")
+			or e:IsA("SunRaysEffect")
+			or e:IsA("BlurEffect")
+			or e:IsA("DepthOfFieldEffect")
+			or e:IsA("ColorCorrectionEffect") then
+				e.Enabled = not v
+			end
+		end
+
+		for _,o in ipairs(workspace:GetDescendants()) do
+			if v then apply(o) else restore(o) end
+		end
 	end
 })
 
@@ -2531,37 +2654,18 @@ TeleportService:Teleport(game.PlaceId, player)
     end
 })
 
+Players = game:GetService("Players")
+TeleportService = game:GetService("TeleportService")
+
+Player = Players.LocalPlayer
+PlaceId = game.PlaceId
+
 server:Button({
-    Title = "Server Hop",
-    Desc = "Switch to another server",
-    Callback = function()
-        local HttpService = game:GetService("HttpService")
-        local TeleportService = game:GetService("TeleportService")
-        
-        local function GetServers()
-            local url = "https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Desc&limit=100"
-            local response = HttpService:JSONDecode(game:HttpGet(url))
-            return response.data
-        end
-
-        local function FindBestServer(servers)
-            for _, server in ipairs(servers) do
-                if server.playing < server.maxPlayers and server.id ~= game.JobId then
-                    return server.id
-                end
-            end
-            return nil
-        end
-
-        local servers = GetServers()
-        local serverId = FindBestServer(servers)
-
-        if serverId then
-            TeleportService:TeleportToPlaceInstance(game.PlaceId, serverId, game.Players.LocalPlayer)
-        else
-            warn("⚠️ No suitable server found!")
-        end
-    end
+	Title = "Server Hop",
+    Desc = "Switch To Another Server",
+	Callback = function()
+		TeleportService:Teleport(PlaceId, Player)
+	end
 })
 
 config = Tab7:Section({ 
