@@ -85,16 +85,7 @@ local Window = WindUI:CreateWindow({
     Transparent = true,
     Theme = "Dark",
     SideBarWidth = 170,
-    HasOutline = true, 
-        KeySystem = {                                                   
-        Note = "Enter Your Premium Key.",        
-        API = {                                                     
-            { -- pandadevelopment
-                Type = "pandadevelopment", -- type
-                ServiceId = "luaaaaaaa", -- service id
-            },                                                      
-        },                                                          
-    },                                                              
+    HasOutline = true,                                                                                                      
 })  
 
 Window:EditOpenButton({
