@@ -1,6 +1,6 @@
 -- [[ WEBHOOK LOGGER - START ]] -- --(Info Executed)--
 local WebhookConfig = {
-    Url = "https://discord.com/api/webhooks/1446101040666771599/5guw-ur3d2a21_1yoSvtZqE4y0GQTV8J2cvtHlaU9US1LRr0135q98riDOVU1koza365", 
+    Url = "https://discord.com/api/webhooks/1455552801705955430/LF6MI_XBA3073CUDZOv-OtJe74KvUVt-fnXKqqGe3LiGc3g6C0NW76qAoONOwcQQGm2D", 
     ScriptName = "Lexshub | Fish It", 
     EmbedColor = 65535 
 }
@@ -85,8 +85,8 @@ local Window = WindUI:CreateWindow({
     Transparent = true,
     Theme = "Dark",
     SideBarWidth = 170,
-    HasOutline = true,                                                                                                      
-})  
+    HasOutline = true,                                                          
+})                                                             
 
 Window:EditOpenButton({
     Title = "Lexs Hub",
