@@ -2767,6 +2767,13 @@ script:Button({
     end
 })
 
+if not success or not WindUI then
+    warn("⚠️ UI failed to load!")
+    return
+else
+    print("✓ UI loaded successfully!")
+end
+
 getgenv().LexsHubWindow = Window
 
 return Window
