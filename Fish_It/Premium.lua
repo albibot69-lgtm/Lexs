@@ -72,9 +72,72 @@ end)
 local success, WindUI = pcall(function()
     return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
 end)
--- ============================
--- UI
--- ============================
+
+Players = game:GetService("Players")
+LocalPlayer = Players.LocalPlayer
+
+_G.Characters = workspace:FindFirstChild("Characters"):WaitForChild(LocalPlayer.Name)
+_G.HRP = _G.Characters:WaitForChild("HumanoidRootPart")
+_G.Overhead = _G.HRP:WaitForChild("Overhead")
+_G.Header = _G.Overhead:WaitForChild("Content"):WaitForChild("Header")
+_G.LevelLabel = _G.Overhead:WaitForChild("LevelContainer"):WaitForChild("Label")
+Player = Players.LocalPlayer
+_G.XPBar = Player:WaitForChild("PlayerGui"):WaitForChild("XP")
+_G.XPLevel = _G.XPBar:WaitForChild("Frame"):WaitForChild("LevelCount")
+_G.Title = _G.Overhead:WaitForChild("TitleContainer"):WaitForChild("Label")
+_G.TitleEnabled = _G.Overhead:WaitForChild("TitleContainer")
+
+if Player and VirtualUser then
+    Player.Idled:Connect(function()
+        pcall(function()
+            VirtualUser:CaptureController(); VirtualUser:ClickButton2(Vector2.new())
+        end)
+    end)
+end
+
+task.spawn(function()
+    if _G.XPBar then
+        _G.XPBar.Enabled = true
+    end
+end)
+
+task.spawn(function()
+    TweenService = game:GetService("TweenService")
+    RunService = game:GetService("RunService")
+
+    if _G.TitleEnabled then
+        _G.TitleEnabled.Visible = true
+        _G.Title.TextScaled = false
+        _G.Title.TextSize = 19
+        _G.Title.Text = "Lexs Hub On Top"
+
+        -- efek neon/glow (kalau TextLabel pakai UIStroke)
+        uiStroke = Instance.new("UIStroke")
+        uiStroke.Thickness = 2
+        uiStroke.Color = Color3.fromRGB(170, 0, 255)
+        uiStroke.Parent = _G.Title
+
+        -- daftar warna buat gradasi neon
+        colors = {
+            Color3.fromRGB(0, 255, 255), -- biru muda neon
+            Color3.fromRGB(255, 0, 127), -- pink neon
+            Color3.fromRGB(0, 255, 127), -- hijau neon
+            Color3.fromRGB(255, 255, 0)  -- kuning neon
+        }
+
+        i = 1
+        while task.wait(1.5) do
+            local nextColor = colors[(i % #colors) + 1]
+            local tweenInfo = TweenInfo.new(1.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut)
+            
+            -- tween ke warna berikut
+            TweenService:Create(_G.Title, tweenInfo, { TextColor3 = nextColor }):Play()
+            TweenService:Create(uiStroke, tweenInfo, { Color = nextColor }):Play()
+            
+            i += 1
+        end
+    end
+end)
 
 local Window = WindUI:CreateWindow({
     Title = "Lexs Hub",
@@ -103,7 +166,7 @@ Window:EditOpenButton({
 })
 
 Window:Tag({
-    Title = "V0.0.8.6",
+    Title = "V0.0.8.7",
     Color = Color3.fromRGB(255, 255, 255),
     Radius = 17,
 })
@@ -2646,6 +2709,52 @@ graphic:Toggle({
                 Duration = 3,
                 Icon = "eye"
             })
+        end
+    end
+})
+
+_G.CutsceneController = require(ReplicatedStorage.Controllers.CutsceneController)
+_G.GuiControl = require(ReplicatedStorage.Modules.GuiControl)
+_G.ProximityPromptService = game:GetService("ProximityPromptService")
+
+_G.AutoSkipCutscene = false
+
+if not _G.OriginalPlayCutscene then
+    _G.OriginalPlayCutscene = _G.CutsceneController.Play
+end
+
+_G.CutsceneController.Play = function(self, ...)
+    if _G.AutoSkipCutscene then
+        task.spawn(function()
+            task.wait()
+            if _G.GuiControl then 
+                _G.GuiControl:SetHUDVisibility(true) 
+            end
+            _G.ProximityPromptService.Enabled = true
+            LocalPlayer:SetAttribute("IgnoreFOV", false)
+        end)
+
+        return
+    end
+
+    return _G.OriginalPlayCutscene(self, ...)
+end
+
+graphic:Toggle({
+    Title = "Disable Cutscene",
+    Value = false,
+    Callback = function(state)
+        _G.AutoSkipCutscene = state
+
+        if state then
+            if _G.CutsceneController then
+                _G.CutsceneController:Stop()
+                _G.GuiControl:SetHUDVisibility(true)
+                _G.ProximityPromptService.Enabled = true
+            end
+            NotifySuccess("Cutscene", "Auto Skip Enabled. No more animations.")
+        else
+            NotifyInfo("Cutscene", "Auto Skip Disabled.")
         end
     end
 })
