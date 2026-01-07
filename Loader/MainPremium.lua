@@ -11,7 +11,7 @@ local gameScripts = {
     },
     [121864768012064] = {
         name = "Fish It",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fish_It/PremiumOpen.CloseUi.lua"
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fish_It/Premium.lua"
     }
 }
 
