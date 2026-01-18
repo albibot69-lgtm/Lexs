@@ -117,5 +117,5 @@ task.spawn(function()
     loader:Remove()
     task.wait(0.2)
 
-    loadstring(game:HttpGet("PASTE_UI_URL_DI_SINI"))() -- change your loadstring
+    loadstring(game:HttpGet("replace with your loadstring"))() -- replace with your loadstring
 end)
