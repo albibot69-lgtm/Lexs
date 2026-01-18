@@ -117,5 +117,5 @@ task.spawn(function()
     loader:Remove()
     task.wait(0.2)
 
-    loadstring(game:HttpGet("replace with your loadstring"))() -- replace with your loadstring
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Loader/MainPremium.lua"))() -- replace with your loadstring
 end)
