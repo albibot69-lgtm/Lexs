@@ -80,7 +80,7 @@ local placeId = game.PlaceId
 local iconlexs = "rbxassetid://71947103252559"
 
 local gameScripts = {
-    [23557829667240] = {
+    [123557829667240] = {
         name = "Chop Your Tree",
         premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ChopYourTree.Lua/Premium.luaL"
     },
