@@ -80,9 +80,9 @@ local placeId = game.PlaceId
 local iconlexs = "rbxassetid://71947103252559"
 
 local gameScripts = {
-    [76558904092080] = {
-        name = "The Forge",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/L"
+    [23557829667240] = {
+        name = "Chop Your Tree",
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ChopYourTree.Lua/Premium.luaL"
     },
     [121864768012064] = {
         name = "Fish It",
