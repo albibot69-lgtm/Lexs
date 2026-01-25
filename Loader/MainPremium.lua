@@ -84,6 +84,10 @@ local gameScripts = {
         name = "Chop Your Tree",
         premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ChopYourTree/Premium.Lua"
     },
+    [94602945872232] = {
+        name = "Build a Fish Army",
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BuildAFishArmy/Premium.Lua"
+    },
     [121864768012064] = {
         name = "Fish It",
         premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fish_It/Premium.lua"
