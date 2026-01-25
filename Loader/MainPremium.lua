@@ -71,7 +71,7 @@ end)
 
 -----------------------------------------------------------------------------------------------------------
 
-
+-- kontol
 
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
