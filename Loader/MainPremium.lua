@@ -82,7 +82,7 @@ local iconlexs = "rbxassetid://71947103252559"
 local gameScripts = {
     [123557829667240] = {
         name = "Chop Your Tree",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ChopYourTree.Lua/Premium.luaL"
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ChopYourTree/Premium.Lua"
     },
     [121864768012064] = {
         name = "Fish It",
