@@ -90,7 +90,7 @@ local gameScripts = {
     },
     [124311897657957] = {
         name = "Break A Lucky Block",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BuildAFishArmy/Premium.Lua"
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BreakAluckyBlock/Premium.lua"
     },
     [121864768012064] = {
         name = "Fish It",
