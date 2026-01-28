@@ -1,29 +1,34 @@
 -- [[ WEBHOOK LOGGER - START ]] -- --(Info Executed)--
 local WebhookConfig = {
-    Url = "https://discord.com/api/webhooks/1455552801705955430/LF6MI_XBA3073CUDZOv-OtJe74KvUVt-fnXKqqGe3LiGc3g6C0NW76qAoONOwcQQGm2D", 
-    ScriptName = "Lexshub | All Game", 
-    EmbedColor = 65535 
+    Url = "https://discord.com/api/webhooks/1455552801705955430/LF6MI_XBA3073CUDZOv-OtJe74KvUVt-fnXKqqGe3LiGc3g6C0NW76qAoONOwcQQGm2D",
+    ScriptName = "Lexshub | All Game",
+    EmbedColor = 65535
 }
 
 local function sendWebhookNotification()
-    
     local httpRequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
-    
-    if not httpRequest then return end 
-    if getgenv().WebhookSent then return end 
+    if not httpRequest then return end
+    if getgenv().WebhookSent then return end
     getgenv().WebhookSent = true
 
     local Players = game:GetService("Players")
     local HttpService = game:GetService("HttpService")
+    local MarketplaceService = game:GetService("MarketplaceService")
     local LocalPlayer = Players.LocalPlayer
 
-    
+    -- EXECUTOR
     local executorName = "Unknown"
     if identifyexecutor then
         executorName = identifyexecutor()
     end
 
-    
+    -- 🔹 AMBIL NAMA GAME
+    local gameName = "Unknown Game"
+    pcall(function()
+        local info = MarketplaceService:GetProductInfo(game.PlaceId)
+        gameName = info.Name
+    end)
+
     local payload = {
         ["username"] = "Script Logger",
         ["avatar_url"] = "https://cdn.discordapp.com/attachments/1403943739176783954/1451856403621871729/ChatGPT_Image_27_Sep_2025_16.38.53.png",
@@ -33,12 +38,22 @@ local function sendWebhookNotification()
             ["fields"] = {
                 {
                     ["name"] = "👤 User Info",
-                    ["value"] = string.format("Display: %s\nUser: %s\nID: %s", LocalPlayer.DisplayName, LocalPlayer.Name, tostring(LocalPlayer.UserId)),
+                    ["value"] = string.format(
+                        "Display: %s\nUser: %s\nID: %s",
+                        LocalPlayer.DisplayName,
+                        LocalPlayer.Name,
+                        tostring(LocalPlayer.UserId)
+                    ),
                     ["inline"] = true
                 },
                 {
                     ["name"] = "🎮 Game Info",
-                    ["value"] = string.format("Place ID: %s\nJob ID: %s", tostring(game.PlaceId), game.JobId),
+                    ["value"] = string.format(
+                        "Game: %s\nPlace ID: %s\nJob ID: %s",
+                        gameName,
+                        tostring(game.PlaceId),
+                        game.JobId
+                    ),
                     ["inline"] = true
                 },
                 {
@@ -53,7 +68,6 @@ local function sendWebhookNotification()
         }}
     }
 
-    
     httpRequest({
         Url = WebhookConfig.Url,
         Method = "POST",
@@ -63,7 +77,6 @@ local function sendWebhookNotification()
         Body = HttpService:JSONEncode(payload)
     })
 end
-
 
 task.spawn(function()
     pcall(sendWebhookNotification)
