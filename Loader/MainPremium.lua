@@ -94,7 +94,7 @@ local gameScripts = {
     },
     [131623223084840] = {
         name = "Escape Tsunami For Brainrot",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BreakAluckyBlock/Premium.lua"
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ETFB/Premium.lua"
     },
     [121864768012064] = {
         name = "Fish It",
