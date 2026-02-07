@@ -102,7 +102,7 @@ function loader:Remove()
 end
 
 task.spawn(function()
-    task.wait(0.5)
+    task.wait(2)
     updateLoader("Checking Key", 20)
     task.wait(0.8)
     updateLoader("Loading Assets", 45)
