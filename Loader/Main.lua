@@ -1,105 +1,36 @@
--- [[ WEBHOOK LOGGER - START ]] -- --(Info Executed)--
-local WebhookConfig = {
-    Url = "https://discord.com/api/webhooks/1455552801705955430/LF6MI_XBA3073CUDZOv-OtJe74KvUVt-fnXKqqGe3LiGc3g6C0NW76qAoONOwcQQGm2D",
-    ScriptName = "Lexshub | Free | All Game",
-    EmbedColor = 65535
+local StarterGui = game:GetService("StarterGui")
+local TweenService = game:GetService("TweenService")
+local CoreGui = game:GetService("CoreGui")
+local placeId = game.PlaceId
+
+_G.scripts_key = _G.scripts_key or scripts_key or "FREE_USER"
+local Logo = "rbxassetid://122683047852451"
+
+local premiumKeys = {
+    "hRCWybDuIIxXeREImBbvjsEueohPzTfX",
 }
 
-local function sendWebhookNotification()
-    local httpRequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
-    if not httpRequest then return end
-    if getgenv().WebhookSent then return end
-    getgenv().WebhookSent = true
-
-    local Players = game:GetService("Players")
-    local HttpService = game:GetService("HttpService")
-    local MarketplaceService = game:GetService("MarketplaceService")
-    local LocalPlayer = Players.LocalPlayer
-
-    -- EXECUTOR
-    local executorName = "Unknown"
-    if identifyexecutor then
-        executorName = identifyexecutor()
+local function isPremiumKey(key)
+    for _, k in ipairs(premiumKeys) do
+        if key == k then
+            return true
+        end
     end
-
-    -- 🔹 AMBIL NAMA GAME
-    local gameName = "Unknown Game"
-    pcall(function()
-        local info = MarketplaceService:GetProductInfo(game.PlaceId)
-        gameName = info.Name
-    end)
-
-    local payload = {
-        ["username"] = "Script Logger",
-        ["avatar_url"] = "https://cdn.discordapp.com/attachments/1403943739176783954/1451856403621871729/ChatGPT_Image_27_Sep_2025_16.38.53.png",
-        ["embeds"] = {{
-            ["title"] = "🔔 Script Executed: " .. WebhookConfig.ScriptName,
-            ["color"] = WebhookConfig.EmbedColor,
-            ["fields"] = {
-                {
-                    ["name"] = "👤 User Info",
-                    ["value"] = string.format(
-                        "Display: %s\nUser: %s\nID: %s",
-                        LocalPlayer.DisplayName,
-                        LocalPlayer.Name,
-                        tostring(LocalPlayer.UserId)
-                    ),
-                    ["inline"] = true
-                },
-                {
-                    ["name"] = "🎮 Game Info",
-                    ["value"] = string.format(
-                        "Game: %s\nPlace ID: %s\nJob ID: %s",
-                        gameName,
-                        tostring(game.PlaceId),
-                        game.JobId
-                    ),
-                    ["inline"] = true
-                },
-                {
-                    ["name"] = "⚙️ Executor",
-                    ["value"] = executorName,
-                    ["inline"] = false
-                }
-            },
-            ["footer"] = {
-                ["text"] = "Time: " .. os.date("%c")
-            }
-        }}
-    }
-
-    httpRequest({
-        Url = WebhookConfig.Url,
-        Method = "POST",
-        Headers = {
-            ["Content-Type"] = "application/json"
-        },
-        Body = HttpService:JSONEncode(payload)
-    })
+    return false
 end
 
-task.spawn(function()
-    pcall(sendWebhookNotification)
-end)
-
------------------------------------------------------------------------------------------------------------
-
--- kontol
-
-local Players = game:GetService("Players")
-local StarterGui = game:GetService("StarterGui")
-
-local placeId = game.PlaceId
-local iconlexs = "rbxassetid://71947103252559"
+local userType = isPremiumKey(_G.scripts_key) and "Premium" or "Freemium"
 
 local gameScripts = {
     [131623223084840] = {
         name = "Escape Tsunami For Brainrot",
-        free = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ETFB/Freemium.lua"
+        free = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Loader/LoadingScreenFreemium.lua",
+        premium = "https://raw.githubusercontent.com/-a"
     },
     [121864768012064] = {
         name = "Fish It",
-        free = "soon"
+        free = "https://raw.githubusercontent.com/-",
+        premium = "https://raw.githubusercontent.com/-"
     }
 }
 
@@ -107,49 +38,43 @@ local gameData = gameScripts[placeId]
 local gameName = gameData and gameData.name or "Unknown Game"
 
 StarterGui:SetCore("SendNotification", {
-    Title = "Lexs Hub",
+    Title = "STREE HUB",
     Text = "Detected game: " .. gameName,
-    Icon = iconlexs,
+    Icon = Logo,
+    Duration = 3
+})
+StarterGui:SetCore("SendNotification", {
+    Title = "STREE HUB",
+    Text = "User Type: " .. userType,
+    Icon = Logo,
     Duration = 3
 })
 
-StarterGui:SetCore("SendNotification", {
-    Title = "Lexs Hub",
-    Text = "Freemium Access Granted",
-    Icon = iconlexs,
-    Duration = 3
-})
+task.wait(2)
 
 if gameData then
-    StarterGui:SetCore("SendNotification", {
-        Title = "Lexs Hub",
-        Text = "Loading Freemium Script...",
-        Icon = iconlexs,
-        Duration = 3
-    })
-
-    local success, result = pcall(function()
-        return game:HttpGet(gameData.premium)
-    end)
-
-    if success and result and result ~= "" then
-        local func, err = loadstring(result)
-        if func then
-            func()
-        end
+    if userType == "Premium" then
+        StarterGui:SetCore("SendNotification", {
+            Title = "STREE HUB",
+            Text = "Loading Premium version for " .. gameName .. "...",
+            Icon = Logo,
+            Duration = 3
+        })
+        loadstring(game:HttpGet(gameData.premium))()
     else
         StarterGui:SetCore("SendNotification", {
-            Title = "Lexs Hub",
-            Text = "Failed to load script!",
-            Icon = iconlexs,
-            Duration = 4
+            Title = "STREE HUB",
+            Text = "Loading Freemium version for " .. gameName .. "...",
+            Icon = Logo,
+            Duration = 3
         })
+        loadstring(game:HttpGet(gameData.free))()
     end
 else
     StarterGui:SetCore("SendNotification", {
-        Title = "Lexs Hub",
+        Title = "STREE HUB",
         Text = "Game not supported!",
-        Icon = iconlexs,
+        Icon = Logo,
         Duration = 4
     })
 end
