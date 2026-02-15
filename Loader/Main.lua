@@ -95,7 +95,7 @@ local iconlexs = "rbxassetid://71947103252559"
 local gameScripts = {
     [131623223084840] = {
         name = "Escape Tsunami For Brainrot",
-        free = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ETFB/Freemium.luaw"
+        free = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ETFB/Freemium.lua"
     },
     [121864768012064] = {
         name = "Fish It",
