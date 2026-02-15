@@ -1,76 +1,155 @@
+-- [[ WEBHOOK LOGGER - START ]] -- --(Info Executed)--
+local WebhookConfig = {
+    Url = "https://discord.com/api/webhooks/1455552801705955430/LF6MI_XBA3073CUDZOv-OtJe74KvUVt-fnXKqqGe3LiGc3g6C0NW76qAoONOwcQQGm2D",
+    ScriptName = "Lexshub | Free | All Game",
+    EmbedColor = 65535
+}
+
+local function sendWebhookNotification()
+    local httpRequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
+    if not httpRequest then return end
+    if getgenv().WebhookSent then return end
+    getgenv().WebhookSent = true
+
+    local Players = game:GetService("Players")
+    local HttpService = game:GetService("HttpService")
+    local MarketplaceService = game:GetService("MarketplaceService")
+    local LocalPlayer = Players.LocalPlayer
+
+    -- EXECUTOR
+    local executorName = "Unknown"
+    if identifyexecutor then
+        executorName = identifyexecutor()
+    end
+
+    -- 🔹 AMBIL NAMA GAME
+    local gameName = "Unknown Game"
+    pcall(function()
+        local info = MarketplaceService:GetProductInfo(game.PlaceId)
+        gameName = info.Name
+    end)
+
+    local payload = {
+        ["username"] = "Script Logger",
+        ["avatar_url"] = "https://cdn.discordapp.com/attachments/1403943739176783954/1451856403621871729/ChatGPT_Image_27_Sep_2025_16.38.53.png",
+        ["embeds"] = {{
+            ["title"] = "🔔 Script Executed: " .. WebhookConfig.ScriptName,
+            ["color"] = WebhookConfig.EmbedColor,
+            ["fields"] = {
+                {
+                    ["name"] = "👤 User Info",
+                    ["value"] = string.format(
+                        "Display: %s\nUser: %s\nID: %s",
+                        LocalPlayer.DisplayName,
+                        LocalPlayer.Name,
+                        tostring(LocalPlayer.UserId)
+                    ),
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "🎮 Game Info",
+                    ["value"] = string.format(
+                        "Game: %s\nPlace ID: %s\nJob ID: %s",
+                        gameName,
+                        tostring(game.PlaceId),
+                        game.JobId
+                    ),
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "⚙️ Executor",
+                    ["value"] = executorName,
+                    ["inline"] = false
+                }
+            },
+            ["footer"] = {
+                ["text"] = "Time: " .. os.date("%c")
+            }
+        }}
+    }
+
+    httpRequest({
+        Url = WebhookConfig.Url,
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = HttpService:JSONEncode(payload)
+    })
+end
+
+task.spawn(function()
+    pcall(sendWebhookNotification)
+end)
+
+-----------------------------------------------------------------------------------------------------------
+
+-- kontol
+
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
 
 local placeId = game.PlaceId
-local Logo = "rbxassetid://71947103252559"
+local iconlexs = "rbxassetid://71947103252559"
 
--- FREE ONLY
 local gameScripts = {
-    [96151237893653] = {
-        name = "Brainrot Royale",
-        free = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BrainrotRoyale/FreemiumOpenCloseui.lua"
-    },
     [131623223084840] = {
         name = "Escape Tsunami For Brainrot",
         free = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ETFB/Freemium.luaw"
     },
     [121864768012064] = {
         name = "Fish It",
-        free = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fish_It/freemiumopen.colseui.lua"
-    },
-    [18687417158] = {
-        name = "Forsaken",
-        free = "https://raw.githubusercontent.com/wdwdwdwdwdwdwdwdwd"
+        free = "soon"
     }
 }
 
 local gameData = gameScripts[placeId]
 local gameName = gameData and gameData.name or "Unknown Game"
 
--- NOTIF DETECT GAME
 StarterGui:SetCore("SendNotification", {
     Title = "Lexs Hub",
     Text = "Detected game: " .. gameName,
-    Icon = Logo,
+    Icon = iconlexs,
     Duration = 3
 })
 
-task.wait(1)
+StarterGui:SetCore("SendNotification", {
+    Title = "Lexs Hub",
+    Text = "Freemium Access Granted",
+    Icon = iconlexs,
+    Duration = 3
+})
 
 if gameData then
-    
     StarterGui:SetCore("SendNotification", {
         Title = "Lexs Hub",
-        Text = "Loading Free Version...",
-        Icon = Logo,
+        Text = "Loading Freemium Script...",
+        Icon = iconlexs,
         Duration = 3
     })
 
-    local success, scriptContent = pcall(function()
-        return game:HttpGet(gameData.free)
+    local success, result = pcall(function()
+        return game:HttpGet(gameData.premium)
     end)
 
-    if success and scriptContent and scriptContent ~= "" then
-        local f = loadstring(scriptContent)
-        if f then
-            f()
-        else
-            warn("Loadstring error")
+    if success and result and result ~= "" then
+        local func, err = loadstring(result)
+        if func then
+            func()
         end
     else
         StarterGui:SetCore("SendNotification", {
             Title = "Lexs Hub",
             Text = "Failed to load script!",
-            Icon = Logo,
+            Icon = iconlexs,
             Duration = 4
         })
     end
-
 else
     StarterGui:SetCore("SendNotification", {
         Title = "Lexs Hub",
         Text = "Game not supported!",
-        Icon = Logo,
+        Icon = iconlexs,
         Duration = 4
     })
 end
