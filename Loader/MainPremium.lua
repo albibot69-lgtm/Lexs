@@ -103,7 +103,7 @@ local gameScripts = {
     },
     [16981421605] = {
         name = "Reborn As Swordsman",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/--"
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/RAS/Premium.lua"
     },
     [94602945872232] = {
         name = "Build a Fish Army",
