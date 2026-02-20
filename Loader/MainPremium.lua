@@ -105,6 +105,10 @@ local gameScripts = {
         name = "Reborn As Swordsman",
         premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/RAS/Premium.lua"
     },
+    [119987266683883] = {
+        name = "Survive Lava For Brainrot",
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/LavaBranrot/Premium.lua"
+    },
     [94602945872232] = {
         name = "Build a Fish Army",
         premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BuildAFishArmy/Premium.Lua"
