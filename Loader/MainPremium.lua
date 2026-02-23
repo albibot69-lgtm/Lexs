@@ -101,6 +101,10 @@ local gameScripts = {
         name = "Chop Your Tree",
         premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ChopYourTree/Premium.Lua"
     },
+    [130594398886540] = {
+        name = "Garden Horizons",
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ChopYourTree/Premium.Lua"
+    },
     [16981421605] = {
         name = "Reborn As Swordsman",
         premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/RAS/Premium.lua"
