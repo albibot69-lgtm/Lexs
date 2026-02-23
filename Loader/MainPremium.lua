@@ -103,7 +103,7 @@ local gameScripts = {
     },
     [130594398886540] = {
         name = "Garden Horizons",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ChopYourTree/Premium.Lua"
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/GardenHorizon/Premium.lua"
     },
     [16981421605] = {
         name = "Reborn As Swordsman",
