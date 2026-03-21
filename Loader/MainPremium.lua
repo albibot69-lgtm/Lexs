@@ -89,6 +89,8 @@ end)
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
 
+local LocalPlayer = Players.LocalPlayer
+
 local placeId = game.PlaceId
 local iconlexs = "rbxassetid://71947103252559"
 
@@ -180,8 +182,12 @@ if gameData then
 else
     StarterGui:SetCore("SendNotification", {
         Title = "Lexs Hub",
-        Text = "Game not supported!",
+        Text = "Game not supported! Kicking...",
         Icon = iconlexs,
-        Duration = 4
+        Duration = 3
     })
+
+    task.wait(2)
+
+    LocalPlayer:Kick("Game not supported\n by Lexs Hub")
 end
