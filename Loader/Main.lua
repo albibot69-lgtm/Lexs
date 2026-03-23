@@ -1,5 +1,5 @@
 local games = {
-    [94766472396058] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Premium.lua",         -- Fisch Universe (Main)
+    [94766472396058] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Free.lua",         -- Fisch Universe (Main)
     
     [130594398886540] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/GardenHorizon/Main.lua", -- Garden Horizon
     [131623223084840] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ETFB/Freemium.lua", -- Escape Tsunami
@@ -10,8 +10,8 @@ local games = {
     [127794225497302] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Abyss/Main.lua", -- abyss
     [86111605798689] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/StarFishing/Main.lua", -- Star Fishing
 
-    [16732694052] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Premium.lua", -- fisch
-    [131716211654599] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Premium.lua", -- fisch
+    [16732694052] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Free.lua", -- fisch
+    [131716211654599] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Free.lua", -- fisch
 }
 
 local currentPlaceID = game.PlaceId
