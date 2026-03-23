@@ -95,6 +95,18 @@ local placeId = game.PlaceId
 local iconlexs = "rbxassetid://71947103252559"
 
 local gameScripts = {
+    [94766472396058] = {
+        name = "Fisch",
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Premium.lua"
+    },
+    [16732694052] = {
+        name = "Fisch Main",
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Premium.lua"
+    },
+    [131716211654599] = {
+        name = "Fisch New",
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Premium.lua"
+    },
     [127794225497302] = {
         name = "Abyss",
         premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Abyss/Premium.lua"
