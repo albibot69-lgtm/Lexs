@@ -125,7 +125,7 @@ local gameScripts = {
     },
     [70845479499574] = {
         name = "Bite By Night",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/RAS/Premium.lua"
+        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BiteByNight/Premium.lua"
     },
     [119987266683883] = {
         name = "Survive Lava For Brainrot",
