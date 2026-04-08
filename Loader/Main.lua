@@ -12,6 +12,8 @@ local games = {
 
     [16732694052] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Free.lua", -- fisch
     [131716211654599] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Free.lua", -- fisch
+    
+    [70845479499574] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BiteByNight/Freemium.lua",  -- Bite By Night
 }
 
 local currentPlaceID = game.PlaceId
