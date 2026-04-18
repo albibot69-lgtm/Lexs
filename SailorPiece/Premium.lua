@@ -6726,5 +6726,5 @@ end
 
 getgenv().LexsHubWindow = Window
 
-return Windoww
+return Window
 print("Open/Close Ui Loaded")
