@@ -14,6 +14,11 @@ local games = {
     [131716211654599] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Free.lua", -- fisch
     
     [70845479499574] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BiteByNight/Freemium.lua",  -- Bite By Night
+
+    [138368689293913] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/",  -- Sailor INF Tower
+    [138368689293913] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/",  -- Sailor Dungeon
+    [138368689293913] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/",  -- Sailor Boos Rush
+    [77747658251236] = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/",  -- Sailor Piece Main
 }
 
 local currentPlaceID = game.PlaceId
