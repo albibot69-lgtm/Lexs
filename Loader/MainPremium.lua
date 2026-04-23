@@ -1,209 +1,288 @@
--- [[ WEBHOOK LOGGER - START ]] -- --(Info Executed)--
-local WebhookConfig = {
-    Url = "https://discord.com/api/webhooks/1455552801705955430/LF6MI_XBA3073CUDZOv-OtJe74KvUVt-fnXKqqGe3LiGc3g6C0NW76qAoONOwcQQGm2D",
-    ScriptName = "Lexshub | All Game",
-    EmbedColor = 65535
+local NotifLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/nyzxhub-rblx/LexsUi/refs/heads/main/notify/lexshubnotify.lua"))()
+
+local games = {
+    [94766472396058] = {url = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Premium.lua", name = "Fisch Universe"},
+    
+    [130594398886540] = {url = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/GardenHorizon/Premium.lua", name = "Garden Horizon"},
+    [131623223084840] = {url = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ETFB/Premium.lua", name = "Escape Tsunami"},
+    
+    [16981421605] = {url = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/RAS/Premium.lua", name = "Reborn As Swordsman"},
+    [119987266683883] = {url = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/LavaBranrot/Premium.lua", name = "Lava Brainrot"},
+    
+    [127794225497302] = {url = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Abyss/Premium.lua", name = "Abyss"},
+    [86111605798689] = {url = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/StarFishing/Premium.lua", name = "Star Fishing"},
+
+    [16732694052] = {url = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Premium.lua", name = "Fisch"},
+    [131716211654599] = {url = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Premium.lua", name = "Fisch"},
+
+    [70845479499574] = {url = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BiteByNight/Premium.lua", name = "Bite By Night"},
+
+    [138368689293913] = {url = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/", name = "Sailor Series"},
+    [77747658251236] = {url = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/", name = "Sailor Piece"},
 }
 
-local function sendWebhookNotification()
-    local httpRequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
-    if not httpRequest then return end
-    if getgenv().WebhookSent then return end
-    getgenv().WebhookSent = true
+local currentPlaceID = game.PlaceId
+local currentUniverseID = game.GameId
+local WebhookURLunsupport = "https://discord.com/api/webhooks/1496838234951647272/akdelNs_9Dk3Q1Tsv27HhZxEG5Nwy8thmuouozXdp-nBa13Uw-VKMfny_jd_nJTntRMR"
+local WebhookURLsupport = "https://discord.com/api/webhooks/1496838367718150215/i3DNKFjzHAt5UN-r3E7ZabvPgvI3EKCgumV9VJFjfnM-kFwau77_EvCMBKqsitapvggU"
 
-    local Players = game:GetService("Players")
-    local HttpService = game:GetService("HttpService")
-    local MarketplaceService = game:GetService("MarketplaceService")
-    local LocalPlayer = Players.LocalPlayer
+local data = games[currentUniverseID] or games[currentPlaceID]
 
-    -- EXECUTOR
-    local executorName = "Unknown"
-    if identifyexecutor then
-        executorName = identifyexecutor()
+if data then
+    print("Lexs Hub: Loading script for " .. data.name)
+
+    NotifLib:MakeNotify({
+        Title = "Lexs Hub",
+        Content = "Premium Access Granted",
+        Icon = "lucide:check",
+        Delay = 4
+    })
+
+    print("\n\n")
+
+    print("【====================】")
+    print("   >>> LEXS HUB <<<   ")
+    print("【====================】")
+
+    local steps = {
+        "Initializing...",
+        "Loading Modules...",
+        "Checking Game...",
+        "Setting Up UI...",
+        "Loading Assets...",
+        "Finalizing..."
+    }
+
+    for i = 1, 100 do
+        local step = steps[math.clamp(math.floor(i/20)+1, 1, #steps)]
+        print("    Loading... " .. i .. "% | " .. step)
+        task.wait(0.01)
     end
 
-    -- 🔹 AMBIL NAMA GAME
-    local gameName = "Unknown Game"
+    print("    ✅ Loading Complete!")
+
+    print("\n\n\n")
+
+    local Players = game:GetService("Players")
+    local MarketplaceService = game:GetService("MarketplaceService")
+
+    local player = Players.LocalPlayer
+    local playerName = player.Name
+    local displayName = player.DisplayName
+    local userId = player.UserId
+
+    local gameName = "Unknown"
     pcall(function()
-        local info = MarketplaceService:GetProductInfo(game.PlaceId)
-        gameName = info.Name
+        gameName = MarketplaceService:GetProductInfo(game.PlaceId).Name
     end)
 
-    local payload = {
-        ["username"] = "Script Logger",
-        ["avatar_url"] = "https://cdn.discordapp.com/attachments/1403943739176783954/1451856403621871729/ChatGPT_Image_27_Sep_2025_16.38.53.png",
+    print("    ========================================")
+    print("    🎮 Game Name   : " .. gameName)
+    print("    🗺️ Script Game : " .. data.name)
+    print("    👤 Player      : " .. playerName .. " (" .. displayName .. ")")
+    print("    🆔 UserId      : " .. userId)
+    print("    📍 PlaceId     : " .. game.PlaceId)
+    print("    🌍 JobId       : " .. game.JobId)
+    print("    ========================================")
+
+    local HttpService = game:GetService("HttpService")
+    local Players = game:GetService("Players")
+    local MarketplaceService = game:GetService("MarketplaceService")
+
+    local player = Players.LocalPlayer
+
+    local gameName = "Unknown"
+    pcall(function()
+        gameName = MarketplaceService:GetProductInfo(game.PlaceId).Name
+    end)
+
+    local executor = "Unknown"
+    if identifyexecutor then
+        executor = identifyexecutor()
+    elseif getexecutorname then
+        executor = getexecutorname()
+    elseif syn then
+        executor = "Synapse X"
+    elseif fluxus then
+        executor = "Fluxus"
+    end
+
+    local thumbnail = ""
+    pcall(function()
+        local thumbData = game:HttpGet(
+            "https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds="
+            .. player.UserId .. "&size=420x420&format=Png&isCircular=false"
+        )
+
+        local decoded = HttpService:JSONDecode(thumbData)
+        thumbnail = decoded.data[1].imageUrl
+    end)
+
+    if thumbnail == "" then
+        thumbnail = "https://tr.rbxcdn.com/default-avatar.png"
+    end
+
+    local dataWebhook = {
+        ["username"] = "Lexs Hub Execute Log",
+        ["avatar_url"] = "https://cdn.discordapp.com/icons/1421113462339272847/69678e4789851fd8e70b240b504c80d6.webp?size=1024",
         ["embeds"] = {{
-            ["title"] = "🔔 Script Executed: " .. WebhookConfig.ScriptName,
-            ["color"] = WebhookConfig.EmbedColor,
-            ["fields"] = {
-                {
-                    ["name"] = "👤 User Info",
-                    ["value"] = string.format(
-                        "Display: %s\nUser: %s\nID: %s",
-                        LocalPlayer.DisplayName,
-                        LocalPlayer.Name,
-                        tostring(LocalPlayer.UserId)
-                    ),
-                    ["inline"] = true
-                },
-                {
-                    ["name"] = "🎮 Game Info",
-                    ["value"] = string.format(
-                        "Game: %s\nPlace ID: %s\nJob ID: %s",
-                        gameName,
-                        tostring(game.PlaceId),
-                        game.JobId
-                    ),
-                    ["inline"] = true
-                },
-                {
-                    ["name"] = "⚙️ Executor",
-                    ["value"] = executorName,
-                    ["inline"] = false
-                }
+            ["title"] = "✅ Supported Game Executed",
+            ["color"] = 65280,
+
+            ["thumbnail"] = {
+                ["url"] = thumbnail
             },
+
+            ["fields"] = {
+                {["name"] = "🎮 Game", ["value"] = gameName, ["inline"] = false},
+                {["name"] = "🗺️ Script", ["value"] = data.name, ["inline"] = false},
+                {["name"] = "👤 Player", ["value"] = player.Name .. " (" .. player.DisplayName .. ")", ["inline"] = false},
+                {["name"] = "🆔 UserId", ["value"] = tostring(player.UserId), ["inline"] = true},
+                {["name"] = "⚙️ Executor", ["value"] = executor, ["inline"] = true},
+                {["name"] = "📍 PlaceId", ["value"] = tostring(game.PlaceId), ["inline"] = false},
+                {["name"] = "🌍 JobId", ["value"] = game.JobId, ["inline"] = false}
+            },
+
             ["footer"] = {
-                ["text"] = "Time: " .. os.date("%c")
+                ["text"] = "Lexs Hub Logger"
             }
         }}
     }
 
-    httpRequest({
-        Url = WebhookConfig.Url,
-        Method = "POST",
-        Headers = {
-            ["Content-Type"] = "application/json"
-        },
-        Body = HttpService:JSONEncode(payload)
-    })
-end
+    local request = (syn and syn.request) or (http and http.request) or http_request or request
 
-task.spawn(function()
-    pcall(sendWebhookNotification)
+    if request then
+        for i = 1, 3 do
+            local ok = pcall(function()
+                request({
+                    Url = WebhookURLsupport,
+                    Method = "POST",
+                    Headers = {["Content-Type"] = "application/json"},
+                    Body = HttpService:JSONEncode(dataWebhook)
+                })
+            end)
+
+            if ok then break end
+            task.wait(1)
+        end
+    end
+
+    print("Webhook Sent For Supported Game: " .. data.name)
+
+    NotifLib:MakeNotify({
+        Title = "Lexs Hub",
+        Content = "Loading Premium Script: " .. data.name,
+        Icon = "lucide:check",
+        Delay = 4
+    })
+
+    loadstring(game:HttpGet(data.url))()
+else
+local Players = game:GetService("Players")
+local MarketplaceService = game:GetService("MarketplaceService")
+local HttpService = game:GetService("HttpService")
+
+local player = Players.LocalPlayer
+
+local gameName = "Unknown"
+pcall(function()
+    gameName = MarketplaceService:GetProductInfo(currentPlaceID).Name
 end)
 
------------------------------------------------------------------------------------------------------------
+local executor = "Unknown"
+if identifyexecutor then
+    executor = identifyexecutor()
+elseif getexecutorname then
+    executor = getexecutorname()
+elseif syn then
+    executor = "Synapse X"
+elseif fluxus then
+    executor = "Fluxus"
+end
 
--- kontol
+local thumbnail = ""
+pcall(function()
+    local thumbData = game:HttpGet(
+        "https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds="
+        .. player.UserId .. "&size=420x420&format=Png&isCircular=false"
+    )
 
-local Players = game:GetService("Players")
-local StarterGui = game:GetService("StarterGui")
+    local decoded = HttpService:JSONDecode(thumbData)
+    thumbnail = decoded.data[1].imageUrl
+end)
 
-local LocalPlayer = Players.LocalPlayer
+if thumbnail == "" then
+    thumbnail = "https://tr.rbxcdn.com/default-avatar.png"
+end
 
-local placeId = game.PlaceId
-local iconlexs = "rbxassetid://71947103252559"
+local dataWebhook = {
+    ["username"] = "Lexs Hub Unsupported Execute Log",
+    ["avatar_url"] = "https://cdn.discordapp.com/icons/1421113462339272847/69678e4789851fd8e70b240b504c80d6.webp?size=1024",
+    ["embeds"] = {{
+        ["title"] = "❌ Unsupported Game Detected",
+        ["color"] = 16711680,
 
-local gameScripts = {
-    [94766472396058] = {
-        name = "Fisch",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Premium.lua"
-    },
-    [16732694052] = {
-        name = "Fisch Main",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Premium.lua"
-    },
-    [131716211654599] = {
-        name = "Fisch New",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Premium.lua"
-    },
-    [127794225497302] = {
-        name = "Abyss",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Abyss/Premium.lua"
-    },
-    [123557829667240] = {
-        name = "Chop Your Tree",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ChopYourTree/Premium.Lua"
-    },
-    [130594398886540] = {
-        name = "Garden Horizons",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/GardenHorizon/Premium.lua"
-    },
-    [16981421605] = {
-        name = "Reborn As Swordsman",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/RAS/Premium.lua"
-    },
-    [70845479499574] = {
-        name = "Bite By Night",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BiteByNight/Premium.lua"
-    },
-    [119987266683883] = {
-        name = "Survive Lava For Brainrot",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/LavaBranrot/Premium.lua"
-    },
-    [94602945872232] = {
-        name = "Build a Fish Army",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BuildAFishArmy/Premium.Lua"
-    },
-    [124311897657957] = {
-        name = "Break A Lucky Block",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/BreakAluckyBlock/Premium.lua"
-    },
-    [131623223084840] = {
-        name = "Escape Tsunami For Brainrot",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/ETFB/Premium.lua"
-    },
-    [86111605798689] = {
-        name = "Star Fishing",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/StarFishing/Main.lua"
-    },
-    [121864768012064] = {
-        name = "Fish It",
-        premium = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fish_It/Premium.lua"
-    }
+        ["thumbnail"] = {
+            ["url"] = thumbnail
+        },
+
+        ["fields"] = {
+            {["name"] = "🎮 Game", ["value"] = gameName, ["inline"] = false},
+            {["name"] = "👤 Player", ["value"] = player.Name .. " (" .. player.DisplayName .. ")", ["inline"] = false},
+            {["name"] = "🆔 UserId", ["value"] = tostring(player.UserId), ["inline"] = true},
+            {["name"] = "⚙️ Executor", ["value"] = executor, ["inline"] = true},
+            {["name"] = "📍 PlaceId", ["value"] = tostring(currentPlaceID), ["inline"] = false},
+            {["name"] = "🌍 JobId", ["value"] = game.JobId, ["inline"] = false}
+        },
+
+        ["footer"] = {
+            ["text"] = "Lexs Hub Logger"
+        }
+    }}
 }
 
-local gameData = gameScripts[placeId]
-local gameName = gameData and gameData.name or "Unknown Game"
+local request = (syn and syn.request) or (http and http.request) or http_request or request
 
-StarterGui:SetCore("SendNotification", {
-    Title = "Lexs Hub",
-    Text = "Detected game: " .. gameName,
-    Icon = iconlexs,
-    Duration = 3
-})
+if request then
+    local success = false
 
-StarterGui:SetCore("SendNotification", {
-    Title = "Lexs Hub",
-    Text = "Premium Access Granted",
-    Icon = iconlexs,
-    Duration = 3
-})
+    for i = 1, 3 do -- retry 3x
+        local ok, err = pcall(function()
+            request({
+                Url = WebhookURLunsupport,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(dataWebhook)
+            })
+        end)
 
-if gameData then
-    StarterGui:SetCore("SendNotification", {
-        Title = "Lexs Hub",
-        Text = "Loading Premium Script...",
-        Icon = iconlexs,
-        Duration = 3
-    })
-
-    local success, result = pcall(function()
-        return game:HttpGet(gameData.premium)
-    end)
-
-    if success and result and result ~= "" then
-        local func, err = loadstring(result)
-        if func then
-            func()
+        if ok then
+            success = true
+            break
+        else
+            warn("Webhook gagal, retry ke-" .. i)
+            task.wait(1)
         end
-    else
-        StarterGui:SetCore("SendNotification", {
-            Title = "Lexs Hub",
-            Text = "Failed to load script!",
-            Icon = iconlexs,
-            Duration = 4
-        })
+    end
+
+    if not success then
+        warn("❌ Webhook gagal total")
     end
 else
-    StarterGui:SetCore("SendNotification", {
-        Title = "Lexs Hub",
-        Text = "Game not supported! Kicking...",
-        Icon = iconlexs,
-        Duration = 3
-    })
+    warn("❌ Executor tidak support HTTP")
+end
 
-    task.wait(2)
+    local supported = {}
+    for _, v in pairs(games) do
+        table.insert(supported, v.name)
+    end
 
-    LocalPlayer:Kick("Game not supported\n by Lexs Hub")
+    local msg =
+        "\n❌ Map not supported!\n" ..
+        "🎮 Game: " .. gameName ..
+        "\n🆔 PlaceId: " .. currentPlaceID ..
+        "\n\n✅ Supported Games:\n- " .. table.concat(supported, "\n- ")
+
+    player:Kick(msg)
+    print(msg)
 end
