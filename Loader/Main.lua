@@ -1,3 +1,5 @@
+local NotifLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/nyzxhub-rblx/LexsUi/refs/heads/main/notify/lexshubnotify.lua"))()
+
 local games = {
     [94766472396058] = {url = "https://raw.githubusercontent.com/albibot69-lgtm/Lexs/refs/heads/main/Fisch/Free.lua", name = "Fisch Universe"},
     
@@ -28,6 +30,13 @@ local data = games[currentUniverseID] or games[currentPlaceID]
 
 if data then
     print("Lexs Hub: Loading script for " .. data.name)
+
+    NotifLib:MakeNotify({
+        Title = "Lexs Hub",
+        Content = "Loading Script: " .. data.name,
+        Icon = "lucide:check",
+        Delay = 4
+    })
 
     print("\n\n")
 
@@ -159,6 +168,14 @@ if data then
     end
 
     print("Webhook Sent For Supported Game: " .. data.name)
+
+    NotifLib:MakeNotify({
+        Title = "Lexs Hub",
+        Content = "Loading Freemium Script: " .. data.name,
+        Icon = "lucide:check",
+        Delay = 4
+    })
+
     loadstring(game:HttpGet(data.url))()
 else
 local Players = game:GetService("Players")
